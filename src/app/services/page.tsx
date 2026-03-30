@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { services } from "@/lib/data";
-import SectionHeading from "@/components/ui/section-heading";
 
 export const metadata: Metadata = {
   title: "SERVICE",
@@ -12,48 +11,118 @@ export default function ServicesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="py-24 md:py-32 bg-foreground text-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <p className="text-sm tracking-[0.3em] text-neutral-400 mb-4">
+      <section className="py-32 md:py-44 bg-foreground text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.03]">
+          <div className="absolute -right-10 top-1/2 -translate-y-1/2 text-[16rem] font-bold leading-none tracking-tighter select-none">
             SERVICE
+          </div>
+        </div>
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <p className="text-xs tracking-[0.4em] text-neutral-500 mb-6 uppercase animate-fade-in">
+            Service
           </p>
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tighter animate-fade-in">
             전문 서비스
           </h1>
-          <p className="mt-6 text-lg text-neutral-300 max-w-xl">
-            고객의 상황에 맞는 최적의 솔루션을 제공합니다.
+          <div className="mt-6 h-px w-20 bg-neutral-600 animate-line-reveal" />
+          <p className="mt-8 text-lg text-neutral-400 max-w-xl leading-relaxed animate-fade-in-delay">
+            기장부터 가치평가까지, 기업의 모든 회계 · 세무 니즈를
+            원스톱으로 해결합니다.
           </p>
         </div>
       </section>
 
-      {/* Services Grid */}
+      {/* Services - Alternating Layout */}
       <section className="py-24 md:py-32">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service) => (
-              <Link
-                key={service.slug}
-                href={`/services/${service.slug}`}
-                className="group p-8 border border-border hover:border-foreground transition-colors"
-              >
-                <span className="text-3xl">{service.icon}</span>
-                <h2 className="mt-4 text-xl font-bold">{service.title}</h2>
-                <p className="mt-3 text-sm text-muted leading-relaxed">
-                  {service.description}
-                </p>
-                <div className="mt-6">
-                  {service.details.map((detail, i) => (
-                    <p key={i} className="text-xs text-muted py-1">
-                      &middot; {detail}
-                    </p>
-                  ))}
-                </div>
-                <span className="mt-6 inline-block text-xs font-medium tracking-wider text-muted group-hover:text-foreground transition-colors">
-                  자세히 보기 →
-                </span>
-              </Link>
-            ))}
+          <div className="space-y-0">
+            {services.map((service, index) => {
+              const isEven = index % 2 === 0;
+              const num = String(index + 1).padStart(2, "0");
+
+              return (
+                <Link
+                  key={service.slug}
+                  href={`/services/${service.slug}`}
+                  className="group block border-t border-border last:border-b"
+                >
+                  <div
+                    className={`py-12 md:py-16 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center ${
+                      isEven ? "" : "md:direction-rtl"
+                    }`}
+                  >
+                    {/* Number + Title side */}
+                    <div
+                      className={`md:col-span-5 ${
+                        isEven ? "md:col-start-1" : "md:col-start-8"
+                      }`}
+                    >
+                      <div className="flex items-baseline gap-4">
+                        <span className="text-5xl md:text-7xl font-bold tracking-tighter text-neutral-200 group-hover:text-foreground transition-colors duration-500">
+                          {num}
+                        </span>
+                        <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
+                          {service.title}
+                        </h2>
+                      </div>
+                    </div>
+
+                    {/* Description + Details side */}
+                    <div
+                      className={`md:col-span-6 ${
+                        isEven ? "md:col-start-7" : "md:col-start-1"
+                      }`}
+                    >
+                      <p className="text-muted leading-relaxed mb-6">
+                        {service.description}
+                      </p>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        {service.details.map((detail, i) => (
+                          <p
+                            key={i}
+                            className="text-sm text-subtle py-1 flex items-start gap-2"
+                          >
+                            <span className="w-1 h-1 rounded-full bg-subtle mt-2 flex-shrink-0" />
+                            {detail}
+                          </p>
+                        ))}
+                      </div>
+                      <span className="mt-6 inline-flex items-center text-xs font-medium tracking-wider text-muted group-hover:text-foreground transition-colors duration-300">
+                        자세히 보기
+                        <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">
+                          &rarr;
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-24 md:py-32 bg-foreground text-white">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <p className="text-xs tracking-[0.4em] text-neutral-500 mb-6 uppercase">
+            Contact
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+            어떤 서비스가 필요하신가요?
+          </h2>
+          <p className="mt-4 text-neutral-400 max-w-xl mx-auto leading-relaxed">
+            고객의 상황에 맞는 최적의 서비스를 추천해 드립니다.
+          </p>
+          <Link
+            href="/contact"
+            className="group mt-10 inline-flex items-center px-10 py-4 bg-white text-foreground text-sm font-medium tracking-wider transition-all duration-300 hover:bg-neutral-200"
+          >
+            상담 신청
+            <span className="ml-3 transition-transform duration-300 group-hover:translate-x-1">
+              &rarr;
+            </span>
+          </Link>
         </div>
       </section>
     </>

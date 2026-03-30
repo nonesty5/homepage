@@ -34,19 +34,28 @@ export default function BlogPage() {
       ? posts
       : posts.filter((p) => p.category === activeCategory);
 
+  const featured = filteredPosts[0];
+  const rest = filteredPosts.slice(1);
+
   return (
     <>
       {/* Hero */}
-      <section className="py-24 md:py-32 bg-foreground text-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <p className="text-sm tracking-[0.3em] text-neutral-400 mb-4">
+      <section className="py-32 md:py-44 bg-foreground text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.03]">
+          <div className="absolute -right-10 top-1/2 -translate-y-1/2 text-[16rem] font-bold leading-none tracking-tighter select-none">
             BLOG
+          </div>
+        </div>
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <p className="text-xs tracking-[0.4em] text-neutral-500 mb-6 uppercase animate-fade-in">
+            Blog
           </p>
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tighter animate-fade-in">
             인사이트
           </h1>
-          <p className="mt-6 text-lg text-neutral-300 max-w-xl">
-            세무·회계 관련 최신 정보와 전문 지식을 공유합니다.
+          <div className="mt-6 h-px w-20 bg-neutral-600 animate-line-reveal" />
+          <p className="mt-8 text-lg text-neutral-400 max-w-xl leading-relaxed animate-fade-in-delay">
+            세무 · 회계 관련 최신 정보와 전문 지식을 공유합니다.
           </p>
         </div>
       </section>
@@ -55,15 +64,15 @@ export default function BlogPage() {
       <section className="py-24 md:py-32">
         <div className="max-w-7xl mx-auto px-6">
           {/* Category Filter */}
-          <div className="flex flex-wrap gap-3 mb-12">
+          <div className="flex flex-wrap gap-3 mb-14">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 text-sm font-medium transition-colors ${
+                className={`px-5 py-2.5 text-xs font-medium tracking-wider transition-all duration-200 ${
                   activeCategory === cat
                     ? "bg-foreground text-white"
-                    : "bg-card text-muted hover:bg-neutral-200"
+                    : "bg-card text-muted hover:bg-neutral-200 border border-border"
                 }`}
               >
                 {cat}
@@ -71,34 +80,91 @@ export default function BlogPage() {
             ))}
           </div>
 
-          {/* Posts Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredPosts.map((post) => (
-              <Link
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                className="group border border-border hover:border-foreground transition-colors"
-              >
-                <div className="p-8">
-                  <span className="text-xs font-medium tracking-wider text-muted">
-                    {post.category}
-                  </span>
-                  <h2 className="mt-3 text-lg font-bold leading-snug group-hover:underline">
-                    {post.title}
-                  </h2>
-                  <p className="mt-2 text-sm text-muted line-clamp-2">
-                    {post.description}
-                  </p>
-                  <p className="mt-4 text-xs text-muted">{post.date}</p>
+          {/* Featured Post */}
+          {featured && (
+            <Link
+              href={`/blog/${featured.slug}`}
+              className="group block mb-12"
+            >
+              <div className="border border-border hover:border-foreground transition-all duration-300 p-10 md:p-14 hover-lift">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                  <div>
+                    <div className="flex items-center gap-3 mb-4">
+                      <span className="inline-block px-3 py-1 text-[10px] font-medium tracking-wider bg-foreground text-white uppercase">
+                        {featured.category}
+                      </span>
+                      <span className="text-xs text-subtle">
+                        {featured.date}
+                      </span>
+                    </div>
+                    <h2 className="text-2xl md:text-3xl font-bold tracking-tight leading-tight group-hover:underline decoration-1 underline-offset-4">
+                      {featured.title}
+                    </h2>
+                    <p className="mt-4 text-muted leading-relaxed line-clamp-3">
+                      {featured.description}
+                    </p>
+                    <span className="mt-6 inline-flex items-center text-sm font-medium tracking-wider text-muted group-hover:text-foreground transition-colors">
+                      읽기
+                      <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">
+                        &rarr;
+                      </span>
+                    </span>
+                  </div>
+                  <div className="hidden md:flex items-center justify-center">
+                    <div className="w-full aspect-[4/3] bg-card border border-border flex items-center justify-center">
+                      <span className="text-6xl font-bold text-neutral-200 select-none">
+                        {featured.title[0]}
+                      </span>
+                    </div>
+                  </div>
                 </div>
-              </Link>
-            ))}
-          </div>
+              </div>
+            </Link>
+          )}
+
+          {/* Remaining Posts Grid */}
+          {rest.length > 0 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {rest.map((post) => (
+                <Link
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  className="group border border-border hover:border-foreground transition-all duration-300 hover-lift"
+                >
+                  <div className="p-8 md:p-10">
+                    <div className="flex items-center gap-3 mb-4">
+                      <span className="inline-block px-3 py-1 text-[10px] font-medium tracking-wider bg-card text-muted uppercase">
+                        {post.category}
+                      </span>
+                      <span className="text-xs text-subtle">{post.date}</span>
+                    </div>
+                    <h2 className="text-lg font-bold leading-snug tracking-tight group-hover:underline decoration-1 underline-offset-4">
+                      {post.title}
+                    </h2>
+                    <p className="mt-3 text-sm text-muted line-clamp-2 leading-relaxed">
+                      {post.description}
+                    </p>
+                    <span className="mt-5 inline-flex items-center text-xs font-medium tracking-wider text-muted group-hover:text-foreground transition-colors">
+                      읽기
+                      <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">
+                        &rarr;
+                      </span>
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
 
           {filteredPosts.length === 0 && (
-            <p className="text-center text-muted py-16">
-              해당 카테고리의 글이 없습니다.
-            </p>
+            <div className="py-24 text-center">
+              <p className="text-muted text-lg">
+                해당 카테고리의 글이 없습니다.
+              </p>
+              <p className="mt-2 text-subtle text-sm">
+                다른 카테고리를 선택해 보세요.
+              </p>
+            </div>
           )}
         </div>
       </section>
