@@ -25,33 +25,22 @@ export const siteConfig = {
  *   public/images/hero-cta.jpg      — 1920x1080+ 가로 (CTA 야경)
  */
 export const heroImages = {
-  home: "/images/hero-home.jpg" as string | null,
-  about: "/images/hero-about.jpg" as string | null,
+  home: null as string | null,
+  about: null as string | null,
   cta: null as string | null,
 };
 
 /**
  * Image credits — CC BY/CC BY-SA 사진의 attribution.
- * 푸터에 작은 텍스트로 노출됨.
+ * 사진을 다시 추가할 때 채워주세요.
  */
-export const imageCredits = [
-  {
-    title: "Seoul Night HDR (from N Seoul Tower)",
-    photographer: "EclipseDude",
-    license: "CC BY-SA 4.0",
-    source: "Wikimedia Commons",
-    sourceUrl:
-      "https://commons.wikimedia.org/wiki/File:Seoul_Night_HDR1.jpg",
-  },
-  {
-    title: "Seoul Nightscape (Jongno)",
-    photographer: "Hanonimas",
-    license: "CC BY-SA 3.0",
-    source: "Wikimedia Commons",
-    sourceUrl:
-      "https://commons.wikimedia.org/wiki/File:Seoul_Nightscape.jpeg",
-  },
-];
+export const imageCredits: Array<{
+  title: string;
+  photographer: string;
+  license: string;
+  source: string;
+  sourceUrl: string;
+}> = [];
 
 export const navLinks = [
   { href: "/", label: "HOME" },
