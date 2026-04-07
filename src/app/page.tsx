@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { services, personas, stats, members } from "@/lib/data";
-import { siteConfig } from "@/lib/constants";
+import { siteConfig, heroImages } from "@/lib/constants";
 import { getAllPosts } from "@/lib/posts";
 import SectionHeading from "@/components/ui/section-heading";
 
@@ -21,7 +21,21 @@ export default function Home() {
     <>
       {/* Hero Section */}
       <section className="relative bg-foreground text-white min-h-screen flex items-center overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 py-32 w-full">
+        {/* Background image (cityscape) — falls back to solid foreground if not provided */}
+        {heroImages.home && (
+          <>
+            <Image
+              src={heroImages.home}
+              alt=""
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center opacity-60"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
+          </>
+        )}
+        <div className="max-w-7xl mx-auto px-6 py-32 w-full relative z-10">
           <div className="max-w-4xl">
             <p className="text-xs tracking-[0.4em] text-neutral-500 mb-8 animate-fade-in uppercase">
               Boutique Advisory · Seoul
@@ -29,7 +43,7 @@ export default function Home() {
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tighter animate-fade-in">
               {siteConfig.title}
             </h1>
-            <div className="mt-6 h-px w-24 bg-neutral-600 animate-line-reveal" />
+            <div className="mt-6 h-px w-24 bg-accent animate-line-reveal" />
             <p className="mt-8 text-lg md:text-xl text-neutral-400 leading-relaxed max-w-xl animate-fade-in-delay">
               스타트업 · 사업가 · 자산가의
               <br />
@@ -158,7 +172,7 @@ export default function Home() {
                 <p className="mt-3 text-sm tracking-[0.15em] text-muted uppercase">
                   {lead.role}
                 </p>
-                <div className="mt-8 h-px w-16 bg-border" />
+                <div className="mt-8 h-px w-16 bg-accent" />
                 <p className="mt-8 text-base md:text-lg text-muted leading-relaxed max-w-2xl">
                   {lead.description}
                 </p>

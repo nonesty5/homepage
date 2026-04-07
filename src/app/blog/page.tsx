@@ -53,7 +53,7 @@ export default function BlogPage() {
           <h1 className="text-4xl md:text-6xl font-bold tracking-tighter animate-fade-in">
             인사이트
           </h1>
-          <div className="mt-6 h-px w-20 bg-neutral-600 animate-line-reveal" />
+          <div className="mt-6 h-px w-20 bg-accent animate-line-reveal" />
           <p className="mt-8 text-lg text-neutral-400 max-w-xl leading-relaxed animate-fade-in-delay">
             세무 · 회계 관련 최신 정보와 전문 지식을 공유합니다.
           </p>

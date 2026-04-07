@@ -75,7 +75,7 @@ export default async function BlogPostPage({ params }: Props) {
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
               {post.meta.title}
             </h1>
-            <div className="mt-6 h-px w-16 bg-neutral-600 animate-line-reveal" />
+            <div className="mt-6 h-px w-16 bg-accent animate-line-reveal" />
             <div className="mt-6 flex items-center gap-4 text-sm text-neutral-500">
               <span>{post.meta.date}</span>
               <span className="w-1 h-1 rounded-full bg-neutral-600" />

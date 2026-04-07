@@ -6,8 +6,17 @@
   --color-muted: #737373;
   --color-border: #e5e5e5;
   --color-card: #fafafa;
-  --color-accent: #0a0a0a;
+
+  /* ─── Accent color (single source of truth) ───
+   * 활성: A2 Antique Brass — 골든아워와 가장 잘 붙는 톤
+   * 다른 후보로 바꾸려면 아래 한 줄만 교체.
+   *   A1 Burgundy / Oxblood:  #6B2027
+   *   A2 Antique Brass:       #8B6A2A   (기본)
+   *   A3 Oxford Midnight Navy: #0B2240
+   */
+  --color-accent: #8B6A2A;
   --color-accent-foreground: #ffffff;
+
   --color-surface: #f5f5f5;
   --color-subtle: #a3a3a3;
   --font-sans: "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
@@ -17,6 +26,14 @@
 
 html {
   scroll-behavior: smooth;
+  /* Slightly larger base font for better readability — bumps every rem-based size */
+  font-size: 17px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 18px;
+  }
 }
 
 body {
@@ -245,7 +262,7 @@ body {
   left: 0;
   width: 100%;
   height: 1px;
-  background: currentColor;
+  background: var(--color-accent);
   transform: scaleX(0);
   transform-origin: right center;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
@@ -277,6 +294,7 @@ body {
 }
 
 .prose p {
+  font-size: 1.0625rem;
   margin-bottom: 1.25rem;
   line-height: 1.85;
   color: #404040;
@@ -290,6 +308,7 @@ body {
 }
 
 .prose li {
+  font-size: 1.0625rem;
   margin-bottom: 0.625rem;
   line-height: 1.85;
   color: #404040;
@@ -300,7 +319,7 @@ body {
 }
 
 .prose blockquote {
-  border-left: 2px solid #0a0a0a;
+  border-left: 2px solid var(--color-accent);
   padding-left: 1.25rem;
   margin: 2rem 0;
   font-style: italic;

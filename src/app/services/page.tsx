@@ -24,7 +24,7 @@ export default function ServicesPage() {
           <h1 className="text-4xl md:text-6xl font-bold tracking-tighter animate-fade-in">
             전문 영역
           </h1>
-          <div className="mt-6 h-px w-20 bg-neutral-600 animate-line-reveal" />
+          <div className="mt-6 h-px w-20 bg-accent animate-line-reveal" />
           <p className="mt-8 text-lg text-neutral-400 max-w-xl leading-relaxed animate-fade-in-delay">
             가치평가 · M&amp;A · IPO 준비 · 재무 모델링 · 세무 자문.
             <br />

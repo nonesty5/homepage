@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { siteConfig } from "@/lib/constants";
+import Image from "next/image";
+import { siteConfig, heroImages } from "@/lib/constants";
 import SectionHeading from "@/components/ui/section-heading";
 
 export const metadata: Metadata = {
@@ -67,6 +68,19 @@ export default function AboutPage() {
     <>
       {/* Hero */}
       <section className="py-32 md:py-44 bg-foreground text-white relative overflow-hidden">
+        {heroImages.about && (
+          <>
+            <Image
+              src={heroImages.about}
+              alt=""
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center opacity-50"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
+          </>
+        )}
         <div className="absolute inset-0 opacity-[0.03]">
           <div className="absolute -right-20 top-1/2 -translate-y-1/2 text-[18rem] font-bold leading-none tracking-tighter select-none">
             ABOUT
@@ -81,7 +95,7 @@ export default function AboutPage() {
             <br />
             가장 정확하게.
           </h1>
-          <div className="mt-8 h-px w-20 bg-neutral-600 animate-line-reveal" />
+          <div className="mt-8 h-px w-20 bg-accent animate-line-reveal" />
           <p className="mt-8 text-lg md:text-xl text-neutral-400 leading-relaxed max-w-2xl animate-fade-in-delay">
             메리디안 어드바이저리는 한 사람의 깊은 경험에서 시작된
             회계 · 재무 자문 부티크입니다. 보고서를 던지는 자문이 아닌,
