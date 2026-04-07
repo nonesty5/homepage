@@ -36,20 +36,20 @@ export const heroImages = {
  */
 export const imageCredits = [
   {
-    title: "Han River Seoul Skyline",
-    photographer: "USAGI_POST",
-    license: "CC0",
+    title: "Seoul Night HDR (from N Seoul Tower)",
+    photographer: "EclipseDude",
+    license: "CC BY-SA 4.0",
     source: "Wikimedia Commons",
     sourceUrl:
-      "https://commons.wikimedia.org/wiki/File:Han_River_Seoul_skyline_Pixabay_1214950.jpg",
+      "https://commons.wikimedia.org/wiki/File:Seoul_Night_HDR1.jpg",
   },
   {
-    title: "Seoul from Inwangsan",
-    photographer: "pravin.premkumar",
-    license: "CC BY 2.0",
+    title: "Seoul Nightscape (Jongno)",
+    photographer: "Hanonimas",
+    license: "CC BY-SA 3.0",
     source: "Wikimedia Commons",
     sourceUrl:
-      "https://commons.wikimedia.org/wiki/File:Seoul_from_Inwangsan.jpg",
+      "https://commons.wikimedia.org/wiki/File:Seoul_Nightscape.jpeg",
   },
 ];
 

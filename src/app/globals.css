@@ -124,6 +124,17 @@ body {
   50% { opacity: 0.6; }
 }
 
+/* Ken Burns — slow cinematic zoom + slight pan for static hero photos */
+@keyframes ken-burns-right {
+  0%   { transform: scale(1.05) translate3d(0, 0, 0); }
+  100% { transform: scale(1.18) translate3d(-2%, -1%, 0); }
+}
+
+@keyframes ken-burns-left {
+  0%   { transform: scale(1.05) translate3d(0, 0, 0); }
+  100% { transform: scale(1.18) translate3d(2%, 1%, 0); }
+}
+
 /* ─── Animation Utilities ─── */
 
 .animate-fade-in {
@@ -173,6 +184,25 @@ body {
 .animate-line-reveal-center {
   animation: line-reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   transform-origin: center center;
+}
+
+.animate-ken-burns-right {
+  animation: ken-burns-right 30s ease-in-out infinite alternate;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.animate-ken-burns-left {
+  animation: ken-burns-left 35s ease-in-out infinite alternate;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-ken-burns-right,
+  .animate-ken-burns-left {
+    animation: none;
+  }
 }
 
 /* ─── Staggered Delays ─── */

@@ -76,14 +76,14 @@ export default function AboutPage() {
               fill
               priority
               sizes="100vw"
-              className="object-cover object-center"
-              style={{ filter: "grayscale(100%) contrast(1.15) brightness(0.85)" }}
+              className="object-cover object-center animate-ken-burns-left"
+              style={{ filter: "grayscale(100%) contrast(1.2) brightness(0.95)" }}
             />
             <div
               className="absolute inset-0 mix-blend-color pointer-events-none"
               style={{ backgroundColor: "var(--color-accent-bright)" }}
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/40 to-black/75 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/35 to-black/75 pointer-events-none" />
           </>
         )}
         <div className="absolute inset-0 opacity-[0.03]">
