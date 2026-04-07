@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { siteConfig, navLinks } from "@/lib/constants";
+import { siteConfig, navLinks, imageCredits } from "@/lib/constants";
 
 export default function Footer() {
   const practiceLinks = [
@@ -110,11 +110,36 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="h-px bg-neutral-800" />
       </div>
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-8 space-y-4">
         <p className="text-xs text-neutral-500 leading-relaxed max-w-4xl">
           <span className="text-neutral-400 font-medium">Affiliation Notice.</span>{" "}
           {siteConfig.affiliation}
         </p>
+        {imageCredits.length > 0 && (
+          <p className="text-[11px] text-neutral-600 leading-relaxed max-w-4xl">
+            <span className="text-neutral-500 font-medium uppercase tracking-wider">
+              Image Credits ·{" "}
+            </span>
+            {imageCredits.map((credit, i) => (
+              <span key={credit.title}>
+                {i > 0 && " · "}
+                <a
+                  href={credit.sourceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-neutral-400 transition-colors"
+                >
+                  {credit.title}
+                </a>
+                {" by "}
+                {credit.photographer}
+                {" ("}
+                {credit.license}
+                {")"}
+              </span>
+            ))}
+          </p>
+        )}
       </div>
 
       {/* Bottom Bar */}

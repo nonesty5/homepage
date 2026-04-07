@@ -21,7 +21,7 @@ export default function Home() {
     <>
       {/* Hero Section */}
       <section className="relative bg-foreground text-white min-h-screen flex items-center overflow-hidden">
-        {/* Background image (cityscape) — falls back to solid foreground if not provided */}
+        {/* Background image (cityscape) with B&W duotone navy treatment */}
         {heroImages.home && (
           <>
             <Image
@@ -30,9 +30,16 @@ export default function Home() {
               fill
               priority
               sizes="100vw"
-              className="object-cover object-center opacity-60"
+              className="object-cover object-center"
+              style={{ filter: "grayscale(100%) contrast(1.1) brightness(0.55)" }}
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
+            {/* Navy duotone tint */}
+            <div
+              className="absolute inset-0 mix-blend-multiply pointer-events-none"
+              style={{ backgroundColor: "var(--color-accent)" }}
+            />
+            {/* Dark gradient for text readability */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80 pointer-events-none" />
           </>
         )}
         <div className="max-w-7xl mx-auto px-6 py-32 w-full relative z-10">

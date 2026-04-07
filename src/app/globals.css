@@ -8,13 +8,13 @@
   --color-card: #fafafa;
 
   /* ─── Accent color (single source of truth) ───
-   * 활성: A2 Antique Brass — 골든아워와 가장 잘 붙는 톤
+   * 활성: A3 Oxford Midnight Navy — IB·정통 금융 결
    * 다른 후보로 바꾸려면 아래 한 줄만 교체.
    *   A1 Burgundy / Oxblood:  #6B2027
-   *   A2 Antique Brass:       #8B6A2A   (기본)
-   *   A3 Oxford Midnight Navy: #0B2240
+   *   A2 Antique Brass:       #8B6A2A
+   *   A3 Oxford Midnight Navy: #0B2240   (기본)
    */
-  --color-accent: #8B6A2A;
+  --color-accent: #0B2240;
   --color-accent-foreground: #ffffff;
 
   --color-surface: #f5f5f5;

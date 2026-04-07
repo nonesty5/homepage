@@ -25,10 +25,33 @@ export const siteConfig = {
  *   public/images/hero-cta.jpg      — 1920x1080+ 가로 (CTA 야경)
  */
 export const heroImages = {
-  home: null as string | null,
-  about: null as string | null,
+  home: "/images/hero-home.jpg" as string | null,
+  about: "/images/hero-about.jpg" as string | null,
   cta: null as string | null,
 };
+
+/**
+ * Image credits — CC BY/CC BY-SA 사진의 attribution.
+ * 푸터에 작은 텍스트로 노출됨.
+ */
+export const imageCredits = [
+  {
+    title: "Han River Seoul Skyline",
+    photographer: "USAGI_POST",
+    license: "CC0",
+    source: "Wikimedia Commons",
+    sourceUrl:
+      "https://commons.wikimedia.org/wiki/File:Han_River_Seoul_skyline_Pixabay_1214950.jpg",
+  },
+  {
+    title: "Seoul from Inwangsan",
+    photographer: "pravin.premkumar",
+    license: "CC BY 2.0",
+    source: "Wikimedia Commons",
+    sourceUrl:
+      "https://commons.wikimedia.org/wiki/File:Seoul_from_Inwangsan.jpg",
+  },
+];
 
 export const navLinks = [
   { href: "/", label: "HOME" },

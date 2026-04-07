@@ -76,9 +76,14 @@ export default function AboutPage() {
               fill
               priority
               sizes="100vw"
-              className="object-cover object-center opacity-50"
+              className="object-cover object-center"
+              style={{ filter: "grayscale(100%) contrast(1.1) brightness(0.5)" }}
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
+            <div
+              className="absolute inset-0 mix-blend-multiply pointer-events-none"
+              style={{ backgroundColor: "var(--color-accent)" }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/45 to-black/80 pointer-events-none" />
           </>
         )}
         <div className="absolute inset-0 opacity-[0.03]">
