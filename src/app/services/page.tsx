@@ -26,9 +26,9 @@ export default function ServicesPage() {
           </h1>
           <div className="mt-6 h-0.5 w-20 bg-accent-bright animate-line-reveal" />
           <p className="mt-8 text-lg text-neutral-400 max-w-xl leading-relaxed animate-fade-in-delay">
-            가치평가 · M&amp;A · IPO 준비 · 재무 모델링 · 세무 자문.
+            세무 기장 · 세무 조정 · 세무 자문이 중심,
             <br />
-            Big4 감사 + IB + VME 경력을 결합해 직접 자문드립니다.
+            기업가치평가 · M&amp;A · IPO 자문까지 같은 사람이 책임집니다.
           </p>
         </div>
       </section>

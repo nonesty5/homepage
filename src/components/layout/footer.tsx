@@ -3,11 +3,11 @@ import { siteConfig, navLinks, imageCredits } from "@/lib/constants";
 
 export default function Footer() {
   const practiceLinks = [
+    { label: "세무 기장", href: "/services/tax-bookkeeping" },
+    { label: "세무 조정", href: "/services/tax-adjustment" },
+    { label: "세무 자문", href: "/services/tax-advisory" },
     { label: "기업가치평가", href: "/services/valuation" },
-    { label: "M&A 자문", href: "/services/ma-advisory" },
-    { label: "IPO 준비 자문", href: "/services/ipo-readiness" },
-    { label: "재무 모델링 · 사업계획", href: "/services/financial-modeling" },
-    { label: "세무 · 자산 자문", href: "/services/tax-advisory" },
+    { label: "M&A · IPO 자문", href: "/services/transaction-advisory" },
   ];
 
   return (

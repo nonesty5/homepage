@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const milestones = [
   {
     year: "2026",
-    title: "메리디안 어드바이저리 시작",
+    title: "메리디안 택스 어드바이저리 시작",
     desc: "스타트업 · 사업가 · 자산가를 위한 부티크 자문 브랜드 출범",
   },
   {
@@ -98,9 +98,9 @@ export default function AboutPage() {
           </h1>
           <div className="mt-8 h-0.5 w-20 bg-accent-bright animate-line-reveal" />
           <p className="mt-8 text-lg md:text-xl text-neutral-400 leading-relaxed max-w-2xl animate-fade-in-delay">
-            메리디안 어드바이저리는 한 사람의 깊은 경험에서 시작된
-            회계 · 재무 자문 부티크입니다. 보고서를 던지는 자문이 아닌,
-            의사결정의 가장 가까운 자리에 있는 자문을 지향합니다.
+            메리디안 택스 어드바이저리는 일상 세무를 직접 책임지면서,
+            기업가치평가 · M&amp;A 자문까지 같은 사람이 일관되게 다루는
+            부티크입니다. 매월 숫자를 보는 사람이 큰 의사결정도 함께 봅니다.
           </p>
         </div>
       </section>
@@ -119,12 +119,12 @@ export default function AboutPage() {
                 01
               </p>
               <h3 className="mt-4 text-xl font-bold tracking-tight">
-                Big4 + IB + VME 융합
+                일상 세무가 중심
               </h3>
               <p className="mt-3 text-muted leading-relaxed">
-                삼정 감사본부, NH투자증권 IB, 한영 가치평가본부(VME)를
-                모두 거친 한 사람의 시각. 분리된 자문이 아닌
-                연결된 자문이 가능합니다.
+                세무 기장 · 세무 조정 · 세무 신고를 정기적으로 직접 수행합니다.
+                숫자를 매월 보는 사람이 거래 자문도 하기 때문에,
+                숨은 리스크와 절세 여지를 가장 먼저 발견합니다.
               </p>
             </div>
             <div className="group">
@@ -132,12 +132,12 @@ export default function AboutPage() {
                 02
               </p>
               <h3 className="mt-4 text-xl font-bold tracking-tight">
-                Founder가 직접 자문
+                기장부터 가치평가까지 한 사람이
               </h3>
               <p className="mt-3 text-muted leading-relaxed">
-                주니어에게 맡기지 않습니다. Founder가 처음부터 끝까지
-                직접 케이스를 듣고, 직접 모델을 만들고, 직접 답합니다.
-                작기 때문에 가능한 방식입니다.
+                삼정 감사 · NH투자증권 IB · 한영 가치평가본부(VME)를
+                거친 한 사람이 일상 세무부터 M&amp;A 자문까지
+                일관되게 책임집니다. 인수인계 비용이 없습니다.
               </p>
             </div>
             <div className="group">
@@ -148,9 +148,9 @@ export default function AboutPage() {
                 법정 업무는 정식 채널로
               </h3>
               <p className="mt-3 text-muted leading-relaxed">
-                자문은 메리디안에서, 회계감사 · 세무신고 등 법정 업무는
-                동성회계법인을 통해 정식으로 수행됩니다. 자문과 실행이
-                분리되지 않는 구조입니다.
+                회계감사 · 세무 기장 · 세무 조정 · 세무 신고 등 법정 업무는
+                모두 동성회계법인 명의로 정식 수행됩니다.
+                자문과 실행이 분리되지 않는 구조입니다.
               </p>
             </div>
           </div>
@@ -315,13 +315,13 @@ export default function AboutPage() {
             </div>
             <div className="space-y-6 text-neutral-300 leading-relaxed">
               <p>
-                <strong className="text-white">메리디안 어드바이저리</strong>는
+                <strong className="text-white">메리디안 택스 어드바이저리</strong>는
                 박민상 공인회계사가 운영하는 부티크 자문 브랜드이며, 별도 법인이 아닙니다.
               </p>
               <p>
                 박민상 공인회계사는 <strong className="text-white">동성회계법인</strong> 소속으로,
                 회계감사 · 세무신고 등 법정 업무는 모두 동성회계법인 명의로 정식 수행됩니다.
-                메리디안 어드바이저리는 자문 활동과 인사이트 발신을 위한 개인 브랜드 공간입니다.
+                메리디안 택스 어드바이저리는 자문 활동과 인사이트 발신을 위한 개인 브랜드 공간입니다.
               </p>
               <p className="text-neutral-400 text-sm">
                 * 본 사이트의 어떠한 표현도 별도 회계법인 · 세무법인을 사칭하지 않으며,

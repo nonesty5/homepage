@@ -40,16 +40,16 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 py-32 w-full relative z-10">
           <div className="max-w-4xl">
             <p className="text-xs tracking-[0.4em] text-neutral-500 mb-8 animate-fade-in uppercase">
-              Boutique Advisory · Seoul
+              Boutique Tax &amp; Advisory · Seoul
             </p>
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tighter animate-fade-in">
               {siteConfig.title}
             </h1>
             <div className="mt-6 h-0.5 w-24 bg-accent-bright animate-line-reveal" />
             <p className="mt-8 text-lg md:text-xl text-neutral-400 leading-relaxed max-w-xl animate-fade-in-delay">
-              스타트업 · 사업가 · 자산가의
+              세무 기장 · 세무 조정 · 세무 자문부터
               <br />
-              가장 가까운 재무 의사결정 파트너.
+              기업가치평가 · M&amp;A까지, 가장 가까운 파트너.
             </p>
             <div className="mt-12 flex flex-col sm:flex-row gap-4 animate-fade-in-delay-2">
               <Link
