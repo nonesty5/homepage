@@ -7,7 +7,7 @@ import SectionHeading from "@/components/ui/section-heading";
 
 function ServiceNumber({ index }: { index: number }) {
   return (
-    <span className="text-xs font-medium tracking-[0.2em] text-muted">
+    <span className="font-serif-display text-3xl font-light tabular-figures text-muted leading-none">
       {String(index + 1).padStart(2, "0")}
     </span>
   );
@@ -39,14 +39,34 @@ export default function Home() {
         )}
         <div className="max-w-7xl mx-auto px-6 py-32 w-full relative z-10">
           <div className="max-w-4xl">
-            <p className="text-xs tracking-[0.4em] text-neutral-500 mb-8 animate-fade-in uppercase">
-              Boutique Advisory · Seoul
-            </p>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tighter animate-fade-in">
+            {/* Editorial meta strip */}
+            <div className="flex items-center gap-4 mb-10 animate-fade-in">
+              <span className="font-mono-meta text-[10px] uppercase text-neutral-500">
+                N°&nbsp;01
+              </span>
+              <span className="h-px w-8 bg-neutral-700" />
+              <span className="font-mono-meta text-[10px] uppercase text-neutral-500">
+                Boutique Advisory
+              </span>
+              <span className="h-px w-8 bg-neutral-700" />
+              <span className="font-mono-meta text-[10px] uppercase text-neutral-500">
+                Est. MMXXVI · Seoul
+              </span>
+            </div>
+
+            {/* Display H1 in Fraunces serif — Latin only, sets the editorial tone */}
+            <h1 className="font-serif-display text-6xl md:text-8xl lg:text-[10rem] font-light leading-[0.92] tracking-[-0.04em] animate-fade-in">
               {siteConfig.title}
             </h1>
-            <div className="mt-6 h-0.5 w-24 bg-accent-bright animate-line-reveal" />
-            <p className="mt-8 text-lg md:text-xl text-neutral-400 leading-relaxed max-w-xl animate-fade-in-delay">
+
+            <div className="mt-8 flex items-center gap-6 animate-line-reveal">
+              <div className="h-0.5 w-20 bg-accent-bright" />
+              <span className="font-serif-display italic text-base md:text-lg text-neutral-300">
+                The Closest Partner
+              </span>
+            </div>
+
+            <p className="mt-10 text-lg md:text-xl text-neutral-400 leading-relaxed max-w-xl animate-fade-in-delay">
               스타트업 · 사업가 · 자산가의
               <br />
               가장 가까운 재무 의사결정 파트너.
@@ -70,32 +90,44 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Large decorative text */}
-          <div className="absolute right-0 top-1/2 -translate-y-1/2 hidden xl:block">
-            <p className="text-[16rem] font-bold leading-none text-neutral-800/30 tracking-tighter select-none">
+          {/* Large decorative serif M */}
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 hidden xl:block pointer-events-none">
+            <p className="font-serif-display text-[22rem] font-light italic leading-none text-white/[0.06] select-none">
               M
             </p>
           </div>
         </div>
 
-        {/* Bottom decorative line */}
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-neutral-600 to-transparent" />
+        {/* Bottom editorial bar — page meta */}
+        <div className="absolute bottom-0 left-0 right-0 px-6 pb-6 z-10">
+          <div className="max-w-7xl mx-auto flex items-center justify-between text-[10px] font-mono-meta uppercase text-neutral-500">
+            <span>박민상 KICPA</span>
+            <span className="hidden md:inline">↓ Scroll to discover</span>
+            <span className="tabular-figures">001 / 005</span>
+          </div>
+        </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-20 md:py-24 border-b border-border">
+      {/* Stats Section — editorial credentials block */}
+      <section className="py-20 md:py-28 border-b border-border">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+          <div className="mb-10 flex items-baseline gap-4">
+            <span className="font-mono-meta text-[10px] uppercase text-subtle">
+              Credentials
+            </span>
+            <span className="h-px flex-1 bg-border max-w-[120px]" />
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10 md:gap-y-0">
             {stats.map((stat, i) => (
               <div
                 key={i}
-                className="text-center md:text-left animate-slide-up"
+                className="md:border-l md:border-border md:pl-6 animate-slide-up"
                 style={{ animationDelay: `${i * 0.1}s` }}
               >
-                <p className="text-3xl md:text-4xl font-bold tracking-tight">
+                <p className="font-serif-display text-4xl md:text-5xl lg:text-6xl font-light tabular-figures tracking-tight leading-none">
                   {stat.value}
                 </p>
-                <p className="mt-2 text-sm text-muted tracking-wide leading-relaxed">
+                <p className="mt-4 font-mono-meta text-[10px] text-muted uppercase leading-relaxed">
                   {stat.label}
                 </p>
               </div>
@@ -108,9 +140,11 @@ export default function Home() {
       <section className="py-24 md:py-32">
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeading
-            label="Practice"
+            label="Practice Areas"
             title="전문 영역"
             subtitle="가치평가 · M&A · IPO · 모델링 · 세무 자문"
+            number="01"
+            align="left"
           />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
             {services.map((service, index) => (
@@ -165,17 +199,26 @@ export default function Home() {
               </div>
               {/* Info */}
               <div className="lg:col-span-7">
-                <p className="text-xs tracking-[0.4em] text-muted mb-6 uppercase">
-                  Founder
-                </p>
+                <div className="flex items-center gap-4 mb-8">
+                  <span className="font-mono-meta text-[10px] uppercase text-subtle tabular-figures">
+                    N°&nbsp;02
+                  </span>
+                  <span className="h-px w-8 bg-border" />
+                  <span className="font-mono-meta text-[10px] uppercase text-muted">
+                    The Founder
+                  </span>
+                </div>
                 <h2 className="text-3xl md:text-5xl font-bold tracking-tighter leading-[1.05]">
                   {lead.name}
                 </h2>
-                <p className="mt-3 text-sm tracking-[0.15em] text-muted uppercase">
+                <p className="mt-3 font-mono-meta text-[11px] text-muted uppercase">
                   {lead.role}
                 </p>
                 <div className="mt-8 h-px w-16 bg-accent" />
-                <p className="mt-8 text-base md:text-lg text-muted leading-relaxed max-w-2xl">
+                <p className="mt-8 font-serif-display italic text-xl md:text-2xl text-foreground leading-snug max-w-2xl">
+                  &ldquo;가장 가까이서, 가장 정확하게.&rdquo;
+                </p>
+                <p className="mt-6 text-base text-muted leading-relaxed max-w-2xl">
                   {lead.description}
                 </p>
                 <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
@@ -210,6 +253,8 @@ export default function Home() {
             label="Who We Serve"
             title="누구를 위한 자문인가"
             subtitle="모두를 위한 자문은 결국 누구에게도 도움이 되지 않습니다."
+            number="03"
+            align="left"
           />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border mt-12">
             {personas.map((persona, i) => (
@@ -218,17 +263,22 @@ export default function Home() {
                 href="/clients"
                 className="group bg-white p-10 md:p-12 hover:bg-card transition-colors duration-300"
               >
-                <p className="text-xs tracking-[0.25em] text-subtle uppercase font-medium">
-                  {String(i + 1).padStart(2, "0")} · {persona.englishLabel}
-                </p>
-                <h3 className="mt-4 text-2xl font-bold tracking-tight">
+                <div className="flex items-baseline gap-4 mb-6">
+                  <span className="font-serif-display text-4xl font-light tabular-figures text-muted leading-none">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="font-mono-meta text-[10px] uppercase text-subtle">
+                    {persona.englishLabel}
+                  </span>
+                </div>
+                <h3 className="text-2xl font-bold tracking-tight">
                   {persona.title}
                 </h3>
                 <p className="mt-4 text-sm text-muted leading-relaxed line-clamp-4">
                   {persona.description}
                 </p>
-                <span className="mt-8 inline-flex items-center text-xs font-medium tracking-wider text-muted group-hover:text-foreground transition-colors duration-300">
-                  자세히 보기
+                <span className="mt-8 inline-flex items-center font-mono-meta text-[10px] uppercase text-muted group-hover:text-foreground transition-colors duration-300">
+                  Read More
                   <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">
                     &rarr;
                   </span>
@@ -244,9 +294,11 @@ export default function Home() {
         <section className="py-24 md:py-32">
           <div className="max-w-7xl mx-auto px-6">
             <SectionHeading
-              label="Insights"
+              label="Field Notes"
               title="최근 인사이트"
               subtitle="회계 · 세무 · 자본시장에 대한 노트를 정기적으로 발행합니다"
+              number="04"
+              align="left"
             />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {recentPosts.map((post) => (
@@ -286,30 +338,40 @@ export default function Home() {
         </section>
       )}
 
-      {/* CTA Section */}
-      <section className="py-32 md:py-40 bg-foreground text-white relative overflow-hidden">
-        {/* Decorative background */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[20rem] font-bold leading-none tracking-tighter select-none">
+      {/* CTA Section — editorial closing */}
+      <section className="py-32 md:py-44 bg-foreground text-white relative overflow-hidden">
+        {/* Decorative serif M */}
+        <div className="absolute inset-0 opacity-[0.04] flex items-center justify-center pointer-events-none">
+          <p className="font-serif-display text-[28rem] font-light italic leading-none select-none">
             M
-          </div>
-        </div>
-        <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
-          <p className="text-xs tracking-[0.4em] text-neutral-500 mb-6 uppercase">
-            Get in Touch
           </p>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
-            첫 30분은 무료입니다
+        </div>
+        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+          <div className="flex items-center justify-center gap-4 mb-10">
+            <span className="font-mono-meta text-[10px] uppercase text-neutral-500 tabular-figures">
+              N°&nbsp;05
+            </span>
+            <span className="h-px w-8 bg-neutral-700" />
+            <span className="font-mono-meta text-[10px] uppercase text-neutral-500">
+              Get in Touch
+            </span>
+            <span className="h-px w-8 bg-neutral-700" />
+          </div>
+          <h2 className="font-serif-display text-4xl md:text-6xl lg:text-7xl font-light italic leading-[1.05] tracking-tight">
+            The first thirty
+            <br />
+            minutes are
+            <br />
+            on us.
           </h2>
-          <p className="mt-6 text-neutral-400 text-lg max-w-xl mx-auto leading-relaxed">
+          <p className="mt-10 text-neutral-400 text-base md:text-lg leading-relaxed max-w-xl mx-auto">
             본인의 상황을 간단히 말씀해 주시면,
             <br className="hidden md:block" />
             저희가 도울 수 있는지 솔직하게 답변드립니다.
           </p>
-          <div className="mt-4 mx-auto w-12 h-px bg-neutral-700" />
           <Link
             href="/contact"
-            className="group mt-10 inline-flex items-center px-10 py-4 bg-white text-foreground text-sm font-medium tracking-wider transition-all duration-300 hover:bg-neutral-200 hover:tracking-widest"
+            className="group mt-12 inline-flex items-center px-12 py-5 bg-white text-foreground text-sm font-medium tracking-wider transition-all duration-300 hover:bg-neutral-200 hover:tracking-widest"
           >
             상담 신청
             <span className="ml-3 transition-transform duration-300 group-hover:translate-x-1">

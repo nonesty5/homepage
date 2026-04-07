@@ -4,6 +4,7 @@ interface SectionHeadingProps {
   label?: string;
   align?: "left" | "center";
   line?: boolean;
+  number?: string;
 }
 
 export default function SectionHeading({
@@ -12,6 +13,7 @@ export default function SectionHeading({
   label,
   align = "center",
   line = false,
+  number,
 }: SectionHeadingProps) {
   const isCenter = align === "center";
 
@@ -19,11 +21,24 @@ export default function SectionHeading({
     <div
       className={`mb-14 animate-fade-in ${isCenter ? "text-center" : ""}`}
     >
-      {/* Optional Label */}
+      {/* Editorial label strip — number + label + line */}
       {label && (
-        <p className="text-xs font-semibold tracking-[0.2em] uppercase text-muted mb-4">
-          {label}
-        </p>
+        <div
+          className={`flex items-center gap-4 mb-6 ${
+            isCenter ? "justify-center" : ""
+          }`}
+        >
+          {number && (
+            <span className="font-mono-meta text-[10px] uppercase text-subtle tabular-figures">
+              N°&nbsp;{number}
+            </span>
+          )}
+          {number && <span className="h-px w-8 bg-border" />}
+          <span className="font-mono-meta text-[10px] uppercase text-muted">
+            {label}
+          </span>
+          <span className="h-px w-8 bg-border" />
+        </div>
       )}
 
       {/* Decorative Line (above title) */}
@@ -36,14 +51,14 @@ export default function SectionHeading({
       )}
 
       {/* Title */}
-      <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold tracking-tight leading-tight">
+      <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold tracking-tight leading-[1.15]">
         {title}
       </h2>
 
-      {/* Subtitle */}
+      {/* Subtitle in serif italic for editorial pulled-quote feel */}
       {subtitle && (
         <p
-          className={`mt-5 text-muted text-base md:text-lg leading-relaxed ${
+          className={`mt-5 font-serif-display italic text-muted text-lg md:text-xl leading-relaxed ${
             isCenter ? "max-w-2xl mx-auto" : "max-w-xl"
           }`}
         >
