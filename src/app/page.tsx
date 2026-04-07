@@ -178,15 +178,37 @@ export default function Home() {
                 <p className="mt-8 text-base md:text-lg text-muted leading-relaxed max-w-2xl">
                   {lead.description}
                 </p>
-                <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
-                  {lead.career.slice(0, 6).map((item, i) => (
-                    <div key={i} className="flex items-start gap-3">
-                      <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
-                      <p className="text-sm text-muted leading-relaxed">
-                        {item}
-                      </p>
+                {lead.credentials && lead.credentials.length > 0 && (
+                  <div className="mt-10">
+                    <p className="text-xs tracking-[0.2em] text-subtle mb-3 uppercase font-medium">
+                      자격 · 학력
+                    </p>
+                    <div className="space-y-2">
+                      {lead.credentials.map((item, i) => (
+                        <div key={i} className="flex items-start gap-3">
+                          <span className="w-1 h-1 rounded-full bg-accent mt-2.5 flex-shrink-0" />
+                          <p className="text-sm text-muted leading-relaxed">
+                            {item}
+                          </p>
+                        </div>
+                      ))}
                     </div>
-                  ))}
+                  </div>
+                )}
+                <div className="mt-8">
+                  <p className="text-xs tracking-[0.2em] text-subtle mb-3 uppercase font-medium">
+                    경력
+                  </p>
+                  <div className="space-y-2">
+                    {lead.experience.map((item, i) => (
+                      <div key={i} className="flex items-start gap-3">
+                        <span className="w-1 h-1 rounded-full bg-accent mt-2.5 flex-shrink-0" />
+                        <p className="text-sm text-muted leading-relaxed">
+                          {item}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
                 <Link
                   href="/members"

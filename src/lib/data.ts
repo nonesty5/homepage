@@ -11,7 +11,8 @@ export interface Member {
   role: string;
   description: string;
   image?: string;
-  career: string[];
+  credentials?: string[]; // 학력 · 자격 · 수상 (위쪽)
+  experience: string[]; // 직장 (아래쪽, 날짜 없음)
   placeholder?: boolean;
 }
 
@@ -113,14 +114,16 @@ export const members: Member[] = [
     role: "Founder · 공인회계사 · Tax Advisory",
     description:
       "법인 · 개인사업자의 세무 기장 · 세무 조정 · 세무 신고를 직접 수행하면서, 기업가치평가 · M&A · IPO 자문까지 함께 다루는 공인회계사입니다. 삼정회계법인 감사본부, NH투자증권 IB, 한영회계법인 가치평가본부(VME)에서 쌓은 융합형 경력을 바탕으로, 일상 세무에서 거래 자문까지 한 사람이 일관되게 책임지는 부티크를 지향합니다.",
-    career: [
-      "공인회계사 (KICPA, 2017년 합격)",
-      "現 동성회계법인 / 메리디안 택스 어드바이저리 Founder",
-      "前 한영회계법인 VME (Valuation, Modeling & Economics Services) (2023.09 ~ 2025.09)",
-      "前 NH투자증권 IB1사업부 Heavy Industry부 (2021.11 ~ 2023.08)",
-      "前 삼정회계법인 정보통신사업1본부 감사팀 (2017.09 ~ 2021.11)",
+    credentials: [
+      "공인회계사 (KICPA, 2017)",
       "성균관대학교 경영학과 졸업",
       "한국공인회계사회 기본 실무 연수 최우수 수료 · 기본 실무 평가 전국 수석",
+    ],
+    experience: [
+      "現 동성회계법인 / 메리디안 택스 어드바이저리 Founder",
+      "前 한영회계법인 VME (Valuation, Modeling & Economics Services)",
+      "前 NH투자증권 IB1사업부 Heavy Industry부",
+      "前 삼정회계법인 정보통신사업1본부 감사팀",
     ],
   },
   {
@@ -128,7 +131,7 @@ export const members: Member[] = [
     role: "Advisor (TBD)",
     description:
       "메리디안 택스 어드바이저리는 세무 · 회계 · 자본시장 · 가치평가 분야에서 함께 일할 동료 공인회계사 · 세무사 · 자문 전문가를 찾고 있습니다. 1인 자문이 아닌, 신뢰할 수 있는 동료들과의 협업을 통해 고객의 의사결정에 더 깊이 관여하고자 합니다.",
-    career: [
+    experience: [
       "회계 · 세무 · 가치평가 · 자본시장 백그라운드 환영",
       "관심 있으신 분은 Contact 페이지로 연락 부탁드립니다",
     ],

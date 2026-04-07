@@ -75,12 +75,31 @@ export default function PeoplePage() {
                 <p className="mt-6 text-muted leading-relaxed text-lg">
                   {lead.description}
                 </p>
+
+                {lead.credentials && lead.credentials.length > 0 && (
+                  <div className="mt-10">
+                    <p className="text-xs tracking-[0.2em] text-subtle mb-4 uppercase font-medium">
+                      자격 · 학력
+                    </p>
+                    <div className="space-y-3">
+                      {lead.credentials.map((item, i) => (
+                        <div key={i} className="flex items-start gap-3">
+                          <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
+                          <p className="text-sm text-muted leading-relaxed">
+                            {item}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 <div className="mt-10">
                   <p className="text-xs tracking-[0.2em] text-subtle mb-4 uppercase font-medium">
-                    Career
+                    경력
                   </p>
                   <div className="space-y-3">
-                    {lead.career.map((item, i) => (
+                    {lead.experience.map((item, i) => (
                       <div key={i} className="flex items-start gap-3">
                         <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
                         <p className="text-sm text-muted leading-relaxed">
@@ -133,7 +152,7 @@ export default function PeoplePage() {
                       {member.description}
                     </p>
                     <div className="pt-6 border-t border-border">
-                      {member.career.map((item, i) => (
+                      {member.experience.map((item, i) => (
                         <div key={i} className="flex items-start gap-2 mb-2">
                           <span className="w-1 h-1 rounded-full bg-subtle mt-2 flex-shrink-0" />
                           <p className="text-xs text-muted leading-relaxed">
