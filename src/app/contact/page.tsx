@@ -31,7 +31,7 @@ export default function ContactPage() {
           <h1 className="text-4xl md:text-6xl font-bold tracking-tighter animate-fade-in">
             문의하기
           </h1>
-          <div className="mt-6 h-px w-20 bg-accent animate-line-reveal" />
+          <div className="mt-6 h-0.5 w-20 bg-accent-bright animate-line-reveal" />
           <p className="mt-8 text-lg text-neutral-400 max-w-xl leading-relaxed animate-fade-in-delay">
             첫 30분은 무료입니다. 본인의 상황을 간단히 말씀해 주시면,
             <br />

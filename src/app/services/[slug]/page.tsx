@@ -65,7 +65,7 @@ export default async function ServiceDetailPage({ params }: Props) {
               {service.title}
             </h1>
           </div>
-          <div className="mt-6 h-px w-20 bg-accent animate-line-reveal" />
+          <div className="mt-6 h-0.5 w-20 bg-accent-bright animate-line-reveal" />
           <p className="mt-8 text-lg text-neutral-400 max-w-xl leading-relaxed animate-fade-in-delay">
             {service.description}
           </p>

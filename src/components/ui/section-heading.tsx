@@ -31,7 +31,7 @@ export default function SectionHeading({
         <div
           className={`mb-5 ${isCenter ? "flex justify-center" : ""}`}
         >
-          <span className="block w-10 h-px bg-accent animate-line-reveal" />
+          <span className="block w-10 h-0.5 bg-accent animate-line-reveal" />
         </div>
       )}
 

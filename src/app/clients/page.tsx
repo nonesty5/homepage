@@ -26,7 +26,7 @@ export default function WhoPage() {
             <br />
             자문인가
           </h1>
-          <div className="mt-6 h-px w-20 bg-accent animate-line-reveal" />
+          <div className="mt-6 h-0.5 w-20 bg-accent-bright animate-line-reveal" />
           <p className="mt-8 text-lg text-neutral-400 max-w-xl leading-relaxed animate-fade-in-delay">
             모두를 위한 자문은 결국 누구에게도 도움이 되지 않습니다.
             메리디안은 다음 세 종류의 의사결정자에게 집중합니다.
@@ -89,7 +89,7 @@ export default function WhoPage() {
                             key={i}
                             className="text-sm text-muted py-1 flex items-start gap-2"
                           >
-                            <span className="w-1 h-1 rounded-full bg-foreground mt-2 flex-shrink-0" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
                             {need}
                           </p>
                         ))}

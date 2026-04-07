@@ -29,7 +29,7 @@ export default function PeoplePage() {
           <h1 className="text-4xl md:text-6xl font-bold tracking-tighter animate-fade-in">
             함께하는 사람
           </h1>
-          <div className="mt-6 h-px w-20 bg-accent animate-line-reveal" />
+          <div className="mt-6 h-0.5 w-20 bg-accent-bright animate-line-reveal" />
           <p className="mt-8 text-lg text-neutral-400 max-w-xl leading-relaxed animate-fade-in-delay">
             메리디안 어드바이저리는 한 사람의 깊이에서 시작해
             신뢰할 수 있는 동료들과 함께 성장하고 있습니다.
@@ -82,7 +82,7 @@ export default function PeoplePage() {
                   <div className="space-y-3">
                     {lead.career.map((item, i) => (
                       <div key={i} className="flex items-start gap-3">
-                        <span className="w-1.5 h-1.5 rounded-full bg-foreground mt-2 flex-shrink-0" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
                         <p className="text-sm text-muted leading-relaxed">
                           {item}
                         </p>

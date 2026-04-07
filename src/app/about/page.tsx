@@ -77,13 +77,13 @@ export default function AboutPage() {
               priority
               sizes="100vw"
               className="object-cover object-center"
-              style={{ filter: "grayscale(100%) contrast(1.1) brightness(0.5)" }}
+              style={{ filter: "grayscale(100%) contrast(1.15) brightness(0.85)" }}
             />
             <div
-              className="absolute inset-0 mix-blend-multiply pointer-events-none"
-              style={{ backgroundColor: "var(--color-accent)" }}
+              className="absolute inset-0 mix-blend-color pointer-events-none"
+              style={{ backgroundColor: "var(--color-accent-bright)" }}
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/45 to-black/80 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/40 to-black/75 pointer-events-none" />
           </>
         )}
         <div className="absolute inset-0 opacity-[0.03]">
@@ -100,7 +100,7 @@ export default function AboutPage() {
             <br />
             가장 정확하게.
           </h1>
-          <div className="mt-8 h-px w-20 bg-accent animate-line-reveal" />
+          <div className="mt-8 h-0.5 w-20 bg-accent-bright animate-line-reveal" />
           <p className="mt-8 text-lg md:text-xl text-neutral-400 leading-relaxed max-w-2xl animate-fade-in-delay">
             메리디안 어드바이저리는 한 사람의 깊은 경험에서 시작된
             회계 · 재무 자문 부티크입니다. 보고서를 던지는 자문이 아닌,

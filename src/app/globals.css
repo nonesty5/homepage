@@ -8,13 +8,17 @@
   --color-card: #fafafa;
 
   /* ─── Accent color (single source of truth) ───
-   * 활성: A3 Oxford Midnight Navy — IB·정통 금융 결
-   * 다른 후보로 바꾸려면 아래 한 줄만 교체.
-   *   A1 Burgundy / Oxblood:  #6B2027
-   *   A2 Antique Brass:       #8B6A2A
-   *   A3 Oxford Midnight Navy: #0B2240   (기본)
+   * 활성: A3 Oxford Navy 패밀리 (라이트/다크 두 톤)
+   * --color-accent       라이트 배경용 — 중간 네이비 (대비 충분)
+   * --color-accent-bright 다크 배경용 — 밝은 네이비 (검정 위에서도 보임)
+   *
+   * 다른 컬러 패밀리로 교체:
+   *   A1 Burgundy:  #6B2027 / #B6585F
+   *   A2 Brass:     #8B6A2A / #C9A55C
+   *   A3 Oxford:    #1F3F77 / #5A7DB5  (현재)
    */
-  --color-accent: #0B2240;
+  --color-accent: #1F3F77;
+  --color-accent-bright: #5A7DB5;
   --color-accent-foreground: #ffffff;
 
   --color-surface: #f5f5f5;

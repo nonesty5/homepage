@@ -31,15 +31,15 @@ export default function Home() {
               priority
               sizes="100vw"
               className="object-cover object-center"
-              style={{ filter: "grayscale(100%) contrast(1.1) brightness(0.55)" }}
+              style={{ filter: "grayscale(100%) contrast(1.15) brightness(0.85)" }}
             />
-            {/* Navy duotone tint */}
+            {/* Navy duotone — preserves luminance, replaces hue */}
             <div
-              className="absolute inset-0 mix-blend-multiply pointer-events-none"
-              style={{ backgroundColor: "var(--color-accent)" }}
+              className="absolute inset-0 mix-blend-color pointer-events-none"
+              style={{ backgroundColor: "var(--color-accent-bright)" }}
             />
             {/* Dark gradient for text readability */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/40 to-black/75 pointer-events-none" />
           </>
         )}
         <div className="max-w-7xl mx-auto px-6 py-32 w-full relative z-10">
@@ -50,7 +50,7 @@ export default function Home() {
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tighter animate-fade-in">
               {siteConfig.title}
             </h1>
-            <div className="mt-6 h-px w-24 bg-accent animate-line-reveal" />
+            <div className="mt-6 h-0.5 w-24 bg-accent-bright animate-line-reveal" />
             <p className="mt-8 text-lg md:text-xl text-neutral-400 leading-relaxed max-w-xl animate-fade-in-delay">
               스타트업 · 사업가 · 자산가의
               <br />
@@ -186,7 +186,7 @@ export default function Home() {
                 <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
                   {lead.career.slice(0, 6).map((item, i) => (
                     <div key={i} className="flex items-start gap-3">
-                      <span className="w-1 h-1 rounded-full bg-foreground mt-2.5 flex-shrink-0" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
                       <p className="text-sm text-muted leading-relaxed">
                         {item}
                       </p>
