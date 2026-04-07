@@ -4,41 +4,61 @@ import SectionHeading from "@/components/ui/section-heading";
 
 export const metadata: Metadata = {
   title: "ABOUT",
-  description: `${siteConfig.name} 소개 - 비전과 철학`,
+  description: `${siteConfig.name} 소개 — 시작과 철학, 그리고 함께하는 사람.`,
 };
 
 const milestones = [
-  { year: "2024", title: "한결회계법인 설립", desc: "강남 파이낸스센터에 본사 설립" },
-  { year: "2018", title: "세무법인 경력", desc: "중견 세무법인 파트너 역임" },
-  { year: "2013", title: "Big4 회계법인", desc: "삼일회계법인 감사본부 매니저" },
-  { year: "2009", title: "Big4 입사", desc: "삼일회계법인 입사" },
-  { year: "2008", title: "공인회계사 등록", desc: "제43회 공인회계사 시험 합격" },
+  {
+    year: "2026",
+    title: "메리디안 어드바이저리 시작",
+    desc: "스타트업 · 사업가 · 자산가를 위한 부티크 자문 브랜드 출범",
+  },
+  {
+    year: "2025",
+    title: "동성회계법인",
+    desc: "공인회계사 · 자문 (2025.10 ~ )",
+  },
+  {
+    year: "2023",
+    title: "한영회계법인 VME",
+    desc: "Valuation, Modeling & Economics Services 본부 (2023.09 ~ 2025.09)",
+  },
+  {
+    year: "2021",
+    title: "NH투자증권 IB",
+    desc: "IB1사업부 Heavy Industry부 (2021.11 ~ 2023.08)",
+  },
+  {
+    year: "2017",
+    title: "삼정회계법인",
+    desc: "정보통신사업1본부 감사팀 (2017.09 ~ 2021.11) · 同年 KICPA 합격",
+  },
 ];
 
 const coreValues = [
   {
     number: "01",
-    title: "정확성",
+    title: "정직",
     description:
-      "숫자 하나에도 타협하지 않습니다. 철저한 검증과 정밀한 분석으로 오류 없는 결과를 보장합니다.",
+      "도울 수 없는 일은 도울 수 없다고 말씀드립니다. 화려한 약속 대신, 지킬 수 있는 자문을 드리는 것이 부티크가 가져야 할 첫 번째 원칙이라고 믿습니다.",
   },
   {
     number: "02",
-    title: "신뢰",
+    title: "깊이",
     description:
-      "고객과의 약속을 지키는 것이 최우선입니다. 투명한 소통과 성실한 업무 수행으로 신뢰를 쌓아갑니다.",
+      "감사 · 자본시장 · 가치평가, 어느 한 축만으로는 풀리지 않는 의사결정이 많습니다. 세 축을 모두 거쳐온 시각으로 한 사람의 깊이를 만듭니다.",
   },
   {
     number: "03",
-    title: "전문성",
+    title: "가까움",
     description:
-      "Big4 회계법인 출신의 깊은 전문 역량으로, 복잡한 문제도 명쾌하게 해결합니다.",
+      "보고서를 메일로 던지는 자문이 아니라, 의사결정의 현장 옆에 함께 있는 자문을 지향합니다. 가장 가까운 거리에서 가장 정확하게 답하는 것이 메리디안의 약속입니다.",
   },
   {
     number: "04",
-    title: "고객 중심",
+    title: "장기 관점",
     description:
-      "모든 서비스는 고객의 관점에서 시작합니다. 맞춤형 솔루션으로 실질적인 가치를 창출합니다.",
+      "한 번의 거래 · 한 번의 신고가 아닌, 사업과 자산의 장기 라이프사이클을 함께 보는 자문을 추구합니다. 단발성 솔루션은 단발성으로만 작동합니다.",
   },
 ];
 
@@ -54,17 +74,18 @@ export default function AboutPage() {
         </div>
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <p className="text-xs tracking-[0.4em] text-neutral-500 mb-6 uppercase animate-fade-in">
-            About Us
+            About
           </p>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[1.05] animate-fade-in max-w-4xl">
-            한결같은 마음으로
+            가장 가까이서,
             <br />
-            한결같은 서비스를
+            가장 정확하게.
           </h1>
           <div className="mt-8 h-px w-20 bg-neutral-600 animate-line-reveal" />
           <p className="mt-8 text-lg md:text-xl text-neutral-400 leading-relaxed max-w-2xl animate-fade-in-delay">
-            고객의 사업을 깊이 이해하고, 세무와 감사 분야에서 가장 정확하고
-            신뢰할 수 있는 파트너가 되는 것을 목표로 합니다.
+            메리디안 어드바이저리는 한 사람의 깊은 경험에서 시작된
+            회계 · 재무 자문 부티크입니다. 보고서를 던지는 자문이 아닌,
+            의사결정의 가장 가까운 자리에 있는 자문을 지향합니다.
           </p>
         </div>
       </section>
@@ -74,7 +95,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeading
             label="Why Us"
-            title="왜 한결회계법인인가"
+            title="왜 메리디안인가"
             align="left"
           />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 mt-12">
@@ -83,11 +104,12 @@ export default function AboutPage() {
                 01
               </p>
               <h3 className="mt-4 text-xl font-bold tracking-tight">
-                Big4 출신 전문가
+                Big4 + IB + VME 융합
               </h3>
               <p className="mt-3 text-muted leading-relaxed">
-                삼일회계법인 등 국내 최고 회계법인에서 쌓은 깊이 있는 전문 역량으로
-                복잡한 문제를 명쾌하게 풀어냅니다.
+                삼정 감사본부, NH투자증권 IB, 한영 가치평가본부(VME)를
+                모두 거친 한 사람의 시각. 분리된 자문이 아닌
+                연결된 자문이 가능합니다.
               </p>
             </div>
             <div className="group">
@@ -95,11 +117,12 @@ export default function AboutPage() {
                 02
               </p>
               <h3 className="mt-4 text-xl font-bold tracking-tight">
-                맞춤형 솔루션
+                Founder가 직접 자문
               </h3>
               <p className="mt-3 text-muted leading-relaxed">
-                일률적인 서비스가 아닌, 각 기업의 상황과 목표에 맞춘
-                최적의 세무 · 회계 솔루션을 설계합니다.
+                주니어에게 맡기지 않습니다. Founder가 처음부터 끝까지
+                직접 케이스를 듣고, 직접 모델을 만들고, 직접 답합니다.
+                작기 때문에 가능한 방식입니다.
               </p>
             </div>
             <div className="group">
@@ -107,11 +130,12 @@ export default function AboutPage() {
                 03
               </p>
               <h3 className="mt-4 text-xl font-bold tracking-tight">
-                장기적 파트너십
+                법정 업무는 정식 채널로
               </h3>
               <p className="mt-3 text-muted leading-relaxed">
-                단기적인 절세가 아닌, 기업의 지속적인 성장을 함께 고민하는
-                진정한 비즈니스 파트너입니다.
+                자문은 메리디안에서, 회계감사 · 세무신고 등 법정 업무는
+                동성회계법인을 통해 정식으로 수행됩니다. 자문과 실행이
+                분리되지 않는 구조입니다.
               </p>
             </div>
           </div>
@@ -129,11 +153,15 @@ export default function AboutPage() {
                 Our Approach
               </p>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight leading-tight">
-                원칙에 기반한
+                자문은 결국
                 <br />
-                체계적 접근
+                대화에서 시작합니다
               </h2>
               <div className="mt-6 h-px w-16 bg-border" />
+              <p className="mt-6 text-muted leading-relaxed">
+                템플릿이 아니라 대화에서 시작합니다.
+                각 케이스마다 같은 질문은 없고, 같은 답도 없습니다.
+              </p>
             </div>
             <div className="space-y-8">
               <div className="flex gap-6">
@@ -141,9 +169,10 @@ export default function AboutPage() {
                   01
                 </div>
                 <div>
-                  <h4 className="font-bold mb-1">현황 진단</h4>
+                  <h4 className="font-bold mb-1">대화 (Discovery)</h4>
                   <p className="text-sm text-muted leading-relaxed">
-                    고객사의 현재 재무 상태와 비즈니스 환경을 정밀 진단합니다.
+                    무료 30분. 어떤 문제이고 어디까지 진행됐는지 듣습니다.
+                    저희가 도울 수 있는 일인지 솔직하게 답합니다.
                   </p>
                 </div>
               </div>
@@ -152,9 +181,10 @@ export default function AboutPage() {
                   02
                 </div>
                 <div>
-                  <h4 className="font-bold mb-1">전략 수립</h4>
+                  <h4 className="font-bold mb-1">제안 (Scoping)</h4>
                   <p className="text-sm text-muted leading-relaxed">
-                    진단 결과를 바탕으로 최적의 세무 · 회계 전략을 수립합니다.
+                    범위 · 산출물 · 일정 · 비용을 구체적으로 제안드립니다.
+                    숨은 비용이나 모호한 약속은 없습니다.
                   </p>
                 </div>
               </div>
@@ -163,9 +193,10 @@ export default function AboutPage() {
                   03
                 </div>
                 <div>
-                  <h4 className="font-bold mb-1">실행 및 관리</h4>
+                  <h4 className="font-bold mb-1">수행 (Engagement)</h4>
                   <p className="text-sm text-muted leading-relaxed">
-                    전략을 실행하고 지속적으로 모니터링하며 관리합니다.
+                    Founder가 직접 분석 · 모델링 · 보고서 작성을 수행합니다.
+                    중간 점검 미팅을 통해 방향을 함께 확인합니다.
                   </p>
                 </div>
               </div>
@@ -174,9 +205,10 @@ export default function AboutPage() {
                   04
                 </div>
                 <div>
-                  <h4 className="font-bold mb-1">성과 검증</h4>
+                  <h4 className="font-bold mb-1">사후 (Follow-up)</h4>
                   <p className="text-sm text-muted leading-relaxed">
-                    실행 결과를 검증하고 개선점을 도출하여 지속 발전시킵니다.
+                    프로젝트 종료 후에도 관련 이슈에 대한 후속 질문은 무료로 받습니다.
+                    필요 시 동성회계법인을 통해 정식 신고 · 감사로 연결합니다.
                   </p>
                 </div>
               </div>
@@ -192,8 +224,8 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeading
             label="History"
-            title="연혁"
-            subtitle="대표 공인회계사의 주요 경력사항입니다"
+            title="발자취"
+            subtitle="Founder 박민상의 주요 경력"
           />
           <div className="max-w-3xl mx-auto relative">
             {/* Vertical line */}
@@ -226,9 +258,9 @@ export default function AboutPage() {
       <section className="py-24 md:py-32">
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeading
-            label="Core Values"
-            title="핵심 가치"
-            subtitle="우리의 모든 업무를 관통하는 가치입니다"
+            label="Principles"
+            title="네 가지 약속"
+            subtitle="모든 자문에 관통하는 원칙입니다"
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border">
             {coreValues.map((value) => (
@@ -251,50 +283,42 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Location */}
+      {/* Affiliation Disclosure */}
       <section className="py-24 md:py-32 bg-foreground text-white">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <div>
               <p className="text-xs tracking-[0.3em] text-neutral-500 mb-4 uppercase">
-                Location
+                Affiliation
               </p>
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-                오시는 길
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight leading-tight">
+                동성회계법인과의
+                <br />
+                관계
               </h2>
               <div className="mt-6 h-px w-16 bg-neutral-700" />
-              <div className="mt-8 space-y-6">
-                <div>
-                  <p className="text-xs tracking-[0.2em] text-neutral-500 mb-2 uppercase">
-                    Address
-                  </p>
-                  <p className="text-lg text-neutral-300">{siteConfig.address}</p>
-                </div>
-                <div>
-                  <p className="text-xs tracking-[0.2em] text-neutral-500 mb-2 uppercase">
-                    Contact
-                  </p>
-                  <p className="text-neutral-300">
-                    Tel. {siteConfig.phone}
-                  </p>
-                  <p className="text-neutral-300">
-                    Fax. {siteConfig.fax}
-                  </p>
-                  <p className="text-neutral-300">
-                    Email. {siteConfig.email}
-                  </p>
-                </div>
-              </div>
             </div>
-            {/* Map placeholder */}
-            <div className="aspect-[4/3] bg-neutral-800 border border-neutral-700 flex items-center justify-center">
-              <div className="text-center">
-                <p className="text-neutral-500 text-sm tracking-wider">
-                  강남파이낸스센터
+            <div className="space-y-6 text-neutral-300 leading-relaxed">
+              <p>
+                <strong className="text-white">메리디안 어드바이저리</strong>는
+                박민상 공인회계사가 운영하는 부티크 자문 브랜드이며, 별도 법인이 아닙니다.
+              </p>
+              <p>
+                박민상 공인회계사는 <strong className="text-white">동성회계법인</strong> 소속으로,
+                회계감사 · 세무신고 등 법정 업무는 모두 동성회계법인 명의로 정식 수행됩니다.
+                메리디안 어드바이저리는 자문 활동과 인사이트 발신을 위한 개인 브랜드 공간입니다.
+              </p>
+              <p className="text-neutral-400 text-sm">
+                * 본 사이트의 어떠한 표현도 별도 회계법인 · 세무법인을 사칭하지 않으며,
+                공인회계사법 및 세무사법상 자격이 필요한 업무는 정식 채널을 통해서만 수행됩니다.
+              </p>
+              <div className="pt-6 mt-6 border-t border-neutral-800 space-y-1">
+                <p className="text-xs tracking-[0.2em] text-neutral-500 uppercase">
+                  Direct Contact
                 </p>
-                <p className="mt-1 text-neutral-600 text-xs">
-                  서울특별시 강남구 테헤란로 152
-                </p>
+                <p className="text-neutral-300">Tel. {siteConfig.phone}</p>
+                <p className="text-neutral-300">Email. {siteConfig.email}</p>
+                <p className="text-neutral-500 text-sm pt-1">{siteConfig.location}</p>
               </div>
             </div>
           </div>

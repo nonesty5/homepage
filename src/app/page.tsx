@@ -1,5 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
-import { services, clients, stats } from "@/lib/data";
+import { services, personas, stats, members } from "@/lib/data";
 import { siteConfig } from "@/lib/constants";
 import { getAllPosts } from "@/lib/posts";
 import SectionHeading from "@/components/ui/section-heading";
@@ -14,6 +15,7 @@ function ServiceNumber({ index }: { index: number }) {
 
 export default function Home() {
   const recentPosts = getAllPosts().slice(0, 3);
+  const lead = members.find((m) => !m.placeholder);
 
   return (
     <>
@@ -22,23 +24,23 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 py-32 w-full">
           <div className="max-w-4xl">
             <p className="text-xs tracking-[0.4em] text-neutral-500 mb-8 animate-fade-in uppercase">
-              Certified Public Accountant Firm
+              Boutique Advisory · Seoul
             </p>
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tighter animate-fade-in">
               {siteConfig.title}
             </h1>
             <div className="mt-6 h-px w-24 bg-neutral-600 animate-line-reveal" />
             <p className="mt-8 text-lg md:text-xl text-neutral-400 leading-relaxed max-w-xl animate-fade-in-delay">
-              명확한 숫자, 확실한 신뢰.
+              스타트업 · 사업가 · 자산가의
               <br />
-              세무 · 감사 · 자문 전문 회계법인
+              가장 가까운 재무 의사결정 파트너.
             </p>
             <div className="mt-12 flex flex-col sm:flex-row gap-4 animate-fade-in-delay-2">
               <Link
                 href="/contact"
                 className="group inline-flex items-center justify-center px-10 py-4 bg-white text-foreground text-sm font-medium tracking-wider transition-all duration-300 hover:bg-neutral-200 hover:tracking-widest"
               >
-                문의하기
+                무료 상담 신청
                 <span className="ml-3 transition-transform duration-300 group-hover:translate-x-1">
                   &rarr;
                 </span>
@@ -47,15 +49,15 @@ export default function Home() {
                 href="/services"
                 className="group inline-flex items-center justify-center px-10 py-4 border border-neutral-700 text-sm font-medium tracking-wider transition-all duration-300 hover:border-white hover:tracking-widest"
               >
-                서비스 보기
+                전문 영역 보기
               </Link>
             </div>
           </div>
 
           {/* Large decorative text */}
           <div className="absolute right-0 top-1/2 -translate-y-1/2 hidden xl:block">
-            <p className="text-[12rem] font-bold leading-none text-neutral-800/30 tracking-tighter select-none">
-              한결
+            <p className="text-[16rem] font-bold leading-none text-neutral-800/30 tracking-tighter select-none">
+              M
             </p>
           </div>
         </div>
@@ -74,10 +76,10 @@ export default function Home() {
                 className="text-center md:text-left animate-slide-up"
                 style={{ animationDelay: `${i * 0.1}s` }}
               >
-                <p className="text-4xl md:text-5xl font-bold tracking-tight number-counter">
+                <p className="text-3xl md:text-4xl font-bold tracking-tight">
                   {stat.value}
                 </p>
-                <p className="mt-2 text-sm text-muted tracking-wide">
+                <p className="mt-2 text-sm text-muted tracking-wide leading-relaxed">
                   {stat.label}
                 </p>
               </div>
@@ -90,9 +92,9 @@ export default function Home() {
       <section className="py-24 md:py-32">
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeading
-            label="Service"
-            title="전문 서비스"
-            subtitle="고객의 상황에 맞는 최적의 솔루션을 제공합니다"
+            label="Practice"
+            title="전문 영역"
+            subtitle="가치평가 · M&A · IPO · 모델링 · 세무 자문"
           />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
             {services.map((service, index) => (
@@ -105,7 +107,7 @@ export default function Home() {
                 <h3 className="mt-4 text-xl font-bold tracking-tight">
                   {service.title}
                 </h3>
-                <p className="mt-3 text-sm text-muted leading-relaxed">
+                <p className="mt-3 text-sm text-muted leading-relaxed line-clamp-4">
                   {service.description}
                 </p>
                 <span className="mt-6 inline-flex items-center text-xs font-medium tracking-wider text-muted group-hover:text-foreground transition-colors duration-300">
@@ -120,52 +122,118 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Clients Marquee */}
-      <section className="py-24 md:py-32 bg-card overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 mb-16">
-          <SectionHeading
-            label="Client"
-            title="파트너사"
-            subtitle="다양한 산업의 기업들과 함께 성장하고 있습니다"
-          />
-        </div>
-        <div className="relative">
-          {/* Gradient masks */}
-          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-card to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-card to-transparent z-10" />
-          {/* Scrolling row */}
-          <div className="flex gap-6 animate-[scroll_30s_linear_infinite]">
-            {[...clients, ...clients].map((client, i) => (
-              <div
-                key={`${client.name}-${i}`}
-                className="flex-shrink-0 flex items-center justify-center px-12 py-8 border border-border bg-white min-w-[200px]"
-              >
-                <span className="text-sm font-medium text-muted whitespace-nowrap">
-                  {client.name}
-                </span>
+      {/* Founder */}
+      {lead && (
+        <section className="py-24 md:py-32 border-t border-border">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+              {/* Photo */}
+              <div className="lg:col-span-5">
+                <div className="relative aspect-[3/4] bg-card border border-border overflow-hidden">
+                  {lead.image ? (
+                    <Image
+                      src={lead.image}
+                      alt={`${lead.name} ${lead.role}`}
+                      fill
+                      sizes="(min-width: 1024px) 40vw, 100vw"
+                      className="object-cover object-center"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="text-[12rem] font-bold text-neutral-200/60 select-none">
+                        {lead.name[0]}
+                      </span>
+                    </div>
+                  )}
+                </div>
               </div>
+              {/* Info */}
+              <div className="lg:col-span-7">
+                <p className="text-xs tracking-[0.4em] text-muted mb-6 uppercase">
+                  Founder
+                </p>
+                <h2 className="text-3xl md:text-5xl font-bold tracking-tighter leading-[1.05]">
+                  {lead.name}
+                </h2>
+                <p className="mt-3 text-sm tracking-[0.15em] text-muted uppercase">
+                  {lead.role}
+                </p>
+                <div className="mt-8 h-px w-16 bg-border" />
+                <p className="mt-8 text-base md:text-lg text-muted leading-relaxed max-w-2xl">
+                  {lead.description}
+                </p>
+                <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
+                  {lead.career.slice(0, 6).map((item, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <span className="w-1 h-1 rounded-full bg-foreground mt-2.5 flex-shrink-0" />
+                      <p className="text-sm text-muted leading-relaxed">
+                        {item}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+                <Link
+                  href="/members"
+                  className="group mt-12 inline-flex items-center text-sm font-medium tracking-wider hover-underline"
+                >
+                  전체 프로필 보기
+                  <span className="ml-3 transition-transform duration-300 group-hover:translate-x-1">
+                    &rarr;
+                  </span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Who We Serve */}
+      <section className="py-24 md:py-32 bg-card">
+        <div className="max-w-7xl mx-auto px-6">
+          <SectionHeading
+            label="Who We Serve"
+            title="누구를 위한 자문인가"
+            subtitle="모두를 위한 자문은 결국 누구에게도 도움이 되지 않습니다."
+          />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border mt-12">
+            {personas.map((persona, i) => (
+              <Link
+                key={persona.slug}
+                href="/clients"
+                className="group bg-white p-10 md:p-12 hover:bg-card transition-colors duration-300"
+              >
+                <p className="text-xs tracking-[0.25em] text-subtle uppercase font-medium">
+                  {String(i + 1).padStart(2, "0")} · {persona.englishLabel}
+                </p>
+                <h3 className="mt-4 text-2xl font-bold tracking-tight">
+                  {persona.title}
+                </h3>
+                <p className="mt-4 text-sm text-muted leading-relaxed line-clamp-4">
+                  {persona.description}
+                </p>
+                <span className="mt-8 inline-flex items-center text-xs font-medium tracking-wider text-muted group-hover:text-foreground transition-colors duration-300">
+                  자세히 보기
+                  <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">
+                    &rarr;
+                  </span>
+                </span>
+              </Link>
             ))}
           </div>
         </div>
-        <style>{`
-          @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-          }
-        `}</style>
       </section>
 
-      {/* Recent Blog */}
+      {/* Recent Insights */}
       {recentPosts.length > 0 && (
         <section className="py-24 md:py-32">
           <div className="max-w-7xl mx-auto px-6">
             <SectionHeading
-              label="Blog"
-              title="인사이트"
-              subtitle="세무 · 회계 관련 최신 정보와 인사이트를 공유합니다"
+              label="Insights"
+              title="최근 인사이트"
+              subtitle="회계 · 세무 · 자본시장에 대한 노트를 정기적으로 발행합니다"
             />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {recentPosts.map((post, i) => (
+              {recentPosts.map((post) => (
                 <Link
                   key={post.slug}
                   href={`/blog/${post.slug}`}
@@ -207,7 +275,7 @@ export default function Home() {
         {/* Decorative background */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[20rem] font-bold leading-none tracking-tighter select-none">
-            H
+            M
           </div>
         </div>
         <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
@@ -215,19 +283,19 @@ export default function Home() {
             Get in Touch
           </p>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
-            전문가와 상담하세요
+            첫 30분은 무료입니다
           </h2>
           <p className="mt-6 text-neutral-400 text-lg max-w-xl mx-auto leading-relaxed">
-            세무, 감사, 경영자문 등 어떤 분야든
+            본인의 상황을 간단히 말씀해 주시면,
             <br className="hidden md:block" />
-            최적의 솔루션을 제안합니다.
+            저희가 도울 수 있는지 솔직하게 답변드립니다.
           </p>
           <div className="mt-4 mx-auto w-12 h-px bg-neutral-700" />
           <Link
             href="/contact"
             className="group mt-10 inline-flex items-center px-10 py-4 bg-white text-foreground text-sm font-medium tracking-wider transition-all duration-300 hover:bg-neutral-200 hover:tracking-widest"
           >
-            문의하기
+            상담 신청
             <span className="ml-3 transition-transform duration-300 group-hover:translate-x-1">
               &rarr;
             </span>

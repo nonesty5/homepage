@@ -2,11 +2,12 @@ import Link from "next/link";
 import { siteConfig, navLinks } from "@/lib/constants";
 
 export default function Footer() {
-  const serviceLinks = [
-    { label: "세무 자문", href: "/services" },
-    { label: "회계 감사", href: "/services" },
-    { label: "경영 컨설팅", href: "/services" },
-    { label: "기업 설립", href: "/services" },
+  const practiceLinks = [
+    { label: "기업가치평가", href: "/services/valuation" },
+    { label: "M&A 자문", href: "/services/ma-advisory" },
+    { label: "IPO 준비 자문", href: "/services/ipo-readiness" },
+    { label: "재무 모델링 · 사업계획", href: "/services/financial-modeling" },
+    { label: "세무 · 자산 자문", href: "/services/tax-advisory" },
   ];
 
   return (
@@ -14,9 +15,9 @@ export default function Footer() {
       {/* Brand Statement */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-20 pb-16">
         <p className="text-3xl md:text-4xl lg:text-5xl font-light tracking-tight leading-snug max-w-3xl">
-          Beyond Numbers,
+          The Closest Partner
           <br />
-          <span className="text-neutral-500">Building Trust.</span>
+          <span className="text-neutral-500">in Every Decision.</span>
         </p>
       </div>
 
@@ -34,25 +35,22 @@ export default function Footer() {
               {siteConfig.name}
             </h3>
             <p className="text-sm text-neutral-400 leading-relaxed max-w-xs">
-              {siteConfig.description}
+              {siteConfig.tagline}
             </p>
             <div className="mt-6 space-y-1">
               <p className="text-xs text-neutral-500">
-                대표: {siteConfig.representative}
-              </p>
-              <p className="text-xs text-neutral-500">
-                사업자등록번호: {siteConfig.businessNumber}
+                Founder · {siteConfig.founder} 공인회계사
               </p>
             </div>
           </div>
 
-          {/* Services Column */}
+          {/* Practice Column */}
           <div>
             <h3 className="text-xs font-semibold tracking-[0.16em] uppercase text-neutral-400 mb-5">
-              Services
+              Practice
             </h3>
             <nav className="flex flex-col gap-3">
-              {serviceLinks.map((link) => (
+              {practiceLinks.map((link) => (
                 <Link
                   key={link.label}
                   href={link.href}
@@ -94,23 +92,29 @@ export default function Footer() {
                 {siteConfig.phone}
               </p>
               <p>
-                <span className="text-neutral-500 text-xs uppercase tracking-wider">Fax</span>
-                <br />
-                {siteConfig.fax}
-              </p>
-              <p>
                 <span className="text-neutral-500 text-xs uppercase tracking-wider">Email</span>
                 <br />
                 {siteConfig.email}
               </p>
               <p className="mt-2 leading-relaxed">
-                <span className="text-neutral-500 text-xs uppercase tracking-wider">Address</span>
+                <span className="text-neutral-500 text-xs uppercase tracking-wider">Location</span>
                 <br />
-                {siteConfig.address}
+                {siteConfig.location}
               </p>
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Affiliation Disclosure */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="h-px bg-neutral-800" />
+      </div>
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-8">
+        <p className="text-xs text-neutral-500 leading-relaxed max-w-4xl">
+          <span className="text-neutral-400 font-medium">Affiliation Notice.</span>{" "}
+          {siteConfig.affiliation}
+        </p>
       </div>
 
       {/* Bottom Bar */}

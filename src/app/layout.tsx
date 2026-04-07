@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   keywords: ["회계사무소", "세무", "감사", "회계", "컨설팅", "서울"],
-  authors: [{ name: siteConfig.representative }],
+  authors: [{ name: siteConfig.founder }],
   openGraph: {
     title: `${siteConfig.title} | ${siteConfig.name}`,
     description: siteConfig.description,

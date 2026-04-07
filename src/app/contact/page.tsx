@@ -9,10 +9,9 @@ export const metadata: Metadata = {
 
 const contactInfo = [
   { label: "Phone", value: siteConfig.phone },
-  { label: "Fax", value: siteConfig.fax },
   { label: "Email", value: siteConfig.email },
-  { label: "Address", value: siteConfig.address },
-  { label: "Hours", value: "평일 09:00 - 18:00 (주말 및 공휴일 휴무)" },
+  { label: "Location", value: siteConfig.location },
+  { label: "Hours", value: "평일 09:00 - 18:00 · 사전 약속 권장" },
 ];
 
 export default function ContactPage() {
@@ -34,9 +33,9 @@ export default function ContactPage() {
           </h1>
           <div className="mt-6 h-px w-20 bg-neutral-600 animate-line-reveal" />
           <p className="mt-8 text-lg text-neutral-400 max-w-xl leading-relaxed animate-fade-in-delay">
-            궁금하신 사항이 있으시면 언제든지 연락해 주세요.
+            첫 30분은 무료입니다. 본인의 상황을 간단히 말씀해 주시면,
             <br />
-            전문 상담을 통해 최적의 솔루션을 안내해 드립니다.
+            도움이 될 수 있는지 솔직하게 답변드립니다.
           </p>
         </div>
       </section>
@@ -48,12 +47,12 @@ export default function ContactPage() {
             {/* Contact Form - Takes more space */}
             <div className="lg:col-span-7">
               <p className="text-xs tracking-[0.2em] text-muted mb-3 uppercase font-medium">
-                문의 양식
+                Inquiry Form
               </p>
               <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-10">
-                프로젝트에 대해
+                케이스에 대해
                 <br />
-                알려주세요
+                간단히 알려주세요
               </h2>
               <ContactForm />
             </div>
@@ -83,17 +82,14 @@ export default function ContactPage() {
                   ))}
                 </div>
 
-                {/* Mini map placeholder */}
-                <div className="mt-10 aspect-[16/10] bg-card border border-border flex items-center justify-center">
-                  <div className="text-center">
-                    <p className="text-sm font-medium mb-1">강남파이낸스센터 22층</p>
-                    <p className="text-xs text-subtle">
-                      서울 강남구 테헤란로 152
-                    </p>
-                    <div className="mt-4 w-8 h-8 mx-auto rounded-full border border-border flex items-center justify-center">
-                      <span className="text-xs text-muted font-bold">H</span>
-                    </div>
-                  </div>
+                {/* Affiliation Note */}
+                <div className="mt-10 p-6 bg-card border border-border">
+                  <p className="text-[10px] tracking-[0.25em] text-subtle uppercase font-medium mb-3">
+                    Affiliation Notice
+                  </p>
+                  <p className="text-xs text-muted leading-relaxed">
+                    {siteConfig.affiliation}
+                  </p>
                 </div>
               </div>
             </div>
