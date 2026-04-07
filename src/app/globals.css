@@ -23,15 +23,7 @@
 
   --color-surface: #f5f5f5;
   --color-subtle: #a3a3a3;
-
-  /* ─── Typography ───
-   * sans  — Pretendard Variable (한-영 본문·UI 기본)
-   * serif — Fraunces (Latin display · 숫자 · editorial pulled quote)
-   * mono  — JetBrains Mono (meta label · date · initial · tabular data)
-   */
   --font-sans: "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  --font-serif: var(--font-fraunces), "Times New Roman", Georgia, serif;
-  --font-mono: var(--font-jetbrains), "SF Mono", ui-monospace, Menlo, Monaco, Consolas, monospace;
 }
 
 /* ─── Base ─── */
@@ -52,53 +44,6 @@ body {
   background: var(--color-background);
   color: var(--color-foreground);
   font-family: var(--font-sans);
-  font-feature-settings: "kern", "liga", "calt", "ss01";
-}
-
-/* ─── Grain texture overlay (editorial print feel) ───
- * 아주 옅은 SVG fractal noise를 화면 전체에 깔아서
- * 디지털 평면감을 죽이고 인쇄물 같은 질감을 더함.
- * 3% opacity는 거의 안 보이지만 무드는 확연히 달라짐.
- */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.045;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  mix-blend-mode: multiply;
-}
-
-/* ─── Editorial Typography Utilities ─── */
-
-.font-serif-display {
-  font-family: var(--font-serif);
-  font-feature-settings: "ss01", "ss02", "kern", "liga", "calt";
-  font-optical-sizing: auto;
-}
-
-.font-mono-meta {
-  font-family: var(--font-mono);
-  font-feature-settings: "kern", "ss01";
-  letter-spacing: 0.05em;
-}
-
-.tabular-figures {
-  font-variant-numeric: tabular-nums lining-nums;
-}
-
-/* Drop cap — magazine first-paragraph initial */
-.drop-cap::first-letter {
-  font-family: var(--font-serif);
-  font-weight: 400;
-  float: left;
-  font-size: 4.6em;
-  line-height: 0.85;
-  padding: 0.15em 0.1em 0 0;
-  margin-top: 0.05em;
-  color: var(--color-foreground);
 }
 
 /* ─── Scrollbar (thin, minimal) ─── */

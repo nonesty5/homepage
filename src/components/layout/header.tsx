@@ -42,17 +42,12 @@ export default function Header() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8 h-18 flex items-center justify-between">
-          {/* Logo — Fraunces serif wordmark */}
+          {/* Logo */}
           <Link
             href="/"
-            className="group flex items-baseline gap-2.5 transition-opacity duration-300 hover:opacity-70"
+            className="text-base font-bold tracking-[0.15em] uppercase transition-opacity duration-300 hover:opacity-60"
           >
-            <span className="font-serif-display text-2xl font-light tracking-tight leading-none">
-              {siteConfig.title}
-            </span>
-            <span className="hidden sm:inline font-mono-meta text-[9px] uppercase text-subtle leading-none">
-              · Advisory
-            </span>
+            {siteConfig.name}
           </Link>
 
           {/* Desktop Nav */}
@@ -66,7 +61,7 @@ export default function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`relative font-mono-meta text-[10px] tracking-[0.12em] transition-colors duration-300 hover:text-foreground hover-underline ${
+                  className={`relative text-[0.8125rem] font-medium tracking-[0.08em] transition-colors duration-300 hover:text-foreground hover-underline ${
                     isActive ? "text-foreground" : "text-muted"
                   }`}
                 >
@@ -122,7 +117,7 @@ export default function Header() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className={`font-serif-display text-3xl font-light italic tracking-tight transition-all duration-500 ${
+                className={`text-2xl font-light tracking-[0.12em] transition-all duration-500 ${
                   mobileOpen
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-4"
@@ -131,7 +126,7 @@ export default function Header() {
                   transitionDelay: mobileOpen ? `${index * 60 + 150}ms` : "0ms",
                 }}
               >
-                {link.label.toLowerCase()}
+                {link.label}
               </Link>
             );
           })}

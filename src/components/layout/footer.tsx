@@ -12,18 +12,10 @@ export default function Footer() {
 
   return (
     <footer className="bg-foreground text-white">
-      {/* Brand Statement — editorial pulled quote */}
+      {/* Brand Statement */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-20 pb-16">
-        <div className="flex items-center gap-4 mb-8">
-          <span className="font-mono-meta text-[10px] uppercase text-neutral-500 tabular-figures">
-            Colophon
-          </span>
-          <span className="h-px w-12 bg-neutral-800" />
-        </div>
-        <p className="font-serif-display text-4xl md:text-5xl lg:text-7xl font-light italic leading-[1.05] tracking-tight max-w-4xl">
-          The Closest
-          <br />
-          Partner
+        <p className="text-3xl md:text-4xl lg:text-5xl font-light tracking-tight leading-snug max-w-3xl">
+          The Closest Partner
           <br />
           <span className="text-neutral-500">in Every Decision.</span>
         </p>
@@ -39,30 +31,23 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* Brand Column */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <h3 className="font-serif-display text-3xl font-light tracking-tight mb-1">
-              {siteConfig.title}
-            </h3>
-            <p className="font-mono-meta text-[10px] uppercase text-neutral-500 mb-6">
+            <h3 className="text-base font-bold tracking-[0.12em] uppercase mb-5">
               {siteConfig.name}
-            </p>
+            </h3>
             <p className="text-sm text-neutral-400 leading-relaxed max-w-xs">
               {siteConfig.tagline}
             </p>
-            <div className="mt-6 pt-6 border-t border-neutral-800 space-y-1">
-              <p className="font-mono-meta text-[10px] uppercase text-neutral-500">
-                Founder
-              </p>
-              <p className="text-sm text-neutral-300">
-                {siteConfig.founder}
-                <span className="text-neutral-600"> · KICPA</span>
+            <div className="mt-6 space-y-1">
+              <p className="text-xs text-neutral-500">
+                Founder · {siteConfig.founder} 공인회계사
               </p>
             </div>
           </div>
 
           {/* Practice Column */}
           <div>
-            <h3 className="font-mono-meta text-[10px] uppercase text-neutral-500 mb-5">
-              I · Practice
+            <h3 className="text-xs font-semibold tracking-[0.16em] uppercase text-neutral-400 mb-5">
+              Practice
             </h3>
             <nav className="flex flex-col gap-3">
               {practiceLinks.map((link) => (
@@ -79,8 +64,8 @@ export default function Footer() {
 
           {/* Menu Column */}
           <div>
-            <h3 className="font-mono-meta text-[10px] uppercase text-neutral-500 mb-5">
-              II · Menu
+            <h3 className="text-xs font-semibold tracking-[0.16em] uppercase text-neutral-400 mb-5">
+              Menu
             </h3>
             <nav className="flex flex-col gap-3">
               {navLinks.map((link) => (
@@ -97,20 +82,23 @@ export default function Footer() {
 
           {/* Contact Column */}
           <div>
-            <h3 className="font-mono-meta text-[10px] uppercase text-neutral-500 mb-5">
-              III · Contact
+            <h3 className="text-xs font-semibold tracking-[0.16em] uppercase text-neutral-400 mb-5">
+              Contact
             </h3>
-            <div className="flex flex-col gap-4 text-sm text-neutral-400">
+            <div className="flex flex-col gap-3 text-sm text-neutral-400">
               <p>
-                <span className="font-mono-meta text-[10px] text-neutral-600 uppercase block mb-1">Tel</span>
-                <span className="tabular-figures">{siteConfig.phone}</span>
+                <span className="text-neutral-500 text-xs uppercase tracking-wider">Tel</span>
+                <br />
+                {siteConfig.phone}
               </p>
               <p>
-                <span className="font-mono-meta text-[10px] text-neutral-600 uppercase block mb-1">Email</span>
+                <span className="text-neutral-500 text-xs uppercase tracking-wider">Email</span>
+                <br />
                 {siteConfig.email}
               </p>
-              <p>
-                <span className="font-mono-meta text-[10px] text-neutral-600 uppercase block mb-1">Location</span>
+              <p className="mt-2 leading-relaxed">
+                <span className="text-neutral-500 text-xs uppercase tracking-wider">Location</span>
+                <br />
                 {siteConfig.location}
               </p>
             </div>

@@ -1,22 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import { siteConfig } from "@/lib/constants";
-
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-fraunces",
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-jetbrains",
-  display: "swap",
-});
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -71,9 +57,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
       </head>
-      <body
-        className={`${fraunces.variable} ${jetbrainsMono.variable} min-h-screen flex flex-col antialiased`}
-      >
+      <body className="min-h-screen flex flex-col antialiased">
         <Header />
         <main className="flex-1 pt-18">{children}</main>
         <Footer />

@@ -38,25 +38,25 @@ const milestones = [
 
 const coreValues = [
   {
-    number: "I",
+    number: "01",
     title: "정직",
     description:
       "도울 수 없는 일은 도울 수 없다고 말씀드립니다. 화려한 약속 대신, 지킬 수 있는 자문을 드리는 것이 부티크가 가져야 할 첫 번째 원칙이라고 믿습니다.",
   },
   {
-    number: "II",
+    number: "02",
     title: "깊이",
     description:
       "감사 · 자본시장 · 가치평가, 어느 한 축만으로는 풀리지 않는 의사결정이 많습니다. 세 축을 모두 거쳐온 시각으로 한 사람의 깊이를 만듭니다.",
   },
   {
-    number: "III",
+    number: "03",
     title: "가까움",
     description:
       "보고서를 메일로 던지는 자문이 아니라, 의사결정의 현장 옆에 함께 있는 자문을 지향합니다. 가장 가까운 거리에서 가장 정확하게 답하는 것이 메리디안의 약속입니다.",
   },
   {
-    number: "IV",
+    number: "04",
     title: "장기 관점",
     description:
       "한 번의 거래 · 한 번의 신고가 아닌, 사업과 자산의 장기 라이프사이클을 함께 보는 자문을 추구합니다. 단발성 솔루션은 단발성으로만 작동합니다.",
@@ -82,33 +82,22 @@ export default function AboutPage() {
             <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/25 to-black/70 pointer-events-none" />
           </>
         )}
-        <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
-          <div className="absolute -right-20 top-1/2 -translate-y-1/2 font-serif-display text-[20rem] font-light italic leading-none select-none">
-            About
+        <div className="absolute inset-0 opacity-[0.03]">
+          <div className="absolute -right-20 top-1/2 -translate-y-1/2 text-[18rem] font-bold leading-none tracking-tighter select-none">
+            ABOUT
           </div>
         </div>
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="flex items-center gap-4 mb-8 animate-fade-in">
-            <span className="font-mono-meta text-[10px] uppercase text-neutral-500 tabular-figures">
-              Chapter II
-            </span>
-            <span className="h-px w-8 bg-neutral-700" />
-            <span className="font-mono-meta text-[10px] uppercase text-neutral-500">
-              About the Studio
-            </span>
-          </div>
+          <p className="text-xs tracking-[0.4em] text-neutral-500 mb-6 uppercase animate-fade-in">
+            About
+          </p>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[1.05] animate-fade-in max-w-4xl">
             가장 가까이서,
             <br />
             가장 정확하게.
           </h1>
-          <div className="mt-8 flex items-center gap-6 animate-line-reveal">
-            <div className="h-0.5 w-20 bg-accent-bright" />
-            <span className="font-serif-display italic text-base md:text-lg text-neutral-300">
-              From the closest seat
-            </span>
-          </div>
-          <p className="mt-10 text-lg md:text-xl text-neutral-400 leading-relaxed max-w-2xl animate-fade-in-delay">
+          <div className="mt-8 h-0.5 w-20 bg-accent-bright animate-line-reveal" />
+          <p className="mt-8 text-lg md:text-xl text-neutral-400 leading-relaxed max-w-2xl animate-fade-in-delay">
             메리디안 어드바이저리는 한 사람의 깊은 경험에서 시작된
             회계 · 재무 자문 부티크입니다. 보고서를 던지는 자문이 아닌,
             의사결정의 가장 가까운 자리에 있는 자문을 지향합니다.
@@ -120,14 +109,13 @@ export default function AboutPage() {
       <section className="py-24 md:py-32">
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeading
-            label="Why Meridian"
+            label="Why Us"
             title="왜 메리디안인가"
-            number="01"
             align="left"
           />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 mt-12">
             <div className="group">
-              <p className="font-serif-display text-7xl md:text-8xl font-light tabular-figures tracking-tight text-neutral-200 group-hover:text-foreground transition-colors duration-500">
+              <p className="text-6xl md:text-7xl font-bold tracking-tighter text-neutral-200 group-hover:text-foreground transition-colors duration-500">
                 01
               </p>
               <h3 className="mt-4 text-xl font-bold tracking-tight">
@@ -140,7 +128,7 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="group">
-              <p className="font-serif-display text-7xl md:text-8xl font-light tabular-figures tracking-tight text-neutral-200 group-hover:text-foreground transition-colors duration-500">
+              <p className="text-6xl md:text-7xl font-bold tracking-tighter text-neutral-200 group-hover:text-foreground transition-colors duration-500">
                 02
               </p>
               <h3 className="mt-4 text-xl font-bold tracking-tight">
@@ -153,7 +141,7 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="group">
-              <p className="font-serif-display text-7xl md:text-8xl font-light tabular-figures tracking-tight text-neutral-200 group-hover:text-foreground transition-colors duration-500">
+              <p className="text-6xl md:text-7xl font-bold tracking-tighter text-neutral-200 group-hover:text-foreground transition-colors duration-500">
                 03
               </p>
               <h3 className="mt-4 text-xl font-bold tracking-tight">
@@ -174,70 +162,71 @@ export default function AboutPage() {
       {/* Our Approach */}
       <section className="py-24 md:py-32">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <div className="flex items-center gap-4 mb-8">
-                <span className="font-mono-meta text-[10px] uppercase text-subtle tabular-figures">
-                  N°&nbsp;02
-                </span>
-                <span className="h-px w-8 bg-border" />
-                <span className="font-mono-meta text-[10px] uppercase text-muted">
-                  Our Approach
-                </span>
-              </div>
+              <p className="text-xs tracking-[0.3em] text-muted mb-4 uppercase">
+                Our Approach
+              </p>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight leading-tight">
                 자문은 결국
                 <br />
                 대화에서 시작합니다
               </h2>
-              <div className="mt-6 h-0.5 w-16 bg-accent" />
-              <p className="mt-8 font-serif-display italic text-xl text-foreground leading-snug max-w-md">
-                &ldquo;Every case begins with a conversation,
-                <br />
-                never a template.&rdquo;
-              </p>
-              <p className="mt-6 text-muted leading-relaxed max-w-md">
+              <div className="mt-6 h-px w-16 bg-border" />
+              <p className="mt-6 text-muted leading-relaxed">
                 템플릿이 아니라 대화에서 시작합니다.
                 각 케이스마다 같은 질문은 없고, 같은 답도 없습니다.
               </p>
             </div>
-            <div className="space-y-10">
-              {[
-                {
-                  num: "i",
-                  title: "대화 (Discovery)",
-                  desc: "무료 30분. 어떤 문제이고 어디까지 진행됐는지 듣습니다. 저희가 도울 수 있는 일인지 솔직하게 답합니다.",
-                },
-                {
-                  num: "ii",
-                  title: "제안 (Scoping)",
-                  desc: "범위 · 산출물 · 일정 · 비용을 구체적으로 제안드립니다. 숨은 비용이나 모호한 약속은 없습니다.",
-                },
-                {
-                  num: "iii",
-                  title: "수행 (Engagement)",
-                  desc: "Founder가 직접 분석 · 모델링 · 보고서 작성을 수행합니다. 중간 점검 미팅을 통해 방향을 함께 확인합니다.",
-                },
-                {
-                  num: "iv",
-                  title: "사후 (Follow-up)",
-                  desc: "프로젝트 종료 후에도 관련 이슈에 대한 후속 질문은 무료로 받습니다. 필요 시 동성회계법인을 통해 정식 신고 · 감사로 연결합니다.",
-                },
-              ].map((step) => (
-                <div key={step.num} className="flex gap-6 group">
-                  <div className="flex-shrink-0 w-14 pt-1">
-                    <span className="font-serif-display text-3xl font-light italic text-muted group-hover:text-accent transition-colors duration-300">
-                      {step.num}.
-                    </span>
-                  </div>
-                  <div className="flex-1 pt-2">
-                    <h4 className="font-bold mb-2 tracking-tight">{step.title}</h4>
-                    <p className="text-sm text-muted leading-relaxed">
-                      {step.desc}
-                    </p>
-                  </div>
+            <div className="space-y-8">
+              <div className="flex gap-6">
+                <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center border border-border text-sm font-bold">
+                  01
                 </div>
-              ))}
+                <div>
+                  <h4 className="font-bold mb-1">대화 (Discovery)</h4>
+                  <p className="text-sm text-muted leading-relaxed">
+                    무료 30분. 어떤 문제이고 어디까지 진행됐는지 듣습니다.
+                    저희가 도울 수 있는 일인지 솔직하게 답합니다.
+                  </p>
+                </div>
+              </div>
+              <div className="flex gap-6">
+                <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center border border-border text-sm font-bold">
+                  02
+                </div>
+                <div>
+                  <h4 className="font-bold mb-1">제안 (Scoping)</h4>
+                  <p className="text-sm text-muted leading-relaxed">
+                    범위 · 산출물 · 일정 · 비용을 구체적으로 제안드립니다.
+                    숨은 비용이나 모호한 약속은 없습니다.
+                  </p>
+                </div>
+              </div>
+              <div className="flex gap-6">
+                <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center border border-border text-sm font-bold">
+                  03
+                </div>
+                <div>
+                  <h4 className="font-bold mb-1">수행 (Engagement)</h4>
+                  <p className="text-sm text-muted leading-relaxed">
+                    Founder가 직접 분석 · 모델링 · 보고서 작성을 수행합니다.
+                    중간 점검 미팅을 통해 방향을 함께 확인합니다.
+                  </p>
+                </div>
+              </div>
+              <div className="flex gap-6">
+                <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center border border-border text-sm font-bold">
+                  04
+                </div>
+                <div>
+                  <h4 className="font-bold mb-1">사후 (Follow-up)</h4>
+                  <p className="text-sm text-muted leading-relaxed">
+                    프로젝트 종료 후에도 관련 이슈에 대한 후속 질문은 무료로 받습니다.
+                    필요 시 동성회계법인을 통해 정식 신고 · 감사로 연결합니다.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -249,11 +238,9 @@ export default function AboutPage() {
       <section className="py-24 md:py-32 bg-card">
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeading
-            label="The Record"
+            label="History"
             title="발자취"
             subtitle="Founder 박민상의 주요 경력"
-            number="03"
-            align="left"
           />
           <div className="max-w-3xl mx-auto relative">
             {/* Vertical line */}
@@ -286,11 +273,9 @@ export default function AboutPage() {
       <section className="py-24 md:py-32">
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeading
-            label="The Principles"
+            label="Principles"
             title="네 가지 약속"
             subtitle="모든 자문에 관통하는 원칙입니다"
-            number="04"
-            align="left"
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border">
             {coreValues.map((value) => (
@@ -298,8 +283,8 @@ export default function AboutPage() {
                 key={value.number}
                 className="bg-white p-10 md:p-12 group hover:bg-card transition-colors duration-300"
               >
-                <span className="font-serif-display text-3xl font-light italic tracking-tight text-muted block">
-                  {value.number}.
+                <span className="text-xs font-medium tracking-[0.2em] text-subtle">
+                  {value.number}
                 </span>
                 <h3 className="mt-4 text-xl font-bold tracking-tight">
                   {value.title}
@@ -318,21 +303,15 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <div>
-              <div className="flex items-center gap-4 mb-8">
-                <span className="font-mono-meta text-[10px] uppercase text-neutral-500 tabular-figures">
-                  N°&nbsp;05
-                </span>
-                <span className="h-px w-8 bg-neutral-800" />
-                <span className="font-mono-meta text-[10px] uppercase text-neutral-500">
-                  Affiliation
-                </span>
-              </div>
-              <h2 className="font-serif-display text-4xl md:text-5xl lg:text-6xl font-light italic tracking-tight leading-[1.05]">
-                A Note on the
+              <p className="text-xs tracking-[0.3em] text-neutral-500 mb-4 uppercase">
+                Affiliation
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight leading-tight">
+                동성회계법인과의
                 <br />
-                <span className="text-neutral-500">Arrangement.</span>
+                관계
               </h2>
-              <div className="mt-8 h-0.5 w-16 bg-accent-bright" />
+              <div className="mt-6 h-px w-16 bg-neutral-700" />
             </div>
             <div className="space-y-6 text-neutral-300 leading-relaxed">
               <p>
@@ -344,28 +323,17 @@ export default function AboutPage() {
                 회계감사 · 세무신고 등 법정 업무는 모두 동성회계법인 명의로 정식 수행됩니다.
                 메리디안 어드바이저리는 자문 활동과 인사이트 발신을 위한 개인 브랜드 공간입니다.
               </p>
-              <div className="pt-8 mt-8 border-t border-neutral-800 space-y-3">
-                <p className="font-mono-meta text-[10px] tracking-[0.2em] text-neutral-500 uppercase">
+              <p className="text-neutral-400 text-sm">
+                * 본 사이트의 어떠한 표현도 별도 회계법인 · 세무법인을 사칭하지 않으며,
+                공인회계사법 및 세무사법상 자격이 필요한 업무는 정식 채널을 통해서만 수행됩니다.
+              </p>
+              <div className="pt-6 mt-6 border-t border-neutral-800 space-y-1">
+                <p className="text-xs tracking-[0.2em] text-neutral-500 uppercase">
                   Direct Contact
                 </p>
-                <p className="text-neutral-300 tabular-figures">
-                  <span className="font-mono-meta text-[10px] text-neutral-600 uppercase mr-2">
-                    Tel
-                  </span>
-                  {siteConfig.phone}
-                </p>
-                <p className="text-neutral-300">
-                  <span className="font-mono-meta text-[10px] text-neutral-600 uppercase mr-2">
-                    Email
-                  </span>
-                  {siteConfig.email}
-                </p>
-                <p className="text-neutral-500 text-sm pt-1">
-                  <span className="font-mono-meta text-[10px] text-neutral-600 uppercase mr-2">
-                    Location
-                  </span>
-                  {siteConfig.location}
-                </p>
+                <p className="text-neutral-300">Tel. {siteConfig.phone}</p>
+                <p className="text-neutral-300">Email. {siteConfig.email}</p>
+                <p className="text-neutral-500 text-sm pt-1">{siteConfig.location}</p>
               </div>
             </div>
           </div>
