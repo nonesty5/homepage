@@ -21,7 +21,7 @@ export default function Home() {
     <>
       {/* Hero Section */}
       <section className="relative bg-foreground text-white min-h-screen flex items-center overflow-hidden">
-        {/* Background image (cityscape) with B&W duotone navy treatment + Ken Burns */}
+        {/* Background image (cityscape) — natural color, slightly desaturated and darkened */}
         {heroImages.home && (
           <>
             <Image
@@ -31,15 +31,10 @@ export default function Home() {
               priority
               sizes="100vw"
               className="object-cover object-center animate-ken-burns-right"
-              style={{ filter: "grayscale(100%) contrast(1.2) brightness(0.95)" }}
-            />
-            {/* Navy duotone — preserves luminance, replaces hue */}
-            <div
-              className="absolute inset-0 mix-blend-color pointer-events-none"
-              style={{ backgroundColor: "var(--color-accent-bright)" }}
+              style={{ filter: "saturate(0.55) brightness(0.65) contrast(1.05)" }}
             />
             {/* Dark gradient for text readability */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/35 to-black/75 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/25 to-black/70 pointer-events-none" />
           </>
         )}
         <div className="max-w-7xl mx-auto px-6 py-32 w-full relative z-10">
