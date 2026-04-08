@@ -76,6 +76,24 @@ export default function PeoplePage() {
                   {lead.description}
                 </p>
 
+                {lead.practiceAreas && lead.practiceAreas.length > 0 && (
+                  <div className="mt-10">
+                    <p className="text-xs tracking-[0.2em] text-subtle mb-4 uppercase font-medium">
+                      전문 영역 · Practice Areas
+                    </p>
+                    <div className="space-y-3">
+                      {lead.practiceAreas.map((item, i) => (
+                        <div key={i} className="flex items-start gap-3">
+                          <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
+                          <p className="text-sm text-muted leading-relaxed">
+                            {item}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 {lead.credentials && lead.credentials.length > 0 && (
                   <div className="mt-10">
                     <p className="text-xs tracking-[0.2em] text-subtle mb-4 uppercase font-medium">
