@@ -1,17 +1,27 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-background: #ffffff;
-  --color-foreground: #0a0a0a;
-  --color-muted: #737373;
-  --color-border: #e5e5e5;
-  --color-card: #fafafa;
+  /* ─── Surface colors ───
+   * styleseed 원칙 ① 순백·순흑 금지
+   * 페이지는 따뜻한 오프화이트(#FAFAFA), 카드는 순백(#FFFFFF)으로 역전 배치 →
+   * 카드가 페이지 위로 살짝 떠오르는 효과.
+   */
+  --color-background: #FAFAFA;
+  --color-card: #FFFFFF;
+  --color-surface: #F3F2EE;
 
-  /* ─── Accent color (single source of truth) ───
+  /* ─── Text & border (5-level gray) ───
+   * 순흑(#0a0a0a) 대신 charcoal #2A2A2A를 기본으로.
+   * 다섯 단계 명도 차이로 hierarchy 명시.
+   */
+  --color-foreground: #2A2A2A;  /* 1차 — 본문·헤딩 */
+  --color-strong: #3C3C3C;      /* 2차 — secondary 본문 */
+  --color-muted: #6A6A6A;       /* 3차 — caption */
+  --color-subtle: #9B9B9B;      /* 5차 — annotation */
+  --color-border: #E8E6E1;      /* 따뜻한 베이지 hairline */
+
+  /* ─── Accent color (단일 소스) ───
    * 활성: A3 Oxford Navy 패밀리 (라이트/다크 두 톤)
-   * --color-accent       라이트 배경용 — 중간 네이비 (대비 충분)
-   * --color-accent-bright 다크 배경용 — 밝은 네이비 (검정 위에서도 보임)
-   *
    * 다른 컬러 패밀리로 교체:
    *   A1 Burgundy:  #6B2027 / #B6585F
    *   A2 Brass:     #8B6A2A / #C9A55C
@@ -21,8 +31,15 @@
   --color-accent-bright: #5A7DB5;
   --color-accent-foreground: #ffffff;
 
-  --color-surface: #f5f5f5;
-  --color-subtle: #a3a3a3;
+  /* ─── Shadow tokens ───
+   * styleseed 원칙 ③ — 4~12% 범위 내에서만, 컬러 섀도우 금지.
+   * 정의만 해두고 적용은 선택적 (현재는 hairline 디자인 유지).
+   */
+  --shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
+  --shadow-button: 0 1px 3px 0 rgba(0, 0, 0, 0.06);
+  --shadow-hover: 0 2px 6px -1px rgba(0, 0, 0, 0.08);
+  --shadow-elevated: 0 4px 12px -2px rgba(0, 0, 0, 0.08);
+
   --font-sans: "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 }
 
@@ -273,8 +290,8 @@ body {
 }
 
 .hover-lift:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.08);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-elevated);
 }
 
 .hover-fade {
@@ -362,11 +379,11 @@ body {
 
 .prose strong {
   font-weight: 700;
-  color: #0a0a0a;
+  color: var(--color-foreground);
 }
 
 .prose a {
-  color: #0a0a0a;
+  color: var(--color-foreground);
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
@@ -386,24 +403,24 @@ body {
 
 .prose th,
 .prose td {
-  border: 1px solid #e5e5e5;
+  border: 1px solid var(--color-border);
   padding: 0.875rem 1rem;
   text-align: left;
 }
 
 .prose th {
-  background: #fafafa;
+  background: var(--color-surface);
   font-weight: 600;
   font-size: 0.8125rem;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  color: #525252;
+  color: var(--color-strong);
 }
 
 .prose hr {
   border: none;
   height: 1px;
-  background: #e5e5e5;
+  background: var(--color-border);
   margin: 2.5rem 0;
 }
 

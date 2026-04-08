@@ -7,7 +7,7 @@ import { siteConfig } from "@/lib/constants";
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#0a0a0a",
+  themeColor: "#2A2A2A",
 };
 
 export const metadata: Metadata = {
