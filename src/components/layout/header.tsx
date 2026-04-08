@@ -50,8 +50,8 @@ export default function Header() {
             {siteConfig.name}
           </Link>
 
-          {/* Desktop Nav + Client Login */}
-          <div className="hidden md:flex items-center gap-10">
+          {/* Desktop Nav + Pricing + Client Login */}
+          <div className="hidden md:flex items-center gap-8">
             <nav className="flex items-center gap-10">
               {navLinks.map((link) => {
                 const isActive =
@@ -71,14 +71,24 @@ export default function Header() {
                 );
               })}
             </nav>
-            <a
-              href={siteConfig.clientPortalUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[0.75rem] font-medium tracking-[0.08em] uppercase px-4 py-2 border border-border text-muted hover:text-foreground hover:border-foreground transition-colors duration-300"
-            >
-              Client Login
-            </a>
+            <div className="flex items-center gap-3">
+              <a
+                href={siteConfig.pricingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[0.75rem] font-medium tracking-[0.08em] uppercase px-4 py-2 border border-border text-muted hover:text-foreground hover:border-foreground transition-colors duration-300"
+              >
+                Pricing
+              </a>
+              <a
+                href={siteConfig.clientPortalUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[0.75rem] font-medium tracking-[0.08em] uppercase px-4 py-2 border border-border text-muted hover:text-foreground hover:border-foreground transition-colors duration-300"
+              >
+                Client Login
+              </a>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -140,12 +150,8 @@ export default function Header() {
               </Link>
             );
           })}
-          <a
-            href={siteConfig.clientPortalUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => setMobileOpen(false)}
-            className={`mt-6 text-xs tracking-[0.12em] uppercase px-6 py-3 border border-border text-muted transition-all duration-500 ${
+          <div
+            className={`mt-6 flex items-center gap-3 transition-all duration-500 ${
               mobileOpen
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-4"
@@ -156,8 +162,25 @@ export default function Header() {
                 : "0ms",
             }}
           >
-            Client Login
-          </a>
+            <a
+              href={siteConfig.pricingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileOpen(false)}
+              className="text-xs tracking-[0.12em] uppercase px-6 py-3 border border-border text-muted"
+            >
+              Pricing
+            </a>
+            <a
+              href={siteConfig.clientPortalUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileOpen(false)}
+              className="text-xs tracking-[0.12em] uppercase px-6 py-3 border border-border text-muted"
+            >
+              Client Login
+            </a>
+          </div>
         </nav>
       </div>
     </>
