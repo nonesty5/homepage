@@ -50,26 +50,36 @@ export default function Header() {
             {siteConfig.name}
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-10">
-            {navLinks.map((link) => {
-              const isActive =
-                link.href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(link.href);
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`relative text-[0.8125rem] font-medium tracking-[0.08em] transition-colors duration-300 hover:text-foreground hover-underline ${
-                    isActive ? "text-foreground" : "text-muted"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-          </nav>
+          {/* Desktop Nav + Client Login */}
+          <div className="hidden md:flex items-center gap-10">
+            <nav className="flex items-center gap-10">
+              {navLinks.map((link) => {
+                const isActive =
+                  link.href === "/"
+                    ? pathname === "/"
+                    : pathname.startsWith(link.href);
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`relative text-[0.8125rem] font-medium tracking-[0.08em] transition-colors duration-300 hover:text-foreground hover-underline ${
+                      isActive ? "text-foreground" : "text-muted"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
+            </nav>
+            <a
+              href={siteConfig.clientPortalUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[0.75rem] font-medium tracking-[0.08em] uppercase px-4 py-2 border border-border text-muted hover:text-foreground hover:border-foreground transition-colors duration-300"
+            >
+              Client Login
+            </a>
+          </div>
 
           {/* Mobile Menu Button */}
           <button
@@ -130,6 +140,24 @@ export default function Header() {
               </Link>
             );
           })}
+          <a
+            href={siteConfig.clientPortalUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setMobileOpen(false)}
+            className={`mt-6 text-xs tracking-[0.12em] uppercase px-6 py-3 border border-border text-muted transition-all duration-500 ${
+              mobileOpen
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-4"
+            }`}
+            style={{
+              transitionDelay: mobileOpen
+                ? `${navLinks.length * 60 + 150}ms`
+                : "0ms",
+            }}
+          >
+            Client Login
+          </a>
         </nav>
       </div>
     </>

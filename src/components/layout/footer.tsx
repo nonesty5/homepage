@@ -101,6 +101,14 @@ export default function Footer() {
                 <br />
                 {siteConfig.location}
               </p>
+              <a
+                href={siteConfig.clientPortalUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex items-center text-xs tracking-wider uppercase text-neutral-400 hover:text-white transition-colors duration-300 border-b border-neutral-700 hover:border-white pb-0.5"
+              >
+                Client Login &rarr;
+              </a>
             </div>
           </div>
         </div>
