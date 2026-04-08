@@ -36,33 +36,6 @@ const milestones = [
   },
 ];
 
-const coreValues = [
-  {
-    number: "01",
-    title: "정직",
-    description:
-      "도울 수 없는 일은 도울 수 없다고 말씀드립니다. 화려한 약속 대신, 지킬 수 있는 자문을 드리는 것이 부티크가 가져야 할 첫 번째 원칙이라고 믿습니다.",
-  },
-  {
-    number: "02",
-    title: "깊이",
-    description:
-      "감사 · 자본시장 · 가치평가, 어느 한 축만으로는 풀리지 않는 의사결정이 많습니다. 세 축을 모두 거쳐온 시각으로 한 사람의 깊이를 만듭니다.",
-  },
-  {
-    number: "03",
-    title: "가까움",
-    description:
-      "보고서를 메일로 던지는 자문이 아니라, 의사결정의 현장 옆에 함께 있는 자문을 지향합니다. 가장 가까운 거리에서 가장 정확하게 답하는 것이 메리디안의 약속입니다.",
-  },
-  {
-    number: "04",
-    title: "장기 관점",
-    description:
-      "한 번의 거래 · 한 번의 신고가 아닌, 사업과 자산의 장기 라이프사이클을 함께 보는 자문을 추구합니다. 단발성 솔루션은 단발성으로만 작동합니다.",
-  },
-];
-
 export default function AboutPage() {
   return (
     <>
@@ -123,8 +96,7 @@ export default function AboutPage() {
               </h3>
               <p className="mt-3 text-muted leading-relaxed">
                 세무 기장 · 세무 조정 · 세무 신고를 정기적으로 직접 수행합니다.
-                숫자를 매월 보는 사람이 거래 자문도 하기 때문에,
-                숨은 리스크와 절세 여지를 가장 먼저 발견합니다.
+                숫자를 매월 보는 사람이 거래 자문도 함께 합니다.
               </p>
             </div>
             <div className="group">
@@ -132,12 +104,11 @@ export default function AboutPage() {
                 02
               </p>
               <h3 className="mt-4 text-xl font-bold tracking-tight">
-                기장부터 가치평가까지 한 사람이
+                기장부터 가치평가까지
               </h3>
               <p className="mt-3 text-muted leading-relaxed">
                 삼정 감사 · NH투자증권 IB · 한영 가치평가본부(VME)를
-                거친 한 사람이 일상 세무부터 M&amp;A 자문까지
-                일관되게 책임집니다. 인수인계 비용이 없습니다.
+                거친 한 사람이 일상 세무부터 M&amp;A 자문까지 일관되게 다룹니다.
               </p>
             </div>
             <div className="group">
@@ -149,8 +120,7 @@ export default function AboutPage() {
               </h3>
               <p className="mt-3 text-muted leading-relaxed">
                 회계감사 · 세무 기장 · 세무 조정 · 세무 신고 등 법정 업무는
-                모두 동성회계법인 명의로 정식 수행됩니다.
-                자문과 실행이 분리되지 않는 구조입니다.
+                동성회계법인 명의로 수행됩니다.
               </p>
             </div>
           </div>
@@ -184,10 +154,10 @@ export default function AboutPage() {
                   01
                 </div>
                 <div>
-                  <h4 className="font-bold mb-1">대화 (Discovery)</h4>
+                  <h4 className="font-bold mb-1">대화</h4>
                   <p className="text-sm text-muted leading-relaxed">
-                    무료 30분. 어떤 문제이고 어디까지 진행됐는지 듣습니다.
-                    저희가 도울 수 있는 일인지 솔직하게 답합니다.
+                    어떤 문제이고 어디까지 진행됐는지 먼저 듣습니다.
+                    도울 수 있는 일인지 솔직하게 답합니다.
                   </p>
                 </div>
               </div>
@@ -196,10 +166,9 @@ export default function AboutPage() {
                   02
                 </div>
                 <div>
-                  <h4 className="font-bold mb-1">제안 (Scoping)</h4>
+                  <h4 className="font-bold mb-1">제안</h4>
                   <p className="text-sm text-muted leading-relaxed">
-                    범위 · 산출물 · 일정 · 비용을 구체적으로 제안드립니다.
-                    숨은 비용이나 모호한 약속은 없습니다.
+                    범위 · 산출물 · 일정 · 비용을 구체적으로 제안합니다.
                   </p>
                 </div>
               </div>
@@ -208,10 +177,10 @@ export default function AboutPage() {
                   03
                 </div>
                 <div>
-                  <h4 className="font-bold mb-1">수행 (Engagement)</h4>
+                  <h4 className="font-bold mb-1">수행</h4>
                   <p className="text-sm text-muted leading-relaxed">
-                    Founder가 직접 분석 · 모델링 · 보고서 작성을 수행합니다.
-                    중간 점검 미팅을 통해 방향을 함께 확인합니다.
+                    분석 · 모델링 · 보고서 작성을 직접 수행합니다.
+                    중간 미팅으로 방향을 함께 확인합니다.
                   </p>
                 </div>
               </div>
@@ -220,9 +189,9 @@ export default function AboutPage() {
                   04
                 </div>
                 <div>
-                  <h4 className="font-bold mb-1">사후 (Follow-up)</h4>
+                  <h4 className="font-bold mb-1">사후</h4>
                   <p className="text-sm text-muted leading-relaxed">
-                    프로젝트 종료 후에도 관련 이슈에 대한 후속 질문은 무료로 받습니다.
+                    종료 후에도 관련 후속 질문은 받습니다.
                     필요 시 동성회계법인을 통해 정식 신고 · 감사로 연결합니다.
                   </p>
                 </div>
@@ -269,35 +238,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Core Values */}
-      <section className="py-24 md:py-32">
-        <div className="max-w-7xl mx-auto px-6">
-          <SectionHeading
-            label="Principles"
-            title="네 가지 약속"
-            subtitle="모든 자문에 관통하는 원칙입니다"
-          />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border">
-            {coreValues.map((value) => (
-              <div
-                key={value.number}
-                className="bg-white p-10 md:p-12 group hover:bg-card transition-colors duration-300"
-              >
-                <span className="text-xs font-medium tracking-[0.2em] text-subtle">
-                  {value.number}
-                </span>
-                <h3 className="mt-4 text-xl font-bold tracking-tight">
-                  {value.title}
-                </h3>
-                <p className="mt-3 text-sm text-muted leading-relaxed">
-                  {value.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Affiliation Disclosure */}
       <section className="py-24 md:py-32 bg-foreground text-white">
         <div className="max-w-7xl mx-auto px-6">
@@ -320,12 +260,8 @@ export default function AboutPage() {
               </p>
               <p>
                 박민상 공인회계사는 <strong className="text-white">동성회계법인</strong> 소속으로,
-                회계감사 · 세무신고 등 법정 업무는 모두 동성회계법인 명의로 정식 수행됩니다.
+                회계감사 · 세무 기장 · 세무 조정 · 세무 신고 등 법정 업무는 모두 동성회계법인 명의로 정식 수행됩니다.
                 메리디안 택스 어드바이저리는 자문 활동과 인사이트 발신을 위한 개인 브랜드 공간입니다.
-              </p>
-              <p className="text-neutral-400 text-sm">
-                * 본 사이트의 어떠한 표현도 별도 회계법인 · 세무법인을 사칭하지 않으며,
-                공인회계사법 및 세무사법상 자격이 필요한 업무는 정식 채널을 통해서만 수행됩니다.
               </p>
               <div className="pt-6 mt-6 border-t border-neutral-800 space-y-1">
                 <p className="text-xs tracking-[0.2em] text-neutral-500 uppercase">

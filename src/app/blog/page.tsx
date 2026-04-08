@@ -55,7 +55,7 @@ export default function BlogPage() {
           </h1>
           <div className="mt-6 h-0.5 w-20 bg-accent-bright animate-line-reveal" />
           <p className="mt-8 text-lg text-neutral-400 max-w-xl leading-relaxed animate-fade-in-delay">
-            세무 · 회계 관련 최신 정보와 전문 지식을 공유합니다.
+            세무 · 회계 · 자본시장에서 마주친 케이스와 생각을 정리한 노트입니다.
           </p>
         </div>
       </section>

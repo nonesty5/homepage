@@ -4,7 +4,7 @@ import { services } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "PRACTICE",
-  description: "기업가치평가, M&A, IPO 준비, 재무 모델링, 세무 자문 — 박민상 공인회계사가 직접 수행하는 자문 영역.",
+  description: "세무 기장 · 세무 조정 · 세무 자문, 그리고 기업가치평가 · M&A · IPO 자문 — 박민상 공인회계사가 직접 수행하는 자문 영역.",
 };
 
 export default function ServicesPage() {
@@ -114,9 +114,6 @@ export default function ServicesPage() {
             <br className="hidden md:block" />
             먼저 이야기 나눠보세요
           </h2>
-          <p className="mt-6 text-neutral-400 max-w-xl mx-auto leading-relaxed">
-            첫 30분 미팅은 무료입니다. 도움이 될 수 있는지 솔직하게 답변드립니다.
-          </p>
           <Link
             href="/contact"
             className="group mt-10 inline-flex items-center px-10 py-4 bg-white text-foreground text-sm font-medium tracking-wider transition-all duration-300 hover:bg-neutral-200 hover:tracking-widest"

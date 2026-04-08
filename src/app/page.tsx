@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { services, personas, stats, members } from "@/lib/data";
+import { services, personas, members } from "@/lib/data";
 import { siteConfig, heroImages } from "@/lib/constants";
 import { getAllPosts } from "@/lib/posts";
 import SectionHeading from "@/components/ui/section-heading";
@@ -49,14 +49,14 @@ export default function Home() {
             <p className="mt-8 text-lg md:text-xl text-neutral-400 leading-relaxed max-w-xl animate-fade-in-delay">
               세무 기장 · 세무 조정 · 세무 자문부터
               <br />
-              기업가치평가 · M&amp;A까지, 가장 가까운 파트너.
+              기업가치평가 · M&amp;A까지, 한 사람이 책임집니다.
             </p>
             <div className="mt-12 flex flex-col sm:flex-row gap-4 animate-fade-in-delay-2">
               <Link
                 href="/contact"
                 className="group inline-flex items-center justify-center px-10 py-4 bg-white text-foreground text-sm font-medium tracking-wider transition-all duration-300 hover:bg-neutral-200 hover:tracking-widest"
               >
-                무료 상담 신청
+                상담 신청
                 <span className="ml-3 transition-transform duration-300 group-hover:translate-x-1">
                   &rarr;
                 </span>
@@ -82,35 +82,13 @@ export default function Home() {
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-neutral-600 to-transparent" />
       </section>
 
-      {/* Stats Section */}
-      <section className="py-20 md:py-24 border-b border-border">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-            {stats.map((stat, i) => (
-              <div
-                key={i}
-                className="text-center md:text-left animate-slide-up"
-                style={{ animationDelay: `${i * 0.1}s` }}
-              >
-                <p className="text-3xl md:text-4xl font-bold tracking-tight">
-                  {stat.value}
-                </p>
-                <p className="mt-2 text-sm text-muted tracking-wide leading-relaxed">
-                  {stat.label}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Services Preview */}
       <section className="py-24 md:py-32">
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeading
             label="Practice"
             title="전문 영역"
-            subtitle="가치평가 · M&A · IPO · 모델링 · 세무 자문"
+            subtitle="세무 기장 · 세무 조정 · 세무 자문, 그리고 기업가치평가 · M&A · IPO 자문까지"
           />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
             {services.map((service, index) => (
@@ -321,12 +299,10 @@ export default function Home() {
             Get in Touch
           </p>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
-            첫 30분은 무료입니다
+            한 번 이야기 나눠보세요
           </h2>
           <p className="mt-6 text-neutral-400 text-lg max-w-xl mx-auto leading-relaxed">
-            본인의 상황을 간단히 말씀해 주시면,
-            <br className="hidden md:block" />
-            저희가 도울 수 있는지 솔직하게 답변드립니다.
+            상황을 간단히 말씀해 주시면, 도울 수 있는 일인지 먼저 답변드립니다.
           </p>
           <div className="mt-4 mx-auto w-12 h-px bg-neutral-700" />
           <Link

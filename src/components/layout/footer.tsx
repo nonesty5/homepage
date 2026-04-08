@@ -12,17 +12,8 @@ export default function Footer() {
 
   return (
     <footer className="bg-foreground text-white">
-      {/* Brand Statement */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-20 pb-16">
-        <p className="text-3xl md:text-4xl lg:text-5xl font-light tracking-tight leading-snug max-w-3xl">
-          The Closest Partner
-          <br />
-          <span className="text-neutral-500">in Every Decision.</span>
-        </p>
-      </div>
-
       {/* Divider */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-12">
         <div className="h-px bg-neutral-800" />
       </div>
 

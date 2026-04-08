@@ -4,7 +4,7 @@ import { personas, services } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "WHO",
-  description: "스타트업, 사업가, 자산가를 위한 회계 · 재무 자문 부티크.",
+  description: "스타트업, 사업가, 자산가를 위한 메리디안 택스 어드바이저리 — 세무 기장 · 조정 · 자문부터 가치평가 · M&A까지.",
 };
 
 export default function WhoPage() {
@@ -131,15 +131,11 @@ export default function WhoPage() {
             <br />
             먼저 이야기 나눠보세요
           </h2>
-          <p className="mt-6 text-neutral-400 max-w-xl mx-auto leading-relaxed">
-            첫 30분 미팅은 무료입니다. 본인의 상황을 간단히 말씀해 주시면,
-            저희가 도울 수 있는지 솔직하게 답변드립니다.
-          </p>
           <Link
             href="/contact"
             className="group mt-10 inline-flex items-center px-10 py-4 bg-white text-foreground text-sm font-medium tracking-wider transition-all duration-300 hover:bg-neutral-200 hover:tracking-widest"
           >
-            상담 신청하기
+            상담 신청
             <span className="ml-3 transition-transform duration-300 group-hover:translate-x-1">
               &rarr;
             </span>
