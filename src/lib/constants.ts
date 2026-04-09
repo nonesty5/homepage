@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "메리디안 택스 어드바이저리",
   title: "MERIDIAN",
-  tagline: "사업에만 집중할 수 있도록",
+  tagline: "Stay Focused. Build Your Business.",
   description:
     "세무 · 회계 · 가치평가 · M&A — 사업의 모든 국면을 아우르는 범전문가 집단. 대표님이 본업에만 집중할 수 있도록, 복잡한 문제를 대신 맡아 해결합니다.",
   url: "https://meridian-advisory.com",
