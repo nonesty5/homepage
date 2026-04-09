@@ -194,41 +194,6 @@ export default async function ServiceDetailPage({ params }: Props) {
                   </div>
                 )}
 
-              {/* IV. Related Regulations */}
-              {service.regulations && service.regulations.length > 0 && (
-                <div>
-                  <div className="flex items-baseline gap-4 mb-10">
-                    <span className="text-xs tracking-[0.2em] text-subtle uppercase font-medium">
-                      IV.
-                    </span>
-                    <h2 className="text-2xl font-bold tracking-tight">
-                      관련 법령
-                    </h2>
-                    <span className="text-xs text-subtle ml-2">
-                      Related Regulations
-                    </span>
-                  </div>
-                  <div className="bg-card border border-border p-8 md:p-10">
-                    <ul className="space-y-3">
-                      {service.regulations.map((item, i) => (
-                        <li
-                          key={i}
-                          className="flex items-start gap-4 text-sm text-muted leading-relaxed"
-                        >
-                          <span className="font-mono text-xs text-subtle flex-shrink-0 tabular-nums mt-0.5">
-                            §
-                          </span>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <p className="mt-6 pt-6 border-t border-border text-xs text-subtle leading-relaxed">
-                      * 적용되는 법령 · 시행령 · 예규는 케이스에 따라 달라질 수 있습니다.
-                      구체 조문 적용은 상담 단계에서 함께 검토합니다.
-                    </p>
-                  </div>
-                </div>
-              )}
 
               {/* CTA Box */}
               <div className="p-10 md:p-12 bg-foreground text-white">
