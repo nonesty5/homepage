@@ -93,7 +93,7 @@ export default function PricingCalculator() {
   const [state, dispatch] = useReducer(reducer, DEFAULT_STATE);
   const [currentStep, setCurrentStep] = useState(1);
   const [unlockedStep, setUnlockedStep] = useState(1);
-  const [industryQuery, setIndustryQuery] = useState(getIndustry(DEFAULT_STATE.industryId).label);
+  const [industryQuery, setIndustryQuery] = useState("");
   const [revenueDirectOpen, setRevenueDirectOpen] = useState(false);
   const [ctaMessage, setCtaMessage] = useState<{ text: string; tone: "neutral" | "success" | "error" } | null>(null);
   const [hydrated, setHydrated] = useState(false);
@@ -131,7 +131,7 @@ export default function PricingCalculator() {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setCurrentStep(TOTAL_STEPS);
       setUnlockedStep(TOTAL_STEPS);
-      setIndustryQuery(getIndustry(merged.industryId).label);
+      // industryQuery를 빈 문자열로 유지 — 전체 업종 리스트가 보이도록
       if (!REVENUE_OPTIONS.includes(merged.revenue)) {
         setRevenueDirectOpen(true);
       }
@@ -191,7 +191,7 @@ export default function PricingCalculator() {
   const onSelectIndustry = useCallback(
     (id: string, advance = false) => {
       dispatch({ type: "setIndustry", id });
-      setIndustryQuery(getIndustry(id).label);
+      setIndustryQuery("");
       if (advance) advanceToStep(3);
     },
     [advanceToStep],
