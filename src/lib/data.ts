@@ -217,7 +217,7 @@ export const members: Member[] = [
     role: "공인회계사 · Founder",
     image: "/images/founder.png",
     description:
-      "삼정 감사, NH IB, 한영 VME를 거쳐 세무 · 가치평가 · M&A를 한 사람 안에서 연결합니다. 매월 장부를 보는 사람이 큰 의사결정까지 함께합니다.",
+      "감사 · IB · 가치평가를 거치며 쌓은 시야로, 세무부터 M&A까지 통섭합니다. 분절된 자문이 아니라 하나의 흐름으로 사업을 봅니다.",
     credentials: [
       "공인회계사 (KICPA, 2017)",
       "성균관대학교 경영학과 졸업",
