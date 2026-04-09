@@ -94,13 +94,11 @@ export default function PricingCalculator() {
   const [currentStep, setCurrentStep] = useState(1);
   const [unlockedStep, setUnlockedStep] = useState(1);
   const [industryQuery, setIndustryQuery] = useState(getIndustry(DEFAULT_STATE.industryId).label);
-  const [industryDropdownOpen, setIndustryDropdownOpen] = useState(false);
   const [revenueDirectOpen, setRevenueDirectOpen] = useState(false);
   const [ctaMessage, setCtaMessage] = useState<{ text: string; tone: "neutral" | "success" | "error" } | null>(null);
   const [hydrated, setHydrated] = useState(false);
 
   const cardRefs = useRef<Record<number, HTMLElement | null>>({});
-  const industryShellRef = useRef<HTMLDivElement | null>(null);
   const industryInputRef = useRef<HTMLInputElement | null>(null);
   const revenueInputRef = useRef<HTMLInputElement | null>(null);
   const ctaTimerRef = useRef<number | null>(null);
@@ -161,20 +159,6 @@ export default function PricingCalculator() {
     return () => window.clearTimeout(timer);
   }, [state, hydrated]);
 
-  /* ─ Outside click closes industry dropdown ─ */
-  useEffect(() => {
-    if (!industryDropdownOpen) return;
-    function onDocClick(event: MouseEvent) {
-      const target = event.target as Node;
-      if (industryShellRef.current && !industryShellRef.current.contains(target)) {
-        setIndustryQuery(getIndustry(state.industryId).label);
-        setIndustryDropdownOpen(false);
-      }
-    }
-    document.addEventListener("click", onDocClick);
-    return () => document.removeEventListener("click", onDocClick);
-  }, [industryDropdownOpen, state.industryId]);
-
   /* ─ CTA flash message timer ─ */
   useEffect(() => {
     if (!ctaMessage) return;
@@ -207,7 +191,7 @@ export default function PricingCalculator() {
   const onSelectIndustry = useCallback(
     (id: string, advance = false) => {
       dispatch({ type: "setIndustry", id });
-      setIndustryDropdownOpen(false);
+      setIndustryQuery(getIndustry(id).label);
       if (advance) advanceToStep(3);
     },
     [advanceToStep],
@@ -401,122 +385,83 @@ export default function PricingCalculator() {
                       </>
                     )}
 
-                    {/* ─ Step 2: Industry search ─ */}
+                    {/* ─ Step 2: Industry ─ */}
                     {step.id === 2 && (
                       <>
                         <p className="text-xs text-muted leading-relaxed">
-                          검색하거나 목록에서 선택하세요. 내부적으로 일반 · 특수 · 고난도 업종으로 자동 매핑됩니다.
+                          업종을 검색하거나 목록에서 선택하세요.
                         </p>
-                        <div ref={industryShellRef} className="relative">
-                          <div className="flex items-center border border-border bg-card focus-within:border-foreground transition-colors">
-                            <input
-                              ref={industryInputRef}
-                              type="text"
-                              autoComplete="off"
-                              placeholder="예: 온라인 쇼핑몰, 건설, 카페, 무역"
-                              role="combobox"
-                              aria-autocomplete="list"
-                              aria-expanded={industryDropdownOpen}
-                              aria-controls="industryResults"
-                              value={industryQuery}
-                              onFocus={() => {
-                                setIndustryDropdownOpen(true);
-                                if (!industryQuery) setIndustryQuery(selectedIndustry.label);
-                              }}
-                              onChange={(e) => {
-                                setIndustryQuery(e.target.value);
-                                setIndustryDropdownOpen(true);
-                              }}
-                              onKeyDown={(e) => {
-                                if (e.key === "Enter") {
-                                  e.preventDefault();
-                                  const [first] = filteredIndustries;
-                                  if (first) onSelectIndustry(first.id, currentStep === 2);
-                                } else if (e.key === "Escape") {
-                                  setIndustryQuery(selectedIndustry.label);
-                                  setIndustryDropdownOpen(false);
-                                }
-                              }}
-                              className="flex-1 px-4 py-3 text-sm bg-transparent outline-none"
-                            />
-                            {industryQuery &&
-                              industryQuery.toLowerCase() !== selectedIndustry.label.toLowerCase() && (
-                                <button
-                                  type="button"
-                                  onClick={() => {
-                                    setIndustryQuery("");
-                                    setIndustryDropdownOpen(true);
-                                    industryInputRef.current?.focus();
-                                  }}
-                                  className="text-xs text-muted hover:text-foreground px-3"
-                                >
-                                  지우기
-                                </button>
-                              )}
-                          </div>
 
-                          {industryDropdownOpen && (
-                            <div
-                              id="industryResults"
-                              role="listbox"
-                              className="absolute left-0 right-0 top-full mt-1 z-20 bg-card border border-border max-h-80 overflow-y-auto shadow-card"
-                            >
-                              {filteredIndustries.length === 0 ? (
-                                <button
-                                  type="button"
-                                  onClick={() => onSelectIndustry("other", currentStep === 2)}
-                                  className="w-full text-left px-4 py-3 hover:bg-surface transition-colors"
-                                >
-                                  <strong className="block text-sm">기타·잘 모르겠음</strong>
-                                  <span className="block text-xs text-muted mt-0.5">
-                                    일반 업종 기준으로 먼저 계산하고, 상담 중에 조정합니다.
-                                  </span>
-                                </button>
-                              ) : (
-                                filteredIndustries.map((industry) => {
-                                  const isSelected = industry.id === selectedIndustry.id;
-                                  return (
-                                    <button
-                                      key={industry.id}
-                                      type="button"
-                                      role="option"
-                                      aria-selected={isSelected}
-                                      onClick={() => onSelectIndustry(industry.id, currentStep === 2)}
-                                      className={`w-full text-left px-4 py-3 border-b border-border last:border-b-0 transition-colors ${
-                                        isSelected ? "bg-surface" : "hover:bg-surface"
-                                      }`}
-                                    >
-                                      <div className="flex items-start justify-between gap-3">
-                                        <div className="min-w-0">
-                                          <strong className="block text-sm">
-                                            {industry.label}
-                                          </strong>
-                                          <span className="block text-xs text-muted mt-0.5 leading-relaxed">
-                                            {industry.description}
-                                          </span>
-                                        </div>
-                                        <span className="flex-shrink-0 text-[0.65rem] uppercase tracking-wider text-subtle">
-                                          {COMPLEXITY[industry.complexity].label}
-                                        </span>
-                                      </div>
-                                    </button>
-                                  );
-                                })
-                              )}
-                            </div>
-                          )}
+                        {/* Search filter */}
+                        <div className="flex items-center border border-border bg-card focus-within:border-foreground transition-colors">
+                          <input
+                            ref={industryInputRef}
+                            type="text"
+                            autoComplete="off"
+                            placeholder="예: 온라인 쇼핑몰, 건설, 카페, 무역"
+                            value={industryQuery}
+                            onChange={(e) => setIndustryQuery(e.target.value)}
+                            className="flex-1 px-4 py-3 text-sm bg-transparent outline-none"
+                          />
+                          {industryQuery &&
+                            industryQuery.toLowerCase() !== selectedIndustry.label.toLowerCase() && (
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setIndustryQuery("");
+                                  industryInputRef.current?.focus();
+                                }}
+                                className="text-xs text-muted hover:text-foreground px-3"
+                              >
+                                지우기
+                              </button>
+                            )}
                         </div>
 
-                        <div className="bg-surface border border-border px-4 py-3">
-                          <div className="flex items-center gap-2 mb-1">
-                            <span className="text-[0.65rem] uppercase tracking-[0.15em] px-2 py-0.5 border border-border bg-card text-muted">
-                              {COMPLEXITY[selectedIndustry.complexity].label}
-                            </span>
-                            <strong className="text-sm">{selectedIndustry.label}</strong>
-                          </div>
-                          <p className="text-xs text-muted leading-relaxed">
-                            {selectedIndustry.description}
-                          </p>
+                        {/* Always-visible industry list */}
+                        <div className="grid grid-cols-1 gap-1.5 max-h-64 overflow-y-auto border border-border p-2">
+                          {filteredIndustries.length === 0 ? (
+                            <button
+                              type="button"
+                              onClick={() => onSelectIndustry("other", currentStep === 2)}
+                              className="text-left px-3 py-2.5 hover:bg-surface transition-colors"
+                            >
+                              <strong className="block text-sm">기타·잘 모르겠음</strong>
+                              <span className="block text-xs text-muted mt-0.5">
+                                일반 업종 기준으로 먼저 계산하고, 상담 중에 조정합니다.
+                              </span>
+                            </button>
+                          ) : (
+                            filteredIndustries.map((industry) => {
+                              const isSelected = industry.id === selectedIndustry.id;
+                              return (
+                                <button
+                                  key={industry.id}
+                                  type="button"
+                                  onClick={() => onSelectIndustry(industry.id, currentStep === 2)}
+                                  className={`text-left px-3 py-2.5 transition-colors ${
+                                    isSelected
+                                      ? "bg-foreground text-white"
+                                      : "hover:bg-surface"
+                                  }`}
+                                >
+                                  <div className="flex items-start justify-between gap-3">
+                                    <div className="min-w-0">
+                                      <strong className="block text-sm">
+                                        {industry.label}
+                                      </strong>
+                                      <span className={`block text-xs mt-0.5 leading-relaxed ${isSelected ? "text-neutral-300" : "text-muted"}`}>
+                                        {industry.description}
+                                      </span>
+                                    </div>
+                                    <span className={`flex-shrink-0 text-[0.65rem] uppercase tracking-wider ${isSelected ? "text-neutral-400" : "text-subtle"}`}>
+                                      {COMPLEXITY[industry.complexity].label}
+                                    </span>
+                                  </div>
+                                </button>
+                              );
+                            })
+                          )}
                         </div>
 
                         <NextButton onClick={() => advanceToStep(3)} label="다음 질문" />
