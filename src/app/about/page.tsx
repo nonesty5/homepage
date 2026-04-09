@@ -21,18 +21,18 @@ const milestones = [
   },
   {
     year: "2023",
-    title: "한영회계법인 VME",
+    title: "한영회계법인",
     desc: "Valuation, Modeling & Economics Services 본부 (2023.09 ~ 2025.09)",
   },
   {
     year: "2021",
     title: "NH투자증권 IB",
-    desc: "IB1사업부 Heavy Industry부 (2021.11 ~ 2023.08)",
+    desc: "IB (2021.11 ~ 2023.08)",
   },
   {
     year: "2017",
     title: "삼정회계법인",
-    desc: "정보통신사업1본부 감사팀 (2017.09 ~ 2021.11) · 同年 KICPA 합격",
+    desc: "감사 (2017.09 ~ 2021.11) · 同年 KICPA 합격",
   },
 ];
 

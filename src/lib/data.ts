@@ -232,9 +232,9 @@ export const members: Member[] = [
     ],
     experience: [
       "現 동성회계법인 / 메리디안 택스 어드바이저리 Founder",
-      "前 한영회계법인 VME (Valuation, Modeling & Economics Services)",
-      "前 NH투자증권 IB1사업부 Heavy Industry부",
-      "前 삼정회계법인 정보통신사업1본부 감사팀",
+      "前 한영회계법인",
+      "前 NH투자증권 IB",
+      "前 삼정회계법인",
     ],
   },
   {
