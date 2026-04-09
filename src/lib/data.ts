@@ -215,6 +215,7 @@ export const members: Member[] = [
   {
     name: "박민상",
     role: "공인회계사 · Founder",
+    image: "/images/founder.png",
     description:
       "법인 · 개인사업자의 세무 기장 · 세무 조정 · 세무 신고를 직접 수행하면서, 기업가치평가 · M&A · IPO 자문까지 함께 다루는 공인회계사입니다. 삼정회계법인 감사본부, NH투자증권 IB, 한영회계법인 가치평가본부(VME)에서 쌓은 융합형 경력을 바탕으로, 일상 세무에서 거래 자문까지 한 사람이 일관되게 책임지는 부티크를 지향합니다.",
     credentials: [
