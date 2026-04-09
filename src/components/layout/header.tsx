@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useCallback } from "react";
@@ -45,9 +46,16 @@ export default function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="text-base font-bold tracking-[0.15em] uppercase transition-opacity duration-300 hover:opacity-60"
+            className="transition-opacity duration-300 hover:opacity-60 flex-shrink-0"
           >
-            {siteConfig.name}
+            <Image
+              src="/images/logo.png"
+              alt={siteConfig.name}
+              width={160}
+              height={48}
+              className="h-9 w-auto"
+              priority
+            />
           </Link>
 
           {/* Desktop Nav + Pricing + Client Login */}
