@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useCallback } from "react";
@@ -43,19 +42,17 @@ export default function Header() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8 h-18 flex items-center justify-between">
-          {/* Logo — crop to MERIDIAN only, blend out background */}
+          {/* Logo */}
           <Link
             href="/"
-            className="transition-opacity duration-300 hover:opacity-60 flex-shrink-0 h-6 overflow-hidden"
+            className="transition-opacity duration-300 hover:opacity-60 flex-shrink-0"
           >
-            <Image
-              src="/images/logo.png"
-              alt={siteConfig.name}
-              width={160}
-              height={48}
-              className="h-10 w-auto mix-blend-multiply"
-              priority
-            />
+            <span
+              className="text-xl md:text-2xl font-semibold tracking-[0.08em] uppercase"
+              style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
+            >
+              MERIDIAN
+            </span>
           </Link>
 
           {/* Desktop Nav + Pricing + Client Login */}
