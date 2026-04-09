@@ -42,7 +42,10 @@ export default function Home() {
             <p className="text-xs tracking-[0.4em] text-neutral-500 mb-8 animate-fade-in uppercase">
               Boutique Tax &amp; Advisory · Seoul
             </p>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tighter animate-fade-in">
+            <h1
+              className="text-5xl md:text-7xl lg:text-8xl font-semibold leading-[0.95] tracking-[0.04em] animate-fade-in"
+              style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
+            >
               {siteConfig.title}
             </h1>
             <div className="mt-6 h-0.5 w-24 bg-accent-bright animate-line-reveal" />
