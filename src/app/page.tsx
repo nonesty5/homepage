@@ -49,7 +49,7 @@ export default function Home() {
             <p className="mt-8 text-lg md:text-xl text-neutral-400 leading-relaxed max-w-xl animate-fade-in-delay">
               세무 · 가치평가 · M&amp;A를 한 곳에서 다루는 범전문가 집단.
               <br />
-              대표님은 사업에만 집중하실 수 있습니다.
+              Stay Focused. Build Your Business.
             </p>
             <div className="mt-12 flex flex-col sm:flex-row gap-4 animate-fade-in-delay-2">
               <Link
