@@ -229,7 +229,7 @@ export const members: Member[] = [
       "비상장주식 가치평가",
       "M&A 재무실사 (FDD)",
       "IPO 사전 회계 정비 · K-IFRS 전환",
-      "가치평가 모델링 (DCF · 시장접근법 · 자산접근법)",
+      "가치평가 모델링 (DCF · 시장접근법 · 자산접근법 · 파생상품)",
     ],
     experience: [
       "現 동성회계법인 / 메리디안 택스 어드바이저리 Founder",
