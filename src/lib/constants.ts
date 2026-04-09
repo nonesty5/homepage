@@ -12,7 +12,7 @@ export const siteConfig = {
   affiliation:
     "박민상 공인회계사는 동성회계법인 소속이며, 본 사이트는 자문 · 인사이트 활동을 소개하기 위한 개인 브랜드 공간입니다. 회계감사 · 세무 기장 · 세무 조정 · 세무 신고 등 법정 업무는 모두 동성회계법인 명의로 정식 수행됩니다.",
   clientPortalUrl: "https://hometax-dashboard.vercel.app",
-  pricingUrl: "https://pricemodule-gules.vercel.app",
+  pricingUrl: "/pricing",
 };
 
 /**

@@ -93,14 +93,12 @@ export default function Footer() {
                 {siteConfig.location}
               </p>
               <div className="mt-4 flex flex-col gap-2">
-                <a
+                <Link
                   href={siteConfig.pricingUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="inline-flex items-center self-start text-xs tracking-wider uppercase text-neutral-400 hover:text-white transition-colors duration-300 border-b border-neutral-700 hover:border-white pb-0.5"
                 >
                   Pricing &rarr;
-                </a>
+                </Link>
                 <a
                   href={siteConfig.clientPortalUrl}
                   target="_blank"
