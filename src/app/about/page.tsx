@@ -116,11 +116,14 @@ export default function AboutPage() {
                 03
               </p>
               <h3 className="mt-4 text-xl font-bold tracking-tight">
-                법정 업무는 정식 채널로
+                마찰 비용을 지우는 에이전트
               </h3>
               <p className="mt-3 text-muted leading-relaxed">
-                회계감사 · 세무 기장 · 세무 조정 · 세무 신고 등 법정 업무는
-                동성회계법인 명의로 수행됩니다.
+                세무대리인의 영어 표현은 Tax Agent.
+                복잡한 행정과 규제라는 장벽을 대신 감당해,
+                사업자가 자신의 업에만 집중할 수 있도록 방해물을 치워줍니다.
+                자동화 시스템 구축, 실시간 대시보드 개설 등
+                장부 바깥의 마찰까지 직접 해결합니다.
               </p>
             </div>
           </div>
@@ -138,14 +141,15 @@ export default function AboutPage() {
                 Our Approach
               </p>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight leading-tight">
-                자문은 결국
+                마찰을 지우는 일은
                 <br />
                 대화에서 시작합니다
               </h2>
               <div className="mt-6 h-px w-16 bg-border" />
               <p className="mt-6 text-muted leading-relaxed">
-                템플릿이 아니라 대화에서 시작합니다.
-                각 케이스마다 같은 질문은 없고, 같은 답도 없습니다.
+                600건 프리랜서 계약을 카톡으로 관리하다 가산세를 맞은 대표님에겐 자동화 시스템을,
+                통장 잔고만으로 깜깜이 경영을 하던 대표님에겐 실시간 대시보드를 만들어 드렸습니다.
+                뻔한 절세 팁이 아니라, 각 현장의 마찰을 먼저 찾아 없애는 것이 시작점입니다.
               </p>
             </div>
             <div className="space-y-8">
@@ -156,7 +160,7 @@ export default function AboutPage() {
                 <div>
                   <h4 className="font-bold mb-1">대화</h4>
                   <p className="text-sm text-muted leading-relaxed">
-                    어떤 문제이고 어디까지 진행됐는지 먼저 듣습니다.
+                    어떤 문제이고, 어디서 마찰이 생기는지 먼저 듣습니다.
                     도울 수 있는 일인지 솔직하게 답합니다.
                   </p>
                 </div>
@@ -179,8 +183,8 @@ export default function AboutPage() {
                 <div>
                   <h4 className="font-bold mb-1">수행</h4>
                   <p className="text-sm text-muted leading-relaxed">
-                    분석 · 모델링 · 보고서 작성을 직접 수행합니다.
-                    중간 미팅으로 방향을 함께 확인합니다.
+                    장부 · 신고 · 모델링뿐 아니라, 자동화 시스템이나 대시보드처럼
+                    마찰을 구조적으로 없애는 작업까지 직접 수행합니다.
                   </p>
                 </div>
               </div>

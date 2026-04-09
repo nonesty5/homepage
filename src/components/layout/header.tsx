@@ -43,17 +43,17 @@ export default function Header() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8 h-18 flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo — crop to MERIDIAN only, blend out background */}
           <Link
             href="/"
-            className="transition-opacity duration-300 hover:opacity-60 flex-shrink-0"
+            className="transition-opacity duration-300 hover:opacity-60 flex-shrink-0 h-6 overflow-hidden"
           >
             <Image
               src="/images/logo.png"
               alt={siteConfig.name}
               width={160}
               height={48}
-              className="h-9 w-auto"
+              className="h-10 w-auto mix-blend-multiply"
               priority
             />
           </Link>
