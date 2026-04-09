@@ -31,8 +31,8 @@ export default function PeoplePage() {
           </h1>
           <div className="mt-6 h-0.5 w-20 bg-accent-bright animate-line-reveal" />
           <p className="mt-8 text-lg text-neutral-400 max-w-xl leading-relaxed animate-fade-in-delay">
-            메리디안 택스 어드바이저리는 한 사람의 깊이에서 시작해
-            신뢰할 수 있는 동료들과 함께 성장하고 있습니다.
+            고객의 문제를 끝까지 책임지는 사람들.
+            한 사람의 깊이에서 시작해, 신뢰할 수 있는 동료와 함께 성장합니다.
           </p>
         </div>
       </section>

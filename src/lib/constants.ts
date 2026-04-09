@@ -1,9 +1,9 @@
 export const siteConfig = {
   name: "메리디안 택스 어드바이저리",
   title: "MERIDIAN",
-  tagline: "기장에서 가치평가까지, 가장 가까운 파트너",
+  tagline: "사업에만 집중할 수 있도록",
   description:
-    "법인 · 개인사업자의 세무 기장 · 세무 조정 · 세무 자문부터 기업가치평가 · M&A · IPO 자문까지. Big4 회계법인 · 자본시장 IB 경력의 공인회계사가 직접 수행합니다.",
+    "세무 · 회계 · 가치평가 · M&A — 사업의 모든 국면을 아우르는 범전문가 집단. 대표님이 본업에만 집중할 수 있도록, 복잡한 문제를 대신 맡아 해결합니다.",
   url: "https://meridian-advisory.com",
   email: "mscpa@dscpa.co.kr",
   phone: "010-3300-7339",

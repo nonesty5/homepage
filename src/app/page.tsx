@@ -47,9 +47,9 @@ export default function Home() {
             </h1>
             <div className="mt-6 h-0.5 w-24 bg-accent-bright animate-line-reveal" />
             <p className="mt-8 text-lg md:text-xl text-neutral-400 leading-relaxed max-w-xl animate-fade-in-delay">
-              세무 기장 · 세무 조정 · 세무 자문부터
+              세무 · 가치평가 · M&amp;A를 한 곳에서 다루는 범전문가 집단.
               <br />
-              기업가치평가 · M&amp;A까지, 한 사람이 책임집니다.
+              대표님은 사업에만 집중하실 수 있습니다.
             </p>
             <div className="mt-12 flex flex-col sm:flex-row gap-4 animate-fade-in-delay-2">
               <Link
@@ -88,7 +88,7 @@ export default function Home() {
           <SectionHeading
             label="Practice"
             title="전문 영역"
-            subtitle="세무 기장 · 세무 조정 · 세무 자문, 그리고 기업가치평가 · M&A · IPO 자문까지"
+            subtitle="일상 세무부터 거래 자문까지, 사업의 각 단계에서 필요한 전문성을 한 곳에서"
           />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
             {services.map((service, index) => (
@@ -209,7 +209,7 @@ export default function Home() {
           <SectionHeading
             label="Who We Serve"
             title="누구를 위한 자문인가"
-            subtitle="모두를 위한 자문은 결국 누구에게도 도움이 되지 않습니다."
+            subtitle="각자의 상황에 맞는 자문이어야 실질적으로 도움이 됩니다."
           />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border mt-12">
             {personas.map((persona, i) => (
@@ -246,7 +246,7 @@ export default function Home() {
             <SectionHeading
               label="Insights"
               title="최근 인사이트"
-              subtitle="회계 · 세무 · 자본시장에 대한 노트를 정기적으로 발행합니다"
+              subtitle="사업을 운영하며 마주하는 세무 · 회계 · 거래 이슈를 실무 관점에서 정리합니다"
             />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {recentPosts.map((post) => (
@@ -299,10 +299,10 @@ export default function Home() {
             Get in Touch
           </p>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
-            한 번 이야기 나눠보세요
+            지금 고민되는 문제가 있다면
           </h2>
           <p className="mt-6 text-neutral-400 text-lg max-w-xl mx-auto leading-relaxed">
-            상황을 간단히 말씀해 주시면, 도울 수 있는 일인지 먼저 답변드립니다.
+            상황을 간단히 말씀해 주시면, 도울 수 있는 일인지 솔직하게 답변드립니다.
           </p>
           <div className="mt-4 mx-auto w-12 h-px bg-neutral-700" />
           <Link

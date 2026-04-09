@@ -33,9 +33,9 @@ export default function ContactPage() {
           </h1>
           <div className="mt-6 h-0.5 w-20 bg-accent-bright animate-line-reveal" />
           <p className="mt-8 text-lg text-neutral-400 max-w-xl leading-relaxed animate-fade-in-delay">
-            상황을 간단히 말씀해 주시면, 도울 수 있는 일인지 먼저 답변드립니다.
+            지금 고민되는 상황을 간단히 말씀해 주세요.
             <br />
-            본격 자문 전 가벼운 미팅도 환영합니다.
+            도울 수 있는 일인지 솔직하게 답변드리겠습니다.
           </p>
         </div>
       </section>

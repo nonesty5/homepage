@@ -65,15 +65,15 @@ export default function AboutPage() {
             About
           </p>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[1.05] animate-fade-in max-w-4xl">
-            가장 가까이서,
+            대표님은 사업에만
             <br />
-            가장 정확하게.
+            집중하실 수 있도록.
           </h1>
           <div className="mt-8 h-0.5 w-20 bg-accent-bright animate-line-reveal" />
           <p className="mt-8 text-lg md:text-xl text-neutral-400 leading-relaxed max-w-2xl animate-fade-in-delay">
-            메리디안 택스 어드바이저리는 일상 세무를 직접 책임지면서,
-            기업가치평가 · M&amp;A 자문까지 같은 사람이 일관되게 다루는
-            부티크입니다. 매월 숫자를 보는 사람이 큰 의사결정도 함께 봅니다.
+            세무 · 회계 · 가치평가 · M&amp;A를 한 곳에서 다루는 범전문가 집단.
+            사업을 하며 마주하는 복잡한 문제들을 대신 맡아,
+            대표님이 본업에만 집중할 수 있도록 합니다.
           </p>
         </div>
       </section>
@@ -95,8 +95,9 @@ export default function AboutPage() {
                 일상 세무가 중심
               </h3>
               <p className="mt-3 text-muted leading-relaxed">
-                세무 기장 · 세무 조정 · 세무 신고를 정기적으로 직접 수행합니다.
-                숫자를 매월 보는 사람이 거래 자문도 함께 합니다.
+                매월 장부를 직접 보기 때문에, 중요한 의사결정 앞에서
+                새로 설명할 필요가 없습니다.
+                이미 숫자를 알고 있는 사람이 자문까지 이어갑니다.
               </p>
             </div>
             <div className="group">
@@ -107,8 +108,8 @@ export default function AboutPage() {
                 기장부터 가치평가까지
               </h3>
               <p className="mt-3 text-muted leading-relaxed">
-                삼정 감사 · NH투자증권 IB · 한영 가치평가본부(VME)를
-                거친 한 사람이 일상 세무부터 M&amp;A 자문까지 일관되게 다룹니다.
+                세무 신고를 위해 한 곳, 가치평가를 위해 또 한 곳 —
+                따로 맡기실 필요 없이, 한 사람이 일관되게 다룹니다.
               </p>
             </div>
             <div className="group">
@@ -116,14 +117,12 @@ export default function AboutPage() {
                 03
               </p>
               <h3 className="mt-4 text-xl font-bold tracking-tight">
-                마찰 비용을 지우는 에이전트
+                장부 바깥까지 직접 해결합니다
               </h3>
               <p className="mt-3 text-muted leading-relaxed">
-                세무대리인의 영어 표현은 Tax Agent.
-                복잡한 행정과 규제라는 장벽을 대신 감당해,
-                사업자가 자신의 업에만 집중할 수 있도록 방해물을 치워줍니다.
-                자동화 시스템 구축, 실시간 대시보드 개설 등
-                장부 바깥의 마찰까지 직접 해결합니다.
+                신고서 작성에서 끝나지 않습니다.
+                사업을 하며 마주하는 행정 · 규제 · 의사결정의 복잡함을
+                대신 감당해, 대표님이 본업에만 집중할 수 있도록 돕습니다.
               </p>
             </div>
           </div>
@@ -141,15 +140,15 @@ export default function AboutPage() {
                 Our Approach
               </p>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight leading-tight">
-                마찰을 지우는 일은
+                문제 해결은
                 <br />
                 대화에서 시작합니다
               </h2>
               <div className="mt-6 h-px w-16 bg-border" />
               <p className="mt-6 text-muted leading-relaxed">
-                600건 프리랜서 계약을 카톡으로 관리하다 가산세를 맞은 대표님에겐 자동화 시스템을,
-                통장 잔고만으로 깜깜이 경영을 하던 대표님에겐 실시간 대시보드를 만들어 드렸습니다.
-                뻔한 절세 팁이 아니라, 각 현장의 마찰을 먼저 찾아 없애는 것이 시작점입니다.
+                같은 업종이라도 대표님마다 상황은 다릅니다.
+                일률적인 절세 팁이 아니라, 지금 사업 현장에서 실제로 걸리는 문제를 먼저 파악하고
+                거기서부터 풀어갑니다.
               </p>
             </div>
             <div className="space-y-8">
@@ -160,7 +159,7 @@ export default function AboutPage() {
                 <div>
                   <h4 className="font-bold mb-1">대화</h4>
                   <p className="text-sm text-muted leading-relaxed">
-                    어떤 문제이고, 어디서 마찰이 생기는지 먼저 듣습니다.
+                    지금 어떤 상황이고, 무엇이 필요한지 먼저 듣습니다.
                     도울 수 있는 일인지 솔직하게 답합니다.
                   </p>
                 </div>
@@ -183,8 +182,8 @@ export default function AboutPage() {
                 <div>
                   <h4 className="font-bold mb-1">수행</h4>
                   <p className="text-sm text-muted leading-relaxed">
-                    장부 · 신고 · 모델링뿐 아니라, 자동화 시스템이나 대시보드처럼
-                    마찰을 구조적으로 없애는 작업까지 직접 수행합니다.
+                    장부 · 신고 · 모델링은 물론, 사업 현장에서 필요한 일이라면
+                    범위를 넘어서라도 직접 챙깁니다.
                   </p>
                 </div>
               </div>

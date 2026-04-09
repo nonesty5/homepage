@@ -26,9 +26,9 @@ export default function ServicesPage() {
           </h1>
           <div className="mt-6 h-0.5 w-20 bg-accent-bright animate-line-reveal" />
           <p className="mt-8 text-lg text-neutral-400 max-w-xl leading-relaxed animate-fade-in-delay">
-            세무 기장 · 세무 조정 · 세무 자문이 중심,
+            일상 세무부터 거래 자문까지,
             <br />
-            기업가치평가 · M&amp;A · IPO 자문까지 같은 사람이 책임집니다.
+            사업의 각 단계에서 필요한 전문성을 한 곳에서 제공합니다.
           </p>
         </div>
       </section>

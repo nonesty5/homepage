@@ -28,7 +28,7 @@ export default function WhoPage() {
           </h1>
           <div className="mt-6 h-0.5 w-20 bg-accent-bright animate-line-reveal" />
           <p className="mt-8 text-lg text-neutral-400 max-w-xl leading-relaxed animate-fade-in-delay">
-            모두를 위한 자문은 결국 누구에게도 도움이 되지 않습니다.
+            각자의 상황에 맞는 자문이어야 실질적으로 도움이 됩니다.
             메리디안은 다음 세 종류의 의사결정자에게 집중합니다.
           </p>
         </div>
