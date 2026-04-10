@@ -64,10 +64,13 @@ export default function AboutPage() {
           <p className="text-xs tracking-[0.4em] text-neutral-500 mb-6 uppercase animate-fade-in">
             About
           </p>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[1.05] animate-fade-in max-w-4xl">
-            대표님은 사업에만
+          <h1
+            className="text-4xl md:text-6xl lg:text-7xl font-semibold tracking-[0.04em] leading-[1.05] animate-fade-in max-w-4xl"
+            style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
+          >
+            Stay Focused.
             <br />
-            집중하실 수 있도록.
+            Build Your Business.
           </h1>
           <div className="mt-8 h-0.5 w-20 bg-accent-bright animate-line-reveal" />
           <p className="mt-8 text-lg md:text-xl text-neutral-400 leading-relaxed max-w-2xl animate-fade-in-delay">
