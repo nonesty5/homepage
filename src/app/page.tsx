@@ -49,10 +49,14 @@ export default function Home() {
               {siteConfig.title}
             </h1>
             <div className="mt-6 h-0.5 w-24 bg-accent-bright animate-line-reveal" />
-            <p className="mt-8 text-lg md:text-xl text-neutral-400 leading-relaxed max-w-xl animate-fade-in-delay">
-              세무 · 가치평가 · M&amp;A를 한 곳에서 다루는 범전문가 집단.
-              <br />
-              Stay Focused. Build Your Business.
+            <p className="mt-8 text-neutral-400 leading-relaxed max-w-xl animate-fade-in-delay">
+              <span className="block text-lg md:text-xl">세무 · 가치평가 · M&amp;A를 한 곳에서 다루는 범전문가 집단.</span>
+              <span
+                className="block mt-3 text-xl md:text-2xl font-semibold tracking-[0.04em] text-neutral-300"
+                style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
+              >
+                Stay Focused. Build Your Business.
+              </span>
             </p>
             <div className="mt-12 flex flex-col sm:flex-row gap-4 animate-fade-in-delay-2">
               <Link
