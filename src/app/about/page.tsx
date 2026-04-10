@@ -204,9 +204,8 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Timeline — 추후 내용 추가 예정
       <hr className="section-divider" />
-
-      {/* Timeline */}
       <section className="py-24 md:py-32 bg-card">
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeading
@@ -215,7 +214,6 @@ export default function AboutPage() {
             subtitle="Founder 박민상의 주요 경력"
           />
           <div className="max-w-3xl mx-auto relative">
-            {/* Vertical line */}
             <div className="absolute left-4 md:left-8 top-0 bottom-0 w-px bg-border" />
             <div className="space-y-0">
               {milestones.map((item, i) => (
@@ -223,7 +221,6 @@ export default function AboutPage() {
                   key={i}
                   className="relative pl-14 md:pl-20 py-8 group"
                 >
-                  {/* Dot */}
                   <div className="absolute left-[11px] md:left-[27px] top-10 w-[10px] h-[10px] rounded-full border-2 border-foreground bg-white group-hover:bg-foreground transition-colors duration-300" />
                   <p className="text-xs tracking-[0.2em] text-muted font-medium mb-2">
                     {item.year}
@@ -240,6 +237,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+      */}
 
       {/* Affiliation Disclosure */}
       <section className="py-24 md:py-32 bg-foreground text-white">
