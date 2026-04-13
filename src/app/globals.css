@@ -46,9 +46,18 @@
 /* ─── Base ─── */
 
 html {
-  scroll-behavior: smooth;
   /* Slightly larger base font for better readability — bumps every rem-based size */
   font-size: 17px;
+}
+
+/* Lenis smooth scroll overrides */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
 }
 
 @media (min-width: 768px) {

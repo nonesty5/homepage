@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/lib/constants";
 import ContactForm from "@/components/contact/contact-form";
+import { AnimateOnScroll, LineReveal } from "@/components/motion";
 
 export const metadata: Metadata = {
   title: "CONTACT",
@@ -25,18 +26,26 @@ export default function ContactPage() {
           </div>
         </div>
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <p className="text-xs tracking-[0.4em] text-neutral-500 mb-6 uppercase animate-fade-in">
-            Contact
-          </p>
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tighter animate-fade-in">
-            문의하기
-          </h1>
-          <div className="mt-6 h-0.5 w-20 bg-accent-bright animate-line-reveal" />
-          <p className="mt-8 text-lg text-neutral-400 max-w-xl leading-relaxed animate-fade-in-delay">
-            지금 고민되는 상황을 간단히 말씀해 주세요.
-            <br />
-            도울 수 있는 일인지 솔직하게 답변드리겠습니다.
-          </p>
+          <AnimateOnScroll variant="fadeIn">
+            <p className="text-xs tracking-[0.4em] text-neutral-500 mb-6 uppercase">
+              Contact
+            </p>
+          </AnimateOnScroll>
+          <AnimateOnScroll variant="fadeUp" delay={0.1}>
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tighter">
+              문의하기
+            </h1>
+          </AnimateOnScroll>
+          <div className="mt-6">
+            <LineReveal className="h-0.5 w-20 bg-accent-bright" delay={0.3} />
+          </div>
+          <AnimateOnScroll variant="fadeUp" delay={0.4}>
+            <p className="mt-8 text-lg text-neutral-400 max-w-xl leading-relaxed">
+              지금 고민되는 상황을 간단히 말씀해 주세요.
+              <br />
+              도울 수 있는 일인지 솔직하게 답변드리겠습니다.
+            </p>
+          </AnimateOnScroll>
         </div>
       </section>
 
@@ -45,7 +54,7 @@ export default function ContactPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20">
             {/* Contact Form - Takes more space */}
-            <div className="lg:col-span-7">
+            <AnimateOnScroll variant="fadeUp" className="lg:col-span-7">
               <p className="text-xs tracking-[0.2em] text-muted mb-3 uppercase font-medium">
                 Inquiry Form
               </p>
@@ -55,10 +64,10 @@ export default function ContactPage() {
                 간단히 알려주세요
               </h2>
               <ContactForm />
-            </div>
+            </AnimateOnScroll>
 
             {/* Contact Info - Smaller sidebar */}
-            <div className="lg:col-span-5">
+            <AnimateOnScroll variant="fadeUp" delay={0.2} className="lg:col-span-5">
               <div className="lg:sticky lg:top-32">
                 <p className="text-xs tracking-[0.2em] text-muted mb-3 uppercase font-medium">
                   연락처 정보
@@ -92,7 +101,7 @@ export default function ContactPage() {
                   </p>
                 </div>
               </div>
-            </div>
+            </AnimateOnScroll>
           </div>
         </div>
       </section>

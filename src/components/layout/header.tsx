@@ -3,12 +3,15 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useCallback } from "react";
+import { motion, useScroll, useSpring } from "motion/react";
 import { navLinks, siteConfig } from "@/lib/constants";
 
 export default function Header() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, { stiffness: 200, damping: 50, restDelta: 0.001 });
 
   const handleScroll = useCallback(() => {
     setScrolled(window.scrollY > 20);
@@ -119,6 +122,11 @@ export default function Header() {
             </div>
           </button>
         </div>
+        {/* Scroll progress bar */}
+        <motion.div
+          className="absolute bottom-0 left-0 right-0 h-[2px] bg-accent origin-left"
+          style={{ scaleX }}
+        />
       </header>
 
       {/* Mobile Nav - Full Screen Overlay */}

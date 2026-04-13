@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { services } from "@/lib/data";
+import { AnimateOnScroll, LineReveal } from "@/components/motion";
+import StickyScrollServices from "@/components/services/sticky-scroll-services";
 
 export const metadata: Metadata = {
   title: "PRACTICE",
@@ -18,113 +20,62 @@ export default function ServicesPage() {
           </div>
         </div>
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <p className="text-xs tracking-[0.4em] text-neutral-500 mb-6 uppercase animate-fade-in">
-            Practice
-          </p>
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tighter animate-fade-in">
-            전문 영역
-          </h1>
-          <div className="mt-6 h-0.5 w-20 bg-accent-bright animate-line-reveal" />
-          <p className="mt-8 text-lg text-neutral-400 max-w-xl leading-relaxed animate-fade-in-delay">
-            일상 세무부터 거래 자문까지,
-            <br />
-            사업의 각 단계에서 필요한 전문성을 한 곳에서 제공합니다.
-          </p>
+          <AnimateOnScroll variant="fadeIn">
+            <p className="text-xs tracking-[0.4em] text-neutral-500 mb-6 uppercase">
+              Practice
+            </p>
+          </AnimateOnScroll>
+          <AnimateOnScroll variant="fadeUp" delay={0.1}>
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tighter">
+              전문 영역
+            </h1>
+          </AnimateOnScroll>
+          <div className="mt-6">
+            <LineReveal className="h-0.5 w-20 bg-accent-bright" delay={0.3} />
+          </div>
+          <AnimateOnScroll variant="fadeUp" delay={0.4}>
+            <p className="mt-8 text-lg text-neutral-400 max-w-xl leading-relaxed">
+              일상 세무부터 거래 자문까지,
+              <br />
+              사업의 각 단계에서 필요한 전문성을 한 곳에서 제공합니다.
+            </p>
+          </AnimateOnScroll>
         </div>
       </section>
 
-      {/* Services - Alternating Layout */}
+      {/* Services - Sticky Scroll Layout */}
       <section className="py-24 md:py-32">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="space-y-0">
-            {services.map((service, index) => {
-              const isEven = index % 2 === 0;
-              const num = String(index + 1).padStart(2, "0");
-
-              return (
-                <Link
-                  key={service.slug}
-                  href={`/services/${service.slug}`}
-                  className="group block border-t border-border last:border-b"
-                >
-                  <div
-                    className={`py-12 md:py-16 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center ${
-                      isEven ? "" : "md:direction-rtl"
-                    }`}
-                  >
-                    {/* Number + Title side */}
-                    <div
-                      className={`md:col-span-5 ${
-                        isEven ? "md:col-start-1" : "md:col-start-8"
-                      }`}
-                    >
-                      <div className="flex items-baseline gap-4">
-                        <span className="text-5xl md:text-7xl font-bold tracking-tighter text-neutral-200 group-hover:text-foreground transition-colors duration-500">
-                          {num}
-                        </span>
-                        <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
-                          {service.title}
-                        </h2>
-                      </div>
-                    </div>
-
-                    {/* Description + Details side */}
-                    <div
-                      className={`md:col-span-6 ${
-                        isEven ? "md:col-start-7" : "md:col-start-1"
-                      }`}
-                    >
-                      <p className="text-muted leading-relaxed mb-6">
-                        {service.description}
-                      </p>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                        {service.details.map((detail, i) => (
-                          <p
-                            key={i}
-                            className="text-sm text-subtle py-1 flex items-start gap-2"
-                          >
-                            <span className="w-1 h-1 rounded-full bg-subtle mt-2 flex-shrink-0" />
-                            {detail}
-                          </p>
-                        ))}
-                      </div>
-                      <span className="mt-6 inline-flex items-center text-xs font-medium tracking-wider text-muted group-hover:text-foreground transition-colors duration-300">
-                        자세히 보기
-                        <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">
-                          &rarr;
-                        </span>
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
+          <StickyScrollServices services={services} />
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-24 md:py-32 bg-foreground text-white">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <p className="text-xs tracking-[0.4em] text-neutral-500 mb-6 uppercase">
-            Contact
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-            본인의 케이스가 어디에 해당하는지
-            <br className="hidden md:block" />
-            먼저 이야기 나눠보세요
-          </h2>
-          <Link
-            href="/contact"
-            className="group mt-10 inline-flex items-center px-10 py-4 bg-white text-foreground text-sm font-medium tracking-wider transition-all duration-300 hover:bg-neutral-200 hover:tracking-widest"
-          >
-            상담 신청
-            <span className="ml-3 transition-transform duration-300 group-hover:translate-x-1">
-              &rarr;
-            </span>
-          </Link>
-        </div>
-      </section>
+      <AnimateOnScroll variant="fadeIn">
+        <section className="py-24 md:py-32 bg-foreground text-white">
+          <div className="max-w-7xl mx-auto px-6 text-center">
+            <AnimateOnScroll variant="fadeUp">
+              <p className="text-xs tracking-[0.4em] text-neutral-500 mb-6 uppercase">
+                Contact
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+                본인의 케이스가 어디에 해당하는지
+                <br className="hidden md:block" />
+                먼저 이야기 나눠보세요
+              </h2>
+              <Link
+                href="/contact"
+                className="group mt-10 inline-flex items-center px-10 py-4 bg-white text-foreground text-sm font-medium tracking-wider transition-all duration-300 hover:bg-neutral-200 hover:tracking-widest"
+              >
+                상담 신청
+                <span className="ml-3 transition-transform duration-300 group-hover:translate-x-1">
+                  &rarr;
+                </span>
+              </Link>
+            </AnimateOnScroll>
+          </div>
+        </section>
+      </AnimateOnScroll>
     </>
   );
 }

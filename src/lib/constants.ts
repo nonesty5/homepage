@@ -1,9 +1,9 @@
 export const siteConfig = {
   name: "메리디안 택스 어드바이저리",
   title: "MERIDIAN",
-  tagline: "Stay Focused. Build Your Business.",
+  tagline: "세무부터 거래 자문까지, 한 사람이 끝까지 보는 부티크 자문.",
   description:
-    "세무 · 회계 · 가치평가 · M&A — 사업의 모든 국면을 아우르는 범전문가 집단. 대표님이 본업에만 집중할 수 있도록, 복잡한 문제를 대신 맡아 해결합니다.",
+    "매일의 기장에서 시작해 세무 신고로 정리되고, 그 숫자 위에서 가치평가와 M&A 자문으로 이어집니다. 이 흐름이 끊기지 않도록, 박민상 공인회계사가 직접 책임집니다.",
   url: "https://meridian-advisory.com",
   email: "mscpa@dscpa.co.kr",
   phone: "010-3300-7339",

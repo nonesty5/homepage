@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { services } from "@/lib/data";
+import { AnimateOnScroll, StaggerChildren, LineReveal } from "@/components/motion";
+import { StaggerItem } from "@/components/motion/stagger-item";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -45,30 +47,38 @@ export default async function ServiceDetailPage({ params }: Props) {
         </div>
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-sm text-neutral-500 mb-10 animate-fade-in">
-            <Link href="/" className="hover:text-neutral-300 transition-colors">
-              HOME
-            </Link>
-            <span>/</span>
-            <Link href="/services" className="hover:text-neutral-300 transition-colors">
-              SERVICE
-            </Link>
-            <span>/</span>
-            <span className="text-neutral-300">{service.title}</span>
-          </nav>
+          <AnimateOnScroll variant="fadeIn">
+            <nav className="flex items-center gap-2 text-sm text-neutral-500 mb-10">
+              <Link href="/" className="hover:text-neutral-300 transition-colors">
+                HOME
+              </Link>
+              <span>/</span>
+              <Link href="/services" className="hover:text-neutral-300 transition-colors">
+                SERVICE
+              </Link>
+              <span>/</span>
+              <span className="text-neutral-300">{service.title}</span>
+            </nav>
+          </AnimateOnScroll>
 
-          <div className="flex items-baseline gap-5 animate-fade-in">
-            <span className="text-5xl md:text-7xl font-bold tracking-tighter text-neutral-700">
-              {num}
-            </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">
-              {service.title}
-            </h1>
+          <AnimateOnScroll variant="fadeUp" delay={0.1}>
+            <div className="flex items-baseline gap-5">
+              <span className="text-5xl md:text-7xl font-bold tracking-tighter text-neutral-700">
+                {num}
+              </span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">
+                {service.title}
+              </h1>
+            </div>
+          </AnimateOnScroll>
+          <div className="mt-6">
+            <LineReveal className="h-0.5 w-20 bg-accent-bright" delay={0.3} />
           </div>
-          <div className="mt-6 h-0.5 w-20 bg-accent-bright animate-line-reveal" />
-          <p className="mt-8 text-lg text-neutral-400 max-w-xl leading-relaxed animate-fade-in-delay">
-            {service.description}
-          </p>
+          <AnimateOnScroll variant="fadeUp" delay={0.4}>
+            <p className="mt-8 text-lg text-neutral-400 max-w-xl leading-relaxed">
+              {service.description}
+            </p>
+          </AnimateOnScroll>
         </div>
       </section>
 
@@ -78,38 +88,40 @@ export default async function ServiceDetailPage({ params }: Props) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
             {/* Side Navigation */}
             <aside className="lg:col-span-3">
-              <div className="lg:sticky lg:top-32">
-                <p className="text-xs tracking-[0.2em] text-muted mb-4 uppercase font-medium">
-                  Services
-                </p>
-                <nav className="space-y-0 border-l border-border">
-                  {services.map((s, i) => {
-                    const isActive = s.slug === slug;
-                    return (
-                      <Link
-                        key={s.slug}
-                        href={`/services/${s.slug}`}
-                        className={`block pl-5 py-3 text-sm transition-all duration-200 border-l-2 -ml-px ${
-                          isActive
-                            ? "border-l-foreground text-foreground font-medium"
-                            : "border-l-transparent text-muted hover:text-foreground hover:border-l-neutral-300"
-                        }`}
-                      >
-                        <span className="text-xs text-subtle mr-2">
-                          {String(i + 1).padStart(2, "0")}
-                        </span>
-                        {s.title}
-                      </Link>
-                    );
-                  })}
-                </nav>
-              </div>
+              <AnimateOnScroll variant="fadeUp">
+                <div className="lg:sticky lg:top-32">
+                  <p className="text-xs tracking-[0.2em] text-muted mb-4 uppercase font-medium">
+                    Services
+                  </p>
+                  <nav className="space-y-0 border-l border-border">
+                    {services.map((s, i) => {
+                      const isActive = s.slug === slug;
+                      return (
+                        <Link
+                          key={s.slug}
+                          href={`/services/${s.slug}`}
+                          className={`block pl-5 py-3 text-sm transition-all duration-200 border-l-2 -ml-px ${
+                            isActive
+                              ? "border-l-foreground text-foreground font-medium"
+                              : "border-l-transparent text-muted hover:text-foreground hover:border-l-neutral-300"
+                          }`}
+                        >
+                          <span className="text-xs text-subtle mr-2">
+                            {String(i + 1).padStart(2, "0")}
+                          </span>
+                          {s.title}
+                        </Link>
+                      );
+                    })}
+                  </nav>
+                </div>
+              </AnimateOnScroll>
             </aside>
 
             {/* Main Content */}
             <div className="lg:col-span-9 space-y-20">
               {/* I. Service Details */}
-              <div>
+              <AnimateOnScroll variant="fadeUp">
                 <div className="flex items-baseline gap-4 mb-10">
                   <span className="text-xs tracking-[0.2em] text-subtle uppercase font-medium">
                     I.
@@ -118,24 +130,23 @@ export default async function ServiceDetailPage({ params }: Props) {
                     서비스 상세
                   </h2>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {service.details.map((detail, i) => (
-                    <div
-                      key={i}
-                      className="flex items-start gap-5 p-6 md:p-8 border border-border hover:border-foreground transition-colors duration-300 group"
-                    >
+              </AnimateOnScroll>
+              <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {service.details.map((detail, i) => (
+                  <StaggerItem key={i}>
+                    <div className="flex items-start gap-5 p-6 md:p-8 border border-border hover:border-foreground transition-colors duration-300 group">
                       <span className="text-sm font-bold text-subtle group-hover:text-foreground transition-colors flex-shrink-0 mt-0.5">
                         {String(i + 1).padStart(2, "0")}
                       </span>
                       <p className="text-base leading-relaxed">{detail}</p>
                     </div>
-                  ))}
-                </div>
-              </div>
+                  </StaggerItem>
+                ))}
+              </StaggerChildren>
 
               {/* II. Deliverables */}
               {service.deliverables && service.deliverables.length > 0 && (
-                <div>
+                <AnimateOnScroll variant="fadeUp">
                   <div className="flex items-baseline gap-4 mb-10">
                     <span className="text-xs tracking-[0.2em] text-subtle uppercase font-medium">
                       II.
@@ -160,13 +171,13 @@ export default async function ServiceDetailPage({ params }: Props) {
                       </div>
                     ))}
                   </div>
-                </div>
+                </AnimateOnScroll>
               )}
 
               {/* III. Applicable Scenarios */}
               {service.applicableScenarios &&
                 service.applicableScenarios.length > 0 && (
-                  <div>
+                  <AnimateOnScroll variant="fadeUp">
                     <div className="flex items-baseline gap-4 mb-10">
                       <span className="text-xs tracking-[0.2em] text-subtle uppercase font-medium">
                         III.
@@ -191,60 +202,64 @@ export default async function ServiceDetailPage({ params }: Props) {
                         </li>
                       ))}
                     </ul>
-                  </div>
+                  </AnimateOnScroll>
                 )}
 
-
               {/* CTA Box */}
-              <div className="p-10 md:p-12 bg-foreground text-white">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-                  <div>
-                    <h3 className="text-xl font-bold tracking-tight">
-                      {service.title} 케이스를 상담하시려면
-                    </h3>
-                    <p className="mt-2 text-neutral-400 text-sm leading-relaxed">
-                      현재 상황과 원하시는 산출물을 간단히 알려주시면, 적용 가능한지 먼저 답변드립니다.
-                    </p>
+              <AnimateOnScroll variant="fadeUp">
+                <div className="p-10 md:p-12 bg-foreground text-white">
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                    <div>
+                      <h3 className="text-xl font-bold tracking-tight">
+                        {service.title} 케이스를 상담하시려면
+                      </h3>
+                      <p className="mt-2 text-neutral-400 text-sm leading-relaxed">
+                        현재 상황과 원하시는 산출물을 간단히 알려주시면, 적용 가능한지 먼저 답변드립니다.
+                      </p>
+                    </div>
+                    <Link
+                      href="/contact"
+                      className="group inline-flex items-center justify-center px-8 py-4 bg-white text-foreground text-sm font-medium tracking-wider transition-all duration-300 hover:bg-neutral-200 flex-shrink-0"
+                    >
+                      상담 신청
+                      <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">
+                        &rarr;
+                      </span>
+                    </Link>
                   </div>
-                  <Link
-                    href="/contact"
-                    className="group inline-flex items-center justify-center px-8 py-4 bg-white text-foreground text-sm font-medium tracking-wider transition-all duration-300 hover:bg-neutral-200 flex-shrink-0"
-                  >
-                    상담 신청
-                    <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">
-                      &rarr;
-                    </span>
-                  </Link>
                 </div>
-              </div>
+              </AnimateOnScroll>
 
               {/* Related Services */}
               <div>
-                <h3 className="text-lg font-bold tracking-tight mb-8">
-                  다른 전문 영역
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <AnimateOnScroll variant="fadeUp">
+                  <h3 className="text-lg font-bold tracking-tight mb-8">
+                    다른 전문 영역
+                  </h3>
+                </AnimateOnScroll>
+                <StaggerChildren className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {related.map((s) => (
-                    <Link
-                      key={s.slug}
-                      href={`/services/${s.slug}`}
-                      className="group p-6 border border-border hover:border-foreground transition-colors duration-300"
-                    >
-                      <span className="text-xs font-medium tracking-[0.2em] text-subtle">
-                        {String(
-                          services.findIndex((sv) => sv.slug === s.slug) + 1
-                        ).padStart(2, "0")}
-                      </span>
-                      <h4 className="mt-3 font-bold">{s.title}</h4>
-                      <p className="mt-2 text-xs text-muted line-clamp-2 leading-relaxed">
-                        {s.description}
-                      </p>
-                      <span className="mt-4 inline-flex items-center text-xs text-muted group-hover:text-foreground transition-colors">
-                        보기 &rarr;
-                      </span>
-                    </Link>
+                    <StaggerItem key={s.slug}>
+                      <Link
+                        href={`/services/${s.slug}`}
+                        className="group block p-6 border border-border hover:border-foreground transition-colors duration-300"
+                      >
+                        <span className="text-xs font-medium tracking-[0.2em] text-subtle">
+                          {String(
+                            services.findIndex((sv) => sv.slug === s.slug) + 1
+                          ).padStart(2, "0")}
+                        </span>
+                        <h4 className="mt-3 font-bold">{s.title}</h4>
+                        <p className="mt-2 text-xs text-muted line-clamp-2 leading-relaxed">
+                          {s.description}
+                        </p>
+                        <span className="mt-4 inline-flex items-center text-xs text-muted group-hover:text-foreground transition-colors">
+                          보기 &rarr;
+                        </span>
+                      </Link>
+                    </StaggerItem>
                   ))}
-                </div>
+                </StaggerChildren>
               </div>
             </div>
           </div>

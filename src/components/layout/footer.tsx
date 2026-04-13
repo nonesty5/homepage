@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { siteConfig, navLinks, imageCredits } from "@/lib/constants";
+import { AnimateOnScroll, StaggerChildren } from "@/components/motion";
+import { StaggerItem } from "@/components/motion/stagger-item";
 
 export default function Footer() {
   const practiceLinks = [
@@ -19,9 +21,9 @@ export default function Footer() {
 
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+        <StaggerChildren staggerDelay={0.1} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* Brand Column */}
-          <div className="sm:col-span-2 lg:col-span-1">
+          <StaggerItem className="sm:col-span-2 lg:col-span-1">
             <h3 className="text-base font-bold tracking-[0.12em] uppercase mb-5">
               {siteConfig.name}
             </h3>
@@ -33,10 +35,10 @@ export default function Footer() {
                 Founder · {siteConfig.founder} 공인회계사
               </p>
             </div>
-          </div>
+          </StaggerItem>
 
           {/* Practice Column */}
-          <div>
+          <StaggerItem>
             <h3 className="text-xs font-semibold tracking-[0.16em] uppercase text-neutral-400 mb-5">
               Practice
             </h3>
@@ -51,10 +53,10 @@ export default function Footer() {
                 </Link>
               ))}
             </nav>
-          </div>
+          </StaggerItem>
 
           {/* Menu Column */}
-          <div>
+          <StaggerItem>
             <h3 className="text-xs font-semibold tracking-[0.16em] uppercase text-neutral-400 mb-5">
               Menu
             </h3>
@@ -69,10 +71,10 @@ export default function Footer() {
                 </Link>
               ))}
             </nav>
-          </div>
+          </StaggerItem>
 
           {/* Contact Column */}
-          <div>
+          <StaggerItem>
             <h3 className="text-xs font-semibold tracking-[0.16em] uppercase text-neutral-400 mb-5">
               Contact
             </h3>
@@ -109,8 +111,8 @@ export default function Footer() {
                 </a>
               </div>
             </div>
-          </div>
-        </div>
+          </StaggerItem>
+        </StaggerChildren>
       </div>
 
       {/* Affiliation Disclosure */}

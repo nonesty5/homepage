@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
+import SmoothScrollProvider from "@/components/providers/smooth-scroll-provider";
 import { siteConfig } from "@/lib/constants";
 
 export const viewport: Viewport = {
@@ -68,9 +69,11 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen flex flex-col antialiased">
-        <Header />
-        <main className="flex-1 pt-18">{children}</main>
-        <Footer />
+        <SmoothScrollProvider>
+          <Header />
+          <main className="flex-1 pt-18">{children}</main>
+          <Footer />
+        </SmoothScrollProvider>
       </body>
     </html>
   );
