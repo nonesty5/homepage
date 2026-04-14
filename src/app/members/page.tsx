@@ -53,27 +53,24 @@ export default function PeoplePage() {
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               {/* Photo */}
-              <ImageReveal direction="up">
-                <div className="aspect-[3/4] bg-card border border-border flex items-center justify-center relative overflow-hidden">
-                  {lead.image ? (
-                    <Image
-                      src={lead.image}
-                      alt={`${lead.name} ${lead.role}`}
-                      fill
-                      sizes="(min-width: 1024px) 50vw, 100vw"
-                      className="object-cover object-center"
-                      priority
-                    />
-                  ) : (
-                    <>
-                      <span className="text-[10rem] md:text-[14rem] font-bold text-neutral-200/60 select-none">
-                        {lead.name[0]}
-                      </span>
-                      <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-card to-transparent" />
-                    </>
-                  )}
-                </div>
-              </ImageReveal>
+              <div className="aspect-[3/4] bg-card border border-border relative overflow-hidden">
+                {lead.image ? (
+                  <Image
+                    src={lead.image}
+                    alt={`${lead.name} ${lead.role}`}
+                    fill
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    className="object-cover object-top"
+                    priority
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center">
+                    <span className="text-[10rem] md:text-[14rem] font-bold text-neutral-200/60 select-none">
+                      {lead.name[0]}
+                    </span>
+                  </div>
+                )}
+              </div>
               {/* Info */}
               <AnimateOnScroll variant="fadeUp" delay={0.15}>
                 <p className="text-xs tracking-[0.3em] text-muted mb-4 uppercase">
