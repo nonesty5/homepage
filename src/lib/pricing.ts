@@ -223,11 +223,11 @@ export interface CalcState {
 }
 
 export const DEFAULT_STATE: CalcState = {
-  businessType: "corporate",
+  businessType: "sole",
   industryId: "generalService",
-  revenue: 300_000_000,
-  staffCount: 2,
-  payrollMode: "fourInsurance",
+  revenue: 50_000_000,
+  staffCount: 0,
+  payrollMode: "none",
   complexity: "standard",
   setupMode: "standard",
   addOns: [],

@@ -14,12 +14,10 @@ import {
   STAFF_RANGE_MAX,
   STEP_FLOW,
   STORAGE_KEY,
-  TOTAL_STEPS,
   annualLabel,
   buildInquiryText,
   buildSummaryText,
   calculateEstimate,
-  describePayrollMode,
   describeRevenueTier,
   deserializeStateFromParams,
   formatCadenceLabel,
@@ -91,14 +89,11 @@ function reducer(state: CalcState, action: Action): CalcState {
 
 export default function PricingCalculator() {
   const [state, dispatch] = useReducer(reducer, DEFAULT_STATE);
-  const [currentStep, setCurrentStep] = useState(1);
-  const [unlockedStep, setUnlockedStep] = useState(1);
   const [industryQuery, setIndustryQuery] = useState("");
   const [revenueDirectOpen, setRevenueDirectOpen] = useState(false);
   const [ctaMessage, setCtaMessage] = useState<{ text: string; tone: "neutral" | "success" | "error" } | null>(null);
   const [hydrated, setHydrated] = useState(false);
 
-  const cardRefs = useRef<Record<number, HTMLElement | null>>({});
   const industryInputRef = useRef<HTMLInputElement | null>(null);
   const revenueInputRef = useRef<HTMLInputElement | null>(null);
   const ctaTimerRef = useRef<number | null>(null);
@@ -126,13 +121,8 @@ export default function PricingCalculator() {
     if (partial) {
       const merged: CalcState = { ...DEFAULT_STATE, ...partial };
       dispatch({ type: "hydrate", partial });
-      // Mount-only sync from window APIs (URL/localStorage). The rule below
-      // does not model "external system → React" sync, so disable just here.
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setCurrentStep(TOTAL_STEPS);
-      setUnlockedStep(TOTAL_STEPS);
-      // industryQuery를 빈 문자열로 유지 — 전체 업종 리스트가 보이도록
       if (!REVENUE_OPTIONS.includes(merged.revenue)) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setRevenueDirectOpen(true);
       }
     }
@@ -171,31 +161,15 @@ export default function PricingCalculator() {
 
   /* ─ Helpers ─ */
 
-  const advanceToStep = useCallback((step: number) => {
-    const next = Math.min(TOTAL_STEPS, Math.max(1, step));
-    setCurrentStep(next);
-    setUnlockedStep((prev) => Math.max(prev, next));
-    window.requestAnimationFrame(() => {
-      const card = cardRefs.current[next];
-      if (card && typeof card.scrollIntoView === "function") {
-        card.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    });
-  }, []);
-
   const buildShareUrl = useCallback(() => {
     const params = serializeStateToParams(state);
     return `${window.location.origin}${window.location.pathname}?${params.toString()}`;
   }, [state]);
 
-  const onSelectIndustry = useCallback(
-    (id: string, advance = false) => {
-      dispatch({ type: "setIndustry", id });
-      setIndustryQuery("");
-      if (advance) advanceToStep(3);
-    },
-    [advanceToStep],
-  );
+  const onSelectIndustry = useCallback((id: string) => {
+    dispatch({ type: "setIndustry", id });
+    setIndustryQuery("");
+  }, []);
 
   const onCopySummary = useCallback(async () => {
     const text = buildSummaryText(state, estimate);
@@ -245,24 +219,8 @@ export default function PricingCalculator() {
     }
   }, [state, estimate, buildShareUrl]);
 
-  /* ─ Per-step summary text ─ */
-  const stepSummaries = useMemo(() => {
-    return {
-      1: PRICING[state.businessType].label,
-      2: `${selectedIndustry.label} · ${COMPLEXITY[state.complexity].label}`,
-      3: state.revenue > 0 ? formatRevenueLabel(state.revenue) : "연매출 미입력",
-      4: `${formatStaffCount(state.staffCount)} · ${describePayrollMode(state.payrollMode)}`,
-      5: SETUP_MODES[state.setupMode].label,
-      6: `${state.addOns.length > 0 ? `추가 업무 ${state.addOns.length}개` : "추가 업무 없음"} · ${
-        state.customFlags.length > 0 ? `별도 협의 ${state.customFlags.length}개` : "별도 협의 없음"
-      }`,
-    } as Record<number, string>;
-  }, [state, selectedIndustry]);
-
   /* ─ Render ─ */
 
-  const currentStepMeta = STEP_FLOW[Math.max(currentStep - 1, 0)];
-  const progressPercent = (currentStep / TOTAL_STEPS) * 100;
   const monthlyTier = describeRevenueTier(PRICING[state.businessType].monthlyTiers, state.revenue);
   const revenueIndex = getNearestRevenueIndex(state.revenue);
 
@@ -270,86 +228,44 @@ export default function PricingCalculator() {
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
       {/* ─── Wizard ─── */}
       <section className="lg:col-span-7 xl:col-span-7">
-        <div className="flex items-start justify-between mb-6 gap-6">
-          <div>
-            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-muted mb-2">
-              Estimator Flow
-            </p>
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
-              질문 순서대로 답하면 됩니다
-            </h2>
-            <p className="mt-2 text-sm text-muted">
-              {currentStep} / {TOTAL_STEPS} · {currentStepMeta.prompt}
-            </p>
-          </div>
-          <div className="flex flex-col items-end gap-2 mt-1">
-            <div className="relative w-32 md:w-40 h-1 bg-border rounded-full overflow-hidden">
-              <span
-                className="absolute inset-y-0 left-0 bg-accent transition-[width] duration-500 ease-out"
-                style={{ width: `${progressPercent}%` }}
-              />
-            </div>
-            <span className="text-xs text-subtle tracking-wider">
-              {currentStep} / {TOTAL_STEPS}
-            </span>
-          </div>
+        <div className="mb-6">
+          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-muted mb-2">
+            Estimator
+          </p>
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
+            항목을 조정하면 즉시 계산됩니다
+          </h2>
+          <p className="mt-2 text-sm text-muted">
+            아래 조건을 바꿔보세요. 오른쪽 견적이 실시간으로 업데이트됩니다.
+          </p>
         </div>
 
         <div className="space-y-4">
-          {STEP_FLOW.map((step) => {
-            const isAllUnlocked = unlockedStep >= TOTAL_STEPS;
-            const isActive = !isAllUnlocked && step.id === currentStep;
-            const isUnlocked = step.id <= unlockedStep;
-            const isComplete = !isAllUnlocked && step.id < currentStep;
-
-            return (
+          {STEP_FLOW.map((step) => (
               <article
                 key={step.id}
-                ref={(el) => {
-                  cardRefs.current[step.id] = el;
-                }}
                 data-step={step.id}
-                className={`bg-card border transition-all duration-300 ${
-                  isActive
-                    ? "border-foreground shadow-card"
-                    : isUnlocked
-                      ? "border-border"
-                      : "border-border opacity-60"
-                }`}
+                className="bg-card border border-border"
               >
                 <div className="flex items-start justify-between p-5 md:p-6 pb-4">
                   <div className="flex items-start gap-4 min-w-0">
-                    <span
-                      className={`text-xs font-semibold tracking-[0.2em] tabular-nums ${
-                        isComplete ? "text-accent" : isActive ? "text-foreground" : "text-subtle"
-                      }`}
-                    >
+                    <span className="text-xs font-semibold tracking-[0.2em] tabular-nums text-subtle">
                       {String(step.id).padStart(2, "0")}
                     </span>
                     <div className="min-w-0">
                       <h3 className="text-base md:text-lg font-bold tracking-tight">
                         {step.title}
                       </h3>
-                      {!isUnlocked ? (
-                        <p className="mt-1 text-xs md:text-sm text-muted truncate">
-                          {step.locked}
-                        </p>
-                      ) : (
-                        <p className="mt-1 text-xs md:text-sm text-muted truncate">
-                          {stepSummaries[step.id]}
-                        </p>
-                      )}
                     </div>
                   </div>
                 </div>
 
-                {isUnlocked && (
                   <div className="px-5 md:px-6 pb-6 md:pb-7 border-t border-border pt-5 md:pt-6 space-y-5">
                     {/* ─ Step 1: Business type ─ */}
                     {step.id === 1 && (
                       <>
                         <p className="text-xs text-muted leading-relaxed">
-                          기본 요율이 달라집니다. 지금 선택값으로 바로 넘어가도 됩니다.
+                          사업자 형태에 따라 기본 요율이 달라집니다.
                         </p>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                           {(["corporate", "sole"] as const).map((type) => {
@@ -358,10 +274,7 @@ export default function PricingCalculator() {
                               <button
                                 key={type}
                                 type="button"
-                                onClick={() => {
-                                  dispatch({ type: "setBusinessType", value: type });
-                                  if (currentStep === 1) advanceToStep(2);
-                                }}
+                                onClick={() => dispatch({ type: "setBusinessType", value: type })}
                                 className={`text-left px-4 py-4 border transition-all ${
                                   isSelected
                                     ? "border-foreground bg-surface"
@@ -381,7 +294,6 @@ export default function PricingCalculator() {
                             );
                           })}
                         </div>
-                        <NextButton onClick={() => advanceToStep(2)} label="다음 질문" />
                       </>
                     )}
 
@@ -423,7 +335,7 @@ export default function PricingCalculator() {
                           {filteredIndustries.length === 0 ? (
                             <button
                               type="button"
-                              onClick={() => onSelectIndustry("other", currentStep === 2)}
+                              onClick={() => onSelectIndustry("other")}
                               className="text-left px-3 py-2.5 hover:bg-surface transition-colors"
                             >
                               <strong className="block text-sm">기타·잘 모르겠음</strong>
@@ -438,7 +350,7 @@ export default function PricingCalculator() {
                                 <button
                                   key={industry.id}
                                   type="button"
-                                  onClick={() => onSelectIndustry(industry.id, currentStep === 2)}
+                                  onClick={() => onSelectIndustry(industry.id)}
                                   className={`text-left px-3 py-2.5 transition-colors ${
                                     isSelected
                                       ? "bg-foreground text-white"
@@ -464,7 +376,6 @@ export default function PricingCalculator() {
                           )}
                         </div>
 
-                        <NextButton onClick={() => advanceToStep(3)} label="다음 질문" />
                       </>
                     )}
 
@@ -559,11 +470,6 @@ export default function PricingCalculator() {
                           </div>
                         )}
 
-                        <NextButton
-                          onClick={() => advanceToStep(4)}
-                          label="다음 질문"
-                          disabled={state.revenue <= 0}
-                        />
                       </>
                     )}
 
@@ -665,7 +571,6 @@ export default function PricingCalculator() {
                           })}
                         </div>
 
-                        <NextButton onClick={() => advanceToStep(5)} label="다음 질문" />
                       </>
                     )}
 
@@ -683,10 +588,7 @@ export default function PricingCalculator() {
                               <button
                                 key={key}
                                 type="button"
-                                onClick={() => {
-                                  dispatch({ type: "setSetupMode", value: key });
-                                  if (currentStep === 5) advanceToStep(6);
-                                }}
+                                onClick={() => dispatch({ type: "setSetupMode", value: key })}
                                 className={`text-left px-4 py-4 border transition-colors ${
                                   isSelected
                                     ? "border-foreground bg-surface"
@@ -707,7 +609,6 @@ export default function PricingCalculator() {
                             );
                           })}
                         </div>
-                        <NextButton onClick={() => advanceToStep(6)} label="마지막 질문" />
                       </>
                     )}
 
@@ -800,22 +701,11 @@ export default function PricingCalculator() {
                           </div>
                         </div>
 
-                        <NextButton
-                          onClick={() => {
-                            setUnlockedStep(TOTAL_STEPS);
-                            setCurrentStep(TOTAL_STEPS);
-                            const panel = document.getElementById("pricingResultPanel");
-                            panel?.scrollIntoView({ behavior: "smooth", block: "start" });
-                          }}
-                          label="견적 보기"
-                        />
                       </>
                     )}
                   </div>
-                )}
               </article>
-            );
-          })}
+          ))}
         </div>
 
         <div className="mt-6 bg-surface border border-border p-4 md:p-5">
@@ -1078,29 +968,6 @@ export default function PricingCalculator() {
 }
 
 /* ─── Subcomponents ─── */
-
-function NextButton({
-  onClick,
-  label,
-  disabled = false,
-}: {
-  onClick: () => void;
-  label: string;
-  disabled?: boolean;
-}) {
-  return (
-    <div className="pt-2">
-      <button
-        type="button"
-        onClick={onClick}
-        disabled={disabled}
-        className="text-xs font-medium tracking-wider uppercase px-5 py-2.5 bg-foreground text-white hover:bg-strong transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-      >
-        {label} →
-      </button>
-    </div>
-  );
-}
 
 function MiniMetric({
   label,
