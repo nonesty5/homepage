@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getAllPosts, getPostBySlug } from "@/lib/posts";
 import MdxContent from "@/components/mdx/mdx-content";
+import { categoryBadgeClass } from "@/lib/category-colors";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -68,7 +69,7 @@ export default async function BlogPostPage({ params }: Props) {
 
           <div className="animate-fade-in">
             <div className="flex items-center gap-3 mb-5">
-              <span className="inline-block px-3 py-1 text-[10px] font-medium tracking-wider bg-white/10 text-neutral-300 uppercase">
+              <span className={`inline-block px-3 py-1 text-[10px] font-medium tracking-wider rounded-sm ${categoryBadgeClass(post.meta.category, true)}`}>
                 {post.meta.category}
               </span>
             </div>
@@ -135,7 +136,7 @@ export default async function BlogPostPage({ params }: Props) {
                 >
                   <div className="p-8">
                     <div className="flex items-center gap-3 mb-3">
-                      <span className="inline-block px-2.5 py-1 text-[10px] font-medium tracking-wider bg-card text-muted uppercase">
+                      <span className={`inline-block px-2.5 py-1 text-[10px] font-medium tracking-wider rounded-sm ${categoryBadgeClass(p.category)}`}>
                         {p.category}
                       </span>
                       <span className="text-xs text-subtle">{p.date}</span>

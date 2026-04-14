@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import SectionHeading from "@/components/ui/section-heading";
 import { AnimateOnScroll, StaggerChildren, LineReveal } from "@/components/motion";
 import { StaggerItem } from "@/components/motion/stagger-item";
+import { categoryBadgeClass } from "@/lib/category-colors";
 
 interface PostMeta {
   slug: string;
@@ -103,7 +104,7 @@ export default function BlogPage() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                     <div>
                       <div className="flex items-center gap-3 mb-4">
-                        <span className="inline-block px-3 py-1 text-[10px] font-medium tracking-wider bg-foreground text-white uppercase">
+                        <span className={`inline-block px-3 py-1 text-[10px] font-medium tracking-wider rounded-sm ${categoryBadgeClass(featured.category)}`}>
                           {featured.category}
                         </span>
                         <span className="text-xs text-subtle">
@@ -147,7 +148,7 @@ export default function BlogPage() {
                   >
                     <div className="p-8 md:p-10">
                       <div className="flex items-center gap-3 mb-4">
-                        <span className="inline-block px-3 py-1 text-[10px] font-medium tracking-wider bg-card text-muted uppercase">
+                        <span className={`inline-block px-3 py-1 text-[10px] font-medium tracking-wider rounded-sm ${categoryBadgeClass(post.category)}`}>
                           {post.category}
                         </span>
                         <span className="text-xs text-subtle">{post.date}</span>
