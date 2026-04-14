@@ -53,7 +53,7 @@ export default function PeoplePage() {
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               {/* Photo */}
-              <div className="aspect-[3/4] bg-card border border-border relative overflow-hidden">
+              <div className="bg-card border border-border relative overflow-hidden" style={{ aspectRatio: "3/4" }}>
                 {lead.image ? (
                   <Image
                     src={lead.image}
