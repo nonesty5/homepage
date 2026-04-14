@@ -7,20 +7,41 @@ interface FormData {
   email: string;
   phone: string;
   type: string;
+  companyStage: string;
+  bottleneck: string;
+  desiredOutput: string;
+  timeline: string;
   message: string;
 }
 
-export default function ContactForm() {
-  const [form, setForm] = useState<FormData>({
-    name: "",
-    email: "",
-    phone: "",
-    type: "세무",
-    message: "",
-  });
+const defaultForm: FormData = {
+  name: "",
+  email: "",
+  phone: "",
+  type: "전체 진단",
+  companyStage: "법인을 막 세움",
+  bottleneck: "현재 병목 진단 필요",
+  desiredOutput: "운영 진단 및 우선순위 메모",
+  timeline: "이번 달 안",
+  message: "",
+};
+
+interface ContactFormProps {
+  initialValues?: Partial<Pick<FormData, "type" | "bottleneck" | "desiredOutput">>;
+}
+
+export default function ContactForm({ initialValues }: ContactFormProps) {
+  const [form, setForm] = useState<FormData>(() => ({
+    ...defaultForm,
+    ...initialValues,
+  }));
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
     "idle"
   );
+
+  const updateField = <K extends keyof FormData>(key: K, value: FormData[K]) => {
+    setForm((current) => ({ ...current, [key]: value }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,7 +56,7 @@ export default function ContactForm() {
 
       if (res.ok) {
         setStatus("sent");
-        setForm({ name: "", email: "", phone: "", type: "세무", message: "" });
+        setForm(defaultForm);
       } else {
         setStatus("error");
       }
@@ -62,12 +83,12 @@ export default function ContactForm() {
           </svg>
         </div>
         <h3 className="text-2xl font-bold tracking-tight mb-3">
-          문의가 접수되었습니다
+          진단 요청이 접수되었습니다
         </h3>
         <p className="text-muted leading-relaxed mb-8">
-          빠른 시일 내에 답변 드리겠습니다.
+          전달해 주신 병목과 결과물을 기준으로
           <br />
-          감사합니다.
+          적용 범위와 다음 단계를 정리해 회신드리겠습니다.
         </p>
         <button
           onClick={() => setStatus("idle")}
@@ -82,7 +103,6 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Name */}
         <div className="relative">
           <label className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
             이름 *
@@ -91,13 +111,12 @@ export default function ContactForm() {
             type="text"
             required
             value={form.name}
-            onChange={(e) => setForm({ ...form, name: e.target.value })}
+            onChange={(e) => updateField("name", e.target.value)}
             className="w-full px-0 py-3 bg-transparent text-base border-0 border-b border-border focus:outline-none focus:border-foreground transition-colors duration-300 placeholder:text-neutral-300"
             placeholder="홍길동"
           />
         </div>
 
-        {/* Email */}
         <div className="relative">
           <label className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
             이메일 *
@@ -106,7 +125,7 @@ export default function ContactForm() {
             type="email"
             required
             value={form.email}
-            onChange={(e) => setForm({ ...form, email: e.target.value })}
+            onChange={(e) => updateField("email", e.target.value)}
             className="w-full px-0 py-3 bg-transparent text-base border-0 border-b border-border focus:outline-none focus:border-foreground transition-colors duration-300 placeholder:text-neutral-300"
             placeholder="example@email.com"
           />
@@ -114,7 +133,6 @@ export default function ContactForm() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Phone */}
         <div className="relative">
           <label className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
             전화번호
@@ -122,13 +140,36 @@ export default function ContactForm() {
           <input
             type="tel"
             value={form.phone}
-            onChange={(e) => setForm({ ...form, phone: e.target.value })}
+            onChange={(e) => updateField("phone", e.target.value)}
             className="w-full px-0 py-3 bg-transparent text-base border-0 border-b border-border focus:outline-none focus:border-foreground transition-colors duration-300 placeholder:text-neutral-300"
             placeholder="010-0000-0000"
           />
         </div>
 
-        {/* Inquiry Type */}
+        <div className="relative">
+          <label className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
+            현재 단계 *
+          </label>
+          <select
+            required
+            value={form.companyStage}
+            onChange={(e) => updateField("companyStage", e.target.value)}
+            className="w-full px-0 py-3 bg-transparent text-base border-0 border-b border-border focus:outline-none focus:border-foreground transition-colors duration-300 appearance-none cursor-pointer"
+          >
+            <option value="법인을 막 세움">법인을 막 세움</option>
+            <option value="매출 성장기">매출 성장기</option>
+            <option value="중요한 결정 직전">중요한 결정 직전</option>
+            <option value="기타">기타</option>
+          </select>
+          <div className="absolute right-0 bottom-4 pointer-events-none">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M3 5l3 3 3-3" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="relative">
           <label className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
             문의 유형 *
@@ -136,44 +177,108 @@ export default function ContactForm() {
           <select
             required
             value={form.type}
-            onChange={(e) => setForm({ ...form, type: e.target.value })}
+            onChange={(e) => updateField("type", e.target.value)}
             className="w-full px-0 py-3 bg-transparent text-base border-0 border-b border-border focus:outline-none focus:border-foreground transition-colors duration-300 appearance-none cursor-pointer"
           >
-            <option value="세무">세무</option>
-            <option value="감사">감사</option>
-            <option value="기장">기장</option>
-            <option value="경영자문">경영자문</option>
-            <option value="가치평가">가치평가</option>
-            <option value="기타">기타</option>
+            <option value="전체 진단">전체 진단</option>
+            <option value="세무 기장">세무 기장</option>
+            <option value="세무 조정">세무 조정</option>
+            <option value="세무 자문">세무 자문</option>
+            <option value="기업가치평가">기업가치평가</option>
+            <option value="M&A · IPO 자문">M&A · IPO 자문</option>
+            <option value="회계감사 · 회계자문">회계감사 · 회계자문</option>
           </select>
-          {/* Custom dropdown arrow */}
           <div className="absolute right-0 bottom-4 pointer-events-none">
-            <svg
-              width="12"
-              height="12"
-              viewBox="0 0 12 12"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-            >
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M3 5l3 3 3-3" />
+            </svg>
+          </div>
+        </div>
+
+        <div className="relative">
+          <label className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
+            가장 큰 병목 *
+          </label>
+          <select
+            required
+            value={form.bottleneck}
+            onChange={(e) => updateField("bottleneck", e.target.value)}
+            className="w-full px-0 py-3 bg-transparent text-base border-0 border-b border-border focus:outline-none focus:border-foreground transition-colors duration-300 appearance-none cursor-pointer"
+          >
+            <option value="현재 병목 진단 필요">현재 병목 진단 필요</option>
+            <option value="결산 일정 지연">결산 일정 지연</option>
+            <option value="기장 누락 · 계정 오분류">기장 누락 · 계정 오분류</option>
+            <option value="신고 직전 쟁점 발견">신고 직전 쟁점 발견</option>
+            <option value="세무조사 · 소명 대응">세무조사 · 소명 대응</option>
+            <option value="지분 이동 · 승계 · 거래 비교표 필요">지분 이동 · 승계 · 거래 비교표 필요</option>
+          </select>
+          <div className="absolute right-0 bottom-4 pointer-events-none">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
               <path d="M3 5l3 3 3-3" />
             </svg>
           </div>
         </div>
       </div>
 
-      {/* Message */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="relative">
+          <label className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
+            필요한 결과물 *
+          </label>
+          <select
+            required
+            value={form.desiredOutput}
+            onChange={(e) => updateField("desiredOutput", e.target.value)}
+            className="w-full px-0 py-3 bg-transparent text-base border-0 border-b border-border focus:outline-none focus:border-foreground transition-colors duration-300 appearance-none cursor-pointer"
+          >
+            <option value="운영 진단 및 우선순위 메모">운영 진단 및 우선순위 메모</option>
+            <option value="월별 재무 보고 체계">월별 재무 보고 체계</option>
+            <option value="세무조정 검토 메모">세무조정 검토 메모</option>
+            <option value="시나리오별 세부담 비교표">시나리오별 세부담 비교표</option>
+            <option value="실행 순서안 및 체크리스트">실행 순서안 및 체크리스트</option>
+          </select>
+          <div className="absolute right-0 bottom-4 pointer-events-none">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M3 5l3 3 3-3" />
+            </svg>
+          </div>
+        </div>
+
+        <div className="relative">
+          <label className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
+            희망 시점 *
+          </label>
+          <select
+            required
+            value={form.timeline}
+            onChange={(e) => updateField("timeline", e.target.value)}
+            className="w-full px-0 py-3 bg-transparent text-base border-0 border-b border-border focus:outline-none focus:border-foreground transition-colors duration-300 appearance-none cursor-pointer"
+          >
+            <option value="이번 주 안">이번 주 안</option>
+            <option value="이번 달 안">이번 달 안</option>
+            <option value="신고 시즌 전">신고 시즌 전</option>
+            <option value="의사결정 전">의사결정 전</option>
+            <option value="일정 협의 가능">일정 협의 가능</option>
+          </select>
+          <div className="absolute right-0 bottom-4 pointer-events-none">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M3 5l3 3 3-3" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
       <div className="relative">
         <label className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
-          문의 내용 *
+          현재 상황 *
         </label>
         <textarea
           required
-          rows={5}
+          rows={6}
           value={form.message}
-          onChange={(e) => setForm({ ...form, message: e.target.value })}
+          onChange={(e) => updateField("message", e.target.value)}
           className="w-full px-0 py-3 bg-transparent text-base border-0 border-b border-border focus:outline-none focus:border-foreground transition-colors duration-300 resize-none placeholder:text-neutral-300"
-          placeholder="문의하실 내용을 입력해 주세요."
+          placeholder="매출 규모, 기존 기장 여부, 가장 급한 이슈, 이미 정리된 자료가 있으면 함께 적어 주세요."
         />
       </div>
 
@@ -201,7 +306,7 @@ export default function ContactForm() {
             </span>
           ) : (
             <>
-              문의하기
+              진단 요청 보내기
               <span className="ml-3 transition-transform duration-300 group-hover:translate-x-1">
                 &rarr;
               </span>

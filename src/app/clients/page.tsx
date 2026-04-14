@@ -6,7 +6,7 @@ import { AnimateOnScroll, LineReveal } from "@/components/motion";
 export const metadata: Metadata = {
   title: "WHO",
   description:
-    "설립 직후, 성장기, 중요한 결정 직전까지 대표가 겪는 세무 운영 병목과 결과물을 단계별로 정리합니다.",
+    "설립 직후부터 성장기, 중요한 결정 직전까지 — 단계별로 필요한 세무 서비스를 정리합니다.",
 };
 
 export default function WhoPage() {
@@ -21,14 +21,14 @@ export default function WhoPage() {
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <AnimateOnScroll variant="fadeIn">
             <p className="text-xs tracking-[0.4em] text-neutral-500 mb-6 uppercase">
-              Founder Lifecycle
+              Who
             </p>
           </AnimateOnScroll>
           <AnimateOnScroll variant="fadeUp" delay={0.1}>
             <h1 className="text-4xl md:text-6xl font-bold tracking-tighter leading-[1.05] max-w-4xl">
-              어느 단계에서
+              대표의 단계에 따라
               <br />
-              어떤 병목이 생기는가
+              필요한 서비스가 다릅니다
             </h1>
           </AnimateOnScroll>
           <div className="mt-6">
@@ -36,8 +36,8 @@ export default function WhoPage() {
           </div>
           <AnimateOnScroll variant="fadeUp" delay={0.4}>
             <p className="mt-8 text-lg text-neutral-400 max-w-3xl leading-relaxed">
-              설립 직후에는 기준이 비고, 성장기에는 보고가 늦고, 큰 결정 앞에서는 비교표가
-              필요합니다. 단계별로 막히는 지점과 먼저 받아야 하는 결과물을 정리합니다.
+              설립 직후에는 기장 기준을 세우고, 성장기에는 신고와 조정을 정비하고,
+              큰 결정 앞에서는 세부담을 비교합니다.
             </p>
           </AnimateOnScroll>
         </div>
@@ -85,7 +85,7 @@ export default function WhoPage() {
 
                       <div className="mt-8">
                         <p className="text-xs tracking-[0.2em] text-subtle uppercase font-medium mb-4">
-                          현재 병목
+                          자주 겪는 문제
                         </p>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
                           {persona.bottlenecks.map((item) => (
@@ -102,7 +102,7 @@ export default function WhoPage() {
 
                       <div className="mt-8 pt-6 border-t border-border">
                         <p className="text-xs tracking-[0.2em] text-subtle uppercase font-medium mb-4">
-                          먼저 받는 결과물
+                          먼저 받게 되는 것
                         </p>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
                           {persona.outputs.map((item) => (
@@ -150,19 +150,18 @@ export default function WhoPage() {
                 Contact
               </p>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight max-w-3xl mx-auto leading-tight">
-                지금 단계의 병목과
+                현재 상황을 알려주시면
                 <br />
-                필요한 결과물을 정리해 보세요
+                필요한 범위부터 정리합니다
               </h2>
               <p className="mt-6 text-neutral-400 max-w-2xl mx-auto leading-relaxed">
-                현재 상황과 가장 급한 이슈만 보내주시면 어디서부터 기장, 조정, 자문을 연결해야 하는지
-                먼저 정리합니다.
+                매출 규모, 기존 기장 여부, 가장 급한 이슈만 알려주세요.
               </p>
               <Link
                 href="/contact"
                 className="group mt-10 inline-flex items-center px-10 py-4 bg-white text-foreground text-sm font-medium tracking-wider transition-all duration-300 hover:bg-neutral-200 hover:tracking-widest"
               >
-                내 상황 정리하기
+                문의하기
                 <span className="ml-3 transition-transform duration-300 group-hover:translate-x-1">
                   &rarr;
                 </span>

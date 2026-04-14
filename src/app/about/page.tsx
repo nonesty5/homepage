@@ -95,7 +95,7 @@ export default function AboutPage() {
             {/* 좌측 — 라벨 + 제목 */}
             <AnimateOnScroll variant="fadeUp" className="lg:col-span-4 lg:sticky lg:top-32 lg:self-start">
               <p className="text-xs tracking-[0.35em] text-muted mb-8 font-medium">
-                01 &nbsp;·&nbsp; SEAMLESS
+                01
               </p>
               <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold tracking-tight leading-[1.2]">
                 본래
@@ -147,7 +147,7 @@ export default function AboutPage() {
             {/* 좌측 — 라벨 + 제목 */}
             <AnimateOnScroll variant="fadeUp" className="lg:col-span-4 lg:sticky lg:top-32 lg:self-start">
               <p className="text-xs tracking-[0.35em] text-muted mb-8 font-medium">
-                02 &nbsp;·&nbsp; METHOD
+                02
               </p>
               <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold tracking-tight leading-[1.2]">
                 방법론은 거창할
@@ -193,17 +193,16 @@ export default function AboutPage() {
           <AnimateOnScroll variant="fadeUp">
             <div className="mb-14 md:mb-20">
               <p className="text-xs tracking-[0.35em] text-muted mb-8 font-medium">
-                03 &nbsp;·&nbsp; IN PRACTICE
+                03
               </p>
               <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold tracking-tight leading-[1.2] max-w-3xl">
                 실제로 한 일들은
                 <br />
-                에세이에 적어두었습니다.
+                글로 남겨두었습니다.
               </h2>
               <div className="mt-8 h-px w-12 bg-border" />
               <p className="mt-8 text-base md:text-lg text-muted leading-[1.85] max-w-2xl">
-                여기서 제가 해결한 사례를 나열하지는 않았습니다.
-                어떤 문제를 어떻게 풀었는지는, 글로 남겨두는 편이 더 정확합니다.
+                어떤 문제를 어떻게 풀었는지는 다음 글에서 확인하실 수 있습니다.
               </p>
             </div>
           </AnimateOnScroll>
@@ -215,28 +214,23 @@ export default function AboutPage() {
               className="group block border border-border bg-card p-10 md:p-16 hover-lift transition-colors hover:border-foreground/40"
             >
               <div className="flex items-center gap-4 text-xs tracking-[0.25em] text-muted uppercase mb-8">
-                <span>Essay</span>
-                <span className="h-px w-6 bg-border" />
                 <span>2026.04</span>
                 <span className="h-px w-6 bg-border" />
                 <span>자문철학</span>
               </div>
 
               <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight leading-[1.25] text-foreground">
-                마찰 비용을 지우는 일 —
-                <br />
-                &lsquo;시스템 에이전트&rsquo;로서의 진화
+                마찰 비용을 지우는 일
               </h3>
 
               <p className="mt-8 text-base md:text-lg text-strong leading-[1.85] max-w-3xl">
                 연간 600건이 넘는 프리랜서 계약과 정산을 메신저와 수기 작업에 의존하던 곳.
-                저는 전문가로서 직접 챙기려 노력했지만, 사람이 매번 확인하는 방식은
-                비즈니스의 속도를 이기지 못했습니다.
-                그래서 저는 파이썬으로 전용 시스템을 직접 만들었습니다.
+                사람이 매번 확인하는 방식으로는 비즈니스의 속도를 이기지 못해서,
+                파이썬으로 전용 시스템을 직접 만들었습니다.
               </p>
 
               <div className="mt-10 inline-flex items-center gap-3 text-sm tracking-[0.15em] uppercase font-medium text-foreground">
-                <span className="hover-underline">Read the essay</span>
+                <span className="hover-underline">글 읽기</span>
                 <span className="transition-transform duration-300 group-hover:translate-x-1">
                   →
                 </span>

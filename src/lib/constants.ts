@@ -1,9 +1,9 @@
 export const siteConfig = {
   name: "메리디안 택스 어드바이저리",
   title: "MERIDIAN",
-  tagline: "결산 지연, 기장 누락, 세무 리스크를 줄이는 대표용 세무 운영 체계.",
+  tagline: "세무 기장부터 자문까지, 한 사람이 이어서 봅니다.",
   description:
-    "월 기장, 세무조정, 주요 세무 의사결정을 같은 데이터로 관리합니다. Big4 출신 공인회계사가 직접 검토하고, 필요한 경우 가치평가와 거래 자문까지 연결합니다.",
+    "월 기장, 세무조정, 의사결정 자문을 공인회계사가 직접 검토합니다. 필요하면 가치평가와 거래 자문까지 연결합니다.",
   url: "https://meridian-advisory.com",
   email: "mscpa@dscpa.co.kr",
   phone: "010-3300-7339",

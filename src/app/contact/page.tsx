@@ -5,7 +5,7 @@ import { AnimateOnScroll, LineReveal } from "@/components/motion";
 
 export const metadata: Metadata = {
   title: "CONTACT",
-  description: "문의 및 상담 예약",
+  description: "현재 상황과 필요한 서비스를 알려주시면 적용 범위와 다음 단계를 정리해 드립니다.",
 };
 
 const contactInfo = [
@@ -15,7 +15,26 @@ const contactInfo = [
   { label: "Hours", value: "평일 09:00 - 18:00 · 사전 약속 권장" },
 ];
 
-export default function ContactPage() {
+interface ContactPageProps {
+  searchParams: Promise<{
+    type?: string | string[];
+    bottleneck?: string | string[];
+    output?: string | string[];
+  }>;
+}
+
+function getSingleValue(value?: string | string[]) {
+  return Array.isArray(value) ? value[0] : value;
+}
+
+export default async function ContactPage({ searchParams }: ContactPageProps) {
+  const query = await searchParams;
+  const initialValues = {
+    type: getSingleValue(query.type),
+    bottleneck: getSingleValue(query.bottleneck),
+    desiredOutput: getSingleValue(query.output),
+  };
+
   return (
     <>
       {/* Hero */}
@@ -32,48 +51,40 @@ export default function ContactPage() {
             </p>
           </AnimateOnScroll>
           <AnimateOnScroll variant="fadeUp" delay={0.1}>
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tighter">
-              문의하기
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tighter leading-[1.05] max-w-4xl">
+              현재 상황을 알려주세요
             </h1>
           </AnimateOnScroll>
           <div className="mt-6">
             <LineReveal className="h-0.5 w-20 bg-accent-bright" delay={0.3} />
           </div>
           <AnimateOnScroll variant="fadeUp" delay={0.4}>
-            <p className="mt-8 text-lg text-neutral-400 max-w-xl leading-relaxed">
-              지금 고민되는 상황을 간단히 말씀해 주세요.
+            <p className="mt-8 text-lg text-neutral-400 max-w-3xl leading-relaxed">
+              매출 규모, 기존 기장 여부, 가장 급한 이슈만 알려주시면 됩니다.
               <br />
-              도울 수 있는 일인지 솔직하게 답변드리겠습니다.
+              필요한 범위와 다음 단계를 정리해서 회신드립니다.
             </p>
           </AnimateOnScroll>
         </div>
       </section>
 
-      {/* Content: Asymmetric Layout */}
       <section className="py-24 md:py-32">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20">
-            {/* Contact Form - Takes more space */}
             <AnimateOnScroll variant="fadeUp" className="lg:col-span-7">
-              <p className="text-xs tracking-[0.2em] text-muted mb-3 uppercase font-medium">
-                Inquiry Form
-              </p>
               <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-10">
-                케이스에 대해
-                <br />
-                간단히 알려주세요
+                문의 내용
               </h2>
-              <ContactForm />
+              <ContactForm initialValues={initialValues} />
             </AnimateOnScroll>
 
-            {/* Contact Info - Smaller sidebar */}
             <AnimateOnScroll variant="fadeUp" delay={0.2} className="lg:col-span-5">
               <div className="lg:sticky lg:top-32">
                 <p className="text-xs tracking-[0.2em] text-muted mb-3 uppercase font-medium">
-                  연락처 정보
+                  Contact Details
                 </p>
                 <h2 className="text-2xl font-bold tracking-tight mb-10">
-                  직접 연락하기
+                  직접 연락처로 보내기
                 </h2>
                 <div className="space-y-0">
                   {contactInfo.map((info, i) => (
@@ -91,7 +102,6 @@ export default function ContactPage() {
                   ))}
                 </div>
 
-                {/* Affiliation Note */}
                 <div className="mt-10 p-6 bg-card border border-border">
                   <p className="text-[10px] tracking-[0.25em] text-subtle uppercase font-medium mb-3">
                     Affiliation Notice

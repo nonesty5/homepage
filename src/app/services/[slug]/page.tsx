@@ -9,6 +9,72 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
+const sampleArtifactsBySlug: Partial<
+  Record<
+    string,
+    {
+      title: string;
+      subtitle: string;
+      samples: Array<{ title: string; description: string }>;
+    }
+  >
+> = {
+  "tax-bookkeeping": {
+    title: "산출물 활용 예시",
+    subtitle: "기장 서비스는 단순 입력이 아니라 월 마감 기준과 보고 체계를 만드는 데 쓰입니다.",
+    samples: [
+      {
+        title: "월별 마감 일정표",
+        description: "자료 요청일, 마감일, 검토일을 한 줄로 정리해 결산 지연을 줄입니다.",
+      },
+      {
+        title: "계정 처리 기준 메모",
+        description: "대표 급여, 법인카드, 반복 거래 처리 기준을 정리해 누락과 오분류를 줄입니다.",
+      },
+      {
+        title: "주요 변동 리포트",
+        description: "전월 대비 변동 항목을 짧게 정리해 대표가 숫자를 바로 볼 수 있게 만듭니다.",
+      },
+    ],
+  },
+  "tax-adjustment": {
+    title: "산출물 활용 예시",
+    subtitle: "세무조정은 신고 직전에 맞추는 일이 아니라, 검토 메모와 기준을 남기는 작업입니다.",
+    samples: [
+      {
+        title: "조정 항목 검토 메모",
+        description: "핵심 조정 포인트와 판단 근거를 정리해 신고 직전 혼선을 줄입니다.",
+      },
+      {
+        title: "공제 · 감면 검토표",
+        description: "적용 가능 항목과 제외 항목을 나눠 소명 가능한 범위만 반영합니다.",
+      },
+      {
+        title: "제출 기준 체크",
+        description: "어떤 자료를 어떤 기준으로 남길지 미리 정리해 후속 대응을 준비합니다.",
+      },
+    ],
+  },
+  "tax-advisory": {
+    title: "산출물 활용 예시",
+    subtitle: "세무 자문은 말로 끝나지 않고 비교표와 실행 순서안으로 남아야 합니다.",
+    samples: [
+      {
+        title: "시나리오별 세부담 비교표",
+        description: "안별 세부담과 차이를 표로 비교해 대표가 선택할 수 있게 만듭니다.",
+      },
+      {
+        title: "권고안 메모",
+        description: "추천 구조, 전제 조건, 유의사항을 짧은 메모로 정리합니다.",
+      },
+      {
+        title: "실행 순서안",
+        description: "결정 이후 어떤 순서로 신고와 후속 절차를 밟아야 하는지 정리합니다.",
+      },
+    ],
+  },
+};
+
 export async function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
 }
@@ -28,6 +94,7 @@ export default async function ServiceDetailPage({ params }: Props) {
   const currentIndex = services.findIndex((s) => s.slug === slug);
   const service = services[currentIndex];
   if (!service) notFound();
+  const sampleArtifacts = sampleArtifactsBySlug[slug];
 
   const num = String(currentIndex + 1).padStart(2, "0");
 
@@ -174,13 +241,44 @@ export default async function ServiceDetailPage({ params }: Props) {
                 </AnimateOnScroll>
               )}
 
-              {/* III. Applicable Scenarios */}
+              {sampleArtifacts && (
+                <AnimateOnScroll variant="fadeUp">
+                  <div className="flex items-baseline gap-4 mb-10">
+                    <span className="text-xs tracking-[0.2em] text-subtle uppercase font-medium">
+                      III.
+                    </span>
+                    <h2 className="text-2xl font-bold tracking-tight">
+                      {sampleArtifacts.title}
+                    </h2>
+                  </div>
+                  <p className="text-base text-muted leading-relaxed mb-8">
+                    {sampleArtifacts.subtitle}
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {sampleArtifacts.samples.map((sample, index) => (
+                      <div key={sample.title} className="border border-border bg-card p-6 md:p-7">
+                        <p className="text-xs tracking-[0.24em] text-subtle uppercase font-medium">
+                          {String(index + 1).padStart(2, "0")}
+                        </p>
+                        <h3 className="mt-4 text-lg font-bold tracking-tight">
+                          {sample.title}
+                        </h3>
+                        <p className="mt-3 text-sm text-muted leading-relaxed">
+                          {sample.description}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </AnimateOnScroll>
+              )}
+
+              {/* III/IV. Applicable Scenarios */}
               {service.applicableScenarios &&
                 service.applicableScenarios.length > 0 && (
                   <AnimateOnScroll variant="fadeUp">
                     <div className="flex items-baseline gap-4 mb-10">
                       <span className="text-xs tracking-[0.2em] text-subtle uppercase font-medium">
-                        III.
+                        {sampleArtifacts ? "IV." : "III."}
                       </span>
                       <h2 className="text-2xl font-bold tracking-tight">
                         적용 케이스
@@ -218,10 +316,12 @@ export default async function ServiceDetailPage({ params }: Props) {
                       </p>
                     </div>
                     <Link
-                      href="/contact"
+                      href={`/contact?type=${encodeURIComponent(service.title)}&output=${encodeURIComponent(
+                        service.deliverables[0] ?? "적용 범위 검토"
+                      )}`}
                       className="group inline-flex items-center justify-center px-8 py-4 bg-white text-foreground text-sm font-medium tracking-wider transition-all duration-300 hover:bg-neutral-200 flex-shrink-0"
                     >
-                      상담 신청
+                      문의하기
                       <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">
                         &rarr;
                       </span>

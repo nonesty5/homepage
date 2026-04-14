@@ -1,74 +1,39 @@
 /**
  * 세법 카테고리별 컬러 매핑.
- * Tailwind 클래스를 직접 반환하므로 purge 대상에 포함되도록
- * 클래스명을 완전한 문자열로 유지합니다.
+ * Tailwind purge 문제를 피하기 위해 inline style 객체를 반환합니다.
  */
 
 export interface CategoryStyle {
-  bg: string;
-  text: string;
-  /** 다크 배경(히어로 등)에서 사용 */
-  bgDark: string;
-  textDark: string;
+  backgroundColor: string;
+  color: string;
 }
 
-const STYLES: Record<string, CategoryStyle> = {
-  법인세: {
-    bg: "bg-blue-50",
-    text: "text-blue-700",
-    bgDark: "bg-blue-500/20",
-    textDark: "text-blue-300",
-  },
-  소득세: {
-    bg: "bg-emerald-50",
-    text: "text-emerald-700",
-    bgDark: "bg-emerald-500/20",
-    textDark: "text-emerald-300",
-  },
-  부가가치세: {
-    bg: "bg-amber-50",
-    text: "text-amber-700",
-    bgDark: "bg-amber-500/20",
-    textDark: "text-amber-300",
-  },
-  "상속·증여세": {
-    bg: "bg-purple-50",
-    text: "text-purple-700",
-    bgDark: "bg-purple-500/20",
-    textDark: "text-purple-300",
-  },
-  "원천세·4대보험": {
-    bg: "bg-rose-50",
-    text: "text-rose-700",
-    bgDark: "bg-rose-500/20",
-    textDark: "text-rose-300",
-  },
-  세무일반: {
-    bg: "bg-neutral-100",
-    text: "text-neutral-600",
-    bgDark: "bg-white/10",
-    textDark: "text-neutral-300",
-  },
-  자문철학: {
-    bg: "bg-slate-100",
-    text: "text-slate-600",
-    bgDark: "bg-white/10",
-    textDark: "text-slate-300",
-  },
+const LIGHT_STYLES: Record<string, CategoryStyle> = {
+  법인세: { backgroundColor: "#eff6ff", color: "#1d4ed8" },
+  소득세: { backgroundColor: "#ecfdf5", color: "#047857" },
+  부가가치세: { backgroundColor: "#fffbeb", color: "#b45309" },
+  "상속·증여세": { backgroundColor: "#faf5ff", color: "#7e22ce" },
+  "원천세·4대보험": { backgroundColor: "#fff1f2", color: "#be123c" },
+  세무일반: { backgroundColor: "#f5f5f5", color: "#525252" },
+  자문철학: { backgroundColor: "#f1f5f9", color: "#475569" },
 };
 
-const FALLBACK: CategoryStyle = {
-  bg: "bg-neutral-100",
-  text: "text-neutral-600",
-  bgDark: "bg-white/10",
-  textDark: "text-neutral-300",
+const DARK_STYLES: Record<string, CategoryStyle> = {
+  법인세: { backgroundColor: "rgba(59,130,246,0.2)", color: "#93c5fd" },
+  소득세: { backgroundColor: "rgba(16,185,129,0.2)", color: "#6ee7b7" },
+  부가가치세: { backgroundColor: "rgba(245,158,11,0.2)", color: "#fcd34d" },
+  "상속·증여세": { backgroundColor: "rgba(168,85,247,0.2)", color: "#c4b5fd" },
+  "원천세·4대보험": { backgroundColor: "rgba(244,63,94,0.2)", color: "#fda4af" },
+  세무일반: { backgroundColor: "rgba(255,255,255,0.1)", color: "#d4d4d4" },
+  자문철학: { backgroundColor: "rgba(255,255,255,0.1)", color: "#cbd5e1" },
 };
 
-export function getCategoryStyle(category: string): CategoryStyle {
-  return STYLES[category] ?? FALLBACK;
-}
+const FALLBACK_LIGHT: CategoryStyle = { backgroundColor: "#f5f5f5", color: "#525252" };
+const FALLBACK_DARK: CategoryStyle = { backgroundColor: "rgba(255,255,255,0.1)", color: "#d4d4d4" };
 
-export function categoryBadgeClass(category: string, dark = false): string {
-  const s = getCategoryStyle(category);
-  return dark ? `${s.bgDark} ${s.textDark}` : `${s.bg} ${s.text}`;
+export function getCategoryStyle(category: string, dark = false): CategoryStyle {
+  if (dark) {
+    return DARK_STYLES[category] ?? FALLBACK_DARK;
+  }
+  return LIGHT_STYLES[category] ?? FALLBACK_LIGHT;
 }

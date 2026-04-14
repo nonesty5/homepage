@@ -7,7 +7,7 @@ import StickyScrollServices from "@/components/services/sticky-scroll-services";
 export const metadata: Metadata = {
   title: "PRACTICE",
   description:
-    "결산 지연, 기장 누락, 세무 리스크를 줄이기 위한 세무 기장 · 세무조정 · 세무 자문 중심 서비스. 필요 시 가치평가와 거래 자문까지 연결합니다.",
+    "세무 기장 · 세무조정 · 세무 자문을 중심으로, 필요 시 가치평가와 거래 자문까지 연결합니다.",
 };
 
 export default function ServicesPage() {
@@ -28,9 +28,7 @@ export default function ServicesPage() {
           </AnimateOnScroll>
           <AnimateOnScroll variant="fadeUp" delay={0.1}>
             <h1 className="text-4xl md:text-6xl font-bold tracking-tighter leading-[1.05] max-w-4xl">
-              대표의 세무 운영을 구성하는
-              <br />
-              실무 축
+              서비스 범위
             </h1>
           </AnimateOnScroll>
           <div className="mt-6">
@@ -38,8 +36,8 @@ export default function ServicesPage() {
           </div>
           <AnimateOnScroll variant="fadeUp" delay={0.4}>
             <p className="mt-8 text-lg text-neutral-400 max-w-3xl leading-relaxed">
-              핵심은 세무 기장 · 세무 조정 · 세무 자문입니다. 결산 일정, 신고 기준, 중요한
-              의사결정을 같은 데이터로 이어서 관리하고, 필요할 때 가치평가와 거래 자문까지 연결합니다.
+              세무 기장 · 세무 조정 · 세무 자문을 중심으로,
+              필요할 때 가치평가와 거래 자문까지 연결합니다.
             </p>
           </AnimateOnScroll>
         </div>
@@ -61,12 +59,12 @@ export default function ServicesPage() {
                 Contact
               </p>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-                현재 이슈와 원하는 결과물을
+                현재 상황을 알려주시면
                 <br className="hidden md:block" />
-                먼저 정리해 보세요
+                필요한 범위부터 정리합니다
               </h2>
               <p className="mt-6 text-neutral-400 max-w-2xl mx-auto leading-relaxed">
-                적용 가능한 실무 축과 필요한 산출물을 먼저 확인한 뒤 진행합니다.
+                매출 규모, 기존 기장 여부, 가장 급한 이슈만 알려주세요.
               </p>
               <Link
                 href="/contact"
