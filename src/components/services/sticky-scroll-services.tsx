@@ -78,19 +78,42 @@ export default function StickyScrollServices({
                     <p className="text-muted leading-relaxed mb-6">
                       {service.description}
                     </p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {service.details.map((detail, i) => (
-                        <p
-                          key={i}
-                          className="text-sm text-subtle py-1 flex items-start gap-2"
-                        >
-                          <span className="w-1 h-1 rounded-full bg-subtle mt-2 flex-shrink-0" />
-                          {detail}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                      <div>
+                        <p className="text-[10px] tracking-[0.24em] text-subtle uppercase font-medium mb-3">
+                          주요 범위
                         </p>
-                      ))}
+                        <div className="space-y-2">
+                          {service.details.slice(0, 4).map((detail) => (
+                            <p
+                              key={detail}
+                              className="text-sm text-subtle py-1 flex items-start gap-2"
+                            >
+                              <span className="w-1 h-1 rounded-full bg-subtle mt-2 flex-shrink-0" />
+                              {detail}
+                            </p>
+                          ))}
+                        </div>
+                      </div>
+                      <div>
+                        <p className="text-[10px] tracking-[0.24em] text-subtle uppercase font-medium mb-3">
+                          산출물
+                        </p>
+                        <div className="space-y-2">
+                          {service.deliverables.slice(0, 4).map((item) => (
+                            <p
+                              key={item}
+                              className="text-sm text-subtle py-1 flex items-start gap-2"
+                            >
+                              <span className="w-1 h-1 rounded-full bg-accent mt-2 flex-shrink-0" />
+                              {item}
+                            </p>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                     <span className="mt-6 inline-flex items-center text-xs font-medium tracking-wider text-muted group-hover:text-foreground transition-colors duration-300">
-                      자세히 보기
+                      {service.cta}
                       <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">
                         &rarr;
                       </span>
@@ -156,22 +179,45 @@ export default function StickyScrollServices({
                   <p className="text-lg text-muted leading-relaxed mb-8">
                     {services[activeIndex].description}
                   </p>
-                  <div className="grid grid-cols-2 gap-3">
-                    {services[activeIndex].details.map((detail, i) => (
-                      <p
-                        key={i}
-                        className="text-sm text-subtle py-1.5 flex items-start gap-2"
-                      >
-                        <span className="w-1 h-1 rounded-full bg-accent mt-2 flex-shrink-0" />
-                        {detail}
+                  <div className="grid grid-cols-2 gap-8">
+                    <div>
+                      <p className="text-[10px] tracking-[0.24em] text-subtle uppercase font-medium mb-4">
+                        주요 범위
                       </p>
-                    ))}
+                      <div className="space-y-3">
+                        {services[activeIndex].details.slice(0, 4).map((detail) => (
+                          <p
+                            key={detail}
+                            className="text-sm text-subtle py-1.5 flex items-start gap-2"
+                          >
+                            <span className="w-1 h-1 rounded-full bg-subtle mt-2 flex-shrink-0" />
+                            {detail}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <p className="text-[10px] tracking-[0.24em] text-subtle uppercase font-medium mb-4">
+                        산출물
+                      </p>
+                      <div className="space-y-3">
+                        {services[activeIndex].deliverables.slice(0, 4).map((item) => (
+                          <p
+                            key={item}
+                            className="text-sm text-subtle py-1.5 flex items-start gap-2"
+                          >
+                            <span className="w-1 h-1 rounded-full bg-accent mt-2 flex-shrink-0" />
+                            {item}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                   <Link
                     href={`/services/${services[activeIndex].slug}`}
                     className="group mt-8 inline-flex items-center text-sm font-medium tracking-wider hover-underline"
                   >
-                    자세히 보기
+                    {services[activeIndex].cta}
                     <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">
                       &rarr;
                     </span>

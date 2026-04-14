@@ -4,27 +4,30 @@ import { motion, useReducedMotion } from "motion/react";
 
 interface HeroTextRevealProps {
   text: string;
+  as?: "h1" | "div";
   className?: string;
   style?: React.CSSProperties;
 }
 
 export default function HeroTextReveal({
   text,
+  as = "h1",
   className,
   style,
 }: HeroTextRevealProps) {
   const reduced = useReducedMotion();
+  const Component = as;
 
   if (reduced) {
     return (
-      <h1 className={className} style={style}>
+      <Component className={className} style={style}>
         {text}
-      </h1>
+      </Component>
     );
   }
 
   return (
-    <h1 className={className} style={style} aria-label={text}>
+    <Component className={className} style={style} aria-label={text}>
       {text.split("").map((char, i) => (
         <motion.span
           key={i}
@@ -41,6 +44,6 @@ export default function HeroTextReveal({
           {char === " " ? "\u00A0" : char}
         </motion.span>
       ))}
-    </h1>
+    </Component>
   );
 }
