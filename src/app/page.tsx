@@ -154,25 +154,22 @@ export default function Home() {
         <section className="py-24 md:py-32 bg-card">
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-              <ImageReveal className="lg:col-span-5" direction="up">
-                <div className="relative aspect-[3/4] bg-card border border-border overflow-hidden">
-                  {lead.image ? (
-                    <Image
-                      src={lead.image}
-                      alt={`${lead.name} ${lead.role}`}
-                      fill
-                      sizes="(min-width: 1024px) 40vw, 100vw"
-                      className="object-cover object-center"
-                    />
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-[12rem] font-bold text-neutral-200/60 select-none">
-                        {lead.name[0]}
-                      </span>
-                    </div>
-                  )}
-                </div>
-              </ImageReveal>
+              <div className="lg:col-span-5 bg-card border border-border overflow-hidden">
+                {lead.image ? (
+                  <img
+                    src={lead.image}
+                    alt={`${lead.name} ${lead.role}`}
+                    className="w-full"
+                    style={{ aspectRatio: "3/4", objectFit: "cover", objectPosition: "top" }}
+                  />
+                ) : (
+                  <div className="flex items-center justify-center" style={{ aspectRatio: "3/4" }}>
+                    <span className="text-[12rem] font-bold text-neutral-200/60 select-none">
+                      {lead.name[0]}
+                    </span>
+                  </div>
+                )}
+              </div>
 
               <AnimateOnScroll variant="fadeUp" delay={0.15} className="lg:col-span-7">
                 <h2 className="text-3xl md:text-5xl font-bold tracking-tighter leading-[1.05]">
@@ -279,6 +276,58 @@ export default function Home() {
           </div>
         </section>
       )}
+
+      {/* ─── FAQ ─── */}
+      <section className="py-24 md:py-32 bg-card">
+        <div className="max-w-7xl mx-auto px-6">
+          <AnimateOnScroll>
+            <SectionHeading
+              title="자주 묻는 질문"
+            />
+          </AnimateOnScroll>
+          <AnimateOnScroll variant="fadeUp" delay={0.1}>
+            <div className="max-w-3xl mx-auto divide-y divide-border">
+              {[
+                {
+                  q: "기존 세무사에서 이관하려면 어떻게 하나요?",
+                  a: "기존 세무대리인에게 해지 의사를 전달하시면 됩니다. 장부와 신고 이력을 넘겨받는 과정에서 기존 장부 상태도 함께 점검하고, 필요한 정리가 있으면 같이 진행합니다.",
+                },
+                {
+                  q: "최소 계약 기간이 있나요?",
+                  a: "기장 계약은 1년 단위가 일반적이지만, 상황에 따라 유연하게 조정합니다. 세무 자문은 건별로도 가능합니다.",
+                },
+                {
+                  q: "자료 전달은 어떻게 하나요?",
+                  a: "카카오톡, 이메일, 클라우드 드라이브 등 편한 방식으로 보내주시면 됩니다. 계약 초기에 자료 종류와 전달 일정을 함께 정합니다.",
+                },
+                {
+                  q: "비용은 어떻게 정해지나요?",
+                  a: "사업자 형태, 매출 규모, 업종에 따라 달라집니다. 수임료 계산기에서 예상 금액을 바로 확인할 수 있습니다.",
+                  link: { href: "/pricing", label: "수임료 계산기 보기" },
+                },
+              ].map((item) => (
+                <div key={item.q} className="py-8 md:py-10">
+                  <h3 className="text-base md:text-lg font-bold tracking-tight">
+                    {item.q}
+                  </h3>
+                  <p className="mt-3 text-sm md:text-base text-muted leading-relaxed">
+                    {item.a}
+                  </p>
+                  {item.link && (
+                    <Link
+                      href={item.link.href}
+                      className="inline-flex items-center mt-4 text-sm font-medium tracking-wider hover-underline"
+                    >
+                      {item.link.label}
+                      <span className="ml-2">&rarr;</span>
+                    </Link>
+                  )}
+                </div>
+              ))}
+            </div>
+          </AnimateOnScroll>
+        </div>
+      </section>
 
       {/* ─── CTA ─── */}
       <AnimateOnScroll variant="fadeIn">
