@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getAllPosts, getPostBySlug } from "@/lib/posts";
 import MdxContent from "@/components/mdx/mdx-content";
 import { getCategoryStyle } from "@/lib/category-colors";
+import CopyUrlButton from "@/components/blog/copy-url-button";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -38,11 +39,15 @@ export default async function BlogPostPage({ params }: Props) {
 
   const readingTime = estimateReadingTime(post.content);
 
-  // Get other posts for recommendation
+  // Get related posts: same category first, then recent
   const allPosts = getAllPosts();
-  const otherPosts = allPosts
-    .filter((p) => p.slug !== slug)
-    .slice(0, 3);
+  const sameCategory = allPosts.filter(
+    (p) => p.slug !== slug && p.category === post.meta.category
+  );
+  const otherCategory = allPosts.filter(
+    (p) => p.slug !== slug && p.category !== post.meta.category
+  );
+  const otherPosts = [...sameCategory, ...otherCategory].slice(0, 3);
 
   return (
     <>
@@ -121,13 +126,7 @@ export default async function BlogPostPage({ params }: Props) {
               <span className="text-xs text-subtle tracking-wider uppercase">
                 Share
               </span>
-              <button
-                onClick={undefined}
-                className="w-9 h-9 border border-border flex items-center justify-center text-muted hover:text-foreground hover:border-foreground transition-colors text-xs font-bold"
-                aria-label="URL 복사"
-              >
-                URL
-              </button>
+              <CopyUrlButton />
             </div>
           </div>
         </div>
