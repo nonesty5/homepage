@@ -98,6 +98,15 @@ body {
   scrollbar-color: #d4d4d4 transparent;
 }
 
+/* ─── Prose table font-size match ─── */
+.prose table {
+  font-size: inherit;
+}
+.prose th,
+.prose td {
+  font-size: inherit;
+}
+
 /* ─── Animation Keyframes ─── */
 
 @keyframes fade-in {
