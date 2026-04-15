@@ -11,6 +11,7 @@ export interface PostMeta {
   date: string;
   category: string;
   published: boolean;
+  coverImage?: string;
 }
 
 export function getAllPosts(): PostMeta[] {
@@ -34,6 +35,7 @@ export function getAllPosts(): PostMeta[] {
         date: data.date || "",
         category: data.category || "기타",
         published: data.published !== false,
+        coverImage: data.coverImage || undefined,
       };
     })
     .filter((post) => post.published)
@@ -58,6 +60,7 @@ export function getPostBySlug(slug: string) {
       date: data.date || "",
       category: data.category || "기타",
       published: data.published !== false,
+      coverImage: data.coverImage || undefined,
     },
     content,
   };

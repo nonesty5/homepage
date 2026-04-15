@@ -244,6 +244,15 @@ export default function Home() {
                 <StaggerItem key={post.slug}>
                   <Link href={`/blog/${post.slug}`} className="group block">
                     <div className="border border-border hover:border-foreground transition-all duration-300 hover-lift">
+                      {post.coverImage && (
+                        <div className="aspect-[16/9] overflow-hidden border-b border-border">
+                          <img
+                            src={post.coverImage}
+                            alt={post.title}
+                            className="w-full h-full object-cover object-top"
+                          />
+                        </div>
+                      )}
                       <div className="p-8 md:p-10">
                         <div className="flex items-center gap-3 mb-4">
                           <span className="inline-block px-3 py-1 text-[10px] font-medium tracking-wider bg-white text-muted uppercase">

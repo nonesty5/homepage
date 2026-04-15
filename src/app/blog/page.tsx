@@ -13,6 +13,7 @@ interface PostMeta {
   description: string;
   date: string;
   category: string;
+  coverImage?: string;
 }
 
 export default function BlogPage() {
@@ -125,11 +126,21 @@ export default function BlogPage() {
                       </span>
                     </div>
                     <div className="hidden md:flex items-center justify-center">
-                      <div className="w-full aspect-[4/3] bg-card border border-border flex items-center justify-center">
-                        <span className="text-6xl font-bold text-neutral-200 select-none">
-                          {featured.title[0]}
-                        </span>
-                      </div>
+                      {featured.coverImage ? (
+                        <div className="w-full aspect-[4/3] bg-card border border-border overflow-hidden">
+                          <img
+                            src={featured.coverImage}
+                            alt={featured.title}
+                            className="w-full h-full object-cover object-top"
+                          />
+                        </div>
+                      ) : (
+                        <div className="w-full aspect-[4/3] bg-card border border-border flex items-center justify-center">
+                          <span className="text-6xl font-bold text-neutral-200 select-none">
+                            {featured.title[0]}
+                          </span>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -146,6 +157,15 @@ export default function BlogPage() {
                     href={`/blog/${post.slug}`}
                     className="group block border border-border hover:border-foreground transition-all duration-300 hover-lift"
                   >
+                    {post.coverImage && (
+                      <div className="aspect-[16/9] overflow-hidden border-b border-border">
+                        <img
+                          src={post.coverImage}
+                          alt={post.title}
+                          className="w-full h-full object-cover object-top"
+                        />
+                      </div>
+                    )}
                     <div className="p-8 md:p-10">
                       <div className="flex items-center gap-3 mb-4">
                         <span className="inline-block px-3 py-1 text-[10px] font-medium tracking-wider rounded-sm" style={getCategoryStyle(post.category)}>

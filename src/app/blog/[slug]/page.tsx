@@ -86,6 +86,19 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
       </section>
 
+      {/* Cover Image */}
+      {post.meta.coverImage && (
+        <section className="pt-12 md:pt-16">
+          <div className="max-w-3xl mx-auto px-6">
+            <img
+              src={post.meta.coverImage}
+              alt={post.meta.title}
+              className="w-full rounded-lg border border-border"
+            />
+          </div>
+        </section>
+      )}
+
       {/* Article Content */}
       <section className="py-16 md:py-24">
         <article className="max-w-3xl mx-auto px-6 prose">
