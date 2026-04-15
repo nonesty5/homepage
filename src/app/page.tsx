@@ -277,55 +277,48 @@ export default function Home() {
         </section>
       )}
 
-      {/* ─── FAQ ─── */}
+      {/* ─── Situations ─── */}
       <section className="py-24 md:py-32 bg-card">
         <div className="max-w-7xl mx-auto px-6">
           <AnimateOnScroll>
             <SectionHeading
-              title="자주 묻는 질문"
+              title="이런 상황이라면 도움이 됩니다"
             />
           </AnimateOnScroll>
-          <AnimateOnScroll variant="fadeUp" delay={0.1}>
-            <div className="max-w-3xl mx-auto divide-y divide-border">
-              {[
-                {
-                  q: "기존 세무사에서 이관하려면 어떻게 하나요?",
-                  a: "기존 세무대리인에게 해지 의사를 전달하시면 됩니다. 장부와 신고 이력을 넘겨받는 과정에서 기존 장부 상태도 함께 점검하고, 필요한 정리가 있으면 같이 진행합니다.",
-                },
-                {
-                  q: "최소 계약 기간이 있나요?",
-                  a: "기장 계약은 1년 단위가 일반적이지만, 상황에 따라 유연하게 조정합니다. 세무 자문은 건별로도 가능합니다.",
-                },
-                {
-                  q: "자료 전달은 어떻게 하나요?",
-                  a: "카카오톡, 이메일, 클라우드 드라이브 등 편한 방식으로 보내주시면 됩니다. 계약 초기에 자료 종류와 전달 일정을 함께 정합니다.",
-                },
-                {
-                  q: "비용은 어떻게 정해지나요?",
-                  a: "사업자 형태, 매출 규모, 업종에 따라 달라집니다. 수임료 계산기에서 예상 금액을 바로 확인할 수 있습니다.",
-                  link: { href: "/pricing", label: "수임료 계산기 보기" },
-                },
-              ].map((item) => (
-                <div key={item.q} className="py-8 md:py-10">
-                  <h3 className="text-base md:text-lg font-bold tracking-tight">
-                    {item.q}
-                  </h3>
-                  <p className="mt-3 text-sm md:text-base text-muted leading-relaxed">
-                    {item.a}
+          <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border mt-12">
+            {[
+              {
+                situation: "신고할 때마다 급하게 맞추고 끝납니다",
+                detail: "조정 항목이 뭐였는지, 공제를 왜 안 받았는지 물어보면 답이 없습니다. 검토 기록이 남아야 다음 신고 때 근거가 됩니다.",
+              },
+              {
+                situation: "기장하는 곳과 자문하는 곳이 다릅니다",
+                detail: "지분 정리, 승계, 자산 이전을 검토하려면 기장 데이터가 바로 필요한데, 담당이 다르면 숫자 맞추는 데만 시간이 걸립니다.",
+              },
+              {
+                situation: "매출이 커졌는데 세무가 그대로입니다",
+                detail: "거래가 늘고 직원이 생기면 기장만으로는 부족합니다. 월별 보고와 조정 검토가 함께 돌아가야 숫자를 믿고 판단할 수 있습니다.",
+              },
+              {
+                situation: "법인을 처음 세웠는데 뭐부터 해야 할지 모릅니다",
+                detail: "부가세 · 원천세 일정, 비용 처리 기준, 대표 급여 설계까지 — 초기에 기준을 잡아두면 이후 기장과 신고가 훨씬 수월해집니다.",
+              },
+            ].map((item, index) => (
+              <StaggerItem key={item.situation}>
+                <div className="h-full bg-white p-8 md:p-10">
+                  <p className="text-xs tracking-[0.24em] text-subtle uppercase font-medium">
+                    {String(index + 1).padStart(2, "0")}
                   </p>
-                  {item.link && (
-                    <Link
-                      href={item.link.href}
-                      className="inline-flex items-center mt-4 text-sm font-medium tracking-wider hover-underline"
-                    >
-                      {item.link.label}
-                      <span className="ml-2">&rarr;</span>
-                    </Link>
-                  )}
+                  <h3 className="mt-5 text-lg md:text-xl font-bold tracking-tight leading-snug">
+                    {item.situation}
+                  </h3>
+                  <p className="mt-4 text-sm text-muted leading-relaxed">
+                    {item.detail}
+                  </p>
                 </div>
-              ))}
-            </div>
-          </AnimateOnScroll>
+              </StaggerItem>
+            ))}
+          </StaggerChildren>
         </div>
       </section>
 
