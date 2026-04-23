@@ -261,6 +261,94 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─── TEAM ─── */}
+      <section className="py-24 md:py-36 bg-background border-t border-border">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16 md:mb-24">
+            <AnimateOnScroll variant="fadeUp" className="lg:col-span-7">
+              <p className="eyebrow mb-8">Our Team</p>
+              <h2
+                className="text-[2.4rem] md:text-[3.6rem] lg:text-[4.4rem] font-black leading-[1] tracking-[-0.03em] text-foreground"
+                style={{ wordBreak: "keep-all" }}
+              >
+                팀으로 움직입니다
+                <span className="green-dot">.</span>
+              </h2>
+            </AnimateOnScroll>
+            <AnimateOnScroll variant="fadeUp" delay={0.15} className="lg:col-span-5 lg:pt-6">
+              <p
+                className="text-[1.05rem] md:text-[1.1rem] leading-[1.7] text-muted"
+                style={{ wordBreak: "keep-all" }}
+              >
+                기장 담당자와 자문 회계사가 한 팀 안에 있습니다. 숫자가 만들어지는 자리와 판단이 내려지는 자리가 같은 기준으로 연결됩니다.
+              </p>
+            </AnimateOnScroll>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border">
+            {/* 박민상 */}
+            <AnimateOnScroll variant="fadeUp" className="bg-background p-10 md:p-12">
+              <p className="text-[0.7rem] font-bold tracking-[0.2em] uppercase text-muted mb-6">
+                Founder · CPA
+              </p>
+              <h3 className="text-[2rem] md:text-[2.4rem] font-black leading-[1.05] tracking-[-0.025em] text-foreground">
+                박민상<span className="green-dot">.</span>
+              </h3>
+              <p
+                className="mt-5 text-[0.95rem] leading-[1.75] text-muted max-w-[36ch]"
+                style={{ wordBreak: "keep-all" }}
+              >
+                Big4 감사·세무·가치평가 기준을 기장에 그대로 적용합니다. 대표님의 다음 결정을 위한 장부를 만듭니다.
+              </p>
+              <ul className="mt-8 space-y-2.5">
+                {["세무 기장 · 신고", "세무 조정 · 자문", "기업가치평가 · M&A · IPO"].map((area) => (
+                  <li key={area} className="flex items-start gap-3 text-[0.9rem] text-foreground leading-relaxed">
+                    <span className="green-dot mt-0.5 flex-shrink-0 text-[1.1rem]">.</span>
+                    <span>{area}</span>
+                  </li>
+                ))}
+              </ul>
+            </AnimateOnScroll>
+
+            {/* Ledger */}
+            <AnimateOnScroll variant="fadeUp" delay={0.1} className="bg-card p-10 md:p-12">
+              <p className="text-[0.7rem] font-bold tracking-[0.2em] uppercase text-muted mb-6">
+                세무기장 전담
+              </p>
+              <h3 className="text-[2rem] md:text-[2.4rem] font-black leading-[1.05] tracking-[-0.025em] text-foreground">
+                Ledger<span className="green-dot">.</span>
+              </h3>
+              <p
+                className="mt-5 text-[0.95rem] leading-[1.75] text-muted max-w-[36ch]"
+                style={{ wordBreak: "keep-all" }}
+              >
+                실무 기장을 전담합니다. 자료 수집부터 장부 마감, 신고 일정 운영까지 빠짐없이 챙깁니다.
+              </p>
+              <ul className="mt-8 space-y-2.5">
+                {["법인·개인사업자 월별 기장", "부가세·원천세 신고 운영", "증빙 점검 · 장부 마감"].map((area) => (
+                  <li key={area} className="flex items-start gap-3 text-[0.9rem] text-foreground leading-relaxed">
+                    <span className="green-dot mt-0.5 flex-shrink-0 text-[1.1rem]">.</span>
+                    <span>{area}</span>
+                  </li>
+                ))}
+              </ul>
+            </AnimateOnScroll>
+          </div>
+
+          <AnimateOnScroll variant="fadeUp" delay={0.1}>
+            <div className="mt-10">
+              <Link
+                href="/members"
+                className="group inline-flex items-center gap-2 text-[0.85rem] font-bold tracking-[0.14em] uppercase text-foreground border-b-2 border-foreground hover:border-accent hover:text-accent transition-colors pb-1"
+              >
+                팀 전체 보기
+                <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </Link>
+            </div>
+          </AnimateOnScroll>
+        </div>
+      </section>
+
       {/* ─── PRINCIPAL (Founder) ─── */}
       {lead && (
         <section className="py-24 md:py-36 bg-background">
