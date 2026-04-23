@@ -11,7 +11,6 @@ export default function CopyUrlButton() {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // fallback
       const input = document.createElement("input");
       input.value = window.location.href;
       document.body.appendChild(input);
@@ -26,10 +25,10 @@ export default function CopyUrlButton() {
   return (
     <button
       onClick={handleCopy}
-      className="w-9 h-9 border border-border flex items-center justify-center text-muted hover:text-foreground hover:border-foreground transition-colors text-xs font-bold"
-      aria-label="URL 복사"
+      className="flex h-9 w-9 items-center justify-center border border-border text-xs font-bold text-muted transition-colors hover:border-foreground hover:text-foreground"
+      aria-label={copied ? "URL 복사 완료" : "URL 복사"}
     >
-      {copied ? "V" : "URL"}
+      {copied ? "✓" : "URL"}
     </button>
   );
 }

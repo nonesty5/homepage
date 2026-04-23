@@ -3,9 +3,13 @@
 import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from "react";
 import {
   ADD_ONS,
-  COMPLEXITY,
   CUSTOM_FLAGS,
   DEFAULT_STATE,
+  EXTRA_PAYEE_PRESETS,
+  formatHeadcount,
+  getIndustryPricingBasis,
+  getPricingProfileLabel,
+  getPricingTable,
   PRICING,
   REVENUE_OPTIONS,
   REVENUE_PRESETS,
@@ -44,6 +48,7 @@ type Action =
   | { type: "setIndustry"; id: string }
   | { type: "setRevenue"; value: number }
   | { type: "setStaff"; value: number }
+  | { type: "setNonEmployeePayees"; value: number }
   | { type: "setPayrollMode"; value: PayrollMode }
   | { type: "setSetupMode"; value: SetupModeKey }
   | { type: "toggleAddOn"; id: string }
@@ -62,8 +67,20 @@ function reducer(state: CalcState, action: Action): CalcState {
       return { ...state, revenue: Math.max(0, action.value) };
     case "setStaff":
       return { ...state, staffCount: Math.max(0, Math.min(STAFF_RANGE_MAX, action.value)) };
+    case "setNonEmployeePayees":
+      return {
+        ...state,
+        nonEmployeePayeeCount: Math.max(0, Math.min(STAFF_RANGE_MAX, action.value)),
+      };
     case "setPayrollMode":
-      return { ...state, payrollMode: action.value };
+      return {
+        ...state,
+        payrollMode: action.value,
+        addOns:
+          action.value === "fourInsurance"
+            ? state.addOns
+            : state.addOns.filter((id) => id !== "insuranceAdmin"),
+      };
     case "setSetupMode":
       return { ...state, setupMode: action.value };
     case "toggleAddOn": {
@@ -87,6 +104,8 @@ function reducer(state: CalcState, action: Action): CalcState {
 
 /* ─── Component ─── */
 
+const REVENUE_MARKERS = [50_000_000, 300_000_000, 1_000_000_000, 10_000_000_000] as const;
+
 export default function PricingCalculator() {
   const [state, dispatch] = useReducer(reducer, DEFAULT_STATE);
   const [industryQuery, setIndustryQuery] = useState("");
@@ -100,6 +119,17 @@ export default function PricingCalculator() {
 
   const estimate = useMemo(() => calculateEstimate(state), [state]);
   const selectedIndustry = useMemo(() => getIndustry(state.industryId), [state.industryId]);
+  const selectedPricing = useMemo(
+    () => getPricingTable(state.businessType, state.industryId),
+    [state.businessType, state.industryId],
+  );
+  const visibleAddOns = useMemo(
+    () =>
+      ADD_ONS.filter(
+        (addon) => addon.id !== "insuranceAdmin" || state.payrollMode === "fourInsurance",
+      ),
+    [state.payrollMode],
+  );
   const filteredIndustries = useMemo(() => getFilteredIndustries(industryQuery).slice(0, 8), [industryQuery]);
 
   /* ─ Hydrate from URL or localStorage on mount. */
@@ -221,7 +251,7 @@ export default function PricingCalculator() {
 
   /* ─ Render ─ */
 
-  const monthlyTier = describeRevenueTier(PRICING[state.businessType].monthlyTiers, state.revenue);
+  const monthlyTier = describeRevenueTier(selectedPricing.monthlyTiers, state.revenue);
   const revenueIndex = getNearestRevenueIndex(state.revenue);
 
   return (
@@ -277,7 +307,7 @@ export default function PricingCalculator() {
                                 onClick={() => dispatch({ type: "setBusinessType", value: type })}
                                 className={`text-left px-4 py-4 border transition-all ${
                                   isSelected
-                                    ? "border-foreground bg-surface"
+                                    ? "border-foreground bg-card"
                                     : "border-border hover:border-strong"
                                 }`}
                                 aria-pressed={isSelected}
@@ -336,7 +366,7 @@ export default function PricingCalculator() {
                             <button
                               type="button"
                               onClick={() => onSelectIndustry("other")}
-                              className="text-left px-3 py-2.5 hover:bg-surface transition-colors"
+                              className="text-left px-3 py-2.5 hover:bg-card transition-colors"
                             >
                               <strong className="block text-sm">기타·잘 모르겠음</strong>
                               <span className="block text-xs text-muted mt-0.5">
@@ -354,7 +384,7 @@ export default function PricingCalculator() {
                                   className={`text-left px-3 py-2.5 transition-colors ${
                                     isSelected
                                       ? "bg-foreground text-white"
-                                      : "hover:bg-surface"
+                                      : "hover:bg-card"
                                   }`}
                                 >
                                   <div className="flex items-start justify-between gap-3">
@@ -367,7 +397,7 @@ export default function PricingCalculator() {
                                       </span>
                                     </div>
                                     <span className={`flex-shrink-0 text-[0.65rem] uppercase tracking-wider ${isSelected ? "text-neutral-400" : "text-subtle"}`}>
-                                      {COMPLEXITY[industry.complexity].label}
+                                      {getPricingProfileLabel(industry.id)}
                                     </span>
                                   </div>
                                 </button>
@@ -386,7 +416,7 @@ export default function PricingCalculator() {
                           자주 쓰는 구간은 슬라이더로, 더 정확한 숫자가 있으면 직접 입력으로 바꿔도 됩니다.
                         </p>
 
-                        <div className="bg-surface border border-border p-4 md:p-5">
+                        <div className="bg-card border border-border p-4 md:p-5">
                           <div className="flex items-baseline justify-between mb-3">
                             <span className="text-xs text-muted uppercase tracking-wider">
                               현재 선택한 연매출
@@ -408,11 +438,27 @@ export default function PricingCalculator() {
                             className="w-full accent-foreground"
                             aria-label="연매출 슬라이더"
                           />
-                          <div className="flex justify-between text-[0.65rem] text-subtle mt-1 uppercase tracking-wider">
-                            <span>5천만</span>
-                            <span>3억</span>
-                            <span>10억</span>
-                            <span>100억</span>
+                          <div className="relative mt-1 h-9 text-[0.65rem] text-subtle uppercase tracking-wider">
+                            {REVENUE_MARKERS.map((amount) => {
+                              const markerIndex = REVENUE_OPTIONS.indexOf(amount);
+                              const left = `${(markerIndex / (REVENUE_OPTIONS.length - 1)) * 100}%`;
+                              const alignmentClass =
+                                markerIndex === 0
+                                  ? "translate-x-0 text-left"
+                                  : markerIndex === REVENUE_OPTIONS.length - 1
+                                    ? "-translate-x-full text-right"
+                                    : "-translate-x-1/2 text-center";
+
+                              return (
+                                <span
+                                  key={amount}
+                                  className={`absolute top-0 ${alignmentClass}`}
+                                  style={{ left }}
+                                >
+                                  {formatRevenueLabel(amount)}
+                                </span>
+                              );
+                            })}
                           </div>
                           <p className="mt-3 text-xs text-muted leading-relaxed">
                             {state.revenue > 0
@@ -477,11 +523,11 @@ export default function PricingCalculator() {
                     {step.id === 4 && (
                       <>
                         <p className="text-xs text-muted leading-relaxed">
-                          월 업무량과 연말정산 범위에 영향을 주는 핵심 항목만 따로 묻습니다.
+                          직원 수와 별도로, 대표·프리랜서·기타소득자·직원 외 4대보험 대상 인원도 같이 반영합니다.
                         </p>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          <div className="bg-surface border border-border p-4 md:p-5">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          <div className="bg-card border border-border p-4 md:p-5">
                             <div className="flex items-baseline justify-between mb-3">
                               <span className="text-xs text-muted uppercase tracking-wider">
                                 직원 수
@@ -500,18 +546,69 @@ export default function PricingCalculator() {
                               className="w-full accent-foreground"
                               aria-label="직원 수 슬라이더"
                             />
-                            <div className="flex justify-between text-[0.65rem] text-subtle mt-1 uppercase tracking-wider">
-                              <span>0</span>
-                              <span>5</span>
-                              <span>10</span>
-                              <span>30+</span>
+                            <div className="relative mt-1 h-5 text-[0.65rem] text-subtle uppercase tracking-wider">
+                              {([0, 5, 10, 30] as const).map((n) => {
+                                const pct = (n / STAFF_RANGE_MAX) * 100;
+                                return (
+                                  <span
+                                    key={n}
+                                    className={`absolute top-0 ${n === 0 ? "translate-x-0" : "-translate-x-1/2"}`}
+                                    style={{ left: `${pct}%` }}
+                                  >
+                                    {n === 30 ? "30+" : n}
+                                  </span>
+                                );
+                              })}
                             </div>
                             <p className="mt-3 text-xs text-muted leading-relaxed">
-                              대표 제외, 원천세 신고 대상 인원 기준입니다.
+                              급여 지급 직원 기준입니다. 대표, 프리랜서, 기타소득자는 아래에서 따로 입력합니다.
                             </p>
                           </div>
 
-                          <div>
+                          <div className="bg-card border border-border p-4 md:p-5">
+                            <div className="flex items-baseline justify-between mb-3">
+                              <span className="text-xs text-muted uppercase tracking-wider">
+                                직원 외 신고 인원
+                              </span>
+                              <strong className="text-2xl font-bold tabular-nums">
+                                {formatHeadcount(state.nonEmployeePayeeCount)}
+                              </strong>
+                            </div>
+                            <input
+                              type="range"
+                              min={0}
+                              max={STAFF_RANGE_MAX}
+                              step={1}
+                              value={state.nonEmployeePayeeCount}
+                              onChange={(e) =>
+                                dispatch({
+                                  type: "setNonEmployeePayees",
+                                  value: Number(e.target.value),
+                                })
+                              }
+                              className="w-full accent-foreground"
+                              aria-label="직원 외 신고 인원 슬라이더"
+                            />
+                            <div className="relative mt-1 h-5 text-[0.65rem] text-subtle uppercase tracking-wider">
+                              {([0, 5, 10, 30] as const).map((n) => {
+                                const pct = (n / STAFF_RANGE_MAX) * 100;
+                                return (
+                                  <span
+                                    key={n}
+                                    className={`absolute top-0 ${n === 0 ? "translate-x-0" : "-translate-x-1/2"}`}
+                                    style={{ left: `${pct}%` }}
+                                  >
+                                    {n === 30 ? "30+" : n}
+                                  </span>
+                                );
+                              })}
+                            </div>
+                            <p className="mt-3 text-xs text-muted leading-relaxed">
+                              대표, 프리랜서, 기타소득자, 직원 외 4대보험 대상 인원을 입력합니다.
+                            </p>
+                          </div>
+
+                          <div className="bg-card border border-border p-4 md:p-5">
                             <div className="mb-2">
                               <p className="text-xs text-muted uppercase tracking-wider">
                                 급여 형태
@@ -535,7 +632,7 @@ export default function PricingCalculator() {
                                     onClick={() => dispatch({ type: "setPayrollMode", value: mode })}
                                     className={`w-full text-left px-3 py-3 border transition-colors ${
                                       isSelected
-                                        ? "border-foreground bg-surface"
+                                        ? "border-foreground bg-card"
                                         : "border-border hover:border-strong"
                                     }`}
                                     aria-pressed={isSelected}
@@ -551,24 +648,58 @@ export default function PricingCalculator() {
                           </div>
                         </div>
 
-                        <div className="flex flex-wrap gap-2">
-                          {STAFF_PRESETS.map((count) => {
-                            const isActive = state.staffCount === count;
-                            return (
-                              <button
-                                key={count}
-                                type="button"
-                                onClick={() => dispatch({ type: "setStaff", value: count })}
-                                className={`text-xs px-3 py-1.5 border transition-colors ${
-                                  isActive
-                                    ? "border-foreground bg-foreground text-white"
-                                    : "border-border hover:border-strong text-muted"
-                                }`}
-                              >
-                                {count >= 30 ? "30명+" : `${count}명`}
-                              </button>
-                            );
-                          })}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <p className="mb-2 text-xs text-muted uppercase tracking-wider">
+                              직원 수 빠른 선택
+                            </p>
+                            <div className="flex flex-wrap gap-2">
+                              {STAFF_PRESETS.map((count) => {
+                                const isActive = state.staffCount === count;
+                                return (
+                                  <button
+                                    key={count}
+                                    type="button"
+                                    onClick={() => dispatch({ type: "setStaff", value: count })}
+                                    className={`text-xs px-3 py-1.5 border transition-colors ${
+                                      isActive
+                                        ? "border-foreground bg-foreground text-white"
+                                        : "border-border hover:border-strong text-muted"
+                                    }`}
+                                  >
+                                    {count >= 30 ? "30명+" : `${count}명`}
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          </div>
+
+                          <div>
+                            <p className="mb-2 text-xs text-muted uppercase tracking-wider">
+                              직원 외 신고 인원 빠른 선택
+                            </p>
+                            <div className="flex flex-wrap gap-2">
+                              {EXTRA_PAYEE_PRESETS.map((count) => {
+                                const isActive = state.nonEmployeePayeeCount === count;
+                                return (
+                                  <button
+                                    key={count}
+                                    type="button"
+                                    onClick={() =>
+                                      dispatch({ type: "setNonEmployeePayees", value: count })
+                                    }
+                                    className={`text-xs px-3 py-1.5 border transition-colors ${
+                                      isActive
+                                        ? "border-foreground bg-foreground text-white"
+                                        : "border-border hover:border-strong text-muted"
+                                    }`}
+                                  >
+                                    {count >= 30 ? "30명+" : `${count}명`}
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          </div>
                         </div>
 
                       </>
@@ -591,7 +722,7 @@ export default function PricingCalculator() {
                                 onClick={() => dispatch({ type: "setSetupMode", value: key })}
                                 className={`text-left px-4 py-4 border transition-colors ${
                                   isSelected
-                                    ? "border-foreground bg-surface"
+                                    ? "border-foreground bg-card"
                                     : "border-border hover:border-strong"
                                 }`}
                                 aria-pressed={isSelected}
@@ -624,7 +755,7 @@ export default function PricingCalculator() {
                             추가 대행업무
                           </p>
                           <div className="grid grid-cols-1 gap-2">
-                            {ADD_ONS.map((addon) => {
+                            {visibleAddOns.map((addon) => {
                               const isSelected = state.addOns.includes(addon.id);
                               return (
                                 <button
@@ -633,7 +764,7 @@ export default function PricingCalculator() {
                                   onClick={() => dispatch({ type: "toggleAddOn", id: addon.id })}
                                   className={`text-left px-4 py-3 border transition-colors flex items-start gap-3 ${
                                     isSelected
-                                      ? "border-foreground bg-surface"
+                                      ? "border-foreground bg-card"
                                       : "border-border hover:border-strong"
                                   }`}
                                   aria-pressed={isSelected}
@@ -674,7 +805,7 @@ export default function PricingCalculator() {
                                   onClick={() => dispatch({ type: "toggleFlag", id: flag.id })}
                                   className={`text-left px-4 py-3 border transition-colors flex items-start gap-3 ${
                                     isSelected
-                                      ? "border-foreground bg-surface"
+                                      ? "border-foreground bg-card"
                                       : "border-border hover:border-strong"
                                   }`}
                                   aria-pressed={isSelected}
@@ -708,7 +839,7 @@ export default function PricingCalculator() {
           ))}
         </div>
 
-        <div className="mt-6 bg-surface border border-border p-4 md:p-5">
+        <div className="mt-6 bg-card border border-border p-4 md:p-5">
           <strong className="block text-xs uppercase tracking-[0.15em] text-muted mb-2">
             기본 가정
           </strong>
@@ -751,7 +882,7 @@ export default function PricingCalculator() {
                 ? "연매출을 넣으면 월 기장료와 연 신고료가 바로 계산됩니다."
                 : estimate.isCustom
                   ? "체크한 조건은 표준 계산 범위를 넘어가므로, 아래 금액은 시작가 기준입니다."
-                  : "질문형 입력 기준으로 정리한 공개용 추정치입니다."}
+                  : "질문형 입력 기준으로 정리한 참고용 추정치이며, 세부적인 사정에 따라 수임료는 달라질 수 있습니다."}
             </p>
           </div>
 
@@ -801,11 +932,11 @@ export default function PricingCalculator() {
               value={estimate.needsRevenue ? "-" : formatWon(estimate.monthlyEquivalent)}
               borderTop
             />
-            <div className="col-span-2 border-t border-border px-4 py-3 bg-surface">
+            <div className="col-span-2 border-t border-border px-4 py-3 bg-card">
               <span className="text-[0.65rem] uppercase tracking-[0.15em] text-muted">산정 기준</span>
               <strong className="block text-sm mt-1 leading-snug">
-                {PRICING[state.businessType].label} · {selectedIndustry.label} (
-                {COMPLEXITY[state.complexity].label})
+                {selectedPricing.label} · {selectedIndustry.label} (
+                {getIndustryPricingBasis(state.industryId)})
               </strong>
             </div>
           </div>
@@ -898,7 +1029,7 @@ export default function PricingCalculator() {
               이 금액에 포함된 기본 범위
             </h3>
             <ul className="space-y-2">
-              {PRICING[state.businessType].included.map((item) => (
+              {selectedPricing.included.map((item) => (
                 <li key={item.title} className="text-sm">
                   <strong className="block">{item.title}</strong>
                   <span className="block text-xs text-muted mt-0.5 leading-relaxed">
@@ -911,37 +1042,11 @@ export default function PricingCalculator() {
 
           {/* Notes */}
           <div className="px-5 md:px-6 py-5">
-            <h3 className="text-sm font-bold uppercase tracking-[0.1em] mb-3">설명 및 전제</h3>
             <ul className="space-y-2 text-xs text-muted leading-relaxed">
-              <li>
-                <strong className="text-foreground">업종 매핑.</strong> {selectedIndustry.label}는{" "}
-                {COMPLEXITY[state.complexity].label} 기준으로 계산했습니다.
-              </li>
-              <li>
-                <strong className="text-foreground">단가 기준.</strong> 내부 단가표와 기존 보수표에서
-                공개 가능한 항목만 남겨 단순화한 추정치입니다.
-              </li>
-              <li>
-                <strong className="text-foreground">부가세.</strong> 표시 금액은 모두 부가세 별도입니다.
-              </li>
-              <li>
-                <strong className="text-foreground">자료 상태.</strong> 자료 누락이 크지 않고 월 단위
-                전달이 이루어진다는 가정을 둡니다.
-              </li>
-              <li>
-                <strong className="text-foreground">공유 가능.</strong> 현재 입력값은 링크에 저장되므로
-                같은 조건을 다른 사람에게 그대로 전달할 수 있습니다.
-              </li>
               {estimate.isCustom && !estimate.needsRevenue && (
                 <li>
                   <strong className="text-foreground">별도 협의 사유.</strong>{" "}
                   {estimate.customReasons.join(", ")}
-                </li>
-              )}
-              {!estimate.isCustom && !estimate.needsRevenue && (
-                <li>
-                  <strong className="text-foreground">별도 협의로 넘어가는 경우.</strong> 외감, 연결,
-                  해외거래, 수정신고, 매출 구간 초과는 상담 후 확정합니다.
                 </li>
               )}
               {estimate.setupFee > 0 && (

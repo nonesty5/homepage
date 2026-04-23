@@ -1,46 +1,56 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* ─── Surface colors ───
-   * styleseed 원칙 ① 순백·순흑 금지
-   * 페이지는 따뜻한 오프화이트(#FAFAFA), 카드는 순백(#FFFFFF)으로 역전 배치 →
-   * 카드가 페이지 위로 살짝 떠오르는 효과.
-   */
-  --color-background: #FAFAFA;
-  --color-card: #FFFFFF;
-  --color-surface: #F3F2EE;
+  /* ─── Deloitte 톤: 순백 + 순흑 + 시그니처 그린 ─── */
+  --color-background: #FFFFFF;
+  --color-card: #F5F5F5;
+  --color-surface: #000000;        /* 다크 섹션 */
 
-  /* ─── Text & border (5-level gray) ───
-   * 순흑(#0a0a0a) 대신 charcoal #2A2A2A를 기본으로.
-   * 다섯 단계 명도 차이로 hierarchy 명시.
-   */
-  --color-foreground: #2A2A2A;  /* 1차 — 본문·헤딩 */
-  --color-strong: #3C3C3C;      /* 2차 — secondary 본문 */
-  --color-muted: #6A6A6A;       /* 3차 — caption */
-  --color-subtle: #9B9B9B;      /* 5차 — annotation */
-  --color-border: #E8E6E1;      /* 따뜻한 베이지 hairline */
+  --color-foreground: #000000;     /* Deloitte는 순흑 */
+  --color-strong: #1A1A1A;
+  --color-muted: #4D4D4D;
+  --color-subtle: #767676;
+  --color-border: #E5E5E5;
 
-  /* ─── Accent color (단일 소스) ───
-   * 활성: A3 Oxford Navy 패밀리 (라이트/다크 두 톤)
-   * 다른 컬러 패밀리로 교체:
-   *   A1 Burgundy:  #6B2027 / #B6585F
-   *   A2 Brass:     #8B6A2A / #C9A55C
-   *   A3 Oxford:    #1F3F77 / #5A7DB5  (현재)
-   */
-  --color-accent: #1F3F77;
-  --color-accent-bright: #5A7DB5;
-  --color-accent-foreground: #ffffff;
+  --color-accent: #86BC25;         /* Deloitte Green */
+  --color-accent-bright: #9CCB3C;
+  --color-accent-foreground: #000000;
 
-  /* ─── Shadow tokens ───
-   * styleseed 원칙 ③ — 4~12% 범위 내에서만, 컬러 섀도우 금지.
-   * 정의만 해두고 적용은 선택적 (현재는 hairline 디자인 유지).
-   */
-  --shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
-  --shadow-button: 0 1px 3px 0 rgba(0, 0, 0, 0.06);
-  --shadow-hover: 0 2px 6px -1px rgba(0, 0, 0, 0.08);
-  --shadow-elevated: 0 4px 12px -2px rgba(0, 0, 0, 0.08);
+  --shadow-card: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-button: 0 1px 2px 0 rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 4px 16px -4px rgba(0, 0, 0, 0.12);
+  --shadow-elevated: 0 8px 24px -8px rgba(0, 0, 0, 0.15);
 
-  --font-sans: "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  --font-sans: "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+}
+
+/* ─── Deloitte 시그니처: 그린 닷 ───
+ * 브랜드·헤드라인 끝에 찍히는 초록 마침표.
+ */
+.green-dot {
+  color: var(--color-accent);
+  font-weight: 900;
+  display: inline-block;
+  line-height: 1;
+}
+
+/* Eyebrow 라벨 — 섹션 상단 올캡스 + 그린 헤어라인 */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-foreground);
+}
+.eyebrow::before {
+  content: "";
+  width: 2.5rem;
+  height: 3px;
+  background: var(--color-accent);
+  display: inline-block;
 }
 
 /* ─── Base ─── */

@@ -1,9 +1,9 @@
 export const siteConfig = {
   name: "메리디안 택스 어드바이저리",
   title: "MERIDIAN",
-  tagline: "세무 기장부터 자문까지, 한 사람이 이어서 봅니다.",
+  tagline: "좋은 장부가, 좋은 결정을 만듭니다.",
   description:
-    "월 기장, 세무조정, 의사결정 자문을 공인회계사가 직접 검토합니다. 필요하면 가치평가와 거래 자문까지 연결합니다.",
+    "Big4 출신 공인회계사가 세무기장을 직접 검토합니다. 정확한 장부에서 출발해 세무신고 · 자문 · 가치평가로 연결됩니다.",
   url: "https://meridian-advisory.com",
   email: "mscpa@dscpa.co.kr",
   phone: "010-3300-7339",

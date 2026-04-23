@@ -19,7 +19,7 @@ const defaultForm: FormData = {
   email: "",
   phone: "",
   type: "전체 진단",
-  companyStage: "법인을 막 세움",
+  companyStage: "매출 성장기",
   bottleneck: "현재 병목 진단 필요",
   desiredOutput: "운영 진단 및 우선순위 메모",
   timeline: "이번 달 안",
@@ -156,7 +156,6 @@ export default function ContactForm({ initialValues }: ContactFormProps) {
             onChange={(e) => updateField("companyStage", e.target.value)}
             className="w-full px-0 py-3 bg-transparent text-base border-0 border-b border-border focus:outline-none focus:border-foreground transition-colors duration-300 appearance-none cursor-pointer"
           >
-            <option value="법인을 막 세움">법인을 막 세움</option>
             <option value="매출 성장기">매출 성장기</option>
             <option value="중요한 결정 직전">중요한 결정 직전</option>
             <option value="기타">기타</option>

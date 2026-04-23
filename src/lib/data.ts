@@ -260,7 +260,7 @@ export const members: Member[] = [
     role: "공인회계사 · Founder",
     image: "/images/founder.png",
     description:
-      "삼정·한영에서 감사와 세무조정을, NH투자증권 IB에서 가치평가와 거래 자문을 다뤘습니다. 지금은 기장부터 신고, 의사결정 자문까지 한 사람이 이어서 봅니다.",
+      "삼정과 EY한영에서 감사·세무조정·가치평가의 검토 기준을 익혔습니다. 그 기준을 세무기장에 그대로 적용해, 대표님의 다음 결정을 만드는 장부를 작성합니다.",
     credentials: [
       "공인회계사 (KICPA)",
       "성균관대학교 경영학과 졸업",
@@ -277,7 +277,6 @@ export const members: Member[] = [
     experience: [
       "現 동성회계법인 / 메리디안 택스 어드바이저리 Founder",
       "前 한영회계법인",
-      "前 NH투자증권 IB",
       "前 삼정회계법인",
     ],
   },
