@@ -515,7 +515,7 @@ export default function Home() {
               className="mt-10 text-[1.1rem] md:text-[1.25rem] leading-[1.65] text-background/75 max-w-[48ch]"
               style={{ wordBreak: "keep-all" }}
             >
-              결정을 앞두고 있다면, 숫자를 먼저 보는 게 맞습니다. 가볍게 꺼내주세요.
+              결정 전에 숫자를 먼저 확인하십시오. 구체적인 상황일수록 빠르게 검토합니다.
             </p>
           </AnimateOnScroll>
 
