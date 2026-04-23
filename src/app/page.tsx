@@ -130,9 +130,6 @@ export default function Home() {
                   className="w-full object-cover"
                   style={{ aspectRatio: "4/3" }}
                 />
-                <figcaption className="mt-3 text-[0.72rem] tracking-[0.14em] uppercase text-background/40">
-                  Fig. 01 &mdash; 검토 자리의 기록 &mdash; 한 번의 검토가 세 번의 수정을 줄인다
-                </figcaption>
               </figure>
               {/* Single CTA + sidecar link */}
               <div className="mt-12 flex flex-wrap items-baseline gap-x-10 gap-y-4">
