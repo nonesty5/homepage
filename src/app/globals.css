@@ -12,9 +12,9 @@
   --color-subtle: #767676;
   --color-border: #E5E5E5;
 
-  --color-accent: #0C6E3D;         /* Malachite */
-  --color-accent-bright: #0F9252;
-  --color-accent-foreground: #FFFFFF;
+  --color-accent: #00A86B;         /* Vivid Jade */
+  --color-accent-bright: #00CC82;
+  --color-accent-foreground: #000000;
 
   --shadow-card: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-button: 0 1px 2px 0 rgba(0, 0, 0, 0.08);
