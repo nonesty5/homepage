@@ -515,7 +515,7 @@ export default function Home() {
               className="mt-10 text-[1.1rem] md:text-[1.25rem] leading-[1.65] text-background/75 max-w-[48ch]"
               style={{ wordBreak: "keep-all" }}
             >
-              매출 규모, 기존 기장 여부, 지금 가장 급한 의사결정 — 이 세 가지만 알려주시면 이메일 또는 전화로 첫 답변 드립니다.
+              결정을 앞두고 있다면, 숫자를 먼저 보는 게 맞습니다. 가볍게 꺼내주세요.
             </p>
           </AnimateOnScroll>
 
