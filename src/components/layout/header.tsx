@@ -38,11 +38,7 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
-          scrolled
-            ? "bg-background/88 backdrop-blur-xl shadow-[0_1px_0_0_rgba(19,16,11,0.07)]"
-            : "bg-gradient-to-b from-black/30 to-transparent"
-        }`}
+        className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-xl shadow-[0_1px_0_0_rgba(0,0,0,0.06)]"
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8 h-18 flex items-center justify-between">
           {/* Logo */}
@@ -50,7 +46,7 @@ export default function Header() {
             href="/"
             className="transition-opacity duration-300 hover:opacity-60 flex-shrink-0"
           >
-            <span className={`text-[1.35rem] md:text-[1.6rem] font-bold tracking-tight leading-none transition-colors duration-500 ${mobileOpen || scrolled ? "text-foreground" : "text-background"}`}>
+            <span className="text-[1.35rem] md:text-[1.6rem] font-bold tracking-tight leading-none text-foreground">
               Meridian<span className="green-dot">.</span>
             </span>
           </Link>
@@ -68,9 +64,7 @@ export default function Header() {
                     key={link.href}
                     href={link.href}
                     className={`relative text-[0.8125rem] font-medium tracking-[0.08em] transition-colors duration-300 hover-underline ${
-                      scrolled
-                        ? isActive ? "text-foreground hover:text-foreground" : "text-muted hover:text-foreground"
-                        : isActive ? "text-background hover:text-background" : "text-background/60 hover:text-background"
+                      isActive ? "text-foreground" : "text-muted hover:text-foreground"
                     }`}
                   >
                     {link.label}
@@ -81,11 +75,7 @@ export default function Header() {
             <div className="flex items-center gap-3">
               <Link
                 href={siteConfig.pricingUrl}
-                className={`text-[0.75rem] font-medium tracking-[0.08em] uppercase px-4 py-2 border transition-colors duration-300 ${
-                  scrolled
-                    ? "border-border text-muted hover:text-foreground hover:border-foreground"
-                    : "border-background/30 text-background/70 hover:text-background hover:border-background"
-                }`}
+                className="text-[0.75rem] font-medium tracking-[0.08em] uppercase px-4 py-2 border border-border text-muted hover:text-foreground hover:border-foreground transition-colors duration-300"
               >
                 Pricing
               </Link>
@@ -93,11 +83,7 @@ export default function Header() {
                 href={siteConfig.clientPortalUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`text-[0.75rem] font-medium tracking-[0.08em] uppercase px-4 py-2 border transition-colors duration-300 ${
-                  scrolled
-                    ? "border-border text-muted hover:text-foreground hover:border-foreground"
-                    : "border-background/30 text-background/70 hover:text-background hover:border-background"
-                }`}
+                className="text-[0.75rem] font-medium tracking-[0.08em] uppercase px-4 py-2 border border-border text-muted hover:text-foreground hover:border-foreground transition-colors duration-300"
               >
                 Client Login
               </a>
@@ -112,17 +98,17 @@ export default function Header() {
           >
             <div className="relative w-5 h-3.5">
               <span
-                className={`absolute left-0 top-0 block w-5 h-[1.5px] transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${mobileOpen || scrolled ? "bg-foreground" : "bg-background"} ${
+                className={`absolute left-0 top-0 block w-5 h-[1.5px] bg-foreground transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                   mobileOpen ? "rotate-45 top-1/2 -translate-y-1/2" : ""
                 }`}
               />
               <span
-                className={`absolute left-0 top-1/2 -translate-y-1/2 block w-5 h-[1.5px] transition-all duration-300 ${mobileOpen || scrolled ? "bg-foreground" : "bg-background"} ${
+                className={`absolute left-0 top-1/2 -translate-y-1/2 block w-5 h-[1.5px] bg-foreground transition-all duration-300 ${
                   mobileOpen ? "opacity-0 scale-x-0" : ""
                 }`}
               />
               <span
-                className={`absolute left-0 bottom-0 block w-5 h-[1.5px] transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${mobileOpen || scrolled ? "bg-foreground" : "bg-background"} ${
+                className={`absolute left-0 bottom-0 block w-5 h-[1.5px] bg-foreground transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                   mobileOpen ? "-rotate-45 top-1/2 -translate-y-1/2" : ""
                 }`}
               />
