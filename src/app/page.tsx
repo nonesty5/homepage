@@ -208,7 +208,7 @@ export default function Home() {
                 className="text-[1.05rem] md:text-[1.1rem] leading-[1.7] text-muted max-w-[40ch]"
                 style={{ wordBreak: "keep-all" }}
               >
-                메리디안의 중심은 세무기장입니다. 정확한 장부에서 출발해야 신고 · 조정 · 자문 · 가치평가의 결과가 신뢰할 수 있습니다.
+                모든 의사결정의 기준은 세무기장에서 시작합니다. 정확한 장부에서 출발해야 신고 · 조정 · 자문 · 가치평가의 결과가 신뢰할 수 있습니다.
               </p>
             </AnimateOnScroll>
           </div>
