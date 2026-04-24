@@ -12,9 +12,9 @@
   --color-subtle: #767676;
   --color-border: #E5E5E5;
 
-  --color-accent: #00A86B;         /* Vivid Jade */
-  --color-accent-bright: #00CC82;
-  --color-accent-foreground: #000000;
+  --color-accent: #0047AB;         /* Cobalt */
+  --color-accent-bright: #1A60CC;
+  --color-accent-foreground: #FFFFFF;
 
   --shadow-card: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-button: 0 1px 2px 0 rgba(0, 0, 0, 0.08);
