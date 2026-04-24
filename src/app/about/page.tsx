@@ -68,15 +68,16 @@ export default function AboutPage() {
           <AnimateOnScroll variant="fadeUp" delay={0.5}>
             <div className="mt-10 max-w-2xl text-lg md:text-xl text-neutral-300 leading-[1.85]">
               <p>
-                저는 회계사로 9년을 일했습니다.
-                그동안 장부와 신고서만으로 끝나지 않는 문제들을 자주 만났습니다.
+                회계사로 9년을 일하면서 딱 하나가 계속 마음에 걸렸습니다.
               </p>
               <p className="mt-5">
-                세무도, 회계도, 재무자문도, 결국 사업하는 사람 옆에서
-                복잡한 상황을 함께 정리하는 일입니다.
+                세무하는 사람, 자문하는 사람, 살펴보는 사람이 다 따로라는 것.
+                사업하시는 분들은 매번 처음부터 설명해야 했고,
+                그 사이에서 맥락은 조용히 사라졌습니다.
               </p>
               <p className="mt-5 text-neutral-400">
-                Meridian은 그 일을 제 이름으로 직접 해 보려고 만든 부티크 자문 브랜드입니다.
+                숫자는 맥락이 있어야 의미가 생깁니다.
+                Meridian은 그 맥락이 끊기지 않게 하려고 만들었습니다.
               </p>
             </div>
           </AnimateOnScroll>
@@ -109,23 +110,20 @@ export default function AboutPage() {
             <AnimateOnScroll variant="fadeUp" delay={0.15} className="lg:col-span-7 lg:col-start-6">
               <div className="space-y-7 text-base md:text-lg text-strong leading-[1.9]">
                 <p>
-                  세무, 회계, 재무자문은 본래 하나의 일입니다.
-                  매일의 장부에서 시작해 세무 신고로 정리되고,
-                  그 숫자 위에서 의사결정이 내려지고,
-                  끝에는 가치평가와 재무자문으로 이어집니다.
+                  장부를 1년 내내 들여다본 사람은 압니다.
+                  어디서 돈이 새는지, 어느 달에 자금이 쪼이는지.
+                  그 흐름을 모르는 사람이 신고서를 쓰면 숫자는 맞아도 맥락은 빠집니다.
                 </p>
                 <p>
-                  그런데 실무에서 이 일들은 너무 자주 끊깁니다.
-                  기장하는 사람이 따로, 신고하는 사람이 따로, 자문하는 사람이 또 따로입니다.
-                  그 사이의 틈에서 숫자는 누락되고, 맥락은 잊히고, 의사결정은 느려집니다.
+                  세무, 회계, 재무자문은 원래 이어져 있는 일입니다.
+                  그런데 실무에서는 너무 자주 끊깁니다.
+                  기장하는 사람, 신고하는 사람, 자문하는 사람이 제각각이면 —
+                  그 사이에서 사라지는 건 언제나 중요한 맥락입니다.
                 </p>
                 <p>
-                  저는 이 틈이 싫었습니다.
-                  전문가를 아무리 많이 붙여도, 한 사람이 끝까지 보지 않으면 이 틈은 메워지지 않습니다.
-                </p>
-                <p>
-                  그래서 제 이름으로 이 일을 직접 해 보기로 했습니다.
-                  세무부터 재무자문까지, 한 사람이 끝까지 책임지는 방식으로요.
+                  전문가를 여럿 쓰는 것보다, 한 사람이 처음부터 끝까지 보는 게
+                  더 나을 때가 있습니다.
+                  Meridian이 그 방식을 택한 이유입니다.
                 </p>
               </div>
             </AnimateOnScroll>
@@ -150,9 +148,9 @@ export default function AboutPage() {
                 02
               </p>
               <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold tracking-tight leading-[1.2] text-background">
-                방법론은 거창할
+                성실함만으로는
                 <br />
-                필요 없습니다.
+                안 되는 게 있습니다.
               </h2>
               <div className="mt-8 h-px w-12 bg-background/20" />
             </AnimateOnScroll>
@@ -161,21 +159,21 @@ export default function AboutPage() {
             <AnimateOnScroll variant="fadeUp" delay={0.15} className="lg:col-span-7 lg:col-start-6">
               <div className="space-y-7 text-base md:text-lg text-background/75 leading-[1.9]">
                 <p>
-                  저에게 중요한 건 결론입니다.
-                  지금 맞닥뜨린 문제를 실용적으로 풀 수 있으면, 방법론은 거창할 필요가 없습니다.
+                  성실하게 하면 다 된다고 오래 믿었습니다.
+                  그런데 현장에서 보면, 사람이 아무리 부지런해도
+                  구조가 나쁘면 새어나갑니다.
                 </p>
                 <p>
-                  그리고 한 가지 더.
-                  해결할 수 있는 문제를 인력으로만 막으려는 방식은, 이미 한계에 부딪혔습니다.
-                  사람이 매번 확인하고 소통해서 마찰을 줄이는 방식으로는,
-                  빠르게 움직이는 비즈니스의 속도를 이기지 못합니다.
-                  저 역시 그렇게 해 봤고, 그 한계를 현장에서 확인했습니다.
+                  연간 600건이 넘는 계약과 정산을 메신저로 처리하던 회사가 있었습니다.
+                  매출 집계를 매번 수작업으로 하고, 누락이 생기면 또 수작업으로 찾았습니다.
+                  다들 열심히 했는데도 계속 빠졌습니다.
                 </p>
                 <p>
-                  그래서 저는 그 마찰을 시스템으로 치웁니다.
-                  파이썬 스크립트, 실시간 대시보드, 업무 흐름의 재설계 —
-                  문제의 구조를 바꿔서 풀 수 있으면 그 방식을 씁니다.
-                  인적인 성실함만으로는 메워지지 않는 영역이 있습니다.
+                  저는 그게 사람 문제가 아니라 구조 문제라고 봤습니다.
+                  파이썬 스크립트 하나, 대시보드 하나로 막히던 마찰이
+                  사라지는 경우가 생각보다 많습니다.
+                  거창한 솔루션이 아니어도 됩니다.
+                  지금 문제에 맞는 방법이면 됩니다.
                 </p>
               </div>
             </AnimateOnScroll>
@@ -205,12 +203,13 @@ export default function AboutPage() {
                 <div className="space-y-6 text-neutral-300 leading-relaxed">
                   <p>
                     <strong className="text-white">메리디안 택스 어드바이저리</strong>는
-                    박민상 공인회계사가 운영하는 부티크 자문 브랜드이며, 별도 법인이 아닙니다.
+                    박민상 공인회계사가 직접 운영하는 개인 자문 브랜드입니다. 별도 법인이 아닙니다.
                   </p>
                   <p>
-                    박민상 공인회계사는 <strong className="text-white">동성회계법인</strong> 소속으로,
-                    회계감사 · 세무 기장 · 세무 조정 · 세무 신고 등 법정 업무는 모두 동성회계법인 명의로 정식 수행됩니다.
-                    메리디안 택스 어드바이저리는 자문 활동과 인사이트 발신을 위한 개인 브랜드 공간입니다.
+                    박민상 공인회계사는 <strong className="text-white">동성회계법인</strong> 소속입니다.
+                    회계감사 · 세무 기장 · 세무 조정 · 세무 신고 등 법정 업무는
+                    모두 동성회계법인 명의로 수행됩니다.
+                    메리디안은 그 위에서 자문과 인사이트를 직접 전하기 위한 공간입니다.
                   </p>
                   <div className="pt-6 mt-6 border-t border-neutral-800 space-y-1">
                     <p className="text-xs tracking-[0.2em] text-neutral-500 uppercase">
