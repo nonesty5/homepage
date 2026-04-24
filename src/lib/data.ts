@@ -280,19 +280,6 @@ export const members: Member[] = [
       "前 삼정회계법인",
     ],
   },
-  {
-    name: "Ledger",
-    role: "세무기장 전담",
-    description:
-      "월별 기장 실무를 전담합니다. 자료 수집부터 장부 마감, 신고 일정 운영까지 꼼꼼하게 챙깁니다.",
-    practiceAreas: [
-      "법인·개인사업자 월별 기장",
-      "부가세·원천세 신고 일정 운영",
-      "자료 수집 루틴 및 증빙 점검",
-      "장부 마감 및 시산표 정리",
-    ],
-    experience: [],
-  },
 ];
 
 export const personas: Persona[] = [
