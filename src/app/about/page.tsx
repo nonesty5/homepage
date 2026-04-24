@@ -93,7 +93,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
             {/* 좌측 — 라벨 + 제목 */}
-            <AnimateOnScroll variant="fadeUp" className="lg:col-span-4 lg:sticky lg:top-32 lg:self-start">
+            <AnimateOnScroll variant="fadeUp" className="lg:col-span-4">
               <p className="text-xs tracking-[0.35em] text-muted mb-8 font-medium">
                 01
               </p>
@@ -146,20 +146,20 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
             {/* 좌측 — 라벨 + 제목 */}
             <AnimateOnScroll variant="fadeUp" className="lg:col-span-4 lg:sticky lg:top-32 lg:self-start">
-              <p className="text-xs tracking-[0.35em] text-muted mb-8 font-medium">
+              <p className="text-xs tracking-[0.35em] text-background/40 mb-8 font-medium">
                 02
               </p>
-              <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold tracking-tight leading-[1.2]">
+              <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold tracking-tight leading-[1.2] text-background">
                 방법론은 거창할
                 <br />
                 필요 없습니다.
               </h2>
-              <div className="mt-8 h-px w-12 bg-border" />
+              <div className="mt-8 h-px w-12 bg-background/20" />
             </AnimateOnScroll>
 
             {/* 우측 — 본문 */}
             <AnimateOnScroll variant="fadeUp" delay={0.15} className="lg:col-span-7 lg:col-start-6">
-              <div className="space-y-7 text-base md:text-lg text-strong leading-[1.9]">
+              <div className="space-y-7 text-base md:text-lg text-background/75 leading-[1.9]">
                 <p>
                   저에게 중요한 건 결론입니다.
                   지금 맞닥뜨린 문제를 실용적으로 풀 수 있으면, 방법론은 거창할 필요가 없습니다.
@@ -180,63 +180,6 @@ export default function AboutPage() {
               </div>
             </AnimateOnScroll>
           </div>
-        </div>
-      </section>
-
-      <hr className="section-divider" />
-
-      {/* ─────────────────────────────────────────
-          § 4. In Practice — 사례는 에세이에
-         ───────────────────────────────────────── */}
-      <section className="py-28 md:py-44">
-        <div className="max-w-5xl mx-auto px-6">
-          <AnimateOnScroll variant="fadeUp">
-            <div className="mb-14 md:mb-20">
-              <p className="text-xs tracking-[0.35em] text-muted mb-8 font-medium">
-                03
-              </p>
-              <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold tracking-tight leading-[1.2] max-w-3xl">
-                실제로 한 일들은
-                <br />
-                글로 남겨두었습니다.
-              </h2>
-              <div className="mt-8 h-px w-12 bg-border" />
-              <p className="mt-8 text-base md:text-lg text-muted leading-[1.85] max-w-2xl">
-                어떤 문제를 어떻게 풀었는지는 다음 글에서 확인하실 수 있습니다.
-              </p>
-            </div>
-          </AnimateOnScroll>
-
-          {/* 에세이 카드 */}
-          <AnimateOnScroll variant="fadeUp" delay={0.15}>
-            <Link
-              href="/blog/system-agent-frictional-cost"
-              className="group block border border-border bg-card p-10 md:p-16 hover-lift transition-colors hover:border-foreground/40"
-            >
-              <div className="flex items-center gap-4 text-xs tracking-[0.25em] text-muted uppercase mb-8">
-                <span>2026.04</span>
-                <span className="h-px w-6 bg-border" />
-                <span>자문철학</span>
-              </div>
-
-              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight leading-[1.25] text-foreground">
-                마찰 비용을 지우는 일
-              </h3>
-
-              <p className="mt-8 text-base md:text-lg text-strong leading-[1.85] max-w-3xl">
-                연간 600건이 넘는 프리랜서 계약과 정산을 메신저와 수기 작업에 의존하던 곳.
-                사람이 매번 확인하는 방식으로는 비즈니스의 속도를 이기지 못해서,
-                파이썬으로 전용 시스템을 직접 만들었습니다.
-              </p>
-
-              <div className="mt-10 inline-flex items-center gap-3 text-sm tracking-[0.15em] uppercase font-medium text-foreground">
-                <span className="hover-underline">글 읽기</span>
-                <span className="transition-transform duration-300 group-hover:translate-x-1">
-                  →
-                </span>
-              </div>
-            </Link>
-          </AnimateOnScroll>
         </div>
       </section>
 
