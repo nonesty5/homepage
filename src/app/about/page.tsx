@@ -62,15 +62,18 @@ export default function AboutPage() {
           <AnimateOnScroll variant="fadeUp" delay={0.5}>
             <div className="mt-10 max-w-2xl text-lg md:text-xl text-neutral-300 leading-[1.85]">
               <p>
-                기장을 하다 보면 고객이 어디서 불편한지가 보입니다.
-                그리고 그 불편함의 상당수가, 생각보다 훨씬 쉽게 고쳐집니다.
+                외부감사를 수백 건 하면 눈이 생깁니다.
+                장부에서 그 회사의 의사결정 방식이 보이고,
+                어디서 문제가 시작됐는지가 보입니다.
               </p>
               <p className="mt-5">
-                삼정과 한영에서 9년을 일할 때는 잘 보이지 않던 것들입니다.
-                큰 조직 안에 있으면 고객의 실제 현장과 거리가 생기거든요.
+                M&A 딜 구조를 설계하면 또 다른 게 보입니다.
+                같은 숫자가 협상 테이블에서 어떻게 해석되는지,
+                어떤 구조가 세금 부담을 키우는지.
               </p>
               <p className="mt-5 text-neutral-400">
-                Meridian은 그 거리를 없애려고 만들었습니다.
+                삼정과 한영에서 쌓은 9년이 그 시각을 만들었습니다.
+                Meridian은 그걸 직접 씁니다.
               </p>
             </div>
           </AnimateOnScroll>
@@ -144,24 +147,25 @@ export default function AboutPage() {
                 01
               </p>
               <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold tracking-tight leading-[1.2]">
-                처음에
+                장부에서
                 <br />
-                맞춰두는 것들.
+                먼저 읽히는 것들.
               </h2>
               <div className="mt-8 h-px w-12 bg-border" />
               <div className="mt-10 space-y-6 text-base md:text-lg text-strong leading-[1.9]">
                 <p>
-                  처음 만나면 보통 이런 얘기부터 합니다.
-                  법인카드는 사업 관련 지출만 쓰는 걸로 맞춥시다.
-                  사업자 카드와 통장은 등록해두세요.
+                  세무기장을 1년 내내 들여다보면, 어디서 세금이 만들어지고
+                  어떤 지출이 실익 없이 사라지는지가 보입니다.
+                  신고서를 연말에 정리하는 사람이 아니라,
+                  숫자가 만들어지는 과정 전체를 보는 사람이 됩니다.
                 </p>
                 <p>
-                  간단한 얘기처럼 들리지만, 이걸 처음부터 맞춰두지 않으면
-                  1년치 장부가 꼬이고 뒤처리에 배의 시간이 들어갑니다.
+                  지분 이전, 가업승계, M&A — 재무자문이 필요한 순간에도
+                  기장을 계속 보던 사람이 함께하면 같은 숫자를 훨씬 빠르게 읽습니다.
+                  이미 흐름을 알고 있으니, 따로 설명할 필요가 없습니다.
                 </p>
                 <p>
-                  그 약속을 받아두는 사람이 재무자문까지 계속 이어가면 —
-                  매번 처음부터 설명할 필요가 없습니다.
+                  처음부터 끝까지 같은 사람이 보는 이유입니다.
                 </p>
               </div>
             </AnimateOnScroll>
@@ -196,9 +200,9 @@ export default function AboutPage() {
               02
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold tracking-tight leading-[1.2]">
-              기본 위에,
+              시스템이 할 것,
               <br />
-              하나 더.
+              사람이 할 것.
             </h2>
             <div className="mt-8 h-px w-12 bg-border" />
           </AnimateOnScroll>
@@ -206,18 +210,20 @@ export default function AboutPage() {
           <AnimateOnScroll variant="fadeUp" delay={0.15}>
             <div className="mt-12 space-y-7 text-base md:text-lg text-strong leading-[1.9]">
               <p>
-                솔직히 말하면, 세무기장 자체는 크게 다를 게 없습니다.
-                감면과 공제를 빠짐없이 챙기고, 세무 질문에 빠르게 답하는 것 —
-                그건 어떤 세무대리인이든 해야 하는 기본입니다.
+                세무 업무에는 구조화할 수 있는 부분이 많습니다.
+                그 부분을 반복적인 수작업으로 처리하면,
+                사람의 판단이 필요한 곳에 쓰일 시간이 줄어듭니다.
               </p>
               <p>
-                저는 그 기본 위에 하나를 더 합니다.
-                고객이 실제 현장에서 부딪히는 불편함을 찾아서 직접 고치는 것.
+                저는 AI 코딩 도구를 활용해 클라이언트 업무에 맞는
+                자동화 시스템을 직접 설계합니다.
+                회계사가 직접 구조를 짜면 전달 오류가 없고,
+                그 시간에 실질적인 절세 전략을 세울 수 있습니다.
               </p>
               <p>
-                AI 코딩 도구를 활용하면 생각보다 적은 공수로 큰 변화를 만들 수
-                있습니다. 정산 자동화, 매출 대시보드, 실시간 리포트 —
-                만들고 나면 고객이 느끼는 개선 효과가 기대 이상입니다.
+                시스템이 처리할 수 있는 건 시스템에 맡기고,
+                판단이 필요한 곳에 집중합니다.
+                그게 클라이언트에게 더 나은 자문이 됩니다.
               </p>
             </div>
           </AnimateOnScroll>
