@@ -62,18 +62,18 @@ export default function AboutPage() {
           <AnimateOnScroll variant="fadeUp" delay={0.5}>
             <div className="mt-10 max-w-2xl text-lg md:text-xl text-neutral-300 leading-[1.85]">
               <p>
-                외부감사를 수백 건 하면 눈이 생깁니다.
-                장부에서 그 회사의 의사결정 방식이 보이고,
-                어디서 문제가 시작됐는지가 보입니다.
+                감사를 하면 보입니다.<br />
+                그 회사 사람들이 어떻게 결정해왔는지.<br />
+                장부에 다 나옵니다.
               </p>
               <p className="mt-5">
-                M&A 딜 구조를 설계하면 또 다른 게 보입니다.
-                같은 숫자가 협상 테이블에서 어떻게 해석되는지,
-                어떤 구조가 세금 부담을 키우는지.
+                M&A 딜을 하면 또 봅니다.<br />
+                같은 숫자가 협상 테이블 위에서 어떻게 달라지는지.
               </p>
               <p className="mt-5 text-neutral-400">
-                삼정과 한영에서 쌓은 9년이 그 시각을 만들었습니다.
-                Meridian은 그걸 직접 씁니다.
+                삼정에서 시작해, 한영에서 마쳤습니다.<br />
+                9년 동안 그걸 봤습니다.<br />
+                Meridian은 그 눈으로 직접 합니다.
               </p>
             </div>
           </AnimateOnScroll>
@@ -96,24 +96,28 @@ export default function AboutPage() {
                 firm: "삼정회계법인",
                 sub: "KPMG",
                 work: "외부감사 · 내부통제",
+                note: "수백 개 회사의 1년을 장부에서 봤습니다.",
               },
               {
                 num: "02",
                 firm: "NH투자증권",
                 sub: "",
-                work: "IB · 기업금융 자문",
+                work: "IB · 기업금융",
+                note: "숫자가 협상 무기가 되는 자리를 봤습니다.",
               },
               {
                 num: "03",
                 firm: "한영회계법인",
                 sub: "EY",
                 work: "Valuation · M&A · EA",
+                note: "회사가 어떤 값으로 읽히는지 배웠습니다.",
               },
               {
                 num: "04",
                 firm: "동성회계법인",
                 sub: "현재",
                 work: "세무기장 · 자문 · Meridian",
+                note: "지금은 직접 합니다.",
               },
             ].map((item) => (
               <StaggerItem key={item.num}>
@@ -127,7 +131,8 @@ export default function AboutPage() {
                   <p className="text-base md:text-lg font-bold text-foreground leading-tight">
                     {item.firm}
                   </p>
-                  <p className="mt-2 text-sm text-muted">{item.work}</p>
+                  <p className="mt-1 text-sm text-muted">{item.work}</p>
+                  <p className="mt-4 text-sm text-strong leading-relaxed">{item.note}</p>
                 </div>
               </StaggerItem>
             ))}
@@ -154,18 +159,17 @@ export default function AboutPage() {
               <div className="mt-8 h-px w-12 bg-border" />
               <div className="mt-10 space-y-6 text-base md:text-lg text-strong leading-[1.9]">
                 <p>
-                  세무기장을 1년 내내 들여다보면, 어디서 세금이 만들어지고
-                  어떤 지출이 실익 없이 사라지는지가 보입니다.
-                  신고서를 연말에 정리하는 사람이 아니라,
-                  숫자가 만들어지는 과정 전체를 보는 사람이 됩니다.
+                  기장을 오래 보면 알게 됩니다.<br />
+                  이 회사가 이번 달에 왜 힘든지.<br />
+                  다음 분기에 어디서 막힐 건지.
                 </p>
                 <p>
-                  지분 이전, 가업승계, M&A — 재무자문이 필요한 순간에도
-                  기장을 계속 보던 사람이 함께하면 같은 숫자를 훨씬 빠르게 읽습니다.
-                  이미 흐름을 알고 있으니, 따로 설명할 필요가 없습니다.
+                  지분 정리든, 가업승계든, 딜이든 —<br />
+                  재무자문이 필요한 순간에<br />
+                  그 흐름을 이미 알고 있는 사람과 처음 보는 사람은 다릅니다.
                 </p>
                 <p>
-                  처음부터 끝까지 같은 사람이 보는 이유입니다.
+                  처음부터 끝까지 같은 사람이 봐야 하는 이유가 거기 있습니다.
                 </p>
               </div>
             </AnimateOnScroll>
@@ -210,20 +214,18 @@ export default function AboutPage() {
           <AnimateOnScroll variant="fadeUp" delay={0.15}>
             <div className="mt-12 space-y-7 text-base md:text-lg text-strong leading-[1.9]">
               <p>
-                세무 업무에는 구조화할 수 있는 부분이 많습니다.
-                그 부분을 반복적인 수작업으로 처리하면,
-                사람의 판단이 필요한 곳에 쓰일 시간이 줄어듭니다.
+                프리랜서 600명과 일하는 고객이 있었습니다.<br />
+                정산을 메신저로 했습니다.<br />
+                열심히 했는데도 매달 빠졌습니다.
               </p>
               <p>
-                저는 AI 코딩 도구를 활용해 클라이언트 업무에 맞는
-                자동화 시스템을 직접 설계합니다.
-                회계사가 직접 구조를 짜면 전달 오류가 없고,
-                그 시간에 실질적인 절세 전략을 세울 수 있습니다.
+                구조의 문제였습니다. 사람의 문제가 아니라.<br />
+                파이썬으로 정산 시스템을 직접 만들었습니다.<br />
+                이후로는 빠지지 않습니다.
               </p>
               <p>
-                시스템이 처리할 수 있는 건 시스템에 맡기고,
-                판단이 필요한 곳에 집중합니다.
-                그게 클라이언트에게 더 나은 자문이 됩니다.
+                이런 식의 개선이 생각보다 많습니다.<br />
+                회계사가 직접 만들면, 중간에 잃는 게 없습니다.
               </p>
             </div>
           </AnimateOnScroll>
