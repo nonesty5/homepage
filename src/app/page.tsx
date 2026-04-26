@@ -25,14 +25,6 @@ const enMap: Record<string, string> = {
   "audit-advisory": "Audit Advisory",
 };
 
-const situations = [
-  { text: "월별 숫자가 경영 판단에 바로 쓰일 수 있어야 할 때.", service: "tax-bookkeeping", label: "Bookkeeping" },
-  { text: "기장 데이터가 자문으로 그대로 이어져야 결정이 빨라질 때.", service: "tax-advisory", label: "Advisory" },
-  { text: "설립 초기에 기준을 잡아 3년 뒤에도 흔들리지 않도록 준비할 때.", service: "tax-bookkeeping", label: "Bookkeeping" },
-  { text: "실행 전에 세부담을 비교해, 되돌릴 수 없는 결정을 내리기 전.", service: "tax-advisory", label: "Advisory" },
-  { text: "감사 시즌 전, 결산과 회계처리를 선제적으로 정비해야 할 때.", service: "audit-advisory", label: "Audit" },
-];
-
 type TaxDeadline = { label: string; date: Date };
 
 function getUpcomingTaxDeadlines(from: Date, count = 4): TaxDeadline[] {
@@ -59,30 +51,6 @@ function getUpcomingTaxDeadlines(from: Date, count = 4): TaxDeadline[] {
     .slice(0, count);
 }
 
-type Material = { fig: string; caption: string; src: string };
-const workingMaterials: Material[] = [
-  {
-    fig: "Fig. 01",
-    caption: "책상 위의 숫자 — 월별 시산표를 읽는 자리",
-    src: "/images/materials/bookkeeping-desk.jpg",
-  },
-  {
-    fig: "Fig. 02",
-    caption: "펼친 조문 — 법령 해석은 여백의 메모에서",
-    src: "/images/materials/lawbook-table.jpg",
-  },
-  {
-    fig: "Fig. 03",
-    caption: "잉크의 기록 — 한 번의 검토가 세 번의 수정을 줄인다",
-    src: "/images/materials/desk-ink.jpg",
-  },
-  {
-    fig: "Fig. 04",
-    caption: "책상에 놓인 법령 — 기장과 신고, 그 사이의 자리",
-    src: "/images/materials/desk-books.jpg",
-  },
-];
-
 export default function Home() {
   const recentPosts = getAllPosts().slice(0, 3);
   const lead = members.find((m) => !m.placeholder);
@@ -93,7 +61,6 @@ export default function Home() {
   const today = new Date();
   const upcoming = getUpcomingTaxDeadlines(today, 4);
   const dateStamp = `${today.getFullYear()}.${String(today.getMonth() + 1).padStart(2, "0")}.${String(today.getDate()).padStart(2, "0")}`;
-  const monthLabel = `${today.getFullYear()}년 ${today.getMonth() + 1}월`;
   const dayMs = 86_400_000;
 
   return (
@@ -189,6 +156,86 @@ export default function Home() {
               </p>
             </AnimateOnScroll>
           </div>
+        </div>
+      </section>
+
+      {/* ─── WHY MERIDIAN — 4가지 원칙 ─── */}
+      <section className="py-24 md:py-36 bg-background border-t border-border">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16 md:mb-20">
+            <AnimateOnScroll variant="fadeUp" className="lg:col-span-7">
+              <p className="eyebrow mb-8">Why Meridian</p>
+              <h2
+                className="text-[2.4rem] md:text-[3.6rem] lg:text-[4.4rem] font-black leading-[1] tracking-[-0.03em] text-foreground max-w-[16ch]"
+                style={{ wordBreak: "keep-all" }}
+              >
+                한 사람의 시각이
+                <br />
+                만드는 차이<span className="green-dot">.</span>
+              </h2>
+            </AnimateOnScroll>
+            <AnimateOnScroll variant="fadeUp" delay={0.15} className="lg:col-span-5 lg:pt-6">
+              <p
+                className="text-[1.05rem] md:text-[1.15rem] leading-[1.85] text-muted"
+                style={{ wordBreak: "keep-all" }}
+              >
+                대형 법인이 줄 수 없는 깊이, 1인 사무소가 가질 수 없는 시각.
+                메리디안은 그 사이에서 일합니다.
+              </p>
+            </AnimateOnScroll>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border">
+            {[
+              {
+                num: "01",
+                title: "시각의 깊이",
+                body: "외부감사·M&A 딜 구조 설계 9년. 같은 장부에서 의사결정의 양면을 동시에 봅니다.",
+              },
+              {
+                num: "02",
+                title: "직접 책임",
+                body: "어시스턴트가 작성하고 회계사가 서명하는 방식이 아닙니다. 한 사람이 끝까지.",
+              },
+              {
+                num: "03",
+                title: "구조로 마찰을",
+                body: "자동화할 수 있는 건 자동화합니다. 회계사가 직접 코딩해 마찰을 걷어냅니다.",
+              },
+              {
+                num: "04",
+                title: "한 사람 단위",
+                body: "광고비와 마케팅 인력에 쓸 비용을, 본업의 작업 시간에 씁니다.",
+              },
+            ].map((item) => (
+              <div key={item.num} className="bg-background p-8 md:p-10">
+                <p className="text-xs tracking-[0.3em] text-muted mb-6 font-medium">
+                  원칙 {item.num}
+                </p>
+                <h3 className="text-xl md:text-2xl font-bold text-foreground leading-tight">
+                  {item.title}
+                </h3>
+                <p
+                  className="mt-5 text-sm md:text-[0.95rem] text-strong leading-[1.75]"
+                  style={{ wordBreak: "keep-all" }}
+                >
+                  {item.body}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <AnimateOnScroll variant="fadeIn" delay={0.2}>
+            <div className="mt-12 text-center">
+              <Link
+                href="/about"
+                className="inline-flex items-baseline gap-2 text-sm tracking-[0.15em] uppercase font-medium text-foreground hover-underline"
+              >
+                메리디안의 4가지 원칙 더 보기
+                <span aria-hidden className="transition-transform duration-300">→</span>
+              </Link>
+            </div>
+          </AnimateOnScroll>
         </div>
       </section>
 
@@ -448,7 +495,7 @@ export default function Home() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border border-y border-border">
-              {recentPosts.map((post, i) => (
+              {recentPosts.map((post) => (
                 <Link
                   key={post.slug}
                   href={`/blog/${post.slug}`}
