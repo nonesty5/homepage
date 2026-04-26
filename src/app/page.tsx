@@ -1,8 +1,11 @@
 import Link from "next/link";
+import Image from "next/image";
 import { services, members } from "@/lib/data";
 import { siteConfig } from "@/lib/constants";
 import { getAllPosts } from "@/lib/posts";
 import { AnimateOnScroll } from "@/components/motion";
+
+export const revalidate = 3600;
 
 const coreOrder = [
   "tax-bookkeeping",
@@ -123,12 +126,14 @@ export default function Home() {
           <div className="mt-16 md:mt-24 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 lg:gap-20">
             {/* LEFT — document image + CTA */}
             <AnimateOnScroll variant="fadeUp" delay={0.15} className="md:col-span-7">
-              <figure>
-                <img
+              <figure className="relative w-full" style={{ aspectRatio: "4/3" }}>
+                <Image
                   src="/images/hero-document.png"
                   alt="세무신고 검토 자료"
-                  className="w-full object-cover"
-                  style={{ aspectRatio: "4/3" }}
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 100vw, 58vw"
+                  className="object-cover"
                 />
               </figure>
               {/* Single CTA + sidecar link */}
@@ -355,12 +360,15 @@ export default function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
               <AnimateOnScroll variant="fadeUp" className="lg:col-span-5">
                 {lead.image ? (
-                  <img
-                    src={lead.image}
-                    alt={`${lead.name} ${lead.role}`}
-                    className="w-full"
-                    style={{ aspectRatio: "3/4", objectFit: "cover", objectPosition: "top" }}
-                  />
+                  <div className="relative w-full" style={{ aspectRatio: "3/4" }}>
+                    <Image
+                      src={lead.image}
+                      alt={`${lead.name} ${lead.role}`}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 42vw"
+                      className="object-cover object-top"
+                    />
+                  </div>
                 ) : (
                   <div className="aspect-[3/4] bg-card" />
                 )}
@@ -447,11 +455,13 @@ export default function Home() {
                   className="group block bg-background p-8 md:p-10 hover:bg-card transition-colors duration-300"
                 >
                   {post.coverImage && (
-                    <div className="aspect-[16/10] overflow-hidden mb-6 -mx-8 md:-mx-10 -mt-8 md:-mt-10">
-                      <img
+                    <div className="relative aspect-[16/10] overflow-hidden mb-6 -mx-8 md:-mx-10 -mt-8 md:-mt-10">
+                      <Image
                         src={post.coverImage}
                         alt={post.title}
-                        className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-500"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-cover object-center group-hover:scale-[1.03] transition-transform duration-500"
                       />
                     </div>
                   )}
