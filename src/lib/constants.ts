@@ -4,7 +4,7 @@ export const siteConfig = {
   tagline: "좋은 장부가, 좋은 결정을 만듭니다.",
   description:
     "Big4 출신 공인회계사가 세무기장을 직접 검토합니다. 정확한 장부에서 출발해 세무신고 · 자문 · 가치평가로 연결됩니다.",
-  url: "https://meridian-advisory.com",
+  url: "https://meridianco.kr",
   email: "mscpa@dscpa.co.kr",
   phone: "010-3300-7339",
   location: "Seoul · Online Meeting",
