@@ -1,11 +1,21 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
+import { useSyncExternalStore } from "react";
+
+const subscribe = () => () => {};
+const getClientSnapshot = () => true;
+const getServerSnapshot = () => false;
 
 export default function Template({ children }: { children: React.ReactNode }) {
+  const hydrated = useSyncExternalStore(
+    subscribe,
+    getClientSnapshot,
+    getServerSnapshot
+  );
   const reduced = useReducedMotion();
 
-  if (reduced) return <>{children}</>;
+  if (!hydrated || reduced) return <>{children}</>;
 
   return (
     <motion.div

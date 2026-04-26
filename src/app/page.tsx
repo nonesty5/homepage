@@ -481,7 +481,7 @@ export default function Home() {
                 >
                   <div className="flex items-start justify-between mb-8">
                     <span className="text-[0.7rem] font-bold tracking-[0.2em] uppercase text-muted group-hover:text-background/60 transition-colors">
-                      {String(index + 1).padStart(2, "0")} — {enMap[service.slug]}
+                      {String(index + 1).padStart(2, "0")} · {enMap[service.slug]}
                     </span>
                     {service.slug === "tax-bookkeeping" && (
                       <span className="inline-flex items-center gap-1.5 text-[0.65rem] font-bold tracking-[0.18em] uppercase bg-accent text-accent-foreground px-2.5 py-1">

@@ -44,7 +44,7 @@ export default function PeoplePage() {
           <AnimateOnScroll variant="fadeUp" delay={0.4}>
             <p className="mt-8 text-lg text-neutral-400 max-w-xl leading-relaxed">
               메리디안은 한 사람이 끝까지 보는 방식으로 운영됩니다.
-              기장도, 신고도, 자문도 — 같은 사람의 일입니다.
+              기장도 신고도 자문도, 같은 사람의 일입니다.
             </p>
           </AnimateOnScroll>
         </div>

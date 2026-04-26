@@ -6,7 +6,7 @@ import { AnimateOnScroll, LineReveal } from "@/components/motion";
 export const metadata: Metadata = {
   title: "ABOUT",
   description:
-    "메리디안 택스 어드바이저리 — 단순 신고 대행이 아닌 세무 관리. 매일의 장부에서 신고와 자문까지, 한 사람이 끝까지 책임지는 부티크 세무·재무 자문.",
+    "메리디안 택스 어드바이저리. 단순 신고 대행이 아닌 세무 관리. 매일의 장부에서 신고와 자문까지, 한 사람이 끝까지 책임지는 부티크 세무·재무 자문.",
   alternates: {
     canonical: "/about",
   },
@@ -69,7 +69,7 @@ export default function AboutPage() {
               </p>
               <p className="mt-5">
                 매일 장부 보는 사람이 자문 자리까지 같이 갑니다.
-                기장도, 신고도, 자문도 — 같은 사람의 일입니다.
+                기장도 신고도 자문도, 같은 사람의 일입니다.
               </p>
               <p className="mt-5 text-neutral-400">
                 메리디안은 그 흐름을 끝까지 책임지는 자리입니다.
@@ -109,7 +109,7 @@ export default function AboutPage() {
               >
                 영국 그리니치 천문대를 지나는 <strong className="text-foreground">경도 0°선</strong>.
                 세계의 모든 시간이 이 한 선에서 출발합니다.
-                런던도, 서울도, 뉴욕도 — 결국 이 선을 기준으로 시각을 맞춥니다.
+                런던도 서울도 뉴욕도 결국 이 선을 기준으로 시각을 맞춥니다.
               </p>
 
               <div className="h-px w-12 bg-accent mx-auto" />

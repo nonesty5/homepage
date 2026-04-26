@@ -6,7 +6,7 @@ import { AnimateOnScroll, LineReveal } from "@/components/motion";
 export const metadata: Metadata = {
   title: "WHO",
   description:
-    "설립 직후부터 성장기, 중요한 결정 직전까지 — 단계별로 필요한 세무 서비스를 정리합니다.",
+    "설립 직후부터 성장기, 중요한 결정 직전까지. 단계별로 필요한 세무 서비스를 정리합니다.",
   alternates: {
     canonical: "/clients",
   },
