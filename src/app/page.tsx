@@ -85,7 +85,7 @@ export default function Home() {
               <span className="green-dot">.</span>
             </h1>
             <p className="mt-8 text-[1.05rem] md:text-[1.2rem] leading-[1.7] text-background/70 max-w-[52ch]" style={{ wordBreak: "keep-all" }}>
-              정밀한 장부 위에서만, 신고와 자문이 제 힘을 냅니다.
+              단순 신고 대행이 아닙니다. 매일의 장부에서 신고와 자문까지, 한 사람이 끝까지 책임지는 세무 관리.
             </p>
           </AnimateOnScroll>
 
@@ -384,89 +384,32 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── TEAM ─── */}
-      <section className="py-24 md:py-36 bg-background border-t border-border">
+      {/* ─── MID-PAGE CTA ─── */}
+      <section className="py-16 md:py-20 bg-foreground text-background border-y border-background/10">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16 md:mb-24">
-            <AnimateOnScroll variant="fadeUp" className="lg:col-span-7">
-              <p className="eyebrow mb-8">Our Team</p>
-              <h2
-                className="text-[2.4rem] md:text-[3.6rem] lg:text-[4.4rem] font-black leading-[1] tracking-[-0.03em] text-foreground"
+          <AnimateOnScroll variant="fadeUp">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 md:gap-10">
+              <h3
+                className="text-[1.6rem] md:text-[2rem] lg:text-[2.4rem] font-black leading-[1.15] tracking-[-0.025em] max-w-[26ch]"
                 style={{ wordBreak: "keep-all" }}
               >
-                팀으로 움직입니다
-                <span className="green-dot">.</span>
-              </h2>
-            </AnimateOnScroll>
-            <AnimateOnScroll variant="fadeUp" delay={0.15} className="lg:col-span-5 lg:pt-6">
-              <p
-                className="text-[1.05rem] md:text-[1.1rem] leading-[1.7] text-muted"
-                style={{ wordBreak: "keep-all" }}
-              >
-                기장 담당자와 자문 회계사가 한 팀 안에 있습니다. 숫자가 만들어지는 자리와 판단이 내려지는 자리가 같은 기준으로 연결됩니다.
-              </p>
-            </AnimateOnScroll>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border">
-            {/* 박민상 */}
-            <AnimateOnScroll variant="fadeUp" className="bg-background p-10 md:p-12">
-              <p className="text-[0.7rem] font-bold tracking-[0.2em] uppercase text-muted mb-6">
-                Founder · CPA
-              </p>
-              <h3 className="text-[2rem] md:text-[2.4rem] font-black leading-[1.05] tracking-[-0.025em] text-foreground">
-                박민상<span className="green-dot">.</span>
+                지금 기장 상황을 한 번 점검해 드립니다<span className="green-dot">.</span>
               </h3>
-              <p
-                className="mt-5 text-[0.95rem] leading-[1.75] text-muted max-w-[36ch]"
-                style={{ wordBreak: "keep-all" }}
-              >
-                Big4 감사·세무·가치평가 기준을 기장에 그대로 적용합니다. 대표님의 다음 결정을 위한 장부를 만듭니다.
-              </p>
-              <ul className="mt-8 space-y-2.5">
-                {["세무 기장 · 신고", "세무 조정 · 자문", "기업가치평가 · M&A · IPO"].map((area) => (
-                  <li key={area} className="flex items-start gap-3 text-[0.9rem] text-foreground leading-relaxed">
-                    <span className="green-dot mt-0.5 flex-shrink-0 text-[1.1rem]">.</span>
-                    <span>{area}</span>
-                  </li>
-                ))}
-              </ul>
-            </AnimateOnScroll>
-
-            {/* Ledger */}
-            <AnimateOnScroll variant="fadeUp" delay={0.1} className="bg-card p-10 md:p-12">
-              <p className="text-[0.7rem] font-bold tracking-[0.2em] uppercase text-muted mb-6">
-                세무기장 전담
-              </p>
-              <h3 className="text-[2rem] md:text-[2.4rem] font-black leading-[1.05] tracking-[-0.025em] text-foreground">
-                Ledger<span className="green-dot">.</span>
-              </h3>
-              <p
-                className="mt-5 text-[0.95rem] leading-[1.75] text-muted max-w-[36ch]"
-                style={{ wordBreak: "keep-all" }}
-              >
-                실무 기장을 전담합니다. 자료 수집부터 장부 마감, 신고 일정 운영까지 빠짐없이 챙깁니다.
-              </p>
-              <ul className="mt-8 space-y-2.5">
-                {["법인·개인사업자 월별 기장", "부가세·원천세 신고 운영", "증빙 점검 · 장부 마감"].map((area) => (
-                  <li key={area} className="flex items-start gap-3 text-[0.9rem] text-foreground leading-relaxed">
-                    <span className="green-dot mt-0.5 flex-shrink-0 text-[1.1rem]">.</span>
-                    <span>{area}</span>
-                  </li>
-                ))}
-              </ul>
-            </AnimateOnScroll>
-          </div>
-
-          <AnimateOnScroll variant="fadeUp" delay={0.1}>
-            <div className="mt-10">
-              <Link
-                href="/members"
-                className="group inline-flex items-center gap-2 text-[0.85rem] font-bold tracking-[0.14em] uppercase text-foreground border-b-2 border-foreground hover:border-accent hover:text-accent transition-colors pb-1"
-              >
-                팀 전체 보기
-                <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-              </Link>
+              <div className="flex flex-wrap items-center gap-x-8 gap-y-3 flex-shrink-0">
+                <Link
+                  href="/contact"
+                  className="group inline-flex items-baseline gap-2 text-[1rem] md:text-[1.05rem] text-background border-b-2 border-background hover:border-accent hover:text-accent transition-colors pb-1"
+                >
+                  무료 진단 요청
+                  <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                </Link>
+                <Link
+                  href={siteConfig.pricingUrl}
+                  className="text-[0.9rem] text-background/60 hover:text-background transition-colors"
+                >
+                  ↳ 견적 계산기
+                </Link>
+              </div>
             </div>
           </AnimateOnScroll>
         </div>
@@ -500,7 +443,7 @@ export default function Home() {
                   박민상<span className="green-dot">.</span>
                 </h2>
                 <p className="mt-4 text-[0.95rem] font-bold tracking-[0.12em] uppercase text-muted">
-                  {lead.role} · KICPA 2017
+                  {lead.role} · KICPA
                 </p>
 
                 <div
@@ -508,13 +451,13 @@ export default function Home() {
                   style={{ wordBreak: "keep-all" }}
                 >
                   <p>
-                    삼정과 EY한영에서 감사·세무조정·가치평가의 검토 기준을 익혔습니다. 그 기준을 세무기장에 그대로 적용합니다.
+                    대부분의 세무기장이 <span className="text-muted">&lsquo;작업&rsquo;</span>으로 처리될 때,
+                    메리디안은 <strong className="font-bold text-foreground">&lsquo;검토&rsquo;</strong>로 다룹니다.
+                    계정 분류 하나, 증빙 하나도 그 다음 신고·자문·의사결정에 어떻게 연결될지를 먼저 생각합니다.
                   </p>
                   <p>
-                    대부분의 세무기장이 <span className="text-muted">&lsquo;작업&rsquo;</span>으로 처리될 때, 메리디안은 <strong className="font-bold text-foreground">&lsquo;검토&rsquo;</strong>로 다룹니다. 계정 분류 하나, 증빙 하나도 그 다음 신고·자문·의사결정에 어떻게 연결될지를 먼저 생각합니다.
-                  </p>
-                  <p>
-                    그래서 메리디안의 장부는 단순한 기록이 아닙니다. <strong className="font-bold text-foreground">대표님의 다음 결정을 위한 재료</strong>입니다.
+                    그래서 메리디안의 장부는 단순한 기록이 아닙니다.
+                    <strong className="font-bold text-foreground"> 대표님의 다음 결정을 위한 재료</strong>입니다.
                   </p>
                 </div>
 
@@ -547,7 +490,7 @@ export default function Home() {
 
       {/* ─── INSIGHTS / BLOG ─── */}
       {recentPosts.length > 0 && (
-        <section className="py-24 md:py-36 bg-background">
+        <section className="py-24 md:py-36 bg-card border-t border-border">
           <div className="max-w-[1400px] mx-auto px-6 md:px-12">
             <div className="flex items-end justify-between gap-8 mb-14 md:mb-20">
               <div>
@@ -573,7 +516,7 @@ export default function Home() {
                 <Link
                   key={post.slug}
                   href={`/blog/${post.slug}`}
-                  className="group block bg-background p-8 md:p-10 hover:bg-card transition-colors duration-300"
+                  className="group block bg-background p-8 md:p-10 hover:bg-foreground hover:text-background transition-colors duration-300"
                 >
                   {post.coverImage && (
                     <div className="relative aspect-[16/10] overflow-hidden mb-6 -mx-8 md:-mx-10 -mt-8 md:-mt-10">
