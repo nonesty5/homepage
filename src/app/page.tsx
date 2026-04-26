@@ -159,6 +159,80 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─── PAIN POINTS — 익숙한 상황 ─── */}
+      <section className="py-24 md:py-36 bg-card border-t border-border">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-14 md:mb-20">
+            <AnimateOnScroll variant="fadeUp" className="lg:col-span-8">
+              <p className="eyebrow mb-8">기장하고 있는데도</p>
+              <h2
+                className="text-[2.4rem] md:text-[3.4rem] lg:text-[4rem] font-black leading-[1.05] tracking-[-0.03em] text-foreground"
+                style={{ wordBreak: "keep-all" }}
+              >
+                이런 적, 익숙하시죠<span className="green-dot">.</span>
+              </h2>
+            </AnimateOnScroll>
+            <AnimateOnScroll variant="fadeUp" delay={0.15} className="lg:col-span-4 lg:pt-6">
+              <p
+                className="text-[1.05rem] md:text-[1.15rem] leading-[1.85] text-muted"
+                style={{ wordBreak: "keep-all" }}
+              >
+                세무사무소에 맡겨도 결국 손이 가는 일들이 있습니다.
+                메리디안은 그 일을 만들지 않으려고 합니다.
+              </p>
+            </AnimateOnScroll>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border">
+            {[
+              {
+                num: "01",
+                pain: "장부 잔액이 안 맞는데, 그걸 회사 담당자가 매번 맞춰야 합니다.",
+                ans: "결산 전이 아니라 매월 점검합니다. 잔액 불일치는 회계사가 먼저 잡습니다.",
+              },
+              {
+                num: "02",
+                pain: "기장은 하고 있는데, 절세 가능한 항목을 결산 때 알게 됩니다.",
+                ans: "절세는 신고 직전이 아니라 매일의 기장에서 미리 만들어집니다.",
+              },
+              {
+                num: "03",
+                pain: "세무 질문이 있어도 담당자한테 연결되기까지 며칠 걸립니다.",
+                ans: "사무 직원이 아닌, 회계사가 직접 응답합니다.",
+              },
+              {
+                num: "04",
+                pain: "신고 결과를 받았는데, 왜 이 금액인지 설명해주는 사람이 없습니다.",
+                ans: "신고 후 결과 보고서로 산출 근거와 절세 포인트를 설명합니다.",
+              },
+            ].map((item) => (
+              <div key={item.num} className="bg-background p-8 md:p-10">
+                <p className="text-xs tracking-[0.3em] text-muted mb-5 font-medium">
+                  CASE {item.num}
+                </p>
+                <p
+                  className="text-base md:text-lg font-bold text-foreground leading-[1.5]"
+                  style={{ wordBreak: "keep-all" }}
+                >
+                  &ldquo;{item.pain}&rdquo;
+                </p>
+                <div className="mt-6 pt-6 border-t border-border">
+                  <p className="text-xs tracking-[0.18em] uppercase text-accent font-bold mb-3">
+                    Meridian's answer
+                  </p>
+                  <p
+                    className="text-sm md:text-[0.95rem] text-strong leading-[1.75]"
+                    style={{ wordBreak: "keep-all" }}
+                  >
+                    {item.ans}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ─── WHY MERIDIAN — 4가지 원칙 ─── */}
       <section className="py-24 md:py-36 bg-background border-t border-border">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
@@ -189,23 +263,23 @@ export default function Home() {
             {[
               {
                 num: "01",
-                title: "시각의 깊이",
-                body: "외부감사·M&A 딜 구조 설계 9년. 같은 장부에서 의사결정의 양면을 동시에 봅니다.",
+                title: "전문가의 판단",
+                body: "어떤 알고리즘도 사업의 맥락을 이해할 수 없습니다. 사무 직원이 아닌, 회계사가 직접 판단합니다.",
               },
               {
                 num: "02",
-                title: "직접 책임",
-                body: "어시스턴트가 작성하고 회계사가 서명하는 방식이 아닙니다. 한 사람이 끝까지.",
+                title: "기술은 내부 도구로",
+                body: "복잡한 세무에 새 앱 학습은 필요하지 않습니다. AI는 메리디안 내부에서 정밀 계산을 위해 작동합니다.",
               },
               {
                 num: "03",
-                title: "구조로 마찰을",
-                body: "자동화할 수 있는 건 자동화합니다. 회계사가 직접 코딩해 마찰을 걷어냅니다.",
+                title: "직접 응답",
+                body: "챗봇이나 사무 직원이 아닌, 실제 작업하는 회계사가 직접 응답합니다.",
               },
               {
                 num: "04",
-                title: "한 사람 단위",
-                body: "광고비와 마케팅 인력에 쓸 비용을, 본업의 작업 시간에 씁니다.",
+                title: "본업에 투자",
+                body: "광고비와 마케팅 인력에 쓸 비용을, 회계사의 작업 시간과 맞춤 설계에 씁니다.",
               },
             ].map((item) => (
               <div key={item.num} className="bg-background p-8 md:p-10">

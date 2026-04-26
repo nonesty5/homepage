@@ -6,7 +6,7 @@ import { AnimateOnScroll, LineReveal, StaggerChildren, StaggerItem, ImageReveal 
 export const metadata: Metadata = {
   title: "ABOUT",
   description:
-    "박민상 공인회계사(삼정·한영 출신) — 세무기장부터 재무자문까지, 고객이 실제 현장에서 겪는 불편함을 직접 찾아 고칩니다. 메리디안 택스 어드바이저리.",
+    "메리디안 택스 어드바이저리 — 단순 신고 대행이 아닌 세무 관리. 기장에서 신고, 자문까지 한 사람이 끝까지 책임지는 부티크 세무·재무 자문.",
   alternates: {
     canonical: "/about",
   },
@@ -65,85 +65,22 @@ export default function AboutPage() {
           <AnimateOnScroll variant="fadeUp" delay={0.5}>
             <div className="mt-10 max-w-2xl text-lg md:text-xl text-neutral-300 leading-[1.85]">
               <p>
-                감사를 하면 보입니다.<br />
-                그 회사 사람들이 어떻게 결정해왔는지.<br />
-                장부에 다 나옵니다.
+                단순 신고 대행이 아닙니다.<br />
+                <strong className="text-white">세무 관리입니다.</strong>
               </p>
-              <p className="mt-5">
-                M&A 딜을 하면 또 봅니다.<br />
-                같은 숫자가 협상 테이블 위에서 어떻게 달라지는지.
+              <p className="mt-6">
+                매일의 장부에서 신고와 자문까지,
+                끊김 없이 이어지는 흐름.
               </p>
-              <p className="mt-5 text-neutral-400">
-                삼정에서 시작해, 한영에서 마쳤습니다.<br />
-                9년 동안 그걸 봤습니다.<br />
-                Meridian은 그 눈으로 직접 합니다.
+              <p className="mt-6 text-neutral-400">
+                Meridian은 그 흐름을 한 사람이 끝까지 책임지는 자리입니다.
               </p>
             </div>
           </AnimateOnScroll>
         </div>
       </section>
 
-      {/* ─── § 2. Career Background ─── */}
-      <section className="py-20 md:py-28 bg-background border-b border-border">
-        <div className="max-w-7xl mx-auto px-6">
-          <AnimateOnScroll variant="fadeIn">
-            <p className="text-xs tracking-[0.35em] text-muted mb-12 font-medium uppercase">
-              Background
-            </p>
-          </AnimateOnScroll>
-
-          <StaggerChildren className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-border">
-            {[
-              {
-                num: "01",
-                firm: "삼정회계법인",
-                sub: "KPMG",
-                work: "외부감사 · 내부통제",
-                note: "수백 개 회사의 1년을 장부에서 봤습니다.",
-              },
-              {
-                num: "02",
-                firm: "NH투자증권",
-                sub: "",
-                work: "IB · 기업금융",
-                note: "숫자가 협상 무기가 되는 자리를 봤습니다.",
-              },
-              {
-                num: "03",
-                firm: "한영회계법인",
-                sub: "EY",
-                work: "Valuation · M&A · EA",
-                note: "회사가 어떤 값으로 읽히는지 배웠습니다.",
-              },
-              {
-                num: "04",
-                firm: "동성회계법인",
-                sub: "현재",
-                work: "세무기장 · 자문 · Meridian",
-                note: "지금은 직접 합니다.",
-              },
-            ].map((item) => (
-              <StaggerItem key={item.num}>
-                <div className="bg-background p-8 md:p-10 h-full">
-                  <p className="text-xs tracking-[0.3em] text-muted mb-6 font-medium">
-                    {item.num}
-                    {item.sub && (
-                      <span className="ml-3 text-neutral-400">{item.sub}</span>
-                    )}
-                  </p>
-                  <p className="text-base md:text-lg font-bold text-foreground leading-tight">
-                    {item.firm}
-                  </p>
-                  <p className="mt-1 text-sm text-muted">{item.work}</p>
-                  <p className="mt-4 text-sm text-strong leading-relaxed">{item.note}</p>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerChildren>
-        </div>
-      </section>
-
-      {/* ─── § 3. 메리디안 4가지 원칙 — Intro ─── */}
+      {/* ─── § 2. 4가지 원칙 — Intro ─── */}
       <section className="py-24 md:py-36 bg-background">
         <div className="max-w-7xl mx-auto px-6">
           <AnimateOnScroll variant="fadeUp">
@@ -154,21 +91,20 @@ export default function AboutPage() {
               className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] max-w-3xl"
               style={{ wordBreak: "keep-all" }}
             >
-              한 사람의 시각이
+              Meridian이
               <br />
-              만드는 차이.
+              일하는 4가지 방식.
             </h2>
             <div className="mt-10 h-px w-16 bg-accent" />
             <p className="mt-10 max-w-2xl text-base md:text-lg text-strong leading-[1.9]">
-              메리디안이 일하는 방식에는 네 가지 원칙이 있습니다.
-              규모로 만들 수 없는 것을 시각의 깊이로,
-              인력으로 메우지 못하는 것을 구조로 풀어냅니다.
+              누구와 준비하느냐에 따라 결과는 달라집니다.
+              메리디안의 일하는 방식에는 네 가지 원칙이 있습니다.
             </p>
           </AnimateOnScroll>
         </div>
       </section>
 
-      {/* ─── 원칙 01. 시각의 깊이 (with founder photo) ─── */}
+      {/* ─── 원칙 01. 전문가의 판단 ─── */}
       <section className="relative py-28 md:py-40">
         <div className="hidden lg:block absolute top-0 bottom-0 right-[8%] w-px bg-border" />
 
@@ -179,23 +115,23 @@ export default function AboutPage() {
                 원칙 01
               </p>
               <h3 className="text-3xl md:text-4xl lg:text-[2.5rem] font-bold tracking-tight leading-[1.2]">
-                시각의 깊이.
+                전문가의 판단.
               </h3>
               <div className="mt-8 h-px w-12 bg-border" />
               <div className="mt-10 space-y-6 text-base md:text-lg text-strong leading-[1.9]">
                 <p>
-                  세무기장은 어디서나 같은 작업처럼 보입니다.
-                  매월 들어온 거래를 분류하고, 부가세를 신고하고, 결산을 하는 일.
+                  어떤 알고리즘도 사업의 맥락과 고민의 깊이를
+                  완벽히 이해할 수 없습니다.
                 </p>
                 <p>
-                  그러나 같은 장부에서, <strong>어떤 의사결정이 만들어지고 있는지</strong>를
-                  동시에 읽는 사람은 드뭅니다.
-                  외부감사를 통해 한 회사의 1년을 통째로 본 경험,
-                  M&A 딜을 통해 같은 숫자가 협상 테이블에서 어떻게 다르게 읽히는지를 본 경험 —
-                  이 둘을 가진 사람만이 매일의 기장에서 그 양면을 동시에 봅니다.
+                  메리디안은 사무 직원이나 자동화 시스템이 판단을 내리는 곳이
+                  아닙니다.
+                  사업의 맥락을 깊이 읽고, 그 위에서 의사결정의 근거를 만드는 것은
+                  <strong> 회계사 본인의 일</strong>입니다.
                 </p>
                 <p>
-                  Meridian은 그 시각을 매일의 작업에 가져옵니다.
+                  정확성 위에 시각을 얹습니다.
+                  지식보다 신뢰를 먼저 전합니다.
                 </p>
               </div>
             </AnimateOnScroll>
@@ -219,7 +155,7 @@ export default function AboutPage() {
 
       <hr className="section-divider" />
 
-      {/* ─── 원칙 02. 직접 책임 ─── */}
+      {/* ─── 원칙 02. 기술은 내부 도구로 ─── */}
       <section className="py-28 md:py-40 bg-background">
         <div className="max-w-3xl mx-auto px-6">
           <AnimateOnScroll variant="fadeUp">
@@ -227,7 +163,7 @@ export default function AboutPage() {
               원칙 02
             </p>
             <h3 className="text-3xl md:text-4xl lg:text-[2.5rem] font-bold tracking-tight leading-[1.2]">
-              직접 책임.
+              기술은 내부 도구로.
             </h3>
             <div className="mt-8 h-px w-12 bg-border" />
           </AnimateOnScroll>
@@ -235,22 +171,18 @@ export default function AboutPage() {
           <AnimateOnScroll variant="fadeUp" delay={0.15}>
             <div className="mt-12 space-y-6 text-base md:text-lg text-strong leading-[1.9]">
               <p>
-                대형 법인에서 일할 때 자주 봤습니다.
-                어시스턴트가 작성한 자료를 매니저가 검토하고,
-                파트너가 마지막에 서명하는 구조.
-                클라이언트는 보통 파트너 얼굴을 자주 봤지만,
-                실제로 일을 한 사람은 따로 있었습니다.
+                복잡한 세무 처리를 위해 새 앱이나 플랫폼 학습이 필요하지 않습니다.
+                기술은 클라이언트가 익혀야 할 시스템이 아닙니다.
               </p>
               <p>
-                Meridian은 그 구조의 반대입니다.
-                처음 듣는 질문도, 1년치 장부 정리도, 절세 전략도 —
-                <strong>한 사람이 끝까지 봅니다.</strong>
+                AI 코딩 도구는 메리디안 내부에서
+                <strong> 정밀한 계산과 오차 없는 검토</strong>를 위해 작동합니다.
+                반복적인 정산, 매출 집계, 자료 점검 — 자동화할 수 있는 작업은
+                클라이언트별 맞춤 구조로 짜서 처리합니다.
               </p>
               <p>
-                매번 처음부터 설명할 필요가 없습니다.
-                담당자가 바뀌어 맥락이 사라질 일도 없습니다.
-                지분 정리든, 가업승계든, 딜이든 —
-                재무자문이 필요한 순간에 그 흐름을 이미 알고 있는 사람이 함께합니다.
+                자동화는 목적이 아니라 수단입니다.
+                회계사의 시간을 진짜 자문에 쓰기 위해 마찰을 걷어냅니다.
               </p>
             </div>
           </AnimateOnScroll>
@@ -259,7 +191,7 @@ export default function AboutPage() {
 
       <hr className="section-divider" />
 
-      {/* ─── 원칙 03. 구조로 마찰을 ─── */}
+      {/* ─── 원칙 03. 직접 응답 ─── */}
       <section className="py-28 md:py-40 bg-card">
         <div className="max-w-3xl mx-auto px-6">
           <AnimateOnScroll variant="fadeUp">
@@ -267,7 +199,7 @@ export default function AboutPage() {
               원칙 03
             </p>
             <h3 className="text-3xl md:text-4xl lg:text-[2.5rem] font-bold tracking-tight leading-[1.2]">
-              구조로 마찰을 줄인다.
+              직접 응답.
             </h3>
             <div className="mt-8 h-px w-12 bg-border" />
           </AnimateOnScroll>
@@ -275,24 +207,18 @@ export default function AboutPage() {
           <AnimateOnScroll variant="fadeUp" delay={0.15}>
             <div className="mt-12 space-y-6 text-base md:text-lg text-strong leading-[1.9]">
               <p>
-                회계사가 해야 하는 진짜 일은 자문입니다.
-                그런데 자동화할 수 있는 단순 작업을 매번 수작업으로 하고 있으면 —
-                그 시간이 결국 자문 시간을 잡아먹습니다.
+                복잡한 세무, 챗봇과 대화할 필요가 없습니다.
+                사무 직원이 1차로 받고 회계사가 나중에 검토하는 구조도 아닙니다.
               </p>
               <p>
-                프리랜서 600명과 일하는 고객이 있었습니다.
-                정산을 메신저로 했습니다. 사람이 매달 일일이 확인했습니다.
-                열심히 했는데도 매달 빠졌습니다.
+                <strong>실제 작업을 하는 회계사가 직접 응답합니다.</strong>
+                질문 한 번에 1년치 장부 흐름이 답변에 담깁니다.
+                매번 처음부터 설명할 필요가 없고,
+                담당자가 바뀌어 맥락이 사라질 일도 없습니다.
               </p>
               <p>
-                <strong>구조의 문제였습니다. 사람의 문제가 아니라.</strong>
-                파이썬으로 정산 시스템을 직접 만들었습니다. 이후로는 빠지지 않습니다.
-              </p>
-              <p>
-                AI 코딩 도구가 나오면서 이 작업은 더 빨라졌습니다.
-                회계사가 직접 짜면 중간에 잘못 전달될 일이 없고,
-                그 시간을 절세 전략을 세우는 데 씁니다.
-                이런 식의 개선이 생각보다 많습니다.
+                지분 정리든, 가업승계든, 딜이든 —
+                재무자문이 필요한 순간에도 같은 사람이 함께합니다.
               </p>
             </div>
           </AnimateOnScroll>
@@ -301,7 +227,7 @@ export default function AboutPage() {
 
       <hr className="section-divider" />
 
-      {/* ─── 원칙 04. 한 사람 단위 ─── */}
+      {/* ─── 원칙 04. 본업에 투자 ─── */}
       <section className="py-28 md:py-40 bg-background">
         <div className="max-w-3xl mx-auto px-6">
           <AnimateOnScroll variant="fadeUp">
@@ -309,7 +235,7 @@ export default function AboutPage() {
               원칙 04
             </p>
             <h3 className="text-3xl md:text-4xl lg:text-[2.5rem] font-bold tracking-tight leading-[1.2]">
-              한 사람 단위.
+              본업에 투자.
             </h3>
             <div className="mt-8 h-px w-12 bg-border" />
           </AnimateOnScroll>
@@ -317,20 +243,17 @@ export default function AboutPage() {
           <AnimateOnScroll variant="fadeUp" delay={0.15}>
             <div className="mt-12 space-y-6 text-base md:text-lg text-strong leading-[1.9]">
               <p>
-                대형 법인이 줄 수 없는 깊이가 있습니다.
-                대형 법인에 가면 한 회사를 끝까지 들여다보기 어렵습니다.
-                업무는 분업되어 있고, 클라이언트와의 거리는 멀어집니다.
+                광고비, 마케팅 인력, 화려한 앱 개발에 쓸 비용을
+                <strong> 회계사의 작업 시간과 클라이언트별 맞춤 설계</strong>에 씁니다.
               </p>
               <p>
-                1인 사무소가 가질 수 없는 시각도 있습니다.
-                Big 4·IB의 환경에서만 쌓이는 통합적 시각,
-                대형 딜에서만 부딪히는 복잡한 의사결정의 경험.
-                평생 단독 사무소만 있으면 그 시각은 자랍니다.
+                메리디안의 가치는 광고에 있지 않습니다.
+                매일의 기장 정확성, 신고 전 점검의 깊이,
+                자문 한 번의 무게 — 본업의 작업에 있습니다.
               </p>
               <p>
-                <strong>Meridian은 그 사이에 있습니다.</strong>
-                대형의 시각으로, 1인의 직접성으로 일합니다.
-                광고비와 마케팅 인력에 쓸 비용을, 회계사 본인의 작업 시간에 씁니다.
+                작업이 좋으면 고객이 다음 결정에서 다시 부릅니다.
+                메리디안의 성장은 그 한 번의 신뢰에서 시작합니다.
               </p>
             </div>
           </AnimateOnScroll>
@@ -338,6 +261,86 @@ export default function AboutPage() {
       </section>
 
       <hr className="section-divider" />
+
+      {/* ─── § 3. 사업 단계별 흐름 ─── */}
+      <section className="py-28 md:py-40 bg-background">
+        <div className="max-w-7xl mx-auto px-6">
+          <AnimateOnScroll variant="fadeUp">
+            <p className="text-xs tracking-[0.35em] text-muted mb-8 font-medium uppercase">
+              Lifecycle
+            </p>
+            <h2
+              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] max-w-3xl"
+              style={{ wordBreak: "keep-all" }}
+            >
+              사업 단계마다
+              <br />
+              필요한 것은 다릅니다.
+            </h2>
+            <div className="mt-10 h-px w-16 bg-accent" />
+            <p className="mt-10 max-w-2xl text-base md:text-lg text-strong leading-[1.9]">
+              시작에는 정리가, 성장에는 절세가, 결정의 순간에는 가치 판단이 필요합니다.
+              메리디안은 단계마다 필요한 자문을 같은 흐름 위에서 제공합니다.
+            </p>
+          </AnimateOnScroll>
+
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-px bg-border border border-border">
+            {[
+              {
+                stage: "01",
+                label: "Start",
+                title: "사업의 시작",
+                items: [
+                  "사업자 등록",
+                  "세무기장 시작",
+                  "부가가치세 신고",
+                  "원천세 · 4대보험",
+                ],
+              },
+              {
+                stage: "02",
+                label: "Growth",
+                title: "사업의 성장",
+                items: [
+                  "법인 설립 · 전환",
+                  "절세 전략 설계",
+                  "경영 자료 정리",
+                  "세무조사 대응",
+                ],
+              },
+              {
+                stage: "03",
+                label: "Decision",
+                title: "의사결정의 순간",
+                items: [
+                  "기업 가치평가",
+                  "M&A 자문",
+                  "자산 승계 플랜",
+                  "오너기업 CFO 자문",
+                ],
+              },
+            ].map((item) => (
+              <div key={item.stage} className="bg-background p-8 md:p-12">
+                <p className="text-xs tracking-[0.3em] text-muted mb-2 font-medium uppercase">
+                  {item.stage} · {item.label}
+                </p>
+                <h3 className="text-2xl md:text-3xl font-bold text-foreground leading-tight">
+                  {item.title}
+                </h3>
+                <div className="mt-8 h-px w-10 bg-accent" />
+                <ul className="mt-8 space-y-3 text-sm md:text-[0.95rem] text-strong">
+                  {item.items.map((it) => (
+                    <li key={it} className="flex items-baseline gap-3">
+                      <span className="text-muted">·</span>
+                      <span>{it}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ─── § 4. 차별화 비교표 ─── */}
       <section className="py-28 md:py-40 bg-foreground text-white">
@@ -350,9 +353,9 @@ export default function AboutPage() {
               className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] max-w-3xl"
               style={{ wordBreak: "keep-all" }}
             >
-              메리디안이
+              누구와 준비하느냐에 따라
               <br />
-              다른 선택지와 다른 점.
+              결과는 달라집니다.
             </h2>
             <div className="mt-10 h-px w-16 bg-accent-bright" />
           </AnimateOnScroll>
@@ -377,34 +380,34 @@ export default function AboutPage() {
                 <tbody className="text-sm md:text-base">
                   {[
                     {
-                      label: "누가 검토하나",
+                      label: "서비스 철학",
+                      low: "가격 경쟁력 중심",
+                      big: "분업화된 처리",
+                      meridian: "고객 본업 몰입",
+                    },
+                    {
+                      label: "누가 응답하나",
                       low: "사무 직원",
                       big: "어시스턴트 → 파트너",
                       meridian: "공인회계사 직접",
                     },
                     {
-                      label: "시각의 폭",
-                      low: "세무 신고만",
-                      big: "분야별 분업",
-                      meridian: "세무 · 재무 · M&A 통합",
-                    },
-                    {
-                      label: "시스템 · 자동화",
-                      low: "수작업 처리",
+                      label: "기술 활용",
+                      low: "수기 · 단순 전산",
                       big: "표준 ERP",
-                      meridian: "클라이언트별 맞춤 코딩",
+                      meridian: "내부 AI · 맞춤 자동화",
                     },
                     {
-                      label: "의사소통",
+                      label: "소통 방식",
                       low: "담당자 연결 지연",
                       big: "정기 미팅 중심",
                       meridian: "회계사 직접 응답",
                     },
                     {
-                      label: "Big 4 경험",
-                      low: "없음",
-                      big: "있음 (분업된 형태)",
-                      meridian: "있음 (감사 + IB + Valuation)",
+                      label: "비용 가치",
+                      low: "인건비 절감",
+                      big: "광고 · 인프라",
+                      meridian: "본업의 작업 시간",
                     },
                   ].map((row, i) => (
                     <tr key={row.label} className={i < 4 ? "border-b border-neutral-800" : ""}>
@@ -426,7 +429,7 @@ export default function AboutPage() {
         <div className="max-w-5xl mx-auto px-6">
           <AnimateOnScroll variant="fadeUp">
             <p className="text-xs tracking-[0.35em] text-muted mb-16 font-medium uppercase text-center">
-              메리디안은 이렇게 봅니다
+              Meridian은 이렇게 봅니다
             </p>
           </AnimateOnScroll>
 
