@@ -159,27 +159,98 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── TARGET AUDIENCE STRIP ─── */}
-      <section className="py-12 md:py-14 bg-background border-t border-border">
+      {/* ─── 업종별 / 클라이언트 유형 ─── */}
+      <section className="py-24 md:py-36 bg-background border-t border-border">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-            <p className="text-[0.7rem] font-bold tracking-[0.22em] uppercase text-muted">
-              Built for
-            </p>
-            <div className="flex flex-wrap items-center gap-x-6 md:gap-x-8 gap-y-2 text-[0.92rem] md:text-[0.98rem] text-foreground font-medium">
-              <span>법인 대표</span>
-              <span className="text-subtle">·</span>
-              <span>자산가</span>
-              <span className="text-subtle">·</span>
-              <span>고소득 전문직</span>
-              <span className="text-subtle">·</span>
-              <span>가업승계 단계</span>
-              <span className="text-subtle">·</span>
-              <span>M&A · IPO 검토</span>
-            </div>
-            <p className="text-[0.85rem] text-muted md:text-right" style={{ wordBreak: "keep-all" }}>
-              의사결정의 무게가 큰 분들과 함께합니다.
-            </p>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-14 md:mb-20">
+            <AnimateOnScroll variant="fadeUp" className="lg:col-span-7">
+              <p className="eyebrow mb-8">Built for</p>
+              <h2
+                className="text-[2.4rem] md:text-[3.4rem] lg:text-[4rem] font-black leading-[1.05] tracking-[-0.03em] text-foreground"
+                style={{ wordBreak: "keep-all" }}
+              >
+                어떤 분과 일하나<span className="green-dot">.</span>
+              </h2>
+            </AnimateOnScroll>
+            <AnimateOnScroll variant="fadeUp" delay={0.15} className="lg:col-span-5 lg:pt-6">
+              <p
+                className="text-[1.05rem] md:text-[1.15rem] leading-[1.85] text-muted"
+                style={{ wordBreak: "keep-all" }}
+              >
+                단계와 영역에 따라 필요한 자문이 다릅니다.
+                메리디안은 결정 하나가 큰 분들과 일합니다.
+              </p>
+            </AnimateOnScroll>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border">
+            {[
+              {
+                num: "01",
+                title: "법인 대표",
+                desc: "스타트업 · 중소기업 · 성장기 법인",
+                services: [
+                  "법인세 · 부가세 · 원천세",
+                  "절세 전략 설계",
+                  "비상장주식 가치평가",
+                  "법인 전환 · 설립 자문",
+                ],
+              },
+              {
+                num: "02",
+                title: "개인사업자 · 프리랜서",
+                desc: "고소득 전문직 · 1인 사업자",
+                services: [
+                  "종합소득세 · 부가세",
+                  "4대보험 · 원천세",
+                  "절세 전략",
+                  "성실신고 대응",
+                ],
+              },
+              {
+                num: "03",
+                title: "자산가 (개인)",
+                desc: "양도 · 증여 · 상속 단계",
+                services: [
+                  "양도세 · 증여세 · 상속세",
+                  "자산 이전 설계",
+                  "가업승계 사전 점검",
+                  "다주택 · 부동산 절세",
+                ],
+              },
+              {
+                num: "04",
+                title: "M&A · IPO 검토",
+                desc: "거래 · 상장 준비 단계",
+                services: [
+                  "기업 가치평가",
+                  "M&A 재무실사 (FDD)",
+                  "IPO 사전 회계 정비",
+                  "거래 구조 자문",
+                ],
+              },
+            ].map((item) => (
+              <div key={item.num} className="bg-background p-8 md:p-10">
+                <p className="text-xs tracking-[0.3em] text-muted mb-6 font-medium">
+                  {item.num}
+                </p>
+                <h3 className="text-xl md:text-[1.4rem] font-bold text-foreground leading-tight">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm text-muted" style={{ wordBreak: "keep-all" }}>
+                  {item.desc}
+                </p>
+                <div className="mt-6 h-px w-10 bg-accent" />
+                <ul className="mt-6 space-y-2 text-sm md:text-[0.9rem] text-strong">
+                  {item.services.map((s) => (
+                    <li key={s} className="flex items-start gap-2 leading-relaxed">
+                      <span className="text-muted mt-0.5">·</span>
+                      <span style={{ wordBreak: "keep-all" }}>{s}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
       </section>

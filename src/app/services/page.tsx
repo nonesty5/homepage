@@ -53,6 +53,106 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      {/* ─── 1년의 흐름 ─── */}
+      <section className="py-24 md:py-32 bg-card border-y border-border">
+        <div className="max-w-7xl mx-auto px-6">
+          <AnimateOnScroll variant="fadeUp">
+            <p className="text-xs tracking-[0.35em] text-muted mb-8 font-medium uppercase">
+              Annual Flow
+            </p>
+            <h2
+              className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] max-w-3xl"
+              style={{ wordBreak: "keep-all" }}
+            >
+              1년의 흐름.
+            </h2>
+            <div className="mt-8 h-px w-12 bg-accent" />
+            <p className="mt-8 max-w-2xl text-base md:text-lg text-strong leading-[1.85]">
+              매월 어떤 일정이 있고, 메리디안이 무엇을 하는지.
+              기장은 매일, 신고는 분기, 자문은 결정의 순간마다.
+            </p>
+          </AnimateOnScroll>
+
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border">
+            {[
+              {
+                q: "Q1",
+                months: "1 – 3월",
+                deadlines: [
+                  "1월 — 부가세 2기 확정신고",
+                  "2월 — 면세사업장 현황",
+                  "3월 — 법인세 신고 (12월 결산)",
+                ],
+                role: "전년도 결산 점검, 법인세 절세 마무리, 다음 해 시작 정리",
+              },
+              {
+                q: "Q2",
+                months: "4 – 6월",
+                deadlines: [
+                  "4월 — 부가세 1기 예정신고",
+                  "5월 — 종합소득세 신고",
+                  "6월 — 성실신고확인서 제출",
+                ],
+                role: "종소세 절세 검토, 성실신고 대응, 1분기 결산 점검",
+              },
+              {
+                q: "Q3",
+                months: "7 – 9월",
+                deadlines: [
+                  "7월 — 부가세 1기 확정신고",
+                  "8월 — 법인세 중간예납",
+                  "원천세 매월 10일",
+                ],
+                role: "반기 결산 점검, 절세 전략 중간 점검, 자료 정비",
+              },
+              {
+                q: "Q4",
+                months: "10 – 12월",
+                deadlines: [
+                  "10월 — 부가세 2기 예정신고",
+                  "11월 — 종합소득세 중간예납",
+                  "12월 — 결산 사전 정리",
+                ],
+                role: "연말 결산 사전 정리, 다음 해 계획, 자문·의사결정 시즌",
+              },
+            ].map((item) => (
+              <div key={item.q} className="bg-background p-8 md:p-10">
+                <div className="flex items-baseline gap-3 mb-2">
+                  <p className="text-3xl md:text-4xl font-black text-foreground tracking-tight">
+                    {item.q}
+                  </p>
+                  <p className="text-xs tracking-[0.2em] uppercase text-muted font-medium">
+                    {item.months}
+                  </p>
+                </div>
+                <div className="mt-6 h-px w-10 bg-accent" />
+                <p className="mt-5 text-xs tracking-[0.18em] uppercase text-muted font-medium mb-3">
+                  주요 일정
+                </p>
+                <ul className="space-y-2 text-sm text-strong">
+                  {item.deadlines.map((d) => (
+                    <li key={d} className="leading-relaxed">{d}</li>
+                  ))}
+                </ul>
+                <p className="mt-6 pt-6 border-t border-border text-xs tracking-[0.18em] uppercase text-muted font-medium mb-3">
+                  Meridian의 일
+                </p>
+                <p
+                  className="text-sm md:text-[0.95rem] text-strong leading-[1.7]"
+                  style={{ wordBreak: "keep-all" }}
+                >
+                  {item.role}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-10 text-xs text-muted leading-relaxed">
+            ※ 국세청 기준 주요 신고·납부 기한. 담당 법인의 신고 의무 및 마감일은 실제와 상이할 수 있습니다.
+          </p>
+        </div>
+      </section>
+
       {/* CTA */}
       <AnimateOnScroll variant="fadeIn">
         <section className="py-24 md:py-32 bg-foreground text-white">
