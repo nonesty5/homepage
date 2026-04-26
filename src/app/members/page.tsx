@@ -3,12 +3,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { members } from "@/lib/data";
 import SectionHeading from "@/components/ui/section-heading";
-import { AnimateOnScroll, StaggerChildren, LineReveal, ImageReveal } from "@/components/motion";
+import { AnimateOnScroll, StaggerChildren, LineReveal } from "@/components/motion";
 import { StaggerItem } from "@/components/motion/stagger-item";
 
 export const metadata: Metadata = {
   title: "PEOPLE",
   description: "메리디안 택스 어드바이저리의 사람을 소개합니다.",
+  alternates: {
+    canonical: "/members",
+  },
 };
 
 export default function PeoplePage() {
@@ -32,7 +35,7 @@ export default function PeoplePage() {
           </AnimateOnScroll>
           <AnimateOnScroll variant="fadeUp" delay={0.1}>
             <h1 className="text-4xl md:text-6xl font-bold tracking-tighter">
-              함께하는 사람
+              일하는 사람
             </h1>
           </AnimateOnScroll>
           <div className="mt-6">
@@ -40,8 +43,8 @@ export default function PeoplePage() {
           </div>
           <AnimateOnScroll variant="fadeUp" delay={0.4}>
             <p className="mt-8 text-lg text-neutral-400 max-w-xl leading-relaxed">
-              고객의 문제를 끝까지 책임지는 사람들.
-              한 사람의 깊이에서 시작해, 신뢰할 수 있는 동료와 함께 성장합니다.
+              메리디안은 한 사람이 끝까지 보는 방식으로 운영됩니다.
+              기장도, 신고도, 자문도 — 같은 사람의 일입니다.
             </p>
           </AnimateOnScroll>
         </div>
@@ -55,9 +58,12 @@ export default function PeoplePage() {
               {/* Photo */}
               <div className="bg-card border border-border overflow-hidden">
                 {lead.image ? (
-                  <img
+                  <Image
                     src={lead.image}
                     alt={`${lead.name} ${lead.role}`}
+                    width={900}
+                    height={1200}
+                    sizes="(min-width: 1024px) 50vw, calc(100vw - 48px)"
                     className="w-full"
                     style={{ aspectRatio: "3/4", objectFit: "cover", objectPosition: "top" }}
                   />

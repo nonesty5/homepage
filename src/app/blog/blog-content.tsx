@@ -5,7 +5,6 @@ import Image from "next/image";
 import { useState } from "react";
 import { AnimateOnScroll, StaggerChildren } from "@/components/motion";
 import { StaggerItem } from "@/components/motion/stagger-item";
-import PostStatusBadge from "@/components/blog/post-status-badge";
 import { getCategoryStyle } from "@/lib/category-colors";
 import type { PostMeta } from "@/lib/posts";
 
@@ -60,7 +59,6 @@ export default function BlogContent({ posts }: BlogContentProps) {
                       >
                         {featured.category}
                       </span>
-                      <PostStatusBadge status={featured.status} />
                       <span className="text-xs text-subtle">{featured.date}</span>
                     </div>
                     <h2 className="text-2xl font-bold leading-tight tracking-tight decoration-1 underline-offset-4 group-hover:underline md:text-3xl">
@@ -128,7 +126,6 @@ export default function BlogContent({ posts }: BlogContentProps) {
                       >
                         {post.category}
                       </span>
-                      <PostStatusBadge status={post.status} />
                       <span className="text-xs text-subtle">{post.date}</span>
                     </div>
                     <h2 className="text-lg font-bold leading-snug tracking-tight decoration-1 underline-offset-4 group-hover:underline">

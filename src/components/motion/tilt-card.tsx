@@ -19,6 +19,7 @@ export default function TiltCard({
   const ref = useRef<HTMLDivElement>(null);
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
+  const [hovering, setHovering] = useState(false);
 
   if (reduced) {
     return <div className={className}>{children}</div>;
@@ -34,8 +35,6 @@ export default function TiltCard({
     setRotateY((x - 0.5) * maxTilt);
   };
 
-  const [hovering, setHovering] = useState(false);
-
   const handleMouseLeave = () => {
     setRotateX(0);
     setRotateY(0);
@@ -46,7 +45,10 @@ export default function TiltCard({
     <motion.div
       ref={ref}
       className={className}
-      onMouseMove={(e) => { handleMouseMove(e); setHovering(true); }}
+      onMouseMove={(e) => {
+        handleMouseMove(e);
+        setHovering(true);
+      }}
       onMouseLeave={handleMouseLeave}
       animate={{ rotateX, rotateY }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}

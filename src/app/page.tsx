@@ -85,7 +85,7 @@ export default function Home() {
               <span className="green-dot">.</span>
             </h1>
             <p className="mt-8 text-[1.05rem] md:text-[1.2rem] leading-[1.7] text-background/70 max-w-[52ch]" style={{ wordBreak: "keep-all" }}>
-              단순 신고 대행이 아닙니다. 매일의 장부에서 신고와 자문까지, 한 사람이 끝까지 책임지는 세무 관리.
+              신고만 처리해주는 곳이 아닙니다. 매일 장부 보는 사람이 자문 자리까지 같이 갑니다.
             </p>
           </AnimateOnScroll>
 

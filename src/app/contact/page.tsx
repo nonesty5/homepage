@@ -6,11 +6,14 @@ import { AnimateOnScroll, LineReveal } from "@/components/motion";
 export const metadata: Metadata = {
   title: "CONTACT",
   description: "현재 상황과 필요한 서비스를 알려주시면 적용 범위와 다음 단계를 정리해 드립니다.",
+  alternates: {
+    canonical: "/contact",
+  },
 };
 
 const contactInfo = [
-  { label: "Phone", value: siteConfig.phone },
-  { label: "Email", value: siteConfig.email },
+  { label: "Phone", value: siteConfig.phone, href: `tel:${siteConfig.phone.replaceAll("-", "")}` },
+  { label: "Email", value: siteConfig.email, href: `mailto:${siteConfig.email}` },
   { label: "Location", value: siteConfig.location },
   { label: "Hours", value: "평일 09:00 - 18:00 · 사전 약속 권장" },
 ];
@@ -20,6 +23,7 @@ interface ContactPageProps {
     type?: string | string[];
     bottleneck?: string | string[];
     output?: string | string[];
+    message?: string | string[];
   }>;
 }
 
@@ -29,10 +33,15 @@ function getSingleValue(value?: string | string[]) {
 
 export default async function ContactPage({ searchParams }: ContactPageProps) {
   const query = await searchParams;
+  const type = getSingleValue(query.type);
+  const bottleneck = getSingleValue(query.bottleneck);
+  const desiredOutput = getSingleValue(query.output);
+  const message = getSingleValue(query.message);
   const initialValues = {
-    type: getSingleValue(query.type),
-    bottleneck: getSingleValue(query.bottleneck),
-    desiredOutput: getSingleValue(query.output),
+    ...(type ? { type } : {}),
+    ...(bottleneck ? { bottleneck } : {}),
+    ...(desiredOutput ? { desiredOutput } : {}),
+    ...(message ? { message } : {}),
   };
 
   return (
@@ -95,9 +104,18 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                       <p className="text-[10px] tracking-[0.25em] text-subtle uppercase font-medium mb-2">
                         {info.label}
                       </p>
-                      <p className="text-foreground leading-relaxed">
-                        {info.value}
-                      </p>
+                      {"href" in info && info.href ? (
+                        <a
+                          href={info.href}
+                          className="text-foreground leading-relaxed hover:text-accent transition-colors"
+                        >
+                          {info.value}
+                        </a>
+                      ) : (
+                        <p className="text-foreground leading-relaxed">
+                          {info.value}
+                        </p>
+                      )}
                     </div>
                   ))}
                 </div>

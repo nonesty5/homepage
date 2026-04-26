@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import PricingCalculator from "@/components/pricing/calculator";
-import { AnimateOnScroll, StaggerChildren, LineReveal } from "@/components/motion";
-import { StaggerItem } from "@/components/motion/stagger-item";
+import { AnimateOnScroll, LineReveal } from "@/components/motion";
 
 export const metadata: Metadata = {
   title: "PRICING",
   description:
     "법인·개인사업자 예상 수임료를 6개의 질문으로 계산합니다. 업종, 매출, 직원 수 입력만으로 월 기장료와 연 신고/조정료를 즉시 안내합니다.",
+  alternates: {
+    canonical: "/pricing",
+  },
 };
 
 export default function PricingPage() {

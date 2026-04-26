@@ -63,7 +63,7 @@ export function getPostStatusCopy(status?: PostStatus) {
 }
 
 export function shouldShowStatusBadge(status?: PostStatus) {
-  return Boolean(status && status !== "evergreen");
+  return false;
 }
 
 export function formatContentDate(value?: string) {

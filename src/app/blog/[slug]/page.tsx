@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import CopyUrlButton from "@/components/blog/copy-url-button";
-import PostStatusBadge from "@/components/blog/post-status-badge";
 import MdxContent from "@/components/mdx/mdx-content";
 import {
   formatContentDate,
   getAbsoluteAssetUrl,
-  getPostStatusCopy,
   getPostUrl,
   getSourceKindLabel,
 } from "@/lib/content-system";
@@ -26,6 +25,15 @@ export async function generateStaticParams() {
 
 function toIsoDate(value?: string) {
   return value ? `${value}T00:00:00+09:00` : undefined;
+}
+
+function toSafeJsonLd(value: unknown) {
+  return JSON.stringify(value)
+    .replaceAll("<", "\\u003c")
+    .replaceAll(">", "\\u003e")
+    .replaceAll("&", "\\u0026")
+    .replaceAll("\u2028", "\\u2028")
+    .replaceAll("\u2029", "\\u2029");
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -67,6 +75,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: post.meta.description,
       images: image ? [image] : undefined,
     },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-snippet": -1,
+        "max-image-preview": "large",
+      },
+    },
   };
 }
 
@@ -85,8 +103,8 @@ export default async function BlogPostPage({ params }: Props) {
   }
 
   const readingTime = estimateReadingTime(post.content);
+  const articleWordCount = post.content.trim().split(/\s+/).filter(Boolean).length;
   const relatedPosts = getRelatedPosts(post.meta, getAllPosts(), 3);
-  const statusCopy = getPostStatusCopy(post.meta.status);
   const articleUrl = getPostUrl(post.meta.slug);
   const coverImageUrl = getAbsoluteAssetUrl(post.meta.coverImage);
 
@@ -106,7 +124,6 @@ export default async function BlogPostPage({ params }: Props) {
             formatContentDate(post.meta.lastChecked) ?? post.meta.lastChecked,
         }
       : null,
-    statusCopy ? { label: "법적 상태", value: statusCopy.label } : null,
     post.meta.effectiveFrom
       ? {
           label: "적용 시점",
@@ -120,36 +137,86 @@ export default async function BlogPostPage({ params }: Props) {
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
+    inLanguage: "ko-KR",
+    isAccessibleForFree: true,
     headline: post.meta.title,
     description: post.meta.description,
     datePublished: toIsoDate(post.meta.date),
     dateModified: toIsoDate(
       post.meta.updatedAt ?? post.meta.lastChecked ?? post.meta.date
     ),
-    mainEntityOfPage: articleUrl,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": articleUrl,
+    },
     url: articleUrl,
     image: coverImageUrl ? [coverImageUrl] : undefined,
     author: {
       "@type": "Person",
       name: post.meta.author ?? siteConfig.founder,
+      url: new URL("/about", siteConfig.url).toString(),
     },
     publisher: {
       "@type": "Organization",
       name: siteConfig.name,
       url: siteConfig.url,
+      logo: {
+        "@type": "ImageObject",
+        url: new URL("/images/logo.png", siteConfig.url).toString(),
+      },
     },
-    keywords: post.meta.keywords.length > 0 ? post.meta.keywords.join(", ") : undefined,
+    articleSection: post.meta.category,
+    wordCount: articleWordCount,
+    timeRequired: `PT${readingTime}M`,
+    about:
+      post.meta.keywords.length > 0
+        ? post.meta.keywords.map((keyword) => ({
+            "@type": "Thing",
+            name: keyword,
+          }))
+        : undefined,
+    keywords:
+      post.meta.keywords.length > 0 ? post.meta.keywords.join(", ") : undefined,
     citation:
       post.meta.sourceLinks.length > 0
         ? post.meta.sourceLinks.map((source) => source.url)
         : undefined,
   };
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: siteConfig.url,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Insights",
+        item: new URL("/blog", siteConfig.url).toString(),
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: post.meta.title,
+        item: articleUrl,
+      },
+    ],
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: toSafeJsonLd(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: toSafeJsonLd(breadcrumbJsonLd) }}
       />
 
       <section className="bg-foreground py-32 text-white md:py-40">
@@ -177,7 +244,6 @@ export default async function BlogPostPage({ params }: Props) {
               >
                 {post.meta.category}
               </span>
-              <PostStatusBadge status={post.meta.status} />
             </div>
 
             <h1 className="text-3xl font-bold leading-tight tracking-tight md:text-4xl lg:text-5xl">
@@ -201,19 +267,6 @@ export default async function BlogPostPage({ params }: Props) {
               )}
             </div>
 
-            {statusCopy && post.meta.status !== "evergreen" && (
-              <div
-                className={`mt-8 rounded-2xl border px-5 py-4 ${statusCopy.panelClassName}`}
-              >
-                <p className="text-xs font-semibold tracking-[0.24em]">
-                  STATUS
-                </p>
-                <p className="mt-2 text-sm leading-relaxed">
-                  {statusCopy.description}
-                </p>
-              </div>
-            )}
-
             <dl className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
               {articleMeta.map((item) => (
                 <div
@@ -236,9 +289,12 @@ export default async function BlogPostPage({ params }: Props) {
       {post.meta.coverImage && (
         <section className="pt-12 md:pt-16">
           <div className="mx-auto max-w-3xl px-6">
-            <img
+            <Image
               src={post.meta.coverImage}
               alt={post.meta.title}
+              width={1200}
+              height={675}
+              sizes="(min-width: 768px) 768px, calc(100vw - 48px)"
               className="w-full rounded-lg border border-border"
             />
           </div>
@@ -348,7 +404,6 @@ export default async function BlogPostPage({ params }: Props) {
                       >
                         {relatedPost.category}
                       </span>
-                      <PostStatusBadge status={relatedPost.status} />
                       <span className="text-xs text-subtle">
                         {relatedPost.date}
                       </span>

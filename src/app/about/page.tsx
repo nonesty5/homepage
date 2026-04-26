@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { siteConfig, heroImages } from "@/lib/constants";
-import { AnimateOnScroll, LineReveal, StaggerChildren, StaggerItem, ImageReveal } from "@/components/motion";
+import { AnimateOnScroll, LineReveal, ImageReveal } from "@/components/motion";
 
 export const metadata: Metadata = {
   title: "ABOUT",

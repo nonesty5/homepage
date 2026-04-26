@@ -4,9 +4,19 @@ import { AnimateOnScroll, LineReveal } from "@/components/motion";
 import BlogContent from "./blog-content";
 
 export const metadata: Metadata = {
-  title: "INSIGHTS",
+  title: "세무 인사이트",
   description:
     "세무, 회계, 재무자문 실무 인사이트 — 사업 운영에서 자주 마주치는 세무·회계 이슈를 실무 관점으로 정리합니다.",
+  openGraph: {
+    title: "세무 인사이트",
+    description:
+      "사업 운영에서 자주 마주치는 세무·회계 이슈를 실무 관점으로 정리합니다.",
+    type: "website",
+    url: "/blog",
+  },
+  alternates: {
+    canonical: "/blog",
+  },
 };
 
 export default function BlogPage() {

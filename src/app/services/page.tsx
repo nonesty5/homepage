@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "PRACTICE",
   description:
     "세무 기장 · 세무조정 · 세무 자문을 중심으로, 필요 시 가치평가와 거래 자문까지 연결합니다.",
+  alternates: {
+    canonical: "/services",
+  },
 };
 
 export default function ServicesPage() {

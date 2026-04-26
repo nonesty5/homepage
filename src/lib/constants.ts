@@ -3,12 +3,12 @@ export const siteConfig = {
   title: "MERIDIAN",
   tagline: "좋은 장부가, 좋은 결정을 만듭니다.",
   description:
-    "Big4 출신 공인회계사가 세무기장을 직접 검토합니다. 정확한 장부에서 출발해 세무신고 · 자문 · 가치평가로 연결됩니다.",
-  url: "https://meridianco.kr",
+    "단순 신고 대행이 아닌 세무 관리. 매일의 장부에서 신고와 자문까지, 한 사람이 끝까지 책임지는 부티크 세무·재무 자문.",
+  url: "https://www.meridianco.kr",
   email: "mscpa@dscpa.co.kr",
   phone: "010-3300-7339",
   location: "Seoul · Online Meeting",
-  founder: "박민상",
+  founder: "박민상 회계사",
   affiliation:
     "박민상 공인회계사는 동성회계법인 소속이며, 본 사이트는 자문 · 인사이트 활동을 소개하기 위한 개인 브랜드 공간입니다. 회계감사 · 세무 기장 · 세무 조정 · 세무 신고 등 법정 업무는 모두 동성회계법인 명의로 정식 수행됩니다.",
   clientPortalUrl: "https://hometax-dashboard.vercel.app",

@@ -2,37 +2,47 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { motion, useScroll, useSpring } from "motion/react";
 import { navLinks, siteConfig } from "@/lib/constants";
 
 export default function Header() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 200, damping: 50, restDelta: 0.001 });
 
-  const handleScroll = useCallback(() => {
-    setScrolled(window.scrollY > 20);
-  }, []);
-
   useEffect(() => {
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
+    const main = document.querySelector("main");
 
-  // Prevent body scroll when mobile menu is open
-  useEffect(() => {
     if (mobileOpen) {
       document.body.style.overflow = "hidden";
+      main?.setAttribute("inert", "");
+      main?.setAttribute("aria-hidden", "true");
     } else {
       document.body.style.overflow = "";
+      main?.removeAttribute("inert");
+      main?.removeAttribute("aria-hidden");
     }
+
     return () => {
       document.body.style.overflow = "";
+      main?.removeAttribute("inert");
+      main?.removeAttribute("aria-hidden");
     };
+  }, [mobileOpen]);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMobileOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [mobileOpen]);
 
   return (
@@ -63,6 +73,7 @@ export default function Header() {
                   <Link
                     key={link.href}
                     href={link.href}
+                    prefetch={false}
                     className={`relative text-[0.8125rem] font-medium tracking-[0.08em] transition-colors duration-300 hover-underline ${
                       isActive ? "text-foreground" : "text-muted hover:text-foreground"
                     }`}
@@ -75,6 +86,7 @@ export default function Header() {
             <div className="flex items-center gap-3">
               <Link
                 href={siteConfig.pricingUrl}
+                prefetch={false}
                 className="text-[0.75rem] font-medium tracking-[0.08em] uppercase px-4 py-2 border border-border text-muted hover:text-foreground hover:border-foreground transition-colors duration-300"
               >
                 Pricing
@@ -95,6 +107,8 @@ export default function Header() {
             className="md:hidden relative w-10 h-10 flex items-center justify-center"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={mobileOpen ? "메뉴 닫기" : "메뉴 열기"}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-navigation"
           >
             <div className="relative w-5 h-3.5">
               <span
@@ -124,10 +138,15 @@ export default function Header() {
 
       {/* Mobile Nav - Full Screen Overlay */}
       <div
+        id="mobile-navigation"
+        aria-hidden={!mobileOpen}
+        aria-label="모바일 메뉴"
+        aria-modal={mobileOpen ? true : undefined}
+        role={mobileOpen ? "dialog" : undefined}
         className={`fixed inset-0 z-40 bg-background transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           mobileOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
+            ? "visible opacity-100 pointer-events-auto"
+            : "invisible opacity-0 pointer-events-none"
         }`}
       >
         <nav className="flex flex-col items-center justify-center h-full gap-8">
@@ -140,6 +159,7 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
+                prefetch={false}
                 onClick={() => setMobileOpen(false)}
                 className={`text-2xl font-light tracking-[0.12em] transition-all duration-500 ${
                   mobileOpen
@@ -168,6 +188,7 @@ export default function Header() {
           >
             <Link
               href={siteConfig.pricingUrl}
+              prefetch={false}
               onClick={() => setMobileOpen(false)}
               className="text-xs tracking-[0.12em] uppercase px-6 py-3 border border-border text-muted"
             >

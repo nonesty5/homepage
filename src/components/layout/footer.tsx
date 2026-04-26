@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { siteConfig, navLinks, imageCredits } from "@/lib/constants";
-import { AnimateOnScroll, StaggerChildren } from "@/components/motion";
+import { StaggerChildren } from "@/components/motion";
 import { StaggerItem } from "@/components/motion/stagger-item";
 
 export default function Footer() {
@@ -82,12 +82,22 @@ export default function Footer() {
               <p>
                 <span className="text-neutral-500 text-xs uppercase tracking-wider">Tel</span>
                 <br />
-                {siteConfig.phone}
+                <a
+                  href={`tel:${siteConfig.phone.replaceAll("-", "")}`}
+                  className="hover:text-white transition-colors"
+                >
+                  {siteConfig.phone}
+                </a>
               </p>
               <p>
                 <span className="text-neutral-500 text-xs uppercase tracking-wider">Email</span>
                 <br />
-                {siteConfig.email}
+                <a
+                  href={`mailto:${siteConfig.email}`}
+                  className="hover:text-white transition-colors"
+                >
+                  {siteConfig.email}
+                </a>
               </p>
               <p className="mt-2 leading-relaxed">
                 <span className="text-neutral-500 text-xs uppercase tracking-wider">Location</span>

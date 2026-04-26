@@ -56,8 +56,40 @@
 /* ─── Base ─── */
 
 html {
-  /* Slightly larger base font for better readability — bumps every rem-based size */
-  font-size: 17px;
+  font-size: 15px;
+}
+
+:root {
+  --site-gutter-6: 26px;
+  --site-gutter-8: 34px;
+  --site-gutter-12: 51px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --site-gutter-6: 29px;
+    --site-gutter-8: 38px;
+    --site-gutter-12: 57px;
+  }
+}
+
+:is([class~="mx-auto"][class~="px-6"]) {
+  padding-left: var(--site-gutter-6);
+  padding-right: var(--site-gutter-6);
+}
+
+@media (min-width: 768px) {
+  :is([class~="mx-auto"][class~="md:px-12"]) {
+    padding-left: var(--site-gutter-12);
+    padding-right: var(--site-gutter-12);
+  }
+}
+
+@media (min-width: 1024px) {
+  :is([class~="mx-auto"][class~="lg:px-8"]) {
+    padding-left: var(--site-gutter-8);
+    padding-right: var(--site-gutter-8);
+  }
 }
 
 /* Lenis smooth scroll overrides */
@@ -72,7 +104,7 @@ html.lenis body {
 
 @media (min-width: 768px) {
   html {
-    font-size: 19px;
+    font-size: 15px;
   }
 }
 

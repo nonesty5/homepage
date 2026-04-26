@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 
 interface FormData {
   name: string;
@@ -12,6 +12,7 @@ interface FormData {
   desiredOutput: string;
   timeline: string;
   message: string;
+  website: string;
 }
 
 const defaultForm: FormData = {
@@ -24,13 +25,15 @@ const defaultForm: FormData = {
   desiredOutput: "운영 진단 및 우선순위 메모",
   timeline: "이번 달 안",
   message: "",
+  website: "",
 };
 
 interface ContactFormProps {
-  initialValues?: Partial<Pick<FormData, "type" | "bottleneck" | "desiredOutput">>;
+  initialValues?: Partial<Pick<FormData, "type" | "bottleneck" | "desiredOutput" | "message">>;
 }
 
 export default function ContactForm({ initialValues }: ContactFormProps) {
+  const formId = useId();
   const [form, setForm] = useState<FormData>(() => ({
     ...defaultForm,
     ...initialValues,
@@ -42,6 +45,8 @@ export default function ContactForm({ initialValues }: ContactFormProps) {
   const updateField = <K extends keyof FormData>(key: K, value: FormData[K]) => {
     setForm((current) => ({ ...current, [key]: value }));
   };
+
+  const fieldId = (field: keyof FormData) => `${formId}-${field}`;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -56,7 +61,7 @@ export default function ContactForm({ initialValues }: ContactFormProps) {
 
       if (res.ok) {
         setStatus("sent");
-        setForm(defaultForm);
+        setForm({ ...defaultForm, ...initialValues });
       } else {
         setStatus("error");
       }
@@ -102,14 +107,30 @@ export default function ContactForm({ initialValues }: ContactFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
+      <div className="sr-only" aria-hidden="true">
+        <label htmlFor={fieldId("website")}>Website</label>
+        <input
+          id={fieldId("website")}
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={form.website}
+          onChange={(e) => updateField("website", e.target.value)}
+        />
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="relative">
-          <label className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
+          <label htmlFor={fieldId("name")} className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
             이름 *
           </label>
           <input
+            id={fieldId("name")}
+            name="name"
             type="text"
             required
+            autoComplete="name"
+            maxLength={80}
             value={form.name}
             onChange={(e) => updateField("name", e.target.value)}
             className="w-full px-0 py-3 bg-transparent text-base border-0 border-b border-border focus:outline-none focus:border-foreground transition-colors duration-300 placeholder:text-neutral-300"
@@ -118,12 +139,16 @@ export default function ContactForm({ initialValues }: ContactFormProps) {
         </div>
 
         <div className="relative">
-          <label className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
+          <label htmlFor={fieldId("email")} className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
             이메일 *
           </label>
           <input
+            id={fieldId("email")}
+            name="email"
             type="email"
             required
+            autoComplete="email"
+            maxLength={254}
             value={form.email}
             onChange={(e) => updateField("email", e.target.value)}
             className="w-full px-0 py-3 bg-transparent text-base border-0 border-b border-border focus:outline-none focus:border-foreground transition-colors duration-300 placeholder:text-neutral-300"
@@ -134,11 +159,15 @@ export default function ContactForm({ initialValues }: ContactFormProps) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="relative">
-          <label className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
+          <label htmlFor={fieldId("phone")} className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
             전화번호
           </label>
           <input
+            id={fieldId("phone")}
+            name="phone"
             type="tel"
+            autoComplete="tel"
+            maxLength={40}
             value={form.phone}
             onChange={(e) => updateField("phone", e.target.value)}
             className="w-full px-0 py-3 bg-transparent text-base border-0 border-b border-border focus:outline-none focus:border-foreground transition-colors duration-300 placeholder:text-neutral-300"
@@ -147,10 +176,12 @@ export default function ContactForm({ initialValues }: ContactFormProps) {
         </div>
 
         <div className="relative">
-          <label className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
+          <label htmlFor={fieldId("companyStage")} className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
             현재 단계 *
           </label>
           <select
+            id={fieldId("companyStage")}
+            name="companyStage"
             required
             value={form.companyStage}
             onChange={(e) => updateField("companyStage", e.target.value)}
@@ -170,10 +201,12 @@ export default function ContactForm({ initialValues }: ContactFormProps) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="relative">
-          <label className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
+          <label htmlFor={fieldId("type")} className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
             문의 유형 *
           </label>
           <select
+            id={fieldId("type")}
+            name="type"
             required
             value={form.type}
             onChange={(e) => updateField("type", e.target.value)}
@@ -195,10 +228,12 @@ export default function ContactForm({ initialValues }: ContactFormProps) {
         </div>
 
         <div className="relative">
-          <label className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
+          <label htmlFor={fieldId("bottleneck")} className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
             가장 큰 병목 *
           </label>
           <select
+            id={fieldId("bottleneck")}
+            name="bottleneck"
             required
             value={form.bottleneck}
             onChange={(e) => updateField("bottleneck", e.target.value)}
@@ -221,10 +256,12 @@ export default function ContactForm({ initialValues }: ContactFormProps) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="relative">
-          <label className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
+          <label htmlFor={fieldId("desiredOutput")} className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
             필요한 결과물 *
           </label>
           <select
+            id={fieldId("desiredOutput")}
+            name="desiredOutput"
             required
             value={form.desiredOutput}
             onChange={(e) => updateField("desiredOutput", e.target.value)}
@@ -244,10 +281,12 @@ export default function ContactForm({ initialValues }: ContactFormProps) {
         </div>
 
         <div className="relative">
-          <label className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
+          <label htmlFor={fieldId("timeline")} className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
             희망 시점 *
           </label>
           <select
+            id={fieldId("timeline")}
+            name="timeline"
             required
             value={form.timeline}
             onChange={(e) => updateField("timeline", e.target.value)}
@@ -268,12 +307,15 @@ export default function ContactForm({ initialValues }: ContactFormProps) {
       </div>
 
       <div className="relative">
-        <label className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
+        <label htmlFor={fieldId("message")} className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
           현재 상황 *
         </label>
         <textarea
+          id={fieldId("message")}
+          name="message"
           required
           rows={6}
+          maxLength={4000}
           value={form.message}
           onChange={(e) => updateField("message", e.target.value)}
           className="w-full px-0 py-3 bg-transparent text-base border-0 border-b border-border focus:outline-none focus:border-foreground transition-colors duration-300 resize-none placeholder:text-neutral-300"

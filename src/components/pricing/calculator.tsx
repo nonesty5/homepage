@@ -34,6 +34,7 @@ import {
   getIndustry,
   getNearestRevenueIndex,
   parseCurrencyInput,
+  sanitizeStoredState,
   serializeStateToParams,
   type BusinessType,
   type CalcState,
@@ -143,7 +144,10 @@ export default function PricingCalculator() {
       }
       if (!partial) {
         const stored = window.localStorage.getItem(STORAGE_KEY);
-        if (stored) partial = JSON.parse(stored) as Partial<CalcState>;
+        if (stored) {
+          const sanitized = sanitizeStoredState(JSON.parse(stored));
+          if (Object.keys(sanitized).length > 0) partial = sanitized;
+        }
       }
     } catch {
       /* ignore */
@@ -195,6 +199,16 @@ export default function PricingCalculator() {
     const params = serializeStateToParams(state);
     return `${window.location.origin}${window.location.pathname}?${params.toString()}`;
   }, [state]);
+
+  const contactHref = useMemo(() => {
+    const params = new URLSearchParams({
+      type: "세무 기장",
+      bottleneck: "예상 수임료 검토",
+      output: "기장 견적 상담",
+      message: buildInquiryText(state, estimate),
+    });
+    return `/contact?${params.toString()}`;
+  }, [state, estimate]);
 
   const onSelectIndustry = useCallback((id: string) => {
     dispatch({ type: "setIndustry", id });
@@ -974,7 +988,7 @@ export default function PricingCalculator() {
                 문의 내용 복사
               </button>
               <a
-                href="/contact"
+                href={contactHref}
                 className="text-xs font-medium tracking-wider uppercase px-4 py-2.5 border border-border text-muted hover:text-foreground hover:border-foreground transition-colors"
               >
                 상담 신청

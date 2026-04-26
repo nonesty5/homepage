@@ -1,11 +1,15 @@
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "PREVIEW · Color & Photo",
   description: "Internal preview — color accent and photo treatment comparison.",
   robots: { index: false, follow: false },
+  alternates: {
+    canonical: "/preview",
+  },
 };
 
 interface ColorOption {
@@ -200,7 +204,7 @@ function PhotoTreatmentCard({
     >
       <div className="relative aspect-[3/4] overflow-hidden bg-card">
         <Image
-          src="/members/park-minsang.png"
+          src="/images/founder.png"
           alt={treatment.name}
           fill
           sizes="(min-width: 1024px) 33vw, 100vw"
@@ -225,6 +229,13 @@ function PhotoTreatmentCard({
 }
 
 export default function PreviewPage() {
+  if (
+    process.env.ENABLE_PREVIEW_PAGE !== "true" &&
+    process.env.VERCEL_ENV === "production"
+  ) {
+    notFound();
+  }
+
   return (
     <>
       {/* Hero */}
@@ -314,14 +325,14 @@ export default function PreviewPage() {
             컬러 한 줄로 바꾸는 법
           </h2>
           <div className="bg-neutral-900 border border-neutral-800 p-8 font-mono text-sm">
-            <p className="text-neutral-500 mb-2">// src/app/globals.css</p>
+            <p className="text-neutral-500 mb-2">{"// src/app/globals.css"}</p>
             <p className="text-neutral-300">
               <span className="text-neutral-500">--color-accent: </span>
               <span className="text-amber-400">#8B6A2A</span>
               <span className="text-neutral-500">; /* A2 Antique Brass */</span>
             </p>
             <p className="text-neutral-300 mt-3">
-              <span className="text-neutral-500">// 또는</span>
+              <span className="text-neutral-500">{"// 또는"}</span>
             </p>
             <p className="text-neutral-300">
               <span className="text-neutral-500">--color-accent: </span>
