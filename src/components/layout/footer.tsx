@@ -130,13 +130,13 @@ export default function Footer() {
         <div className="h-px bg-neutral-800" />
       </div>
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-8 space-y-4">
-        <p className="text-xs text-neutral-500 leading-relaxed max-w-4xl">
-          <span className="text-neutral-400 font-medium">Affiliation Notice.</span>{" "}
+        <p className="text-xs text-neutral-400 leading-relaxed max-w-4xl">
+          <span className="text-neutral-300 font-medium">Affiliation Notice.</span>{" "}
           {siteConfig.affiliation}
         </p>
         {imageCredits.length > 0 && (
-          <p className="text-[11px] text-neutral-600 leading-relaxed max-w-4xl">
-            <span className="text-neutral-500 font-medium uppercase tracking-wider">
+          <p className="text-[11px] text-neutral-400 leading-relaxed max-w-4xl">
+            <span className="text-neutral-300 font-medium uppercase tracking-wider">
               Image Credits ·{" "}
             </span>
             {imageCredits.map((credit, i) => (
@@ -146,7 +146,7 @@ export default function Footer() {
                   href={credit.sourceUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-neutral-400 transition-colors"
+                  className="hover:text-neutral-200 transition-colors"
                 >
                   {credit.title}
                 </a>
@@ -166,10 +166,10 @@ export default function Footer() {
         <div className="h-px bg-neutral-800" />
       </div>
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="text-xs text-neutral-500 tracking-wide">
+        <p className="text-xs text-neutral-400 tracking-wide">
           &copy; {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
         </p>
-        <p className="text-xs text-neutral-600">
+        <p className="text-xs text-neutral-400">
           Seoul, South Korea
         </p>
       </div>

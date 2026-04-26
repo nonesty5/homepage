@@ -22,6 +22,20 @@ export const viewport: Viewport = {
   themeColor: "#2A2A2A",
 };
 
+const searchVerification = {
+  ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
+    : {}),
+  ...(process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION
+    ? {
+        other: {
+          "naver-site-verification":
+            process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION,
+        },
+      }
+    : {}),
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
@@ -31,6 +45,9 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   keywords: ["회계사무소", "세무", "감사", "회계", "컨설팅", "서울"],
   authors: [{ name: siteConfig.founder }],
+  ...(Object.keys(searchVerification).length > 0
+    ? { verification: searchVerification }
+    : {}),
   alternates: {
     canonical: "/",
   },

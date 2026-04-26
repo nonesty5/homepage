@@ -6,6 +6,9 @@ const MAX_BODY_BYTES = 20_000;
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 const RATE_LIMIT_MAX = 5;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const MIN_SUBMISSION_MS = 900;
+const MAX_SUBMISSION_MS = 12 * 60 * 60 * 1000;
+const MAX_MESSAGE_URLS = 3;
 
 const rateLimit = new Map<string, { count: number; resetAt: number }>();
 
@@ -29,6 +32,11 @@ function readString(
 ) {
   const value = data[key];
   return typeof value === "string" ? value.trim().slice(0, maxLength) : "";
+}
+
+function readNumber(data: Record<string, unknown>, key: string) {
+  const value = data[key];
+  return typeof value === "number" ? value : Number.NaN;
 }
 
 function singleLine(value: string) {
@@ -102,12 +110,25 @@ function withinRateLimit(key: string) {
 }
 
 function jsonError(message: string, status: number) {
-  return NextResponse.json({ error: message }, { status });
+  return NextResponse.json(
+    { error: message },
+    {
+      status,
+      headers: {
+        "Cache-Control": "no-store",
+      },
+    }
+  );
 }
 
 export async function POST(request: NextRequest) {
   if (!isAllowedBrowserRequest(request)) {
     return jsonError("허용되지 않은 요청입니다.", 403);
+  }
+
+  const userAgent = request.headers.get("user-agent")?.trim() ?? "";
+  if (!userAgent || userAgent.length > 512) {
+    return jsonError("요청 헤더가 올바르지 않습니다.", 400);
   }
 
   const contentType = request.headers.get("content-type") ?? "";
@@ -150,7 +171,10 @@ export async function POST(request: NextRequest) {
 
   const honeypot = readString(body, "website", 256);
   if (honeypot) {
-    return NextResponse.json({ success: true });
+    return NextResponse.json(
+      { success: true },
+      { headers: { "Cache-Control": "no-store" } }
+    );
   }
 
   const name = readString(body, "name", 80);
@@ -162,13 +186,41 @@ export async function POST(request: NextRequest) {
   const desiredOutput = readString(body, "desiredOutput", 120);
   const timeline = readString(body, "timeline", 80);
   const message = readString(body, "message", 4000);
+  const startedAt = readNumber(body, "startedAt");
+  const elapsedMs = Date.now() - startedAt;
 
-  if (!name || !email || !message) {
+  if (
+    !name ||
+    !email ||
+    !message ||
+    !type ||
+    !companyStage ||
+    !bottleneck ||
+    !desiredOutput ||
+    !timeline
+  ) {
     return jsonError("필수 항목을 입력해 주세요.", 400);
   }
 
   if (!EMAIL_PATTERN.test(email)) {
     return jsonError("이메일 형식을 확인해 주세요.", 400);
+  }
+
+  if (
+    !Number.isFinite(startedAt) ||
+    elapsedMs < MIN_SUBMISSION_MS ||
+    elapsedMs > MAX_SUBMISSION_MS
+  ) {
+    return jsonError("문의 양식을 새로고침한 뒤 다시 시도해 주세요.", 400);
+  }
+
+  const messageUrlCount = message.match(/https?:\/\//gi)?.length ?? 0;
+  if (messageUrlCount > MAX_MESSAGE_URLS) {
+    return jsonError("문의 내용의 링크 수를 줄여 주세요.", 400);
+  }
+
+  if (!withinRateLimit(`${clientKey}:${email}`)) {
+    return jsonError("요청이 많습니다. 잠시 후 다시 시도해 주세요.", 429);
   }
 
   const apiKey = process.env.RESEND_API_KEY;
@@ -178,10 +230,28 @@ export async function POST(request: NextRequest) {
 
   try {
     const resend = new Resend(apiKey);
+    const fromEmail = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
+    const text = [
+      "새로운 홈페이지 문의가 접수되었습니다.",
+      "",
+      `이름: ${name}`,
+      `이메일: ${email}`,
+      `전화번호: ${phone || "-"}`,
+      `문의 유형: ${type}`,
+      `현재 단계: ${companyStage || "-"}`,
+      `가장 큰 병목: ${bottleneck || "-"}`,
+      `원하는 결과물: ${desiredOutput || "-"}`,
+      `희망 시점: ${timeline || "-"}`,
+      "",
+      message,
+    ].join("\n");
+
     await resend.emails.send({
-      from: `${siteConfig.name} <onboarding@resend.dev>`,
+      from: `${siteConfig.name} <${fromEmail}>`,
       to: [siteConfig.email],
+      replyTo: email,
       subject: `[홈페이지 문의] ${singleLine(type)} - ${singleLine(name)}`,
+      text,
       html: `
         <h2>새로운 문의가 접수되었습니다.</h2>
         <table style="border-collapse: collapse; width: 100%;">
@@ -225,7 +295,10 @@ export async function POST(request: NextRequest) {
       `,
     });
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json(
+      { success: true },
+      { headers: { "Cache-Control": "no-store" } }
+    );
   } catch (error) {
     console.error("Contact email failed", error);
     return jsonError("메일 전송에 실패했습니다.", 500);

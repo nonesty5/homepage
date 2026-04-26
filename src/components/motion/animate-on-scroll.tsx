@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
+import { useSyncExternalStore } from "react";
 import type { ReactNode } from "react";
 
 const variants = {
@@ -28,6 +29,10 @@ const variants = {
 
 type Variant = keyof typeof variants;
 
+const subscribe = () => () => {};
+const getClientSnapshot = () => true;
+const getServerSnapshot = () => false;
+
 interface AnimateOnScrollProps {
   children: ReactNode;
   variant?: Variant;
@@ -47,9 +52,14 @@ export default function AnimateOnScroll({
   amount = 0.15,
   className,
 }: AnimateOnScrollProps) {
+  const hydrated = useSyncExternalStore(
+    subscribe,
+    getClientSnapshot,
+    getServerSnapshot
+  );
   const reduced = useReducedMotion();
 
-  if (reduced) {
+  if (!hydrated || reduced) {
     return className ? <div className={className}>{children}</div> : <>{children}</>;
   }
 

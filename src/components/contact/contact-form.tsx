@@ -12,6 +12,7 @@ interface FormData {
   desiredOutput: string;
   timeline: string;
   message: string;
+  startedAt: number;
   website: string;
 }
 
@@ -25,6 +26,7 @@ const defaultForm: FormData = {
   desiredOutput: "운영 진단 및 우선순위 메모",
   timeline: "이번 달 안",
   message: "",
+  startedAt: 0,
   website: "",
 };
 
@@ -36,6 +38,7 @@ export default function ContactForm({ initialValues }: ContactFormProps) {
   const formId = useId();
   const [form, setForm] = useState<FormData>(() => ({
     ...defaultForm,
+    startedAt: Date.now(),
     ...initialValues,
   }));
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
@@ -61,7 +64,7 @@ export default function ContactForm({ initialValues }: ContactFormProps) {
 
       if (res.ok) {
         setStatus("sent");
-        setForm({ ...defaultForm, ...initialValues });
+        setForm({ ...defaultForm, startedAt: Date.now(), ...initialValues });
       } else {
         setStatus("error");
       }

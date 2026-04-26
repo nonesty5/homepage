@@ -204,7 +204,7 @@ function PhotoTreatmentCard({
     >
       <div className="relative aspect-[3/4] overflow-hidden bg-card">
         <Image
-          src="/images/founder.png"
+          src="/images/founder.webp"
           alt={treatment.name}
           fill
           sizes="(min-width: 1024px) 33vw, 100vw"

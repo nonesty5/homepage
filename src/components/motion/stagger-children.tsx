@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
+import { useSyncExternalStore } from "react";
 import type { ReactNode } from "react";
 
 const containerVariants = {
@@ -24,6 +25,10 @@ export const staggerItemVariants = {
   },
 };
 
+const subscribe = () => () => {};
+const getClientSnapshot = () => true;
+const getServerSnapshot = () => false;
+
 interface StaggerChildrenProps {
   children: ReactNode;
   staggerDelay?: number;
@@ -39,9 +44,14 @@ export default function StaggerChildren({
   once = true,
   amount = 0.1,
 }: StaggerChildrenProps) {
+  const hydrated = useSyncExternalStore(
+    subscribe,
+    getClientSnapshot,
+    getServerSnapshot
+  );
   const reduced = useReducedMotion();
 
-  if (reduced) {
+  if (!hydrated || reduced) {
     return className ? <div className={className}>{children}</div> : <>{children}</>;
   }
 

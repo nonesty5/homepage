@@ -11,16 +11,6 @@ const postsDirectory = path.join(
 const normalizedPostsDirectory = path.normalize(`${postsDirectory}${path.sep}`);
 const postSlugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
-const validPostStatuses = [
-  "evergreen",
-  "proposal",
-  "announced",
-  "effective",
-  "archived",
-] as const;
-
-export type PostStatus = (typeof validPostStatuses)[number];
-
 export interface PostSourceLink {
   label: string;
   url: string;
@@ -38,7 +28,6 @@ export interface PostMeta {
   author?: string;
   updatedAt?: string;
   lastChecked?: string;
-  status?: PostStatus;
   effectiveFrom?: string;
   coverImage?: string;
   sourceLinks: PostSourceLink[];
@@ -234,13 +223,6 @@ function toStringArray(value: unknown): string[] {
     .filter(Boolean);
 }
 
-function isPostStatus(value: unknown): value is PostStatus {
-  return (
-    typeof value === "string" &&
-    validPostStatuses.includes(value as PostStatus)
-  );
-}
-
 function isSafePostSlug(value: string) {
   return postSlugPattern.test(value);
 }
@@ -313,7 +295,6 @@ function parsePostMeta(slug: string, data: Record<string, unknown>): PostMeta {
     author: toOptionalString(data.author),
     updatedAt: toOptionalString(data.updatedAt),
     lastChecked: toOptionalString(data.lastChecked),
-    status: isPostStatus(data.status) ? data.status : undefined,
     effectiveFrom: toOptionalString(data.effectiveFrom),
     coverImage: toOptionalString(data.coverImage),
     sourceLinks:

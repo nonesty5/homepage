@@ -95,10 +95,10 @@ export default function Home() {
             <AnimateOnScroll variant="fadeUp" delay={0.15} className="md:col-span-7">
               <figure className="relative w-full" style={{ aspectRatio: "4/3" }}>
                 <Image
-                  src="/images/hero-document.png"
+                  src="/images/hero-document.webp"
                   alt="세무신고 검토 자료"
                   fill
-                  priority
+                  fetchPriority="high"
                   sizes="(max-width: 768px) 100vw, 58vw"
                   className="object-cover"
                 />

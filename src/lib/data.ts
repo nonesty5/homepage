@@ -258,7 +258,7 @@ export const members: Member[] = [
   {
     name: "박민상",
     role: "공인회계사 · Founder",
-    image: "/images/founder.png",
+    image: "/images/founder.webp",
     description:
       "감사·세무조정·가치평가의 검토 기준을 세무기장에 그대로 적용합니다. 단순 작업이 아니라 검토로 다룹니다. 대표님의 다음 결정을 위한 장부를 만듭니다.",
     credentials: [

@@ -29,6 +29,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+.bridge-status.log
+.codex-dev*.log
+.next-preview.log
+.playwright-cli/
 
 # env files (can opt-in for committing if needed)
 .env*
@@ -41,3 +45,10 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+
+# local/generated work artifacts
+Gemini_Generated_Image_*.png
+security_best_practices_report.md
+start-claude-team.bat
+public/color-preview.html
+public/test-founder.html

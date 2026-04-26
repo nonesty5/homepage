@@ -25,7 +25,7 @@ export default function AboutPage() {
               src={heroImages.about}
               alt=""
               fill
-              priority
+              preload
               sizes="100vw"
               className="object-cover object-center animate-ken-burns-left"
               style={{ filter: "saturate(0.55) brightness(0.6) contrast(1.05)" }}
@@ -150,7 +150,7 @@ export default function AboutPage() {
             <div className="lg:col-span-5">
               <div className="relative aspect-[4/5] overflow-hidden bg-card max-w-md mx-auto lg:mx-0">
                 <Image
-                  src="/images/founder.png"
+                  src="/images/founder.webp"
                   alt="박민상 공인회계사"
                   fill
                   sizes="(max-width: 1024px) 100vw, 40vw"
