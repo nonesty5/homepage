@@ -159,6 +159,64 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─── TARGET AUDIENCE STRIP ─── */}
+      <section className="py-12 md:py-14 bg-background border-t border-border">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <p className="text-[0.7rem] font-bold tracking-[0.22em] uppercase text-muted">
+              Built for
+            </p>
+            <div className="flex flex-wrap items-center gap-x-6 md:gap-x-8 gap-y-2 text-[0.92rem] md:text-[0.98rem] text-foreground font-medium">
+              <span>법인 대표</span>
+              <span className="text-subtle">·</span>
+              <span>자산가</span>
+              <span className="text-subtle">·</span>
+              <span>고소득 전문직</span>
+              <span className="text-subtle">·</span>
+              <span>가업승계 단계</span>
+              <span className="text-subtle">·</span>
+              <span>M&A · IPO 검토</span>
+            </div>
+            <p className="text-[0.85rem] text-muted md:text-right" style={{ wordBreak: "keep-all" }}>
+              의사결정의 무게가 큰 분들과 함께합니다.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── MANIFESTO PULL QUOTE ─── */}
+      <section className="py-24 md:py-36 bg-foreground text-background relative overflow-hidden">
+        <div className="hidden lg:block absolute top-1/2 left-[8%] w-px h-32 bg-accent-bright/40 -translate-y-1/2" />
+        <div className="hidden lg:block absolute top-1/2 right-[8%] w-px h-32 bg-accent-bright/40 -translate-y-1/2" />
+
+        <div className="max-w-5xl mx-auto px-6">
+          <AnimateOnScroll variant="fadeUp">
+            <p className="text-[0.7rem] font-bold tracking-[0.3em] uppercase text-background/40 text-center mb-12">
+              Manifesto
+            </p>
+          </AnimateOnScroll>
+          <AnimateOnScroll variant="fadeUp" delay={0.1}>
+            <p
+              className="text-3xl md:text-5xl lg:text-[3.6rem] font-bold leading-[1.35] tracking-tight text-center"
+              style={{ wordBreak: "keep-all" }}
+            >
+              세금은 <span className="text-accent-bright">&lsquo;내는 것&rsquo;</span>이 아니라
+              <br />
+              <span className="text-accent-bright">&lsquo;설계하는 것&rsquo;</span>입니다<span className="green-dot">.</span>
+            </p>
+          </AnimateOnScroll>
+          <AnimateOnScroll variant="fadeUp" delay={0.2}>
+            <p
+              className="mt-12 text-base md:text-lg text-background/60 text-center max-w-2xl mx-auto leading-[1.85]"
+              style={{ wordBreak: "keep-all" }}
+            >
+              매일의 기장이 검토가 되고, 검토가 자문이 되고, 자문이 다음 결정의 근거가 됩니다.
+              메리디안은 그 흐름을 한 사람이 끝까지 설계합니다.
+            </p>
+          </AnimateOnScroll>
+        </div>
+      </section>
+
       {/* ─── PAIN POINTS — 익숙한 상황 ─── */}
       <section className="py-24 md:py-36 bg-card border-t border-border">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
@@ -218,7 +276,7 @@ export default function Home() {
                 </p>
                 <div className="mt-6 pt-6 border-t border-border">
                   <p className="text-xs tracking-[0.18em] uppercase text-accent font-bold mb-3">
-                    Meridian's answer
+                    Meridian&apos;s answer
                   </p>
                   <p
                     className="text-sm md:text-[0.95rem] text-strong leading-[1.75]"
