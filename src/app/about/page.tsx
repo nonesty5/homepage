@@ -90,29 +90,55 @@ export default function AboutPage() {
 
           <AnimateOnScroll variant="fadeUp" delay={0.1}>
             <p
-              className="text-2xl md:text-4xl lg:text-[2.6rem] font-medium leading-[1.5] tracking-tight text-center text-foreground"
+              className="text-3xl md:text-5xl lg:text-[3.2rem] font-bold leading-[1.25] tracking-tight text-center text-foreground"
               style={{ wordBreak: "keep-all" }}
             >
-              세계의 모든 시간은 한 선에서 시작됩니다.
+              본초자오선<span className="text-accent">.</span>
               <br />
-              <span className="text-accent">본초자오선.</span>
+              <span className="text-2xl md:text-3xl lg:text-[2rem] font-medium text-muted" style={serif}>
+                Prime Meridian
+              </span>
             </p>
           </AnimateOnScroll>
 
           <AnimateOnScroll variant="fadeUp" delay={0.2}>
-            <div className="mt-14 max-w-2xl mx-auto text-center">
-              <div className="h-px w-16 bg-accent mx-auto mb-10" />
+            <div className="mt-16 max-w-2xl mx-auto text-center space-y-7">
               <p
-                className="text-base md:text-lg text-strong leading-[1.9]"
+                className="text-base md:text-lg text-strong leading-[1.95]"
                 style={{ wordBreak: "keep-all" }}
               >
-                사업의 결정에도 기준선이 필요합니다.
-                정확한 기장이 흔들리지 않아야 신고도, 자문도 그 위에 설 수 있습니다.
+                영국 그리니치 천문대를 지나는 <strong className="text-foreground">경도 0°선</strong>.
+                세계의 모든 시간이 이 한 선에서 출발합니다.
+                런던도, 서울도, 뉴욕도 — 결국 이 선을 기준으로 시각을 맞춥니다.
               </p>
-              <p className="mt-5 text-base md:text-lg text-muted leading-[1.9]" style={{ wordBreak: "keep-all" }}>
-                메리디안은 그 기준선이 되는 자리를 자처합니다.
+
+              <div className="h-px w-12 bg-accent mx-auto" />
+
+              <p
+                className="text-base md:text-lg text-strong leading-[1.95]"
+                style={{ wordBreak: "keep-all" }}
+              >
+                사업의 모든 결정에도 그런 <strong className="text-foreground">기준선</strong>이 필요합니다.
+              </p>
+
+              <p
+                className="text-base md:text-lg text-muted leading-[1.95]"
+                style={{ wordBreak: "keep-all" }}
+              >
+                기장이 정확해야 신고가 서고, 신고가 서야 자문이 서고,
+                자문이 서야 결정이 흔들리지 않습니다.
+                기준선이 흔들리면, 그 위에 쌓인 모든 것이 흔들립니다.
               </p>
             </div>
+          </AnimateOnScroll>
+
+          <AnimateOnScroll variant="fadeUp" delay={0.3}>
+            <p
+              className="mt-16 text-xl md:text-2xl lg:text-[1.7rem] font-bold leading-[1.5] tracking-tight text-center text-foreground max-w-2xl mx-auto"
+              style={{ wordBreak: "keep-all" }}
+            >
+              메리디안은 <span className="text-accent">사업의 기준선</span>이 되는 자리에 섭니다.
+            </p>
           </AnimateOnScroll>
         </div>
       </section>
