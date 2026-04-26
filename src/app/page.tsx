@@ -69,14 +69,14 @@ export default function Home() {
       <section className="relative pt-28 pb-20 md:pt-36 md:pb-28 bg-surface border-b border-background/10">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
           {/* Eyebrow */}
-          <p className="pb-10 md:pb-14 text-[0.78rem] font-bold tracking-[0.18em] uppercase text-background/50">
+          <p className="pb-10 md:pb-14 text-xs font-bold tracking-[0.18em] uppercase text-background/50">
             Meridian Advisory <span className="mx-2 text-background/25">·</span> 세무기장 <span className="mx-2 text-background/25">·</span> 자문
           </p>
 
           {/* Hero headline */}
           <AnimateOnScroll variant="fadeUp">
             <h1
-              className="text-[2.8rem] sm:text-[3.8rem] md:text-[5.2rem] lg:text-[6.4rem] font-black leading-[1.02] tracking-[-0.03em] text-background max-w-[18ch]"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.02] tracking-[-0.03em] text-background max-w-[18ch]"
               style={{ wordBreak: "keep-all" }}
             >
               흩어진 숫자를,
@@ -84,7 +84,7 @@ export default function Home() {
               하나의 <span className="text-accent">결정</span>으로
               <span className="green-dot">.</span>
             </h1>
-            <p className="mt-8 text-[1.05rem] md:text-[1.2rem] leading-[1.7] text-background/70 max-w-[52ch]" style={{ wordBreak: "keep-all" }}>
+            <p className="mt-8 text-base md:text-lg leading-[1.7] text-background/70 max-w-[52ch]" style={{ wordBreak: "keep-all" }}>
               신고만 처리해주는 곳이 아닙니다. 매일 장부 보는 사람이 자문 자리까지 같이 갑니다.
             </p>
           </AnimateOnScroll>
@@ -107,14 +107,14 @@ export default function Home() {
               <div className="mt-12 flex flex-wrap items-baseline gap-x-10 gap-y-4">
                 <Link
                   href="/contact"
-                  className="group inline-flex items-baseline gap-2 text-[1.1rem] text-background border-b-2 border-background hover:border-accent hover:text-accent transition-colors pb-0.5"
+                  className="group inline-flex items-baseline gap-2 text-base text-background border-b-2 border-background hover:border-accent hover:text-accent transition-colors pb-0.5"
                 >
                   기장 이관 상담하기
                   <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                 </Link>
                 <Link
                   href="/services"
-                  className="text-[0.95rem] text-background/50 hover:text-background transition-colors"
+                  className="text-sm text-background/50 hover:text-background transition-colors"
                 >
                   ↳ 서비스 전체 보기
                 </Link>
@@ -124,10 +124,10 @@ export default function Home() {
             {/* RIGHT — Live tax deadline calendar */}
             <AnimateOnScroll variant="fadeUp" delay={0.28} className="md:col-span-5 md:pl-10 md:border-l border-background/15">
               <div className="flex items-baseline justify-between mb-8">
-                <p className="text-[0.74rem] font-bold tracking-[0.18em] uppercase text-background">
+                <p className="text-xs font-bold tracking-[0.18em] uppercase text-background">
                   이번 분기 주요 일정
                 </p>
-                <p className="text-[0.72rem] tracking-[0.14em] uppercase text-background/35 tabular-nums">
+                <p className="text-xs tracking-[0.14em] uppercase text-background/35 tabular-nums">
                   as of {dateStamp}
                 </p>
               </div>
@@ -139,19 +139,19 @@ export default function Home() {
                   return (
                     <li key={`${d.label}-${i}`} className="border-t border-background/15 first:border-t-0 py-4">
                       <div className="flex items-baseline justify-between gap-3 mb-1">
-                        <span className="text-[1rem] md:text-[1.05rem] text-background leading-tight" style={{ wordBreak: "keep-all" }}>
+                        <span className="text-base md:text-base text-background leading-tight" style={{ wordBreak: "keep-all" }}>
                           {d.label}
                         </span>
-                        <span className={`text-[0.78rem] font-bold tabular-nums tracking-wide ${urgent ? "text-accent" : "text-background/45"}`}>
+                        <span className={`text-xs font-bold tabular-nums tracking-wide ${urgent ? "text-accent" : "text-background/45"}`}>
                           D-{daysAway}
                         </span>
                       </div>
-                      <span className="text-[0.8rem] text-background/35 tabular-nums">{dateText}</span>
+                      <span className="text-xs text-background/35 tabular-nums">{dateText}</span>
                     </li>
                   );
                 })}
               </ul>
-              <p className="mt-6 text-[0.72rem] leading-[1.65] text-background/35">
+              <p className="mt-6 text-xs leading-[1.65] text-background/35">
                 국세청 기준 주요 신고·납부 기한. 담당 법인의 신고 의무 및 마감일은 실제와 상이할 수 있습니다.
               </p>
             </AnimateOnScroll>
@@ -166,7 +166,7 @@ export default function Home() {
             <AnimateOnScroll variant="fadeUp" className="lg:col-span-7">
               <p className="eyebrow mb-8">Built for</p>
               <h2
-                className="text-[2.4rem] md:text-[3.4rem] lg:text-[4rem] font-black leading-[1.05] tracking-[-0.03em] text-foreground"
+                className="text-4xl md:text-5xl lg:text-5xl font-black leading-[1.05] tracking-[-0.03em] text-foreground"
                 style={{ wordBreak: "keep-all" }}
               >
                 어떤 분과 일하나<span className="green-dot">.</span>
@@ -174,7 +174,7 @@ export default function Home() {
             </AnimateOnScroll>
             <AnimateOnScroll variant="fadeUp" delay={0.15} className="lg:col-span-5 lg:pt-6">
               <p
-                className="text-[1.05rem] md:text-[1.15rem] leading-[1.85] text-muted"
+                className="text-base md:text-lg leading-[1.85] text-muted"
                 style={{ wordBreak: "keep-all" }}
               >
                 단계와 영역에 따라 필요한 자문이 다릅니다.
@@ -234,14 +234,14 @@ export default function Home() {
                 <p className="text-xs tracking-[0.3em] text-muted mb-6 font-medium">
                   {item.num}
                 </p>
-                <h3 className="text-xl md:text-[1.4rem] font-bold text-foreground leading-tight">
+                <h3 className="text-xl md:text-xl font-bold text-foreground leading-tight">
                   {item.title}
                 </h3>
                 <p className="mt-2 text-sm text-muted" style={{ wordBreak: "keep-all" }}>
                   {item.desc}
                 </p>
                 <div className="mt-6 h-px w-10 bg-accent" />
-                <ul className="mt-6 space-y-2 text-sm md:text-[0.9rem] text-strong">
+                <ul className="mt-6 space-y-2 text-sm md:text-sm text-strong">
                   {item.services.map((s) => (
                     <li key={s} className="flex items-start gap-2 leading-relaxed">
                       <span className="text-muted mt-0.5">·</span>
@@ -262,13 +262,13 @@ export default function Home() {
 
         <div className="max-w-5xl mx-auto px-6">
           <AnimateOnScroll variant="fadeUp">
-            <p className="text-[0.7rem] font-bold tracking-[0.3em] uppercase text-background/40 text-center mb-12">
+            <p className="text-xs font-bold tracking-[0.3em] uppercase text-background/40 text-center mb-12">
               Manifesto
             </p>
           </AnimateOnScroll>
           <AnimateOnScroll variant="fadeUp" delay={0.1}>
             <p
-              className="text-3xl md:text-5xl lg:text-[3.6rem] font-bold leading-[1.35] tracking-tight text-center"
+              className="text-3xl md:text-5xl lg:text-5xl font-bold leading-[1.35] tracking-tight text-center"
               style={{ wordBreak: "keep-all" }}
             >
               세금은 <span className="text-accent-bright">&lsquo;내는 것&rsquo;</span>이 아니라
@@ -295,7 +295,7 @@ export default function Home() {
             <AnimateOnScroll variant="fadeUp" className="lg:col-span-8">
               <p className="eyebrow mb-8">기장하고 있는데도</p>
               <h2
-                className="text-[2.4rem] md:text-[3.4rem] lg:text-[4rem] font-black leading-[1.05] tracking-[-0.03em] text-foreground"
+                className="text-4xl md:text-5xl lg:text-5xl font-black leading-[1.05] tracking-[-0.03em] text-foreground"
                 style={{ wordBreak: "keep-all" }}
               >
                 이런 적, 익숙하시죠<span className="green-dot">.</span>
@@ -303,7 +303,7 @@ export default function Home() {
             </AnimateOnScroll>
             <AnimateOnScroll variant="fadeUp" delay={0.15} className="lg:col-span-4 lg:pt-6">
               <p
-                className="text-[1.05rem] md:text-[1.15rem] leading-[1.85] text-muted"
+                className="text-base md:text-lg leading-[1.85] text-muted"
                 style={{ wordBreak: "keep-all" }}
               >
                 세무사무소에 맡겨도 결국 손이 가는 일들이 있습니다.
@@ -350,7 +350,7 @@ export default function Home() {
                     Meridian&apos;s answer
                   </p>
                   <p
-                    className="text-sm md:text-[0.95rem] text-strong leading-[1.75]"
+                    className="text-sm md:text-sm text-strong leading-[1.75]"
                     style={{ wordBreak: "keep-all" }}
                   >
                     {item.ans}
@@ -369,7 +369,7 @@ export default function Home() {
             <AnimateOnScroll variant="fadeUp" className="lg:col-span-7">
               <p className="eyebrow mb-8">Why Meridian</p>
               <h2
-                className="text-[2.4rem] md:text-[3.6rem] lg:text-[4.4rem] font-black leading-[1] tracking-[-0.03em] text-foreground max-w-[16ch]"
+                className="text-4xl md:text-5xl lg:text-5xl font-black leading-[1] tracking-[-0.03em] text-foreground max-w-[16ch]"
                 style={{ wordBreak: "keep-all" }}
               >
                 한 사람의 시각이
@@ -379,7 +379,7 @@ export default function Home() {
             </AnimateOnScroll>
             <AnimateOnScroll variant="fadeUp" delay={0.15} className="lg:col-span-5 lg:pt-6">
               <p
-                className="text-[1.05rem] md:text-[1.15rem] leading-[1.85] text-muted"
+                className="text-base md:text-lg leading-[1.85] text-muted"
                 style={{ wordBreak: "keep-all" }}
               >
                 대형 법인이 줄 수 없는 깊이, 1인 사무소가 가질 수 없는 시각.
@@ -419,7 +419,7 @@ export default function Home() {
                   {item.title}
                 </h3>
                 <p
-                  className="mt-5 text-sm md:text-[0.95rem] text-strong leading-[1.75]"
+                  className="mt-5 text-sm md:text-sm text-strong leading-[1.75]"
                   style={{ wordBreak: "keep-all" }}
                 >
                   {item.body}
@@ -449,7 +449,7 @@ export default function Home() {
             <AnimateOnScroll variant="fadeUp" className="lg:col-span-7">
               <p className="eyebrow mb-8">What we do</p>
               <h2
-                className="text-[2.4rem] md:text-[3.6rem] lg:text-[4.4rem] font-black leading-[1] tracking-[-0.03em] text-foreground max-w-[14ch]"
+                className="text-4xl md:text-5xl lg:text-5xl font-black leading-[1] tracking-[-0.03em] text-foreground max-w-[14ch]"
                 style={{ wordBreak: "keep-all" }}
               >
                 장부가 정밀하면,
@@ -460,7 +460,7 @@ export default function Home() {
             </AnimateOnScroll>
             <AnimateOnScroll variant="fadeUp" delay={0.15} className="lg:col-span-5 lg:pt-6">
               <p
-                className="text-[1.05rem] md:text-[1.1rem] leading-[1.7] text-muted max-w-[40ch]"
+                className="text-base md:text-base leading-[1.7] text-muted max-w-[40ch]"
                 style={{ wordBreak: "keep-all" }}
               >
                 모든 의사결정의 기준은 세무기장에서 시작합니다. 정확한 장부에서 출발해야 신고 · 조정 · 자문 · 가치평가의 결과가 신뢰할 수 있습니다.
@@ -480,29 +480,29 @@ export default function Home() {
                   className="group relative block h-full bg-background p-10 md:p-12 hover:bg-foreground hover:text-background transition-colors duration-400"
                 >
                   <div className="flex items-start justify-between mb-8">
-                    <span className="text-[0.7rem] font-bold tracking-[0.2em] uppercase text-muted group-hover:text-background/60 transition-colors">
+                    <span className="text-xs font-bold tracking-[0.2em] uppercase text-muted group-hover:text-background/60 transition-colors">
                       {String(index + 1).padStart(2, "0")} · {enMap[service.slug]}
                     </span>
                     {service.slug === "tax-bookkeeping" && (
-                      <span className="inline-flex items-center gap-1.5 text-[0.65rem] font-bold tracking-[0.18em] uppercase bg-accent text-accent-foreground px-2.5 py-1">
+                      <span className="inline-flex items-center gap-1.5 text-xs font-bold tracking-[0.18em] uppercase bg-accent text-accent-foreground px-2.5 py-1">
                         Core Practice
                       </span>
                     )}
                   </div>
                   <h3
-                    className="text-[1.7rem] md:text-[2rem] font-black leading-[1.1] tracking-[-0.02em] text-foreground group-hover:text-background transition-colors"
+                    className="text-2xl md:text-2xl font-black leading-[1.1] tracking-[-0.02em] text-foreground group-hover:text-background transition-colors"
                     style={{ wordBreak: "keep-all" }}
                   >
                     {service.title}
                     <span className="green-dot">.</span>
                   </h3>
                   <p
-                    className="mt-6 text-[0.95rem] leading-[1.7] text-muted group-hover:text-background/70 transition-colors max-w-[38ch]"
+                    className="mt-6 text-sm leading-[1.7] text-muted group-hover:text-background/70 transition-colors max-w-[38ch]"
                     style={{ wordBreak: "keep-all" }}
                   >
                     {service.description}
                   </p>
-                  <span className="mt-10 inline-flex items-center gap-2 text-[0.8rem] font-bold tracking-[0.14em] uppercase text-foreground group-hover:text-accent transition-colors">
+                  <span className="mt-10 inline-flex items-center gap-2 text-xs font-bold tracking-[0.14em] uppercase text-foreground group-hover:text-accent transition-colors">
                     {service.cta}
                     <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                   </span>
@@ -519,7 +519,7 @@ export default function Home() {
           <AnimateOnScroll variant="fadeUp">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 md:gap-10">
               <h3
-                className="text-[1.6rem] md:text-[2rem] lg:text-[2.4rem] font-black leading-[1.15] tracking-[-0.025em] max-w-[26ch]"
+                className="text-[1.6rem] md:text-2xl lg:text-4xl font-black leading-[1.15] tracking-[-0.025em] max-w-[26ch]"
                 style={{ wordBreak: "keep-all" }}
               >
                 지금 기장 상황을 한 번 점검해 드립니다<span className="green-dot">.</span>
@@ -527,14 +527,14 @@ export default function Home() {
               <div className="flex flex-wrap items-center gap-x-8 gap-y-3 flex-shrink-0">
                 <Link
                   href="/contact"
-                  className="group inline-flex items-baseline gap-2 text-[1rem] md:text-[1.05rem] text-background border-b-2 border-background hover:border-accent hover:text-accent transition-colors pb-1"
+                  className="group inline-flex items-baseline gap-2 text-base md:text-base text-background border-b-2 border-background hover:border-accent hover:text-accent transition-colors pb-1"
                 >
                   무료 진단 요청
                   <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                 </Link>
                 <Link
                   href={siteConfig.pricingUrl}
-                  className="text-[0.9rem] text-background/60 hover:text-background transition-colors"
+                  className="text-sm text-background/60 hover:text-background transition-colors"
                 >
                   ↳ 견적 계산기
                 </Link>
@@ -568,15 +568,15 @@ export default function Home() {
               </AnimateOnScroll>
 
               <AnimateOnScroll variant="fadeUp" delay={0.15} className="lg:col-span-7">
-                <h2 className="text-[3rem] md:text-[4.8rem] lg:text-[5.6rem] font-black leading-[0.96] tracking-[-0.035em] text-foreground">
+                <h2 className="text-4xl md:text-6xl lg:text-6xl font-black leading-[0.96] tracking-[-0.035em] text-foreground">
                   박민상<span className="green-dot">.</span>
                 </h2>
-                <p className="mt-4 text-[0.95rem] font-bold tracking-[0.12em] uppercase text-muted">
+                <p className="mt-4 text-sm font-bold tracking-[0.12em] uppercase text-muted">
                   {lead.role} · KICPA
                 </p>
 
                 <div
-                  className="mt-12 space-y-6 text-[1.05rem] md:text-[1.1rem] leading-[1.8] text-strong max-w-[58ch]"
+                  className="mt-12 space-y-6 text-base md:text-base leading-[1.8] text-strong max-w-[58ch]"
                   style={{ wordBreak: "keep-all" }}
                 >
                   <p>
@@ -595,8 +595,8 @@ export default function Home() {
                     <p className="text-xs font-bold tracking-[0.18em] uppercase text-muted mb-6">Practice areas</p>
                     <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-3">
                       {lead.practiceAreas.map((area) => (
-                        <li key={area} className="flex items-start gap-3 text-[0.95rem] text-foreground leading-relaxed">
-                          <span className="green-dot mt-1.5 flex-shrink-0 text-[1.2rem]">.</span>
+                        <li key={area} className="flex items-start gap-3 text-sm text-foreground leading-relaxed">
+                          <span className="green-dot mt-1.5 flex-shrink-0 text-lg">.</span>
                           <span>{area}</span>
                         </li>
                       ))}
@@ -606,7 +606,7 @@ export default function Home() {
 
                 <Link
                   href="/about"
-                  className="group mt-14 inline-flex items-center gap-3 text-[0.95rem] font-semibold text-foreground border-b-2 border-foreground hover:border-accent hover:text-accent transition-colors pb-1.5"
+                  className="group mt-14 inline-flex items-center gap-3 text-sm font-semibold text-foreground border-b-2 border-foreground hover:border-accent hover:text-accent transition-colors pb-1.5"
                 >
                   프로필 전체 보기
                   <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
@@ -625,7 +625,7 @@ export default function Home() {
               <div>
                 <p className="eyebrow mb-8">Our thinking</p>
                 <h2
-                  className="text-[2.2rem] md:text-[3.4rem] lg:text-[4rem] font-black leading-[1.02] tracking-[-0.03em] text-foreground"
+                  className="text-4xl md:text-5xl lg:text-5xl font-black leading-[1.02] tracking-[-0.03em] text-foreground"
                   style={{ wordBreak: "keep-all" }}
                 >
                   최근 인사이트
@@ -634,7 +634,7 @@ export default function Home() {
               </div>
               <Link
                 href="/blog"
-                className="hidden md:inline-flex items-center gap-2 text-[0.85rem] font-bold tracking-[0.14em] uppercase text-foreground border-b-2 border-foreground hover:border-accent hover:text-accent transition-colors pb-1"
+                className="hidden md:inline-flex items-center gap-2 text-sm font-bold tracking-[0.14em] uppercase text-foreground border-b-2 border-foreground hover:border-accent hover:text-accent transition-colors pb-1"
               >
                 모든 글 보기 →
               </Link>
@@ -659,27 +659,27 @@ export default function Home() {
                     </div>
                   )}
                   <div className="flex items-center gap-3 mb-5">
-                    <span className="text-[0.7rem] font-bold tracking-[0.18em] uppercase text-accent">
+                    <span className="text-xs font-bold tracking-[0.18em] uppercase text-accent">
                       {post.category}
                     </span>
                     <span className="text-subtle">·</span>
-                    <span className="text-[0.8rem] text-muted tabular-nums">{post.date}</span>
+                    <span className="text-xs text-muted tabular-nums">{post.date}</span>
                   </div>
                   <h3
-                    className="text-[1.4rem] md:text-[1.55rem] font-bold leading-[1.25] tracking-[-0.015em] text-foreground group-hover:text-accent transition-colors"
+                    className="text-xl md:text-2xl font-bold leading-[1.25] tracking-[-0.015em] text-foreground group-hover:text-accent transition-colors"
                     style={{ wordBreak: "keep-all" }}
                   >
                     {post.title}
                   </h3>
                   {post.description && (
                     <p
-                      className="mt-4 text-[0.95rem] leading-[1.65] text-muted line-clamp-3"
+                      className="mt-4 text-sm leading-[1.65] text-muted line-clamp-3"
                       style={{ wordBreak: "keep-all" }}
                     >
                       {post.description}
                     </p>
                   )}
-                  <span className="mt-8 inline-flex items-center gap-2 text-[0.75rem] font-bold tracking-[0.14em] uppercase text-foreground group-hover:text-accent transition-colors">
+                  <span className="mt-8 inline-flex items-center gap-2 text-xs font-bold tracking-[0.14em] uppercase text-foreground group-hover:text-accent transition-colors">
                     자세히 보기
                     <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                   </span>
@@ -689,7 +689,7 @@ export default function Home() {
 
             <Link
               href="/blog"
-              className="mt-10 md:hidden inline-flex items-center gap-2 text-[0.85rem] font-bold tracking-[0.14em] uppercase text-foreground border-b-2 border-foreground pb-1"
+              className="mt-10 md:hidden inline-flex items-center gap-2 text-sm font-bold tracking-[0.14em] uppercase text-foreground border-b-2 border-foreground pb-1"
             >
               모든 글 보기 →
             </Link>
@@ -701,12 +701,12 @@ export default function Home() {
       <section className="py-28 md:py-44 bg-foreground text-background relative overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 relative">
           <AnimateOnScroll variant="fadeUp">
-            <p className="text-[0.75rem] font-bold tracking-[0.18em] uppercase text-background/60 flex items-center gap-3 mb-10">
+            <p className="text-xs font-bold tracking-[0.18em] uppercase text-background/60 flex items-center gap-3 mb-10">
               <span className="inline-block w-10 h-[3px] bg-accent" />
               Let&rsquo;s connect
             </p>
             <h2
-              className="text-[2.6rem] md:text-[4.4rem] lg:text-[5.6rem] font-black leading-[0.98] tracking-[-0.035em] max-w-[20ch]"
+              className="text-4xl md:text-5xl lg:text-6xl font-black leading-[0.98] tracking-[-0.035em] max-w-[20ch]"
               style={{ wordBreak: "keep-all" }}
             >
               지금 어떤 결정을
@@ -715,7 +715,7 @@ export default function Home() {
               <span className="green-dot">.</span>
             </h2>
             <p
-              className="mt-10 text-[1.1rem] md:text-[1.25rem] leading-[1.65] text-background/75 max-w-[48ch]"
+              className="mt-10 text-base md:text-[1.25rem] leading-[1.65] text-background/75 max-w-[48ch]"
               style={{ wordBreak: "keep-all" }}
             >
               결정 전에 숫자를 먼저 확인하십시오. 구체적인 상황일수록 빠르게 검토합니다.
@@ -726,14 +726,14 @@ export default function Home() {
             <div className="mt-14 flex flex-wrap items-center gap-4">
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-3 bg-accent text-accent-foreground px-10 py-5 font-bold text-[0.95rem] hover:bg-accent-bright transition-colors duration-300"
+                className="group inline-flex items-center gap-3 bg-accent text-accent-foreground px-10 py-5 font-bold text-sm hover:bg-accent-bright transition-colors duration-300"
               >
                 문의하기
                 <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
               </Link>
               <Link
                 href={siteConfig.pricingUrl}
-                className="group inline-flex items-center gap-3 border-2 border-background/30 text-background px-10 py-5 font-bold text-[0.95rem] hover:border-accent hover:text-accent transition-colors duration-300"
+                className="group inline-flex items-center gap-3 border-2 border-background/30 text-background px-10 py-5 font-bold text-sm hover:border-accent hover:text-accent transition-colors duration-300"
               >
                 월 기장 견적 계산기
                 <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>

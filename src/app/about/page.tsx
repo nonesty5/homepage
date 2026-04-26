@@ -90,12 +90,12 @@ export default function AboutPage() {
 
           <AnimateOnScroll variant="fadeUp" delay={0.1}>
             <p
-              className="text-3xl md:text-5xl lg:text-[3.2rem] font-bold leading-[1.25] tracking-tight text-center text-foreground"
+              className="text-3xl md:text-5xl lg:text-5xl font-bold leading-[1.25] tracking-tight text-center text-foreground"
               style={{ wordBreak: "keep-all" }}
             >
               본초자오선<span className="text-accent">.</span>
               <br />
-              <span className="text-2xl md:text-3xl lg:text-[2rem] font-medium text-muted" style={serif}>
+              <span className="text-2xl md:text-3xl lg:text-2xl font-medium text-muted" style={serif}>
                 Prime Meridian
               </span>
             </p>
@@ -134,7 +134,7 @@ export default function AboutPage() {
 
           <AnimateOnScroll variant="fadeUp" delay={0.3}>
             <p
-              className="mt-16 text-xl md:text-2xl lg:text-[1.7rem] font-bold leading-[1.5] tracking-tight text-center text-foreground max-w-2xl mx-auto"
+              className="mt-16 text-xl md:text-2xl lg:text-2xl font-bold leading-[1.5] tracking-tight text-center text-foreground max-w-2xl mx-auto"
               style={{ wordBreak: "keep-all" }}
             >
               메리디안은 <span className="text-accent">사업의 기준선</span>이 되는 자리에 섭니다.
@@ -207,7 +207,7 @@ export default function AboutPage() {
               {
                 num: "02",
                 title: "기술은 내부 도구로",
-                body: "고객이 새 앱을 익힐 일은 없습니다. AI는 메리디안 내부에서, 정밀한 계산과 검토를 위해 씁니다.",
+                body: "고객이 따로 배워야 할 앱은 없습니다. AI는 메리디안이 안에서 씁니다. 계산을 정밀하게 하려고, 검토에서 놓치지 않으려고요.",
               },
               {
                 num: "03",
@@ -224,7 +224,7 @@ export default function AboutPage() {
                 <p className="text-xs tracking-[0.3em] text-muted mb-6 font-medium">
                   원칙 {item.num}
                 </p>
-                <h3 className="text-2xl md:text-[1.7rem] font-bold text-foreground leading-tight">
+                <h3 className="text-2xl md:text-2xl font-bold text-foreground leading-tight">
                   {item.title}
                 </h3>
                 <div className="mt-6 h-px w-10 bg-accent" />

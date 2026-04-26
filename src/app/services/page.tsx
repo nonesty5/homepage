@@ -79,9 +79,9 @@ export default function ServicesPage() {
                 q: "Q1",
                 months: "1 – 3월",
                 deadlines: [
-                  "1월 ·부가세 2기 확정신고",
-                  "2월 ·면세사업장 현황",
-                  "3월 ·법인세 신고 (12월 결산)",
+                  "1월 · 부가세 2기 확정신고",
+                  "2월 · 면세사업장 현황",
+                  "3월 · 법인세 신고 (12월 결산)",
                 ],
                 role: "전년도 결산 점검, 법인세 절세 마무리, 다음 해 시작 정리",
               },
@@ -89,9 +89,9 @@ export default function ServicesPage() {
                 q: "Q2",
                 months: "4 – 6월",
                 deadlines: [
-                  "4월 ·부가세 1기 예정신고",
-                  "5월 ·종합소득세 신고",
-                  "6월 ·성실신고확인서 제출",
+                  "4월 · 부가세 1기 예정신고",
+                  "5월 · 종합소득세 신고",
+                  "6월 · 성실신고확인서 제출",
                 ],
                 role: "종소세 절세 검토, 성실신고 대응, 1분기 결산 점검",
               },
@@ -99,8 +99,8 @@ export default function ServicesPage() {
                 q: "Q3",
                 months: "7 – 9월",
                 deadlines: [
-                  "7월 ·부가세 1기 확정신고",
-                  "8월 ·법인세 중간예납",
+                  "7월 · 부가세 1기 확정신고",
+                  "8월 · 법인세 중간예납",
                   "원천세 매월 10일",
                 ],
                 role: "반기 결산 점검, 절세 전략 중간 점검, 자료 정비",
@@ -109,9 +109,9 @@ export default function ServicesPage() {
                 q: "Q4",
                 months: "10 – 12월",
                 deadlines: [
-                  "10월 ·부가세 2기 예정신고",
-                  "11월 ·종합소득세 중간예납",
-                  "12월 ·결산 사전 정리",
+                  "10월 · 부가세 2기 예정신고",
+                  "11월 · 종합소득세 중간예납",
+                  "12월 · 결산 사전 정리",
                 ],
                 role: "연말 결산 사전 정리, 다음 해 계획, 자문·의사결정 시즌",
               },
@@ -138,7 +138,7 @@ export default function ServicesPage() {
                   Meridian의 일
                 </p>
                 <p
-                  className="text-sm md:text-[0.95rem] text-strong leading-[1.7]"
+                  className="text-sm md:text-sm text-strong leading-[1.7]"
                   style={{ wordBreak: "keep-all" }}
                 >
                   {item.role}

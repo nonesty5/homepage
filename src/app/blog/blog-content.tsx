@@ -3,8 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { AnimateOnScroll, StaggerChildren } from "@/components/motion";
-import { StaggerItem } from "@/components/motion/stagger-item";
+import { AnimateOnScroll } from "@/components/motion";
 import { getCategoryStyle } from "@/lib/category-colors";
 import type { PostMeta } from "@/lib/posts";
 
@@ -100,51 +99,50 @@ export default function BlogContent({ posts }: BlogContentProps) {
         )}
 
         {rest.length > 0 && (
-          <StaggerChildren className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {rest.map((post) => (
-              <StaggerItem key={post.slug}>
-                <Link
-                  href={`/blog/${post.slug}`}
-                  className="group block border border-border transition-all duration-300 hover:border-foreground hover-lift"
-                >
-                  {post.coverImage && (
-                    <div className="relative aspect-[16/9] overflow-hidden border-b border-border">
-                      <Image
-                        src={post.coverImage}
-                        alt={post.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        className="object-cover object-top"
-                      />
-                    </div>
-                  )}
-                  <div className="p-8 md:p-10">
-                    <div className="mb-4 flex flex-wrap items-center gap-3">
-                      <span
-                        className="inline-block rounded-sm px-3 py-1 text-[10px] font-medium tracking-wider"
-                        style={getCategoryStyle(post.category)}
-                      >
-                        {post.category}
-                      </span>
-                      <span className="text-xs text-subtle">{post.date}</span>
-                    </div>
-                    <h2 className="text-lg font-bold leading-snug tracking-tight decoration-1 underline-offset-4 group-hover:underline">
-                      {post.title}
-                    </h2>
-                    <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-muted">
-                      {post.description}
-                    </p>
-                    <span className="mt-5 inline-flex items-center text-xs font-medium tracking-wider text-muted transition-colors group-hover:text-foreground">
-                      읽기
-                      <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">
-                        &rarr;
-                      </span>
-                    </span>
+              <Link
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                className="group block border border-border transition-all duration-300 hover:border-foreground hover-lift"
+              >
+                {post.coverImage && (
+                  <div className="relative aspect-[16/9] overflow-hidden border-b border-border">
+                    <Image
+                      src={post.coverImage}
+                      alt={post.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover object-top"
+                    />
                   </div>
-                </Link>
-              </StaggerItem>
+                )}
+                <div className="p-8 md:p-10">
+                  <div className="mb-4 flex flex-wrap items-center gap-3">
+                    <span
+                      className="inline-block rounded-sm px-3 py-1 text-[10px] font-medium tracking-wider"
+                      style={getCategoryStyle(post.category)}
+                    >
+                      {post.category}
+                    </span>
+                    <span className="text-xs text-subtle">{post.date}</span>
+                  </div>
+                  <h2 className="text-lg font-bold leading-snug tracking-tight decoration-1 underline-offset-4 group-hover:underline">
+                    {post.title}
+                  </h2>
+                  <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-muted">
+                    {post.description}
+                  </p>
+                  <span className="mt-5 inline-flex items-center text-xs font-medium tracking-wider text-muted transition-colors group-hover:text-foreground">
+                    읽기
+                    <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">
+                      &rarr;
+                    </span>
+                  </span>
+                </div>
+              </Link>
             ))}
-          </StaggerChildren>
+          </div>
         )}
 
         {filtered.length === 0 && (
