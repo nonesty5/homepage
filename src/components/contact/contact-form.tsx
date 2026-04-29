@@ -1,6 +1,13 @@
 "use client";
 
 import { useId, useState } from "react";
+import {
+  BOTTLENECK_OPTIONS,
+  COMPANY_STAGE_OPTIONS,
+  CONTACT_TYPE_OPTIONS,
+  DESIRED_OUTPUT_OPTIONS,
+  TIMELINE_OPTIONS,
+} from "@/lib/contact-options";
 
 interface FormData {
   name: string;
@@ -190,9 +197,11 @@ export default function ContactForm({ initialValues }: ContactFormProps) {
             onChange={(e) => updateField("companyStage", e.target.value)}
             className="w-full px-0 py-3 bg-transparent text-base border-0 border-b border-border focus:outline-none focus:border-foreground transition-colors duration-300 appearance-none cursor-pointer"
           >
-            <option value="매출 성장기">매출 성장기</option>
-            <option value="중요한 결정 직전">중요한 결정 직전</option>
-            <option value="기타">기타</option>
+            {COMPANY_STAGE_OPTIONS.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
           </select>
           <div className="absolute right-0 bottom-4 pointer-events-none">
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -215,13 +224,11 @@ export default function ContactForm({ initialValues }: ContactFormProps) {
             onChange={(e) => updateField("type", e.target.value)}
             className="w-full px-0 py-3 bg-transparent text-base border-0 border-b border-border focus:outline-none focus:border-foreground transition-colors duration-300 appearance-none cursor-pointer"
           >
-            <option value="전체 진단">전체 진단</option>
-            <option value="세무 기장">세무 기장</option>
-            <option value="세무 조정">세무 조정</option>
-            <option value="세무 자문">세무 자문</option>
-            <option value="기업가치평가">기업가치평가</option>
-            <option value="M&A · IPO 자문">M&A · IPO 자문</option>
-            <option value="회계감사 · 회계자문">회계감사 · 회계자문</option>
+            {CONTACT_TYPE_OPTIONS.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
           </select>
           <div className="absolute right-0 bottom-4 pointer-events-none">
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -242,12 +249,11 @@ export default function ContactForm({ initialValues }: ContactFormProps) {
             onChange={(e) => updateField("bottleneck", e.target.value)}
             className="w-full px-0 py-3 bg-transparent text-base border-0 border-b border-border focus:outline-none focus:border-foreground transition-colors duration-300 appearance-none cursor-pointer"
           >
-            <option value="현재 병목 진단 필요">현재 병목 진단 필요</option>
-            <option value="결산 일정 지연">결산 일정 지연</option>
-            <option value="기장 누락 · 계정 오분류">기장 누락 · 계정 오분류</option>
-            <option value="신고 직전 쟁점 발견">신고 직전 쟁점 발견</option>
-            <option value="세무조사 · 소명 대응">세무조사 · 소명 대응</option>
-            <option value="지분 이동 · 승계 · 거래 비교표 필요">지분 이동 · 승계 · 거래 비교표 필요</option>
+            {BOTTLENECK_OPTIONS.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
           </select>
           <div className="absolute right-0 bottom-4 pointer-events-none">
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -270,11 +276,11 @@ export default function ContactForm({ initialValues }: ContactFormProps) {
             onChange={(e) => updateField("desiredOutput", e.target.value)}
             className="w-full px-0 py-3 bg-transparent text-base border-0 border-b border-border focus:outline-none focus:border-foreground transition-colors duration-300 appearance-none cursor-pointer"
           >
-            <option value="운영 진단 및 우선순위 메모">운영 진단 및 우선순위 메모</option>
-            <option value="월별 재무 보고 체계">월별 재무 보고 체계</option>
-            <option value="세무조정 검토 메모">세무조정 검토 메모</option>
-            <option value="시나리오별 세부담 비교표">시나리오별 세부담 비교표</option>
-            <option value="실행 순서안 및 체크리스트">실행 순서안 및 체크리스트</option>
+            {DESIRED_OUTPUT_OPTIONS.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
           </select>
           <div className="absolute right-0 bottom-4 pointer-events-none">
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -295,11 +301,11 @@ export default function ContactForm({ initialValues }: ContactFormProps) {
             onChange={(e) => updateField("timeline", e.target.value)}
             className="w-full px-0 py-3 bg-transparent text-base border-0 border-b border-border focus:outline-none focus:border-foreground transition-colors duration-300 appearance-none cursor-pointer"
           >
-            <option value="이번 주 안">이번 주 안</option>
-            <option value="이번 달 안">이번 달 안</option>
-            <option value="신고 시즌 전">신고 시즌 전</option>
-            <option value="의사결정 전">의사결정 전</option>
-            <option value="일정 협의 가능">일정 협의 가능</option>
+            {TIMELINE_OPTIONS.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
           </select>
           <div className="absolute right-0 bottom-4 pointer-events-none">
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">

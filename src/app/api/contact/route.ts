@@ -1,16 +1,61 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
+import {
+  BOTTLENECK_OPTIONS,
+  COMPANY_STAGE_OPTIONS,
+  CONTACT_TYPE_OPTIONS,
+  DESIRED_OUTPUT_OPTIONS,
+  TIMELINE_OPTIONS,
+  isKnownContactOption,
+} from "@/lib/contact-options";
 import { siteConfig } from "@/lib/constants";
 
 const MAX_BODY_BYTES = 20_000;
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const RATE_LIMIT_WINDOW = "10 m";
 const RATE_LIMIT_MAX = 5;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MIN_SUBMISSION_MS = 900;
 const MAX_SUBMISSION_MS = 12 * 60 * 60 * 1000;
 const MAX_MESSAGE_URLS = 3;
+const ALLOWED_METHODS = "OPTIONS, POST";
+const METHOD_HEADERS = {
+  Allow: ALLOWED_METHODS,
+  "Cache-Control": "no-store",
+};
+const REQUIRE_SHARED_RATE_LIMIT =
+  process.env.VERCEL_ENV === "production" ||
+  process.env.CONTACT_RATE_LIMIT_REQUIRE_SHARED === "true";
 
-const rateLimit = new Map<string, { count: number; resetAt: number }>();
+type RateLimitScope = "ip" | "email";
+type RateLimitResult = {
+  allowed: boolean;
+  retryAfterSeconds: number;
+  unavailable?: boolean;
+};
+
+const memoryRateLimit = new Map<string, { count: number; resetAt: number }>();
+const upstashRedis =
+  process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN
+    ? Redis.fromEnv()
+    : null;
+const upstashLimiters = upstashRedis
+  ? {
+      ip: new Ratelimit({
+        redis: upstashRedis,
+        limiter: Ratelimit.slidingWindow(RATE_LIMIT_MAX, RATE_LIMIT_WINDOW),
+        prefix: "homepage:contact:ip",
+      }),
+      email: new Ratelimit({
+        redis: upstashRedis,
+        limiter: Ratelimit.slidingWindow(RATE_LIMIT_MAX, RATE_LIMIT_WINDOW),
+        prefix: "homepage:contact:email",
+      }),
+    }
+  : null;
+let lastRateLimitWarningAt = 0;
 
 function escapeHtml(value: string) {
   return value
@@ -34,6 +79,16 @@ function readString(
   return typeof value === "string" ? value.trim().slice(0, maxLength) : "";
 }
 
+function readContactOption<T extends readonly string[]>(
+  data: Record<string, unknown>,
+  key: string,
+  options: T,
+  maxLength = 120
+) {
+  const value = readString(data, key, maxLength);
+  return isKnownContactOption(value, options) ? value : "";
+}
+
 function readNumber(data: Record<string, unknown>, key: string) {
   const value = data[key];
   return typeof value === "number" ? value : Number.NaN;
@@ -43,16 +98,34 @@ function singleLine(value: string) {
   return value.replace(/[\r\n]+/g, " ");
 }
 
-function getRequestOrigin(request: NextRequest) {
-  const host =
-    request.headers.get("x-forwarded-host")?.split(",")[0]?.trim() ||
-    request.headers.get("host");
-  if (!host) return null;
+function parseAllowedOrigins(value: string | undefined) {
+  if (!value) return [];
 
-  const protocol =
-    request.headers.get("x-forwarded-proto")?.split(",")[0]?.trim() || "https";
-  return `${protocol}://${host}`;
+  return value
+    .split(",")
+    .map((origin) => origin.trim())
+    .filter(Boolean)
+    .flatMap((origin) => {
+      try {
+        return [new URL(origin).origin];
+      } catch {
+        return [];
+      }
+    });
 }
+
+const allowedRequestOrigins = new Set([
+  new URL(siteConfig.url).origin,
+  ...parseAllowedOrigins(process.env.CONTACT_ALLOWED_ORIGINS),
+  ...(process.env.NODE_ENV === "production"
+    ? []
+    : [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "http://localhost:3100",
+        "http://127.0.0.1:3100",
+      ]),
+]);
 
 function isAllowedBrowserRequest(request: NextRequest) {
   const secFetchSite = request.headers.get("sec-fetch-site");
@@ -67,13 +140,7 @@ function isAllowedBrowserRequest(request: NextRequest) {
   if (!origin) return true;
 
   try {
-    const allowedOrigins = new Set(
-      [siteConfig.url, getRequestOrigin(request)]
-        .filter((value): value is string => Boolean(value))
-        .map((value) => new URL(value).origin)
-    );
-
-    return allowedOrigins.has(new URL(origin).origin);
+    return allowedRequestOrigins.has(new URL(origin).origin);
   } catch {
     return false;
   }
@@ -81,6 +148,29 @@ function isAllowedBrowserRequest(request: NextRequest) {
 
 function getByteLength(value: string) {
   return new TextEncoder().encode(value).byteLength;
+}
+
+async function readLimitedText(request: NextRequest) {
+  const reader = request.body?.getReader();
+  if (!reader) return { text: "", tooLarge: false };
+
+  const decoder = new TextDecoder();
+  let totalBytes = 0;
+  let text = "";
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    totalBytes += value.byteLength;
+    if (totalBytes > MAX_BODY_BYTES) {
+      await reader.cancel();
+      return { text: "", tooLarge: true };
+    }
+    text += decoder.decode(value, { stream: true });
+  }
+
+  text += decoder.decode();
+  return { text, tooLarge: false };
 }
 
 function getClientKey(request: NextRequest) {
@@ -92,34 +182,157 @@ function getClientKey(request: NextRequest) {
   );
 }
 
-function withinRateLimit(key: string) {
-  const now = Date.now();
-  for (const [rateKey, entry] of rateLimit) {
-    if (entry.resetAt <= now) rateLimit.delete(rateKey);
+function summarizeError(error: unknown) {
+  const summary: Record<string, string | number | boolean> = {};
+  if (error instanceof Error) {
+    summary.name = error.name;
   }
-
-  const current = rateLimit.get(key);
-  if (!current) {
-    rateLimit.set(key, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
-    return true;
+  if (isRecord(error)) {
+    for (const key of ["name", "code", "status", "statusCode"]) {
+      const value = error[key];
+      if (
+        typeof value === "string" ||
+        typeof value === "number" ||
+        typeof value === "boolean"
+      ) {
+        summary[key] = value;
+      }
+    }
   }
-
-  if (current.count >= RATE_LIMIT_MAX) return false;
-  current.count += 1;
-  return true;
+  return Object.keys(summary).length > 0 ? summary : { name: "UnknownError" };
 }
 
-function jsonError(message: string, status: number) {
+function warnRateLimitFallback(error: unknown) {
+  const now = Date.now();
+  if (now - lastRateLimitWarningAt < 60_000) return;
+  lastRateLimitWarningAt = now;
+  console.warn("Contact rate limit fallback", summarizeError(error));
+}
+
+function logEmailFailure(error: unknown) {
+  console.error("Contact email failed", summarizeError(error));
+}
+
+function withinMemoryRateLimit(key: string): RateLimitResult {
+  const now = Date.now();
+  for (const [rateKey, entry] of memoryRateLimit) {
+    if (entry.resetAt <= now) memoryRateLimit.delete(rateKey);
+  }
+
+  const current = memoryRateLimit.get(key);
+  if (!current) {
+    memoryRateLimit.set(key, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    return { allowed: true, retryAfterSeconds: 0 };
+  }
+
+  if (current.count >= RATE_LIMIT_MAX) {
+    return {
+      allowed: false,
+      retryAfterSeconds: Math.max(
+        1,
+        Math.ceil((current.resetAt - now) / 1000)
+      ),
+    };
+  }
+  current.count += 1;
+  return { allowed: true, retryAfterSeconds: 0 };
+}
+
+async function withinRateLimit(
+  scope: RateLimitScope,
+  key: string
+): Promise<RateLimitResult> {
+  const limiter = upstashLimiters?.[scope];
+  if (limiter) {
+    try {
+      const result = await limiter.limit(key);
+      return {
+        allowed: result.success,
+        retryAfterSeconds: Math.max(
+          1,
+          Math.ceil((result.reset - Date.now()) / 1000)
+        ),
+      };
+    } catch (error) {
+      warnRateLimitFallback(error);
+      if (REQUIRE_SHARED_RATE_LIMIT) {
+        return {
+          allowed: false,
+          retryAfterSeconds: 60,
+          unavailable: true,
+        };
+      }
+    }
+  }
+
+  if (REQUIRE_SHARED_RATE_LIMIT) {
+    return {
+      allowed: false,
+      retryAfterSeconds: 60,
+      unavailable: true,
+    };
+  }
+
+  return withinMemoryRateLimit(`${scope}:${key}`);
+}
+
+function rateLimitError(limit: RateLimitResult) {
+  if (limit.unavailable) {
+    return jsonError("요청 제한 시스템을 확인 중입니다. 잠시 후 다시 시도해 주세요.", 503, {
+      "Retry-After": String(limit.retryAfterSeconds),
+    });
+  }
+
+  return jsonError("요청이 많습니다. 잠시 후 다시 시도해 주세요.", 429, {
+    "Retry-After": String(limit.retryAfterSeconds),
+  });
+}
+
+function jsonError(
+  message: string,
+  status: number,
+  headers?: Record<string, string>
+) {
   return NextResponse.json(
     { error: message },
     {
       status,
       headers: {
         "Cache-Control": "no-store",
+        ...headers,
       },
     }
   );
 }
+
+function methodNotAllowed() {
+  return NextResponse.json(
+    { error: "허용되지 않는 메서드입니다." },
+    {
+      status: 405,
+      headers: METHOD_HEADERS,
+    }
+  );
+}
+
+export function OPTIONS() {
+  return new Response(null, {
+    status: 204,
+    headers: METHOD_HEADERS,
+  });
+}
+
+export function HEAD() {
+  return new Response(null, {
+    status: 405,
+    headers: METHOD_HEADERS,
+  });
+}
+
+export const GET = methodNotAllowed;
+export const PUT = methodNotAllowed;
+export const PATCH = methodNotAllowed;
+export const DELETE = methodNotAllowed;
 
 export async function POST(request: NextRequest) {
   if (!isAllowedBrowserRequest(request)) {
@@ -137,19 +350,29 @@ export async function POST(request: NextRequest) {
   }
 
   const contentLengthHeader = request.headers.get("content-length");
-  const contentLength = contentLengthHeader ? Number(contentLengthHeader) : 0;
-  if (Number.isFinite(contentLength) && contentLength > MAX_BODY_BYTES) {
-    return jsonError("문의 내용이 너무 깁니다.", 413);
+  if (contentLengthHeader) {
+    const contentLength = Number(contentLengthHeader);
+    if (!Number.isFinite(contentLength) || contentLength < 0) {
+      return jsonError("요청 본문 길이가 올바르지 않습니다.", 400);
+    }
+    if (contentLength > MAX_BODY_BYTES) {
+      return jsonError("문의 내용이 너무 깁니다.", 413);
+    }
   }
 
   const clientKey = getClientKey(request);
-  if (!withinRateLimit(clientKey)) {
-    return jsonError("요청이 많습니다. 잠시 후 다시 시도해 주세요.", 429);
+  const ipLimit = await withinRateLimit("ip", clientKey);
+  if (!ipLimit.allowed) {
+    return rateLimitError(ipLimit);
   }
 
   let rawBody = "";
   try {
-    rawBody = await request.text();
+    const result = await readLimitedText(request);
+    if (result.tooLarge) {
+      return jsonError("문의 내용이 너무 깁니다.", 413);
+    }
+    rawBody = result.text;
   } catch {
     return jsonError("요청 본문을 읽을 수 없습니다.", 400);
   }
@@ -180,11 +403,20 @@ export async function POST(request: NextRequest) {
   const name = readString(body, "name", 80);
   const email = readString(body, "email", 254).toLowerCase();
   const phone = readString(body, "phone", 40);
-  const type = readString(body, "type", 80) || "문의";
-  const companyStage = readString(body, "companyStage", 80);
-  const bottleneck = readString(body, "bottleneck", 120);
-  const desiredOutput = readString(body, "desiredOutput", 120);
-  const timeline = readString(body, "timeline", 80);
+  const type = readContactOption(body, "type", CONTACT_TYPE_OPTIONS, 80);
+  const companyStage = readContactOption(
+    body,
+    "companyStage",
+    COMPANY_STAGE_OPTIONS,
+    80
+  );
+  const bottleneck = readContactOption(body, "bottleneck", BOTTLENECK_OPTIONS);
+  const desiredOutput = readContactOption(
+    body,
+    "desiredOutput",
+    DESIRED_OUTPUT_OPTIONS
+  );
+  const timeline = readContactOption(body, "timeline", TIMELINE_OPTIONS, 80);
   const message = readString(body, "message", 4000);
   const startedAt = readNumber(body, "startedAt");
   const elapsedMs = Date.now() - startedAt;
@@ -219,8 +451,9 @@ export async function POST(request: NextRequest) {
     return jsonError("문의 내용의 링크 수를 줄여 주세요.", 400);
   }
 
-  if (!withinRateLimit(`${clientKey}:${email}`)) {
-    return jsonError("요청이 많습니다. 잠시 후 다시 시도해 주세요.", 429);
+  const emailLimit = await withinRateLimit("email", email);
+  if (!emailLimit.allowed) {
+    return rateLimitError(emailLimit);
   }
 
   const apiKey = process.env.RESEND_API_KEY;
@@ -300,7 +533,7 @@ export async function POST(request: NextRequest) {
       { headers: { "Cache-Control": "no-store" } }
     );
   } catch (error) {
-    console.error("Contact email failed", error);
+    logEmailFailure(error);
     return jsonError("메일 전송에 실패했습니다.", 500);
   }
 }

@@ -1,16 +1,21 @@
 import type { NextConfig } from "next";
 
-const cspReportOnly = [
+const csp = [
   "default-src 'self'",
   "base-uri 'self'",
   "object-src 'none'",
-  "frame-ancestors 'self'",
+  "frame-ancestors 'none'",
   "form-action 'self'",
   "img-src 'self' data: blob:",
-  "font-src 'self' https://cdn.jsdelivr.net",
-  "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net",
+  "font-src 'self'",
+  "media-src 'self'",
+  "frame-src 'none'",
+  "manifest-src 'self'",
+  "style-src 'self' 'unsafe-inline'",
   "script-src 'self' 'unsafe-inline'",
+  "script-src-attr 'none'",
   "connect-src 'self' https://vitals.vercel-insights.com https://*.vercel-insights.com",
+  "upgrade-insecure-requests",
 ].join("; ");
 
 const nextConfig: NextConfig = {
@@ -44,15 +49,20 @@ const nextConfig: NextConfig = {
         source: "/:path*",
         headers: [
           { key: "X-Content-Type-Options", value: "nosniff" },
-          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "X-Frame-Options", value: "DENY" },
           { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
+          { key: "Cross-Origin-Resource-Policy", value: "same-origin" },
           { key: "Origin-Agent-Cluster", value: "?1" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "X-DNS-Prefetch-Control", value: "off" },
+          { key: "X-Download-Options", value: "noopen" },
+          { key: "X-Permitted-Cross-Domain-Policies", value: "none" },
+          { key: "Access-Control-Allow-Origin", value: "https://www.meridianco.kr" },
           {
             key: "Permissions-Policy",
             value: "camera=(), microphone=(), geolocation=(), browsing-topics=()",
           },
-          { key: "Content-Security-Policy-Report-Only", value: cspReportOnly },
+          { key: "Content-Security-Policy", value: csp },
         ],
       },
       {

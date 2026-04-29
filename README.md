@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MERIDIAN Homepage
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies and run the development server:
 
 ```bash
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Security Configuration
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Production deployments must set these environment variables in Vercel:
 
-## Learn More
+- `RESEND_API_KEY`: server-only API key used by `/api/contact`.
+- `RESEND_FROM_EMAIL`: verified sender address for contact email delivery.
+- `UPSTASH_REDIS_REST_URL`: Upstash Redis REST URL for shared contact rate limiting.
+- `UPSTASH_REDIS_REST_TOKEN`: Upstash Redis REST token for shared contact rate limiting.
+- `CONTACT_ALLOWED_ORIGINS`: optional comma-separated list for explicit preview/staging origins that may submit `/api/contact`.
+- `ENABLE_PREVIEW_PAGE`: leave unset in production unless `/preview` is intentionally being reviewed.
 
-To learn more about Next.js, take a look at the following resources:
+Only `NEXT_PUBLIC_*` variables may be exposed to the browser. Do not put secrets in `NEXT_PUBLIC_*`, `public/`, or committed docs.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Verification
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Run the same checks used by CI before deployment:
+
+```bash
+npm audit --audit-level=moderate
+npm audit signatures
+npm run audit:content
+npm run lint
+npm run build
+```
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The production deployment runs on Vercel. Keep `.env*`, generated reports, local screenshots, and docs excluded from deployment through `.vercelignore`.

@@ -21,7 +21,7 @@ const sampleArtifactsBySlug: Partial<
 > = {
   "tax-bookkeeping": {
     title: "산출물 활용 예시",
-    subtitle: "기장 서비스는 단순 입력이 아니라 월 마감 기준과 보고 체계를 만드는 데 쓰입니다.",
+    subtitle: "장부는 입력으로 끝나지 않습니다. 월 마감 기준과 보고 체계까지 같이 잡아야 다음 달이 밀리지 않습니다.",
     samples: [
       {
         title: "월별 마감 일정표",
@@ -33,13 +33,13 @@ const sampleArtifactsBySlug: Partial<
       },
       {
         title: "주요 변동 리포트",
-        description: "전월 대비 변동 항목을 짧게 정리해 대표가 숫자를 바로 볼 수 있게 만듭니다.",
+        description: "전월 대비 변동 항목을 한 장으로 추려, 대표가 한눈에 봅니다.",
       },
     ],
   },
   "tax-adjustment": {
     title: "산출물 활용 예시",
-    subtitle: "세무조정은 신고 직전에 맞추는 일이 아니라, 검토 메모와 기준을 남기는 작업입니다.",
+    subtitle: "신고 직전에 몰아서 맞추면 근거가 남지 않습니다. 검토 메모와 기준을 같이 남겨두면, 다음 해 신고가 그 위에서 출발합니다.",
     samples: [
       {
         title: "조정 항목 검토 메모",
@@ -57,19 +57,19 @@ const sampleArtifactsBySlug: Partial<
   },
   "tax-advisory": {
     title: "산출물 활용 예시",
-    subtitle: "세무 자문은 말로 끝나지 않고 비교표와 실행 순서안으로 남아야 합니다.",
+    subtitle: "회의실에서 끝나면 다음 단계로 못 넘어갑니다. 비교표와 실행 순서를 문서로 남겨두면, 결정이 흔들려도 돌아갈 자리가 있습니다.",
     samples: [
       {
         title: "시나리오별 세부담 비교표",
-        description: "안별 세부담과 차이를 표로 비교해 대표가 선택할 수 있게 만듭니다.",
+        description: "방안별 세부담과 차이를 표로 비교해, 대표가 보고 선택합니다.",
       },
       {
         title: "권고안 메모",
-        description: "추천 구조, 전제 조건, 유의사항을 짧은 메모로 정리합니다.",
+        description: "추천 구조, 전제 조건, 유의사항을 짧은 메모로 남깁니다.",
       },
       {
         title: "실행 순서안",
-        description: "결정 이후 어떤 순서로 신고와 후속 절차를 밟아야 하는지 정리합니다.",
+        description: "결정 이후 어떤 순서로 신고와 후속 절차를 밟을지 묶어둡니다.",
       },
     ],
   },
@@ -315,7 +315,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                         {service.title} 케이스를 상담하시려면
                       </h3>
                       <p className="mt-2 text-neutral-400 text-sm leading-relaxed">
-                        현재 상황과 원하시는 산출물을 간단히 알려주시면, 적용 가능한지 먼저 답변드립니다.
+                        지금 상황과 필요한 산출물을 짧게 보내주시면, 이 케이스에 들어맞는지부터 회신드립니다.
                       </p>
                     </div>
                     <Link

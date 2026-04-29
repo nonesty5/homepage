@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   },
 };
 
+export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
+
 interface ColorOption {
   id: string;
   name: string;
@@ -229,10 +232,7 @@ function PhotoTreatmentCard({
 }
 
 export default function PreviewPage() {
-  if (
-    process.env.ENABLE_PREVIEW_PAGE !== "true" &&
-    process.env.VERCEL_ENV === "production"
-  ) {
+  if (process.env.ENABLE_PREVIEW_PAGE !== "true") {
     notFound();
   }
 

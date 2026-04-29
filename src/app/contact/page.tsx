@@ -69,9 +69,9 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
           </div>
           <AnimateOnScroll variant="fadeUp" delay={0.4}>
             <p className="mt-8 text-lg text-neutral-400 max-w-3xl leading-relaxed">
-              매출 규모, 기존 기장 여부, 가장 급한 이슈만 알려주시면 됩니다.
+              매출 규모, 기존 기장 여부, 가장 급한 이슈.
               <br />
-              필요한 범위와 다음 단계를 정리해서 회신드립니다.
+              세 줄이면 충분합니다. 필요한 범위와 다음 단계를 회신드립니다.
             </p>
           </AnimateOnScroll>
         </div>

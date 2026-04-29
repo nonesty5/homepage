@@ -47,8 +47,11 @@ next-env.d.ts
 .vercel
 
 # local/generated work artifacts
+/output/
 Gemini_Generated_Image_*.png
 security_best_practices_report.md
 start-claude-team.bat
+screenshot.mjs
+.last-deploy.txt
 public/color-preview.html
 public/test-founder.html

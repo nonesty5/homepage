@@ -4,13 +4,13 @@ import { AnimateOnScroll, LineReveal } from "@/components/motion";
 import BlogContent from "./blog-content";
 
 export const metadata: Metadata = {
-  title: "세무 인사이트",
+  title: "실무 메모",
   description:
-    "세무, 회계, 재무자문 실무 인사이트. 사업 운영에서 자주 마주치는 세무·회계 이슈를 실무 관점으로 정리합니다.",
+    "사업을 굴리다 자주 부딪히는 세무·회계·거래 이슈를 현장 관점으로 풉니다.",
   openGraph: {
-    title: "세무 인사이트",
+    title: "실무 메모",
     description:
-      "사업 운영에서 자주 마주치는 세무·회계 이슈를 실무 관점으로 정리합니다.",
+      "사업을 굴리다 자주 부딪히는 세무·회계·거래 이슈를 현장 관점으로 풉니다.",
     type: "website",
     url: "/blog",
   },
@@ -50,8 +50,8 @@ export default function BlogPage() {
 
           <AnimateOnScroll variant="fadeUp" delay={0.4}>
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-neutral-400">
-              사업 운영에서 자주 마주치는 세무, 회계, 거래 이슈를 실무 관점으로
-              정리합니다.
+              사업을 굴리다 자주 부딪히는 세무·회계·거래 이슈.
+              현장에서 본 대로 적습니다.
             </p>
           </AnimateOnScroll>
         </div>

@@ -1,0 +1,5 @@
+Contact: mailto:mscpa@dscpa.co.kr
+Preferred-Languages: ko, en
+Canonical: https://www.meridianco.kr/.well-known/security.txt
+Policy: https://www.meridianco.kr/contact
+Expires: 2027-04-26T00:00:00Z

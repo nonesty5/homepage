@@ -221,19 +221,19 @@ export default async function BlogPostPage({ params }: Props) {
 
       <section className="bg-foreground py-32 text-white md:py-40">
         <div className="mx-auto max-w-3xl px-6">
-          <nav className="mb-10 flex items-center gap-2 text-sm text-neutral-500 animate-fade-in">
-            <Link href="/" className="transition-colors hover:text-neutral-300">
+          <nav className="mb-10 flex items-center gap-2 text-sm text-neutral-200 animate-fade-in">
+            <Link href="/" className="transition-colors hover:text-white">
               HOME
             </Link>
             <span>/</span>
             <Link
               href="/blog"
-              className="transition-colors hover:text-neutral-300"
+              className="transition-colors hover:text-white"
             >
               BLOG
             </Link>
             <span>/</span>
-            <span className="line-clamp-1 text-neutral-300">{post.meta.title}</span>
+            <span className="line-clamp-1 text-white">{post.meta.title}</span>
           </nav>
 
           <div className="animate-fade-in">
@@ -246,19 +246,19 @@ export default async function BlogPostPage({ params }: Props) {
               </span>
             </div>
 
-            <h1 className="text-3xl font-bold leading-tight tracking-tight md:text-4xl lg:text-5xl">
+            <h1 className="text-3xl font-bold leading-tight tracking-tight text-white md:text-4xl lg:text-5xl">
               {post.meta.title}
             </h1>
 
             <div className="mt-6 h-0.5 w-16 bg-accent-bright animate-line-reveal" />
 
-            <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-neutral-400">
+            <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-neutral-200">
               <span>{formatContentDate(post.meta.date) ?? post.meta.date}</span>
-              <span className="h-1 w-1 rounded-full bg-neutral-600" />
+              <span className="h-1 w-1 rounded-full bg-neutral-400" />
               <span>{readingTime}분 소요</span>
               {post.meta.updatedAt && (
                 <>
-                  <span className="h-1 w-1 rounded-full bg-neutral-600" />
+                  <span className="h-1 w-1 rounded-full bg-neutral-400" />
                   <span>
                     업데이트{" "}
                     {formatContentDate(post.meta.updatedAt) ?? post.meta.updatedAt}
@@ -271,9 +271,9 @@ export default async function BlogPostPage({ params }: Props) {
               {articleMeta.map((item) => (
                 <div
                   key={item.label}
-                  className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4"
+                  className="rounded-2xl border border-white/30 bg-white/10 px-4 py-4"
                 >
-                  <dt className="text-[11px] font-medium tracking-[0.24em] text-neutral-400">
+                  <dt className="text-[11px] font-semibold tracking-[0.24em] text-neutral-200">
                     {item.label}
                   </dt>
                   <dd className="mt-2 text-sm font-medium text-white">

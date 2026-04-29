@@ -2,6 +2,7 @@
 .env.*
 
 .git
+.vercel
 .next
 node_modules
 tsconfig.tsbuildinfo

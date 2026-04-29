@@ -85,7 +85,7 @@ export default function Home() {
               <span className="green-dot">.</span>
             </h1>
             <p className="mt-8 text-base md:text-lg leading-[1.7] text-background/70 max-w-[52ch]" style={{ wordBreak: "keep-all" }}>
-              신고만 처리해주는 곳이 아닙니다. 매일 장부 보는 사람이 자문 자리까지 같이 갑니다.
+              장부를 매일 본 사람이 신고하고, 그 사람이 자문합니다.
             </p>
           </AnimateOnScroll>
 
@@ -178,7 +178,7 @@ export default function Home() {
                 style={{ wordBreak: "keep-all" }}
               >
                 단계와 영역에 따라 필요한 자문이 다릅니다.
-                메리디안은 결정 하나가 큰 분들과 일합니다.
+                결정 하나의 무게가 큰 분들의 자리에서 일합니다.
               </p>
             </AnimateOnScroll>
           </div>
@@ -282,7 +282,7 @@ export default function Home() {
               style={{ wordBreak: "keep-all" }}
             >
               매일의 기장이 검토가 되고, 검토가 자문이 되고, 자문이 다음 결정의 근거가 됩니다.
-              메리디안은 그 흐름을 한 사람이 끝까지 설계합니다.
+              그 흐름을 끊지 않는 일이 메리디안의 본업입니다.
             </p>
           </AnimateOnScroll>
         </div>
@@ -306,8 +306,8 @@ export default function Home() {
                 className="text-base md:text-lg leading-[1.85] text-muted"
                 style={{ wordBreak: "keep-all" }}
               >
-                세무사무소에 맡겨도 결국 손이 가는 일들이 있습니다.
-                메리디안은 그 일을 만들지 않으려고 합니다.
+                세무사무소에 맡겨도 손이 가는 일이 있습니다.
+                그런 일을 줄이는 자리에서 일합니다.
               </p>
             </AnimateOnScroll>
           </div>
@@ -317,17 +317,17 @@ export default function Home() {
               {
                 num: "01",
                 pain: "장부 잔액이 안 맞는데, 그걸 회사 담당자가 매번 맞춰야 합니다.",
-                ans: "결산 전이 아니라 매월 점검합니다. 잔액 불일치는 회계사가 먼저 잡습니다.",
+                ans: "매월 점검합니다. 잔액이 어긋나면 회계사가 먼저 봅니다.",
               },
               {
                 num: "02",
                 pain: "기장은 하고 있는데, 절세 가능한 항목을 결산 때 알게 됩니다.",
-                ans: "절세는 신고 직전이 아니라 매일의 기장에서 미리 만들어집니다.",
+                ans: "절세 항목은 결산 때 발견하면 늦습니다. 매일의 기장에서 미리 잡힙니다.",
               },
               {
                 num: "03",
                 pain: "세무 질문이 있어도 담당자한테 연결되기까지 며칠 걸립니다.",
-                ans: "사무 직원이 아닌, 회계사가 직접 응답합니다.",
+                ans: "회계사가 직접 답합니다. 사무 직원을 거치지 않습니다.",
               },
               {
                 num: "04",
@@ -382,8 +382,8 @@ export default function Home() {
                 className="text-base md:text-lg leading-[1.85] text-muted"
                 style={{ wordBreak: "keep-all" }}
               >
-                대형 법인이 줄 수 없는 깊이, 1인 사무소가 가질 수 없는 시각.
-                메리디안은 그 사이에서 일합니다.
+                대형 법인의 분업으로는 안 보이는 자리, 1인 사무소의 시야로는 안 닿는 자리.
+                그 사이에서 일합니다.
               </p>
             </AnimateOnScroll>
           </div>
@@ -393,22 +393,22 @@ export default function Home() {
               {
                 num: "01",
                 title: "전문가의 판단",
-                body: "사업의 맥락은 알고리즘이 읽지 못합니다. 사무 직원도 그렇습니다. 회계사가 직접 봅니다.",
+                body: "사업의 맥락은 알고리즘도 사무 직원도 읽지 못합니다. 회계사가 직접 봅니다.",
               },
               {
                 num: "02",
                 title: "기술은 내부 도구로",
-                body: "반복 작업은 시스템이 처리합니다. 회계사는 자문에 집중합니다.",
+                body: "반복 작업은 시스템에 맡깁니다. 회계사는 자문에 집중합니다.",
               },
               {
                 num: "03",
                 title: "직접 응답",
-                body: "챗봇과 사무 직원을 거치지 않습니다. 실제 작업하는 회계사가 직접 답합니다.",
+                body: "챗봇이나 사무 직원을 거치지 않습니다. 작업한 회계사가 직접 답합니다.",
               },
               {
                 num: "04",
                 title: "본업에 투자",
-                body: "광고비와 마케팅 인력에 쓸 돈을 회계사의 작업 시간에 씁니다. 가치는 광고가 아니라 작업에 있습니다.",
+                body: "광고와 영업 인력에 쓸 비용을 회계사의 작업 시간으로 돌립니다.",
               },
             ].map((item) => (
               <div key={item.num} className="bg-background p-8 md:p-10">
@@ -463,7 +463,7 @@ export default function Home() {
                 className="text-base md:text-base leading-[1.7] text-muted max-w-[40ch]"
                 style={{ wordBreak: "keep-all" }}
               >
-                모든 의사결정의 기준은 세무기장에서 시작합니다. 정확한 장부에서 출발해야 신고 · 조정 · 자문 · 가치평가의 결과가 신뢰할 수 있습니다.
+                모든 의사결정의 기준선은 장부입니다. 장부가 정확해야 신고·조정·자문·가치평가가 흔들리지 않습니다.
               </p>
             </AnimateOnScroll>
           </div>
@@ -522,7 +522,7 @@ export default function Home() {
                 className="text-[1.6rem] md:text-2xl lg:text-4xl font-black leading-[1.15] tracking-[-0.025em] max-w-[26ch]"
                 style={{ wordBreak: "keep-all" }}
               >
-                지금 기장 상황을 한 번 점검해 드립니다<span className="green-dot">.</span>
+                지금 기장 상황부터 점검해 드립니다<span className="green-dot">.</span>
               </h3>
               <div className="flex flex-wrap items-center gap-x-8 gap-y-3 flex-shrink-0">
                 <Link
@@ -580,13 +580,12 @@ export default function Home() {
                   style={{ wordBreak: "keep-all" }}
                 >
                   <p>
-                    대부분의 세무기장이 <span className="text-muted">&lsquo;작업&rsquo;</span>으로 처리될 때,
-                    메리디안은 <strong className="font-bold text-foreground">&lsquo;검토&rsquo;</strong>로 다룹니다.
-                    계정 분류 하나, 증빙 하나도 그 다음 신고·자문·의사결정에 어떻게 연결될지를 먼저 생각합니다.
+                    장부 한 줄을 어떻게 적느냐가 다음 결정의 근거가 됩니다.
+                    계정 분류 하나, 증빙 하나도 그 무게로 다룹니다.
                   </p>
                   <p>
-                    그래서 메리디안의 장부는 단순한 기록이 아닙니다.
-                    <strong className="font-bold text-foreground"> 대표님의 다음 결정을 위한 재료</strong>입니다.
+                    그래서 장부가 곧 자료입니다.
+                    <strong className="font-bold text-foreground"> 대표가 다음 결정을 내릴 때 펼쳐 보는 자료.</strong>
                   </p>
                 </div>
 
@@ -718,7 +717,7 @@ export default function Home() {
               className="mt-10 text-base md:text-[1.25rem] leading-[1.65] text-background/75 max-w-[48ch]"
               style={{ wordBreak: "keep-all" }}
             >
-              결정 전에 숫자를 먼저 확인하십시오. 구체적인 상황일수록 빠르게 검토합니다.
+              결정 전에 숫자부터 보십시오. 상황이 구체적일수록 검토는 빨라집니다.
             </p>
           </AnimateOnScroll>
 

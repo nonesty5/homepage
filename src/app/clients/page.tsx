@@ -29,9 +29,9 @@ export default function WhoPage() {
           </AnimateOnScroll>
           <AnimateOnScroll variant="fadeUp" delay={0.1}>
             <h1 className="text-4xl md:text-6xl font-bold tracking-tighter leading-[1.05] max-w-4xl">
-              대표의 단계에 따라
+              대표의 단계마다
               <br />
-              필요한 서비스가 다릅니다
+              필요한 일이 다릅니다
             </h1>
           </AnimateOnScroll>
           <div className="mt-6">
@@ -39,8 +39,8 @@ export default function WhoPage() {
           </div>
           <AnimateOnScroll variant="fadeUp" delay={0.4}>
             <p className="mt-8 text-lg text-neutral-400 max-w-3xl leading-relaxed">
-              설립 직후에는 기장 기준을 세우고, 성장기에는 신고와 조정을 정비하고,
-              큰 결정 앞에서는 세부담을 비교합니다.
+              설립 직후엔 기장 기준을 세웁니다. 성장기엔 신고와 조정을 다시 잡습니다.
+              큰 결정 앞에선 세부담부터 비교합니다.
             </p>
           </AnimateOnScroll>
         </div>
@@ -153,12 +153,12 @@ export default function WhoPage() {
                 Contact
               </p>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight max-w-3xl mx-auto leading-tight">
-                현재 상황을 알려주시면
+                지금 어디가 막혔습니까
                 <br />
-                필요한 범위부터 정리합니다
+                그 자리부터 보겠습니다
               </h2>
               <p className="mt-6 text-neutral-400 max-w-2xl mx-auto leading-relaxed">
-                매출 규모, 기존 기장 여부, 가장 급한 이슈만 알려주세요.
+                매출 규모와 기존 기장 여부, 가장 급한 이슈 한 줄이면 충분합니다.
               </p>
               <Link
                 href="/contact"

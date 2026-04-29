@@ -143,7 +143,7 @@ export default function Header() {
         aria-label="모바일 메뉴"
         aria-modal={mobileOpen ? true : undefined}
         role={mobileOpen ? "dialog" : undefined}
-        className={`fixed inset-0 z-40 bg-background transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        className={`fixed inset-0 z-40 bg-background transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           mobileOpen
             ? "visible opacity-100 pointer-events-auto"
             : "invisible opacity-0 pointer-events-none"
@@ -161,13 +161,13 @@ export default function Header() {
                 href={link.href}
                 prefetch={false}
                 onClick={() => setMobileOpen(false)}
-                className={`text-2xl font-light tracking-[0.12em] transition-all duration-300 ${
+                className={`text-2xl font-light tracking-[0.12em] transition-all duration-200 ${
                   mobileOpen
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-4"
                 } ${isActive ? "text-foreground" : "text-muted hover:text-foreground"}`}
                 style={{
-                  transitionDelay: mobileOpen ? `${index * 35 + 40}ms` : "0ms",
+                  transitionDelay: mobileOpen ? `${index * 15 + 20}ms` : "0ms",
                 }}
               >
                 {link.label}
@@ -175,14 +175,14 @@ export default function Header() {
             );
           })}
           <div
-            className={`mt-6 flex items-center gap-3 transition-all duration-300 ${
+            className={`mt-6 flex items-center gap-3 transition-all duration-200 ${
               mobileOpen
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-4"
             }`}
             style={{
               transitionDelay: mobileOpen
-                ? `${navLinks.length * 35 + 40}ms`
+                ? `${navLinks.length * 15 + 20}ms`
                 : "0ms",
             }}
           >

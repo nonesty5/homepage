@@ -6,7 +6,7 @@ import { AnimateOnScroll, LineReveal } from "@/components/motion";
 export const metadata: Metadata = {
   title: "ABOUT",
   description:
-    "메리디안 택스 어드바이저리. 단순 신고 대행이 아닌 세무 관리. 매일의 장부에서 신고와 자문까지, 한 사람이 끝까지 책임지는 부티크 세무·재무 자문.",
+    "박민상 공인회계사가 직접 운영하는 부티크 세무·재무 자문. 매일의 장부에서 신고와 자문까지 한 자리에서.",
   alternates: {
     canonical: "/about",
   },
@@ -54,7 +54,7 @@ export default function AboutPage() {
 
           <AnimateOnScroll variant="fadeIn" delay={0.3}>
             <p className="mt-6 text-sm md:text-base tracking-[0.35em] text-neutral-400 uppercase">
-              본초자오선
+              Prime Meridian
             </p>
           </AnimateOnScroll>
 
@@ -65,14 +65,14 @@ export default function AboutPage() {
           <AnimateOnScroll variant="fadeUp" delay={0.5}>
             <div className="mt-10 max-w-2xl text-lg md:text-xl text-neutral-300 leading-[1.85]">
               <p>
-                신고만 처리해주는 곳이 아닙니다.
+                기장하는 사람과 자문하는 사람이 다르면, 그 사이에서 자료가 끊깁니다.
               </p>
               <p className="mt-5">
-                매일 장부 보는 사람이 자문 자리까지 같이 갑니다.
-                기장도 신고도 자문도, 같은 사람의 일입니다.
+                매일 본 장부가 그대로 자문의 근거가 됩니다.
+                메리디안은 그 일을 한 사람이 맡습니다.
               </p>
               <p className="mt-5 text-neutral-400">
-                메리디안은 그 흐름을 끝까지 책임지는 자리입니다.
+                기장이 자문이 되고, 자문이 다음 결정의 자료가 되는 자리입니다.
               </p>
             </div>
           </AnimateOnScroll>
@@ -108,8 +108,8 @@ export default function AboutPage() {
                 style={{ wordBreak: "keep-all" }}
               >
                 영국 그리니치 천문대를 지나는 <strong className="text-foreground">경도 0°선</strong>.
-                세계의 모든 시간이 이 한 선에서 출발합니다.
-                런던도 서울도 뉴욕도 결국 이 선을 기준으로 시각을 맞춥니다.
+                세계의 시간은 여기서 출발합니다.
+                런던도, 서울도, 뉴욕도 이 한 선에 시각을 맞춥니다.
               </p>
 
               <div className="h-px w-12 bg-accent mx-auto" />
@@ -125,9 +125,9 @@ export default function AboutPage() {
                 className="text-base md:text-lg text-muted leading-[1.95]"
                 style={{ wordBreak: "keep-all" }}
               >
-                기장이 정확해야 신고가 서고, 신고가 서야 자문이 서고,
-                자문이 서야 결정이 흔들리지 않습니다.
-                기준선이 흔들리면, 그 위에 쌓인 모든 것이 흔들립니다.
+                기장이 정확해야 신고가 섭니다.
+                신고가 서야 자문이 서고, 그 위에 결정이 놓입니다.
+                기준선이 어긋나면 위에 쌓은 것도 함께 어긋납니다.
               </p>
             </div>
           </AnimateOnScroll>
@@ -137,7 +137,7 @@ export default function AboutPage() {
               className="mt-16 text-xl md:text-2xl lg:text-2xl font-bold leading-[1.5] tracking-tight text-center text-foreground max-w-2xl mx-auto"
               style={{ wordBreak: "keep-all" }}
             >
-              메리디안은 <span className="text-accent">사업의 기준선</span>이 되는 자리에 섭니다.
+              <span className="text-accent">그 기준선</span>을 맡는 자리입니다.
             </p>
           </AnimateOnScroll>
         </div>
@@ -171,10 +171,11 @@ export default function AboutPage() {
                 className="mt-10 text-base md:text-lg text-strong leading-[1.85] max-w-xl"
                 style={{ wordBreak: "keep-all" }}
               >
-                대부분의 세무기장이 <span className="text-muted">&lsquo;작업&rsquo;</span>으로 처리될 때,
-                메리디안은 <strong className="text-foreground">&lsquo;검토&rsquo;</strong>로 다룹니다.
+                대부분의 세무기장이 <span className="text-muted">&lsquo;작업&rsquo;</span>에 머무를 때,
+                여기선 <strong className="text-foreground">&lsquo;검토&rsquo;</strong>로 다룹니다.
                 계정 분류 하나, 증빙 하나도 그 다음 신고·자문·의사결정에
                 어떻게 연결될지를 먼저 봅니다.
+                그래서 결산 시즌에 새로 발견되는 것이 적습니다.
               </p>
             </AnimateOnScroll>
           </div>
@@ -192,7 +193,7 @@ export default function AboutPage() {
               className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] max-w-3xl"
               style={{ wordBreak: "keep-all" }}
             >
-              일하는 4가지 방식.
+              일을 다루는 네 가지 방식.
             </h2>
             <div className="mt-8 h-px w-12 bg-accent" />
           </AnimateOnScroll>
@@ -202,22 +203,22 @@ export default function AboutPage() {
               {
                 num: "01",
                 title: "전문가의 판단",
-                body: "사업 맥락은 알고리즘이 읽지 못합니다. 사무 직원도 그렇습니다. 회계사가 직접 봅니다.",
+                body: "사업 맥락은 알고리즘이 읽지 못합니다. 사무 직원도 그렇습니다. 회계사가 직접 봅니다. 그래야 결산 시즌에 새로 발견되는 것이 줄어듭니다.",
               },
               {
                 num: "02",
                 title: "기술은 내부 도구로",
-                body: "반복 작업은 시스템이 처리합니다. 회계사는 자문에 집중합니다.",
+                body: "반복 작업은 시스템이 처리합니다. 회계사는 자문에 집중합니다. 사람이 손대야 할 일과 기계가 처리할 일을 가립니다.",
               },
               {
                 num: "03",
                 title: "직접 응답",
-                body: "챗봇과 사무 직원을 거치지 않습니다. 실제 작업하는 회계사가 직접 답합니다.",
+                body: "챗봇과 사무 직원을 거치지 않습니다. 작업한 회계사가 직접 답합니다. 작업한 사람의 답이라야 다음 한 수가 정확합니다.",
               },
               {
                 num: "04",
                 title: "본업에 투자",
-                body: "광고비와 마케팅 인력에 쓸 돈을, 회계사의 작업 시간에 씁니다. 가치는 광고가 아니라 작업에 있습니다.",
+                body: "광고와 영업 인력에 쓸 비용을 회계사의 작업 시간으로 돌립니다. 작업의 두께가 곧 자문의 근거가 됩니다.",
               },
             ].map((item) => (
               <div key={item.num} className="bg-background p-10 md:p-12">
@@ -278,13 +279,13 @@ export default function AboutPage() {
                 <tbody className="text-sm md:text-base">
                   {[
                     {
-                      label: "서비스 철학",
+                      label: "관점",
                       low: "가격 경쟁력 중심",
                       big: "분업화된 처리",
-                      meridian: "고객 본업 몰입",
+                      meridian: "대표 본업의 시간 확보",
                     },
                     {
-                      label: "누가 응답하나",
+                      label: "누가 답하나",
                       low: "사무 직원",
                       big: "어시스턴트 → 파트너",
                       meridian: "공인회계사 직접",
@@ -293,19 +294,19 @@ export default function AboutPage() {
                       label: "기술 활용",
                       low: "수기 · 단순 전산",
                       big: "표준 ERP",
-                      meridian: "내부 AI · 맞춤 자동화",
+                      meridian: "내부 AI · 업무 맞춤 자동화",
                     },
                     {
                       label: "소통 방식",
                       low: "담당자 연결 지연",
                       big: "정기 미팅 중심",
-                      meridian: "회계사 직접 응답",
+                      meridian: "회계사 직접 답신",
                     },
                     {
-                      label: "비용 가치",
+                      label: "비용이 가는 곳",
                       low: "인건비 절감",
                       big: "광고 · 인프라",
-                      meridian: "본업의 작업 시간",
+                      meridian: "회계사의 작업 시간",
                     },
                   ].map((row, i) => (
                     <tr key={row.label} className={i < 4 ? "border-b border-neutral-800" : ""}>

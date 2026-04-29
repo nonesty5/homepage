@@ -766,9 +766,8 @@ export function buildInquiryText(state: CalcState, estimate: Estimate): string {
   return lines.join("\n");
 }
 
-/* ─── State serialization for URL/localStorage ─── */
+/* ─── State serialization for explicit share URLs ─── */
 
-export const STORAGE_KEY = "meridian-pricing-state-v1";
 export const STATE_QUERY_KEYS = [
   "type",
   "industry",
@@ -810,10 +809,6 @@ function isPayrollMode(value: string): value is PayrollMode {
   return value === "none" || value === "simple" || value === "fourInsurance";
 }
 
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return Boolean(value) && typeof value === "object" && !Array.isArray(value);
-}
-
 export function deserializeStateFromParams(params: URLSearchParams): Partial<CalcState> {
   const out: Partial<CalcState> = {};
   const type = params.get("type");
@@ -850,41 +845,4 @@ export function deserializeStateFromParams(params: URLSearchParams): Partial<Cal
     out.customFlags = flags.split(",").filter((id) => CUSTOM_FLAGS.some((f) => f.id === id));
   }
   return out;
-}
-
-export function sanitizeStoredState(value: unknown): Partial<CalcState> {
-  if (!isRecord(value)) {
-    return {};
-  }
-
-  const params = new URLSearchParams();
-  const scalarKeys: Array<[keyof CalcState, string]> = [
-    ["businessType", "type"],
-    ["industryId", "industry"],
-    ["revenue", "revenue"],
-    ["staffCount", "staff"],
-    ["nonEmployeePayeeCount", "extra_payees"],
-    ["payrollMode", "payroll"],
-    ["complexity", "complexity"],
-    ["setupMode", "setup"],
-  ];
-
-  for (const [stateKey, queryKey] of scalarKeys) {
-    const candidate = value[stateKey];
-    if (typeof candidate === "string" || typeof candidate === "number") {
-      params.set(queryKey, String(candidate));
-    }
-  }
-
-  const addOns = value.addOns;
-  if (Array.isArray(addOns)) {
-    params.set("addons", addOns.filter((item) => typeof item === "string").join(","));
-  }
-
-  const customFlags = value.customFlags;
-  if (Array.isArray(customFlags)) {
-    params.set("flags", customFlags.filter((item) => typeof item === "string").join(","));
-  }
-
-  return deserializeStateFromParams(params);
 }

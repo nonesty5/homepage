@@ -24,7 +24,7 @@ export default function PricingPage() {
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <AnimateOnScroll variant="fadeIn">
             <p className="text-xs tracking-[0.4em] text-neutral-500 mb-6 uppercase">
-              Lean Fee Flow
+              Estimate
             </p>
           </AnimateOnScroll>
           <AnimateOnScroll variant="fadeUp" delay={0.1}>
@@ -37,7 +37,7 @@ export default function PricingPage() {
           </div>
           <AnimateOnScroll variant="fadeUp" delay={0.4}>
             <p className="mt-8 text-lg text-neutral-400 max-w-xl leading-relaxed">
-              업종, 매출, 직원 수를 입력하면 월 기장료와 연 신고료가 즉시 산출됩니다.
+              업종 · 매출 · 직원 수 세 가지면, 월 기장료와 연 신고료가 바로 나옵니다.
             </p>
           </AnimateOnScroll>
           <AnimateOnScroll variant="fadeUp" delay={0.6}>
@@ -49,10 +49,10 @@ export default function PricingPage() {
                 업종 검색
               </span>
               <span className="text-[0.7rem] uppercase tracking-[0.15em] px-3 py-1.5 border border-neutral-700 text-neutral-400">
-                실시간 예상 금액
+                입력 즉시 반영
               </span>
               <span className="text-[0.7rem] uppercase tracking-[0.15em] px-3 py-1.5 border border-neutral-700 text-neutral-400">
-                공유 가능한 링크
+                URL로 공유
               </span>
             </div>
           </AnimateOnScroll>

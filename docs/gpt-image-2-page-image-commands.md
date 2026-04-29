@@ -3,7 +3,7 @@
 These are PowerShell-ready commands for generating page images with `gpt-image-2`.
 
 Assumptions:
-- `OPENAI_API_KEY` is already set in the local environment.
+- Set `OPENAI_API_KEY` only in your local shell before running these commands.
 - Outputs go to `output/imagegen/site/` first for review.
 - After review, move approved files into `public/images/` with the target names noted below.
 

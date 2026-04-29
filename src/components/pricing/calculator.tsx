@@ -17,7 +17,6 @@ import {
   STAFF_PRESETS,
   STAFF_RANGE_MAX,
   STEP_FLOW,
-  STORAGE_KEY,
   annualLabel,
   buildInquiryText,
   buildSummaryText,
@@ -34,7 +33,6 @@ import {
   getIndustry,
   getNearestRevenueIndex,
   parseCurrencyInput,
-  sanitizeStoredState,
   serializeStateToParams,
   type BusinessType,
   type CalcState,
@@ -133,7 +131,7 @@ export default function PricingCalculator() {
   );
   const filteredIndustries = useMemo(() => getFilteredIndustries(industryQuery).slice(0, 8), [industryQuery]);
 
-  /* ─ Hydrate from URL or localStorage on mount. */
+  /* ─ Hydrate only from explicit share URLs. */
   useEffect(() => {
     let partial: Partial<CalcState> | null = null;
     try {
@@ -141,13 +139,6 @@ export default function PricingCalculator() {
       if (search) {
         const fromUrl = deserializeStateFromParams(new URLSearchParams(search));
         if (Object.keys(fromUrl).length > 0) partial = fromUrl;
-      }
-      if (!partial) {
-        const stored = window.localStorage.getItem(STORAGE_KEY);
-        if (stored) {
-          const sanitized = sanitizeStoredState(JSON.parse(stored));
-          if (Object.keys(sanitized).length > 0) partial = sanitized;
-        }
       }
     } catch {
       /* ignore */
@@ -163,25 +154,12 @@ export default function PricingCalculator() {
     setHydrated(true);
   }, []);
 
-  /* ─ Persist to localStorage + URL on state change ─ */
+  /* ─ Keep estimate inputs in memory unless the user explicitly shares them. */
   useEffect(() => {
     if (!hydrated) return;
-    try {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    } catch {
-      /* ignore */
-    }
-    const timer = window.setTimeout(() => {
-      try {
-        const params = serializeStateToParams(state);
-        const next = `${window.location.pathname}?${params.toString()}`;
-        window.history.replaceState({}, "", next);
-      } catch {
-        /* ignore */
-      }
-    }, 250);
-    return () => window.clearTimeout(timer);
-  }, [state, hydrated]);
+    if (!window.location.search) return;
+    window.history.replaceState({}, "", window.location.pathname);
+  }, [hydrated]);
 
   /* ─ CTA flash message timer ─ */
   useEffect(() => {
@@ -205,10 +183,9 @@ export default function PricingCalculator() {
       type: "세무 기장",
       bottleneck: "예상 수임료 검토",
       output: "기장 견적 상담",
-      message: buildInquiryText(state, estimate),
     });
     return `/contact?${params.toString()}`;
-  }, [state, estimate]);
+  }, []);
 
   const onSelectIndustry = useCallback((id: string) => {
     dispatch({ type: "setIndustry", id });

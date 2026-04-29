@@ -147,8 +147,8 @@ export default function BlogContent({ posts }: BlogContentProps) {
 
         {filtered.length === 0 && (
           <div className="py-24 text-center">
-            <p className="text-lg text-muted">해당 카테고리의 글이 없습니다.</p>
-            <p className="mt-2 text-sm text-subtle">다른 카테고리를 선택해 보세요.</p>
+            <p className="text-lg text-muted">이 카테고리엔 아직 글이 없습니다.</p>
+            <p className="mt-2 text-sm text-subtle">다른 카테고리를 눌러 보세요.</p>
           </div>
         )}
       </div>

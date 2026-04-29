@@ -6,24 +6,59 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
 jobs:
-  verify:
-    runs-on: ubuntu-latest
+  supply-chain:
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
-          node-version: 22
+          node-version: 22.21.1
           cache: npm
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install dependencies without lifecycle scripts
+        run: npm ci --ignore-scripts
 
       - name: Audit dependencies
         run: npm audit --audit-level=moderate
+
+      - name: Verify package signatures
+        run: npm audit signatures
+
+      - name: Generate SBOM
+        run: npm sbom --sbom-format=cyclonedx --json > sbom.cdx.json
+
+      - name: Upload SBOM
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: sbom-cyclonedx
+          path: sbom.cdx.json
+          retention-days: 30
+
+  verify:
+    needs: supply-chain
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+
+      - name: Setup Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 22.21.1
+          cache: npm
+
+      - name: Install dependencies without lifecycle scripts
+        run: npm ci --ignore-scripts
+
+      - name: Rebuild trusted native packages
+        run: npm rebuild sharp unrs-resolver
 
       - name: Audit content metadata
         run: npm run audit:content

@@ -39,8 +39,8 @@ export default function ServicesPage() {
           </div>
           <AnimateOnScroll variant="fadeUp" delay={0.4}>
             <p className="mt-8 text-lg text-neutral-400 max-w-3xl leading-relaxed">
-              세무 기장 · 세무 조정 · 세무 자문을 중심으로,
-              필요할 때 가치평가와 거래 자문까지 연결합니다.
+              축은 기장 · 조정 · 자문.
+              가치평가나 거래 자문이 필요한 순간엔 그쪽으로 이어집니다.
             </p>
           </AnimateOnScroll>
         </div>
@@ -68,8 +68,8 @@ export default function ServicesPage() {
             </h2>
             <div className="mt-8 h-px w-12 bg-accent" />
             <p className="mt-8 max-w-2xl text-base md:text-lg text-strong leading-[1.85]">
-              매월 어떤 일정이 있고, 메리디안이 무엇을 하는지.
-              기장은 매일, 신고는 분기, 자문은 결정의 순간마다.
+              매월 어느 일정이 돌아가고, 그 사이에 무엇을 하는지.
+              기장은 매일, 신고는 분기, 자문은 결정이 닥칠 때.
             </p>
           </AnimateOnScroll>
 
@@ -83,7 +83,7 @@ export default function ServicesPage() {
                   "2월 · 면세사업장 현황",
                   "3월 · 법인세 신고 (12월 결산)",
                 ],
-                role: "전년도 결산 점검, 법인세 절세 마무리, 다음 해 시작 정리",
+                role: "전년 결산을 닫고, 법인세 절세 라인을 마무리. 새해 장부 기준을 다시 잡습니다.",
               },
               {
                 q: "Q2",
@@ -93,7 +93,7 @@ export default function ServicesPage() {
                   "5월 · 종합소득세 신고",
                   "6월 · 성실신고확인서 제출",
                 ],
-                role: "종소세 절세 검토, 성실신고 대응, 1분기 결산 점검",
+                role: "종소세 절세선을 다시 보고, 성실신고 라인을 잡습니다. 1분기 결산도 이때 점검.",
               },
               {
                 q: "Q3",
@@ -103,7 +103,7 @@ export default function ServicesPage() {
                   "8월 · 법인세 중간예납",
                   "원천세 매월 10일",
                 ],
-                role: "반기 결산 점검, 절세 전략 중간 점검, 자료 정비",
+                role: "반기 결산을 끊고, 하반기 절세 방향을 다시 잡습니다. 자료도 이때 정돈.",
               },
               {
                 q: "Q4",
@@ -113,7 +113,7 @@ export default function ServicesPage() {
                   "11월 · 종합소득세 중간예납",
                   "12월 · 결산 사전 정리",
                 ],
-                role: "연말 결산 사전 정리, 다음 해 계획, 자문·의사결정 시즌",
+                role: "연말 결산을 미리 다듬어두고, 다음 해 그림을 그립니다. 큰 의사결정이 몰리는 분기.",
               },
             ].map((item) => (
               <div key={item.q} className="bg-background p-8 md:p-10">
@@ -135,7 +135,7 @@ export default function ServicesPage() {
                   ))}
                 </ul>
                 <p className="mt-6 pt-6 border-t border-border text-xs tracking-[0.18em] uppercase text-muted font-medium mb-3">
-                  Meridian의 일
+                  이 분기의 일
                 </p>
                 <p
                   className="text-sm md:text-sm text-strong leading-[1.7]"
@@ -162,12 +162,12 @@ export default function ServicesPage() {
                 Contact
               </p>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-                현재 상황을 알려주시면
+                어디서부터 시작할지
                 <br className="hidden md:block" />
-                필요한 범위부터 정리합니다
+                같이 짚어 보겠습니다
               </h2>
               <p className="mt-6 text-neutral-400 max-w-2xl mx-auto leading-relaxed">
-                매출 규모, 기존 기장 여부, 가장 급한 이슈만 알려주세요.
+                지금 가장 급한 이슈 한 줄이면 충분합니다. 들어맞는 범위부터 추려 회신드립니다.
               </p>
               <Link
                 href="/contact"
