@@ -661,7 +661,7 @@ export default function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
               <AnimateOnScroll variant="fadeUp" className="lg:col-span-5">
                 {lead.image ? (
-                  <div className="relative w-full" style={{ aspectRatio: "3/4" }}>
+                  <div className="relative w-full" style={{ aspectRatio: "1/1" }}>
                     <Image
                       src={lead.image}
                       alt={`${lead.name} ${lead.role}`}
@@ -671,7 +671,7 @@ export default function Home() {
                     />
                   </div>
                 ) : (
-                  <div className="aspect-[3/4] bg-card" />
+                  <div className="aspect-[1/1] bg-card" />
                 )}
               </AnimateOnScroll>
 

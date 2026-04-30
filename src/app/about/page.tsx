@@ -148,7 +148,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             <div className="lg:col-span-5">
-              <div className="relative aspect-[4/5] overflow-hidden bg-card max-w-md mx-auto lg:mx-0">
+              <div className="relative aspect-[1/1] overflow-hidden bg-card max-w-md mx-auto lg:mx-0">
                 <Image
                   src="/images/founder.webp"
                   alt="박민상 공인회계사"

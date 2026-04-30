@@ -65,10 +65,10 @@ export default function PeoplePage() {
                     height={1200}
                     sizes="(min-width: 1024px) 50vw, calc(100vw - 48px)"
                     className="w-full"
-                    style={{ aspectRatio: "3/4", objectFit: "cover", objectPosition: "top" }}
+                    style={{ aspectRatio: "1/1", objectFit: "cover", objectPosition: "top" }}
                   />
                 ) : (
-                  <div className="flex items-center justify-center" style={{ aspectRatio: "3/4" }}>
+                  <div className="flex items-center justify-center" style={{ aspectRatio: "1/1" }}>
                     <span className="text-[10rem] md:text-[14rem] font-bold text-neutral-200/60 select-none">
                       {lead.name[0]}
                     </span>
