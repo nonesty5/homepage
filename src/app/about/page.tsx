@@ -124,7 +124,7 @@ export default function AboutPage() {
               className="mt-16 text-xl md:text-2xl lg:text-2xl font-bold leading-[1.5] tracking-tight text-center text-foreground max-w-2xl mx-auto"
               style={{ wordBreak: "keep-all" }}
             >
-              <span className="text-accent">메리디안은 </span>그 기준선이 되어드리겠습니다.
+              <span className="text-accent">메리디안이 </span>그 기준선이 되어드리겠습니다.
             </p>
           </AnimateOnScroll>
         </div>
@@ -148,26 +148,29 @@ export default function AboutPage() {
               className="mt-10 text-base md:text-lg text-strong leading-[1.85] max-w-2xl"
               style={{ wordBreak: "keep-all" }}
             >
-              세무사·회계사와 연락이 닿지 않는다, 서류 회신이 늦다, 답을 받아도 믿기 어렵다, 응대가 불친절하다.
-              자주 듣는 이야기입니다. 그 원인 대부분은 직원 한 사람에게 역량을 넘어선 거래처가 배정된 데 있습니다.
+              &ldquo;세무사·회계사와 연락이 닿지 않고 직원과만 소통한다.&rdquo;
+              &ldquo;서류 요청이나 질의 사항에 회신이 지나치게 늦거나, 자주 내용이 틀려 내용을 믿기 어렵다.&rdquo;
+              &ldquo;직원의 응대가 불친절하다.&rdquo;
+              사업주분들이 세무대리인과 관련해 흔히하시는 이야기입니다.
+              기준이 되어주어야할 세무대리인이 오히려 사업주의 고민거리가 되는 현실.
               메리디안은 그 구조 자체를 다르게 두기로 했습니다.
             </p>
           </AnimateOnScroll>
 
-          {/* 두 가지 약속 */}
+          {/* 메리디안이 제안드리는 기준점(메리디안의 약속) */}
           <div className="mt-16 md:mt-20 grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border">
             {[
               {
                 num: "01",
-                title: "직원 교육·훈련 비용을 고객에게 전가하지 않습니다",
+                title: "메리디안은 천천히 가겠습니다.",
                 body:
-                  "메리디안은 천천히 갑니다. 욕심내지 않습니다. 직원의 교육·훈련 비용은 메리디안이 부담합니다.",
+                  "욕심내지 않겠습니다. 빠르게 성장하기보다는, 고객과 직원 모두가 만족할 수 있는 속도로 성장하겠습니다.",
               },
               {
                 num: "02",
-                title: "서비스 품질의 책임은 회계사가 집니다",
+                title: "회계사가 직접 책임 지겠습니다.",
                 body:
-                  "서비스 품질에 대한 책임은 전적으로 회계사가 집니다. 직원에게 전가하지 않습니다.",
+                  "직접 소통하겠습니다. 직원에게 책임을 전가하지 않겠습니다. ",
               },
             ].map((item) => (
               <div key={item.num} className="bg-background p-10 md:p-12">
@@ -201,7 +204,7 @@ export default function AboutPage() {
                 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.15] max-w-3xl"
                 style={{ wordBreak: "keep-all" }}
               >
-                이 약속을 지키는 방식<span className="green-dot">.</span>
+                메리디안이 기준점을 지켜가는 방식<span className="green-dot">.</span>
               </h3>
               <div className="mt-8 h-px w-12 bg-accent" />
             </AnimateOnScroll>
@@ -210,21 +213,21 @@ export default function AboutPage() {
               {[
                 {
                   num: "01",
-                  title: "직원에게 생각할 시간을 만듭니다",
+                  title: "메리디안은 직원이 더 많이 생각할 수 있는 환경을 만듭니다.",
                   body:
-                    "고객과의 소통에 더 많은 시간을 쓸 수 있도록, 단순·반복 작업은 자체 개발 솔루션으로 자동화·체계화합니다. 한 사람에게 일정 수 이상의 거래처를 배정하지 않습니다.",
+                    "고객과의 소통에 더 많은 시간을 할애할 수 있도록, 단순·반복 작업은 자체 개발 솔루션으로 자동화·체계화합니다.",
                 },
                 {
                   num: "02",
                   title: "염가경쟁을 하지 않습니다",
                   body:
-                    "염가 수임은 정당한 대가를 지불한 고객이 받아야 할 서비스 품질을 떨어뜨립니다. 정당한 대가로 일을 받고 지속가능하게 운영하는 것 — 지금 메리디안과 함께하는 고객과의 약속입니다.",
+                    "염가 수임은 정당한 대가를 지불해주시는 고객분들께서 받으셔야 할 서비스 품질을 떨어뜨립니다. 정당한 대가로 업무를 수임하고 지속가능하게 운영하는 것은 메리디안과 함께하는 고객님 그리고 직원과의 약속입니다.",
                 },
                 {
                   num: "03",
-                  title: "회계사가 직접 많이 일합니다",
+                  title: "회계사가 많이 일합니다",
                   body:
-                    "적게 일하고 많이 벌겠다는 욕심을 버립니다. 열심히 일하고, 그 시간을 고객·직원과 함께 보냅니다.",
+                    "적게 일하고 많이 벌겠다는 욕심을 버리고, 직접 발로 뛰고 더 많이 고민합니다.",
                 },
               ].map((item) => (
                 <div key={item.num} className="bg-background p-10 md:p-12">
@@ -305,11 +308,6 @@ export default function AboutPage() {
                       low: "담당자 연결 지연",
                       meridian: "회계사 직접 답신",
                     },
-                    {
-                      label: "비용이 가는 곳",
-                      low: "인건비 절감",
-                      meridian: "회계사의 작업 시간",
-                    },
                   ].map((row, i) => (
                     <tr key={row.label} className={i < 4 ? "border-b border-neutral-800" : ""}>
                       <td className="py-6 pr-6 font-medium text-white">{row.label}</td>
@@ -333,25 +331,17 @@ export default function AboutPage() {
                 <p className="text-xs tracking-[0.3em] text-muted mb-4 uppercase">
                   Affiliation
                 </p>
-                <h2 className="text-3xl md:text-4xl font-bold tracking-tight leading-tight text-foreground">
-                  동성회계법인과의
-                  <br />
-                  관계
-                </h2>
                 <div className="mt-6 h-px w-16 bg-accent" />
               </AnimateOnScroll>
               <AnimateOnScroll variant="fadeUp" delay={0.15}>
                 <div className="space-y-6 text-strong leading-[1.85]">
                   <p>
-                    <strong className="text-foreground">메리디안 택스 어드바이저리</strong>는
-                    박민상 공인회계사가 직접 운영하는 개인 자문 브랜드입니다.
-                    별도 법인이 아닙니다.
+                    <strong className="text-foreground">메리디안 어드바이저리</strong>는
+                    박민상 공인회계사가 운영하는 개인 자문 브랜드이며, 별도의 법인이 아닙니다.
                   </p>
                   <p>
                     박민상 공인회계사는{" "}
-                    <strong className="text-foreground">동성회계법인</strong> 소속입니다.
-                    회계감사 · 세무 기장 · 세무 조정 · 세무 신고 등 법정 업무는
-                    모두 동성회계법인 명의로 수행됩니다.
+                    <strong className="text-foreground">동성회계법인</strong> 소속이며, 메리디안 어드바이저리를 통해 수임하는 모든 업무는 동성회계법인과의 계약에 따라 수행됩니다.
                   </p>
                   <div className="pt-6 mt-6 border-t border-border space-y-1">
                     <p className="text-xs tracking-[0.2em] text-muted uppercase">
