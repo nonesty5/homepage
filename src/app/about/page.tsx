@@ -6,7 +6,7 @@ import { AnimateOnScroll, LineReveal } from "@/components/motion";
 export const metadata: Metadata = {
   title: "ABOUT",
   description:
-    "박민상 공인회계사가 직접 운영하는 부티크 세무·재무 자문. 매일의 장부에서 신고와 자문까지 한 자리에서.",
+    "박민상 공인회계사가 직접 운영하는 부티크 세무·재무 자문. 세무 기장부터 재무 자문까지 한번에",
   alternates: {
     canonical: "/about",
   },
@@ -45,7 +45,7 @@ export default function AboutPage() {
 
           <AnimateOnScroll variant="fadeUp" delay={0.1}>
             <h1
-              className="text-7xl md:text-[9rem] lg:text-[11rem] font-semibold leading-[0.9] tracking-tight"
+              className="text-7xl md:text-[9rem] lg:text-[9rem] font-semibold leading-[0.9] tracking-tight"
               style={serif}
             >
               Meridian.
@@ -64,15 +64,8 @@ export default function AboutPage() {
 
           <AnimateOnScroll variant="fadeUp" delay={0.5}>
             <div className="mt-10 max-w-2xl text-lg md:text-xl text-neutral-300 leading-[1.85]">
-              <p>
-                기장하는 사람과 자문하는 사람이 다르면, 그 사이에서 자료가 끊깁니다.
-              </p>
               <p className="mt-5">
-                매일 본 장부가 그대로 자문의 근거가 됩니다.
-                메리디안은 그 일을 한 사람이 맡습니다.
-              </p>
-              <p className="mt-5 text-neutral-400">
-                기장이 자문이 되고, 자문이 다음 결정의 자료가 되는 자리입니다.
+                메리디안은 기준점을 제시해드립니다.
               </p>
             </div>
           </AnimateOnScroll>
@@ -107,8 +100,11 @@ export default function AboutPage() {
                 className="text-base md:text-lg text-strong leading-[1.95]"
                 style={{ wordBreak: "keep-all" }}
               >
+               
                 영국 그리니치 천문대를 지나는 <strong className="text-foreground">경도 0°선</strong>.
+                <br /> 
                 세계의 시간은 여기서 출발합니다.
+                <br /> 
                 런던도, 서울도, 뉴욕도 이 한 선에 시각을 맞춥니다.
               </p>
 
@@ -118,16 +114,7 @@ export default function AboutPage() {
                 className="text-base md:text-lg text-strong leading-[1.95]"
                 style={{ wordBreak: "keep-all" }}
               >
-                사업의 모든 결정에도 그런 <strong className="text-foreground">기준선</strong>이 필요합니다.
-              </p>
-
-              <p
-                className="text-base md:text-lg text-muted leading-[1.95]"
-                style={{ wordBreak: "keep-all" }}
-              >
-                기장이 정확해야 신고가 섭니다.
-                신고가 서야 자문이 서고, 그 위에 결정이 놓입니다.
-                기준선이 어긋나면 위에 쌓은 것도 함께 어긋납니다.
+                사업의 모든 결정에도 <strong className="text-foreground">기준선</strong>이 필요합니다.
               </p>
             </div>
           </AnimateOnScroll>
@@ -137,53 +124,14 @@ export default function AboutPage() {
               className="mt-16 text-xl md:text-2xl lg:text-2xl font-bold leading-[1.5] tracking-tight text-center text-foreground max-w-2xl mx-auto"
               style={{ wordBreak: "keep-all" }}
             >
-              <span className="text-accent">그 기준선</span>을 맡는 자리입니다.
+              <span className="text-accent">메리디안은 </span>그 기준선이 되어드리겠습니다.
             </p>
           </AnimateOnScroll>
         </div>
       </section>
 
-      {/* ─── § 3. Portrait (Founder) ─── */}
-      <section className="py-20 md:py-28 bg-card border-y border-border">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            <div className="lg:col-span-5">
-              <div className="relative aspect-[1/1] overflow-hidden bg-card max-w-md mx-auto lg:mx-0">
-                <Image
-                  src="/images/founder.webp"
-                  alt="박민상 공인회계사"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                  className="object-cover object-top"
-                />
-              </div>
-            </div>
-
-            <AnimateOnScroll variant="fadeUp" className="lg:col-span-7">
-              <p className="text-xs tracking-[0.3em] text-muted mb-6 font-medium uppercase">
-                Founder · CPA
-              </p>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.05]">
-                박민상<span className="green-dot">.</span>
-              </h2>
-              <div className="mt-8 h-px w-12 bg-accent" />
-              <p
-                className="mt-10 text-base md:text-lg text-strong leading-[1.85] max-w-xl"
-                style={{ wordBreak: "keep-all" }}
-              >
-                대부분의 세무기장이 <span className="text-muted">&lsquo;작업&rsquo;</span>에 머무를 때,
-                여기선 <strong className="text-foreground">&lsquo;검토&rsquo;</strong>로 다룹니다.
-                계정 분류 하나, 증빙 하나도 그 다음 신고·자문·의사결정에
-                어떻게 연결될지를 먼저 봅니다.
-                그래서 결산 시즌에 새로 발견되는 것이 적습니다.
-              </p>
-            </AnimateOnScroll>
-          </div>
-        </div>
-      </section>
-
       {/* ─── § 4. 메리디안의 약속 ─── */}
-      <section className="py-24 md:py-36 bg-background">
+      <section className="py-24 md:py-36 bg-background border-t border-border">
         <div className="max-w-7xl mx-auto px-6">
           <AnimateOnScroll variant="fadeUp">
             <p className="text-xs tracking-[0.35em] text-muted mb-8 font-medium uppercase">
