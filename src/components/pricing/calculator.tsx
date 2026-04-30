@@ -830,15 +830,6 @@ export default function PricingCalculator() {
           ))}
         </div>
 
-        <div className="mt-6 bg-card border border-border p-4 md:p-5">
-          <strong className="block text-xs uppercase tracking-[0.15em] text-muted mb-2">
-            기본 가정
-          </strong>
-          <p className="text-xs text-muted leading-relaxed">
-            자료는 기한 내에 전달되고, 장부가 완전히 누락되어 있지 않으며, 월 단위 자료 전달과
-            통상적인 질의응답 범위를 전제로 계산합니다.
-          </p>
-        </div>
       </section>
 
       {/* ─── Result panel ─── */}

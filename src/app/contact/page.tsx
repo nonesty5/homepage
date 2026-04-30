@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 const contactInfo = [
-  { label: "Phone", value: siteConfig.phone, href: `tel:${siteConfig.phone.replaceAll("-", "")}` },
+  { label: "Kakao", value: "카카오톡 채널", href: siteConfig.kakaoChannelUrl, external: true },
   { label: "Email", value: siteConfig.email, href: `mailto:${siteConfig.email}` },
   { label: "Location", value: siteConfig.location },
   { label: "Hours", value: "평일 09:00 - 18:00 · 사전 약속 권장" },
@@ -107,6 +107,9 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                       {"href" in info && info.href ? (
                         <a
                           href={info.href}
+                          {...("external" in info && info.external
+                            ? { target: "_blank", rel: "noreferrer noopener" }
+                            : {})}
                           className="text-foreground leading-relaxed hover:text-accent transition-colors"
                         >
                           {info.value}

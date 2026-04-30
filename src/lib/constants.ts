@@ -6,7 +6,7 @@ export const siteConfig = {
     "단순 신고 대행이 아닌 세무 관리. 매일의 장부에서 신고와 자문까지, 한 사람이 끝까지 책임지는 부티크 세무·재무 자문.",
   url: "https://www.meridianco.kr",
   email: "mscpa@dscpa.co.kr",
-  phone: "010-3300-7339",
+  kakaoChannelUrl: "https://pf.kakao.com/_xcAyvn",
   location: "Seoul · Online Meeting",
   founder: "박민상 회계사",
   affiliation:

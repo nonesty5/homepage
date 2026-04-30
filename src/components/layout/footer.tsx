@@ -80,13 +80,15 @@ export default function Footer() {
             </h3>
             <div className="flex flex-col gap-3 text-sm text-neutral-400">
               <p>
-                <span className="text-neutral-500 text-xs uppercase tracking-wider">Tel</span>
+                <span className="text-neutral-500 text-xs uppercase tracking-wider">Kakao</span>
                 <br />
                 <a
-                  href={`tel:${siteConfig.phone.replaceAll("-", "")}`}
+                  href={siteConfig.kakaoChannelUrl}
+                  target="_blank"
+                  rel="noreferrer noopener"
                   className="hover:text-white transition-colors"
                 >
-                  {siteConfig.phone}
+                  카카오톡 채널
                 </a>
               </p>
               <p>

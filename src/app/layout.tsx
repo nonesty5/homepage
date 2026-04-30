@@ -85,7 +85,6 @@ const organizationJsonLd = {
   url: siteConfig.url,
   description: siteConfig.description,
   email: siteConfig.email,
-  telephone: siteConfig.phone,
   areaServed: "KR",
   inLanguage: "ko-KR",
   founder: {

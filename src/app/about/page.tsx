@@ -409,7 +409,17 @@ export default function AboutPage() {
                     <p className="text-xs tracking-[0.2em] text-muted uppercase">
                       Direct Contact
                     </p>
-                    <p className="text-foreground">Tel. {siteConfig.phone}</p>
+                    <p className="text-foreground">
+                      Kakao.{" "}
+                      <a
+                        href={siteConfig.kakaoChannelUrl}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        className="hover:text-accent transition-colors underline-offset-2 hover:underline"
+                      >
+                        카카오톡 채널
+                      </a>
+                    </p>
                     <p className="text-foreground">Email. {siteConfig.email}</p>
                     <p className="text-muted text-sm pt-1">
                       {siteConfig.location}
