@@ -182,50 +182,54 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ─── § 4. 4가지 원칙 (Compressed Grid) ─── */}
+      {/* ─── § 4. 메리디안의 약속 ─── */}
       <section className="py-24 md:py-36 bg-background">
         <div className="max-w-7xl mx-auto px-6">
           <AnimateOnScroll variant="fadeUp">
             <p className="text-xs tracking-[0.35em] text-muted mb-8 font-medium uppercase">
-              Principles
+              Our Promise
             </p>
             <h2
               className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] max-w-3xl"
               style={{ wordBreak: "keep-all" }}
             >
-              일을 다루는 네 가지 방식.
+              메리디안의 약속<span className="green-dot">.</span>
             </h2>
             <div className="mt-8 h-px w-12 bg-accent" />
+            <p
+              className="mt-10 text-base md:text-lg text-strong leading-[1.85] max-w-2xl"
+              style={{ wordBreak: "keep-all" }}
+            >
+              세무사·회계사와 연락이 닿지 않는다, 서류 회신이 늦다, 답을 받아도 믿기 어렵다, 응대가 불친절하다.
+              자주 듣는 이야기입니다. 그 원인 대부분은 직원 한 사람에게 역량을 넘어선 거래처가 배정된 데 있습니다.
+              메리디안은 그 구조 자체를 다르게 두기로 했습니다.
+            </p>
           </AnimateOnScroll>
 
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border">
+          {/* 두 가지 약속 */}
+          <div className="mt-16 md:mt-20 grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border">
             {[
               {
                 num: "01",
-                title: "전문가의 판단",
-                body: "사업 맥락은 알고리즘이 읽지 못합니다. 사무 직원도 그렇습니다. 회계사가 직접 봅니다. 그래야 결산 시즌에 새로 발견되는 것이 줄어듭니다.",
+                title: "천천히 갑니다",
+                body:
+                  "욕심내지 않습니다. 직원의 교육·훈련 비용을 고객에게 전가하지 않습니다.",
               },
               {
                 num: "02",
-                title: "기술은 내부 도구로",
-                body: "반복 작업은 시스템이 처리합니다. 회계사는 자문에 집중합니다. 사람이 손대야 할 일과 기계가 처리할 일을 가립니다.",
-              },
-              {
-                num: "03",
-                title: "직접 응답",
-                body: "챗봇과 사무 직원을 거치지 않습니다. 작업한 회계사가 직접 답합니다. 작업한 사람의 답이라야 다음 한 수가 정확합니다.",
-              },
-              {
-                num: "04",
-                title: "본업에 투자",
-                body: "광고와 영업 인력에 쓸 비용을 회계사의 작업 시간으로 돌립니다. 작업의 두께가 곧 자문의 근거가 됩니다.",
+                title: "책임은 회계사가 집니다",
+                body:
+                  "서비스 품질에 대한 책임은 전적으로 회계사가 집니다. 직원에게 전가하지 않습니다.",
               },
             ].map((item) => (
               <div key={item.num} className="bg-background p-10 md:p-12">
                 <p className="text-xs tracking-[0.3em] text-muted mb-6 font-medium">
-                  원칙 {item.num}
+                  약속 {item.num}
                 </p>
-                <h3 className="text-2xl md:text-2xl font-bold text-foreground leading-tight">
+                <h3
+                  className="text-2xl md:text-2xl font-bold text-foreground leading-tight"
+                  style={{ wordBreak: "keep-all" }}
+                >
                   {item.title}
                 </h3>
                 <div className="mt-6 h-px w-10 bg-accent" />
@@ -237,6 +241,64 @@ export default function AboutPage() {
                 </p>
               </div>
             ))}
+          </div>
+
+          {/* 어떻게 지키는가 */}
+          <div className="mt-24 md:mt-32">
+            <AnimateOnScroll variant="fadeUp">
+              <p className="text-xs tracking-[0.35em] text-muted mb-8 font-medium uppercase">
+                How we keep it
+              </p>
+              <h3
+                className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.15] max-w-3xl"
+                style={{ wordBreak: "keep-all" }}
+              >
+                이 약속을 지키는 방식<span className="green-dot">.</span>
+              </h3>
+              <div className="mt-8 h-px w-12 bg-accent" />
+            </AnimateOnScroll>
+
+            <div className="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-3 gap-px bg-border border border-border">
+              {[
+                {
+                  num: "01",
+                  title: "직원에게 생각할 시간을 만듭니다",
+                  body:
+                    "고객과의 소통에 더 많은 시간을 쓸 수 있도록, 단순·반복 작업은 자체 개발 솔루션으로 자동화·체계화합니다. 한 사람에게 일정 수 이상의 거래처를 배정하지 않습니다.",
+                },
+                {
+                  num: "02",
+                  title: "염가경쟁을 하지 않습니다",
+                  body:
+                    "염가 수임은 정당한 대가를 지불한 고객이 받아야 할 서비스 품질을 떨어뜨립니다. 정당한 대가로 일을 받고 지속가능하게 운영하는 것 — 지금 메리디안과 함께하는 고객과의 약속입니다.",
+                },
+                {
+                  num: "03",
+                  title: "회계사가 직접 많이 일합니다",
+                  body:
+                    "적게 일하고 많이 벌겠다는 욕심을 버립니다. 열심히 일하고, 그 시간을 고객·직원과 함께 보냅니다.",
+                },
+              ].map((item) => (
+                <div key={item.num} className="bg-background p-10 md:p-12">
+                  <p className="text-xs tracking-[0.3em] text-muted mb-6 font-medium">
+                    {item.num}
+                  </p>
+                  <h4
+                    className="text-xl md:text-xl font-bold text-foreground leading-tight"
+                    style={{ wordBreak: "keep-all" }}
+                  >
+                    {item.title}
+                  </h4>
+                  <div className="mt-6 h-px w-10 bg-accent" />
+                  <p
+                    className="mt-6 text-sm md:text-sm text-strong leading-[1.85]"
+                    style={{ wordBreak: "keep-all" }}
+                  >
+                    {item.body}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -261,17 +323,14 @@ export default function AboutPage() {
 
           <AnimateOnScroll variant="fadeUp" delay={0.15}>
             <div className="mt-16 overflow-x-auto">
-              <table className="w-full text-left border-collapse min-w-[700px]">
+              <table className="w-full text-left border-collapse min-w-[560px]">
                 <thead>
                   <tr className="border-b border-neutral-700">
-                    <th className="py-5 pr-6 text-xs tracking-[0.2em] uppercase text-neutral-500 font-medium w-1/4"></th>
-                    <th className="py-5 px-6 text-xs tracking-[0.2em] uppercase text-neutral-500 font-medium w-1/4">
+                    <th className="py-5 pr-6 text-xs tracking-[0.2em] uppercase text-neutral-500 font-medium w-1/3"></th>
+                    <th className="py-5 px-6 text-xs tracking-[0.2em] uppercase text-neutral-500 font-medium w-1/3">
                       저가 기장 사무소
                     </th>
-                    <th className="py-5 px-6 text-xs tracking-[0.2em] uppercase text-neutral-500 font-medium w-1/4">
-                      대형 회계법인
-                    </th>
-                    <th className="py-5 px-6 text-xs tracking-[0.2em] uppercase text-white font-bold w-1/4">
+                    <th className="py-5 px-6 text-xs tracking-[0.2em] uppercase text-white font-bold w-1/3">
                       Meridian
                     </th>
                   </tr>
@@ -281,38 +340,32 @@ export default function AboutPage() {
                     {
                       label: "관점",
                       low: "가격 경쟁력 중심",
-                      big: "분업화된 처리",
                       meridian: "대표 본업의 시간 확보",
                     },
                     {
                       label: "누가 답하나",
                       low: "사무 직원",
-                      big: "어시스턴트 → 파트너",
                       meridian: "공인회계사 직접",
                     },
                     {
                       label: "기술 활용",
                       low: "수기 · 단순 전산",
-                      big: "표준 ERP",
                       meridian: "내부 AI · 업무 맞춤 자동화",
                     },
                     {
                       label: "소통 방식",
                       low: "담당자 연결 지연",
-                      big: "정기 미팅 중심",
                       meridian: "회계사 직접 답신",
                     },
                     {
                       label: "비용이 가는 곳",
                       low: "인건비 절감",
-                      big: "광고 · 인프라",
                       meridian: "회계사의 작업 시간",
                     },
                   ].map((row, i) => (
                     <tr key={row.label} className={i < 4 ? "border-b border-neutral-800" : ""}>
                       <td className="py-6 pr-6 font-medium text-white">{row.label}</td>
                       <td className="py-6 px-6 text-neutral-400">{row.low}</td>
-                      <td className="py-6 px-6 text-neutral-400">{row.big}</td>
                       <td className="py-6 px-6 text-white font-medium">{row.meridian}</td>
                     </tr>
                   ))}

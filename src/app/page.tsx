@@ -362,6 +362,114 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─── OUR PROMISE — 약속 압축본 ─── */}
+      <section className="py-24 md:py-36 bg-background border-t border-border">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16 md:mb-20">
+            <AnimateOnScroll variant="fadeUp" className="lg:col-span-7">
+              <p className="eyebrow mb-8">Our Promise</p>
+              <h2
+                className="text-4xl md:text-5xl lg:text-5xl font-black leading-[1.05] tracking-[-0.03em] text-foreground max-w-[18ch]"
+                style={{ wordBreak: "keep-all" }}
+              >
+                메리디안이 지키는
+                <br />
+                두 가지 약속<span className="green-dot">.</span>
+              </h2>
+            </AnimateOnScroll>
+            <AnimateOnScroll variant="fadeUp" delay={0.15} className="lg:col-span-5 lg:pt-6">
+              <p
+                className="text-base md:text-lg leading-[1.85] text-muted"
+                style={{ wordBreak: "keep-all" }}
+              >
+                연락이 닿지 않는다, 회신이 늦다, 응대가 불친절하다.
+                자주 듣는 이야기입니다. 그 원인은 대개 한 사람에게 역량을 넘어서는 거래처가 배정된 데 있습니다.
+              </p>
+            </AnimateOnScroll>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border">
+            {[
+              {
+                num: "01",
+                title: "천천히 갑니다",
+                body:
+                  "욕심내지 않습니다. 직원의 교육·훈련 비용을 고객에게 전가하지 않습니다.",
+              },
+              {
+                num: "02",
+                title: "책임은 회계사가 집니다",
+                body:
+                  "서비스 품질에 대한 책임은 전적으로 회계사가 집니다. 직원에게 전가하지 않습니다.",
+              },
+            ].map((item) => (
+              <div key={item.num} className="bg-background p-8 md:p-12">
+                <p className="text-xs tracking-[0.3em] text-muted mb-6 font-medium">
+                  약속 {item.num}
+                </p>
+                <h3
+                  className="text-xl md:text-2xl font-bold text-foreground leading-tight"
+                  style={{ wordBreak: "keep-all" }}
+                >
+                  {item.title}
+                </h3>
+                <div className="mt-6 h-px w-10 bg-accent" />
+                <p
+                  className="mt-6 text-sm md:text-base text-strong leading-[1.85]"
+                  style={{ wordBreak: "keep-all" }}
+                >
+                  {item.body}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-14 md:mt-16 grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-6">
+            {[
+              {
+                title: "직원에게 생각할 시간을",
+                body: "단순·반복 작업은 자체 솔루션으로 자동화. 한 사람에게 일정 수 이상의 거래처를 배정하지 않습니다.",
+              },
+              {
+                title: "염가경쟁을 하지 않습니다",
+                body: "염가 수임은 정당한 대가를 낸 고객의 서비스 품질을 떨어뜨립니다.",
+              },
+              {
+                title: "회계사가 직접 많이 일합니다",
+                body: "적게 일하고 많이 벌겠다는 욕심을 버립니다. 그 시간을 고객·직원과 함께 보냅니다.",
+              },
+            ].map((item) => (
+              <div key={item.title} className="border-t border-border pt-6">
+                <h4
+                  className="text-base md:text-lg font-bold text-foreground leading-tight"
+                  style={{ wordBreak: "keep-all" }}
+                >
+                  {item.title}
+                </h4>
+                <p
+                  className="mt-3 text-sm text-muted leading-[1.75]"
+                  style={{ wordBreak: "keep-all" }}
+                >
+                  {item.body}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <AnimateOnScroll variant="fadeIn" delay={0.2}>
+            <div className="mt-12 text-center">
+              <Link
+                href="/about"
+                className="inline-flex items-baseline gap-2 text-sm tracking-[0.15em] uppercase font-medium text-foreground hover-underline"
+              >
+                메리디안의 약속 자세히 보기
+                <span aria-hidden className="transition-transform duration-300">→</span>
+              </Link>
+            </div>
+          </AnimateOnScroll>
+        </div>
+      </section>
+
       {/* ─── WHY MERIDIAN — 4가지 원칙 ─── */}
       <section className="py-24 md:py-36 bg-background border-t border-border">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">

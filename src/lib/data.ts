@@ -13,7 +13,7 @@ export interface Service {
 export interface Member {
   name: string;
   role: string;
-  description: string;
+  description?: string;
   image?: string;
   credentials?: string[]; // 학력 · 자격 · 수상 (위쪽)
   practiceAreas?: string[]; // 전문 영역 — 실제 specialization
@@ -259,8 +259,6 @@ export const members: Member[] = [
     name: "박민상",
     role: "공인회계사 · Founder",
     image: "/images/founder.webp",
-    description:
-      "감사·세무조정·가치평가에서 쓰던 검토 기준을, 세무기장에 그대로 옮깁니다. 매일의 장부가 다음 결정을 받칠 수 있게 만듭니다.",
     credentials: [
       "공인회계사 (KICPA)",
       "성균관대학교 경영학과 졸업",

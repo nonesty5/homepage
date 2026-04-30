@@ -85,9 +85,11 @@ export default function PeoplePage() {
                 </h2>
                 <p className="mt-2 text-muted font-medium">{lead.role}</p>
                 <div className="mt-6 h-px w-16 bg-accent" />
-                <p className="mt-6 text-muted leading-relaxed text-lg">
-                  {lead.description}
-                </p>
+                {lead.description && (
+                  <p className="mt-6 text-muted leading-relaxed text-lg">
+                    {lead.description}
+                  </p>
+                )}
 
                 {lead.practiceAreas && lead.practiceAreas.length > 0 && (
                   <div className="mt-10">
