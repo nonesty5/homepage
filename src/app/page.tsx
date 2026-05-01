@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { services, members } from "@/lib/data";
-import { siteConfig } from "@/lib/constants";
 import { getAllPosts } from "@/lib/posts";
 import { AnimateOnScroll } from "@/components/motion";
 
@@ -70,7 +69,7 @@ export default function Home() {
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
           {/* Eyebrow */}
           <p className="pb-10 md:pb-14 text-xs font-bold tracking-[0.18em] uppercase text-background/50">
-            Meridian Advisory <span className="mx-2 text-background/25">·</span> 세무기장 <span className="mx-2 text-background/25">·</span> 자문
+            메리디안 택스 어드바이저리 <span className="mx-2 text-background/25">·</span> 세무기장 <span className="mx-2 text-background/25">·</span> 자문
           </p>
 
           {/* Hero headline */}
@@ -84,9 +83,6 @@ export default function Home() {
               하나의 <span className="text-accent">결정</span>으로
               <span className="green-dot">.</span>
             </h1>
-            <p className="mt-8 text-base md:text-lg leading-[1.7] text-background/70 max-w-[52ch]" style={{ wordBreak: "keep-all" }}>
-              장부를 매일 본 사람이 신고하고, 그 사람이 자문합니다.
-            </p>
           </AnimateOnScroll>
 
           {/* Main grid: left CTA / right live calendar */}
@@ -470,86 +466,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── WHY MERIDIAN — 4가지 원칙 ─── */}
-      <section className="py-24 md:py-36 bg-background border-t border-border">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16 md:mb-20">
-            <AnimateOnScroll variant="fadeUp" className="lg:col-span-7">
-              <p className="eyebrow mb-8">Why Meridian</p>
-              <h2
-                className="text-4xl md:text-5xl lg:text-5xl font-black leading-[1] tracking-[-0.03em] text-foreground max-w-[16ch]"
-                style={{ wordBreak: "keep-all" }}
-              >
-                한 사람의 시각이
-                <br />
-                만드는 차이<span className="green-dot">.</span>
-              </h2>
-            </AnimateOnScroll>
-            <AnimateOnScroll variant="fadeUp" delay={0.15} className="lg:col-span-5 lg:pt-6">
-              <p
-                className="text-base md:text-lg leading-[1.85] text-muted"
-                style={{ wordBreak: "keep-all" }}
-              >
-                대형 법인의 분업으로는 안 보이는 자리, 1인 사무소의 시야로는 안 닿는 자리.
-                그 사이에서 일합니다.
-              </p>
-            </AnimateOnScroll>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border">
-            {[
-              {
-                num: "01",
-                title: "전문가의 판단",
-                body: "사업의 맥락은 알고리즘도 사무 직원도 읽지 못합니다. 회계사가 직접 봅니다.",
-              },
-              {
-                num: "02",
-                title: "기술은 내부 도구로",
-                body: "반복 작업은 시스템에 맡깁니다. 회계사는 자문에 집중합니다.",
-              },
-              {
-                num: "03",
-                title: "직접 응답",
-                body: "챗봇이나 사무 직원을 거치지 않습니다. 작업한 회계사가 직접 답합니다.",
-              },
-              {
-                num: "04",
-                title: "본업에 투자",
-                body: "광고와 영업 인력에 쓸 비용을 회계사의 작업 시간으로 돌립니다.",
-              },
-            ].map((item) => (
-              <div key={item.num} className="bg-background p-8 md:p-10">
-                <p className="text-xs tracking-[0.3em] text-muted mb-6 font-medium">
-                  원칙 {item.num}
-                </p>
-                <h3 className="text-xl md:text-2xl font-bold text-foreground leading-tight">
-                  {item.title}
-                </h3>
-                <p
-                  className="mt-5 text-sm md:text-sm text-strong leading-[1.75]"
-                  style={{ wordBreak: "keep-all" }}
-                >
-                  {item.body}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <AnimateOnScroll variant="fadeIn" delay={0.2}>
-            <div className="mt-12 text-center">
-              <Link
-                href="/about"
-                className="inline-flex items-baseline gap-2 text-sm tracking-[0.15em] uppercase font-medium text-foreground hover-underline"
-              >
-                메리디안의 4가지 원칙 더 보기
-                <span aria-hidden className="transition-transform duration-300">→</span>
-              </Link>
-            </div>
-          </AnimateOnScroll>
-        </div>
-      </section>
-
       {/* ─── SERVICES ─── */}
       <section className="py-24 md:py-36 bg-card">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
@@ -639,12 +555,6 @@ export default function Home() {
                 >
                   무료 진단 요청
                   <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-                </Link>
-                <Link
-                  href={siteConfig.pricingUrl}
-                  className="text-sm text-background/60 hover:text-background transition-colors"
-                >
-                  ↳ 견적 계산기
                 </Link>
               </div>
             </div>
@@ -836,13 +746,6 @@ export default function Home() {
                 className="group inline-flex items-center gap-3 bg-accent text-accent-foreground px-10 py-5 font-bold text-sm hover:bg-accent-bright transition-colors duration-300"
               >
                 문의하기
-                <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-              </Link>
-              <Link
-                href={siteConfig.pricingUrl}
-                className="group inline-flex items-center gap-3 border-2 border-background/30 text-background px-10 py-5 font-bold text-sm hover:border-accent hover:text-accent transition-colors duration-300"
-              >
-                월 기장 견적 계산기
                 <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
               </Link>
             </div>

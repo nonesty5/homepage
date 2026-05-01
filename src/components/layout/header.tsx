@@ -84,13 +84,6 @@ export default function Header() {
               })}
             </nav>
             <div className="flex items-center gap-3">
-              <Link
-                href={siteConfig.pricingUrl}
-                prefetch={false}
-                className="text-[0.75rem] font-medium tracking-[0.08em] uppercase px-4 py-2 border border-border text-muted hover:text-foreground hover:border-foreground transition-colors duration-300"
-              >
-                Pricing
-              </Link>
               <a
                 href={siteConfig.clientPortalUrl}
                 target="_blank"
@@ -186,14 +179,6 @@ export default function Header() {
                 : "0ms",
             }}
           >
-            <Link
-              href={siteConfig.pricingUrl}
-              prefetch={false}
-              onClick={() => setMobileOpen(false)}
-              className="text-xs tracking-[0.12em] uppercase px-6 py-3 border border-border text-muted"
-            >
-              Pricing
-            </Link>
             <a
               href={siteConfig.clientPortalUrl}
               target="_blank"

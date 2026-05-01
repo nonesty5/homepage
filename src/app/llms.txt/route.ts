@@ -24,7 +24,6 @@ export async function GET() {
     "## Core Pages",
     `- [Home](${siteConfig.url}/): ${line(siteConfig.description)}`,
     `- [Services](${siteConfig.url}/services): 세무기장, 법인세, 세무조정, 자문, 가치평가 서비스 안내`,
-    `- [Pricing](${siteConfig.url}/pricing): 서비스별 기본 보수와 상담 전 확인 사항`,
     `- [About](${siteConfig.url}/about): 작성자와 업무 범위, 법정 업무 수행 기준`,
     `- [Contact](${siteConfig.url}/contact): 상담 문의`,
     "",
