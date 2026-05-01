@@ -20,9 +20,6 @@ const contactInfo = [
 
 interface ContactPageProps {
   searchParams: Promise<{
-    type?: string | string[];
-    bottleneck?: string | string[];
-    output?: string | string[];
     message?: string | string[];
   }>;
 }
@@ -33,16 +30,8 @@ function getSingleValue(value?: string | string[]) {
 
 export default async function ContactPage({ searchParams }: ContactPageProps) {
   const query = await searchParams;
-  const type = getSingleValue(query.type);
-  const bottleneck = getSingleValue(query.bottleneck);
-  const desiredOutput = getSingleValue(query.output);
   const message = getSingleValue(query.message);
-  const initialValues = {
-    ...(type ? { type } : {}),
-    ...(bottleneck ? { bottleneck } : {}),
-    ...(desiredOutput ? { desiredOutput } : {}),
-    ...(message ? { message } : {}),
-  };
+  const initialValues = message ? { message } : {};
 
   return (
     <>

@@ -26,7 +26,6 @@ const METHOD_HEADERS = {
   "Cache-Control": "no-store",
 };
 const REQUIRE_SHARED_RATE_LIMIT =
-  process.env.VERCEL_ENV === "production" ||
   process.env.CONTACT_RATE_LIMIT_REQUIRE_SHARED === "true";
 
 type RateLimitScope = "ip" | "email";
@@ -421,16 +420,7 @@ export async function POST(request: NextRequest) {
   const startedAt = readNumber(body, "startedAt");
   const elapsedMs = Date.now() - startedAt;
 
-  if (
-    !name ||
-    !email ||
-    !message ||
-    !type ||
-    !companyStage ||
-    !bottleneck ||
-    !desiredOutput ||
-    !timeline
-  ) {
+  if (!name || !email || !message) {
     return jsonError("필수 항목을 입력해 주세요.", 400);
   }
 
@@ -464,17 +454,21 @@ export async function POST(request: NextRequest) {
   try {
     const resend = new Resend(apiKey);
     const fromEmail = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
+    const optionalLines = [
+      type ? `문의 유형: ${type}` : null,
+      companyStage ? `현재 단계: ${companyStage}` : null,
+      bottleneck ? `가장 큰 병목: ${bottleneck}` : null,
+      desiredOutput ? `원하는 결과물: ${desiredOutput}` : null,
+      timeline ? `희망 시점: ${timeline}` : null,
+    ].filter((line): line is string => Boolean(line));
+
     const text = [
       "새로운 홈페이지 문의가 접수되었습니다.",
       "",
       `이름: ${name}`,
       `이메일: ${email}`,
       `전화번호: ${phone || "-"}`,
-      `문의 유형: ${type}`,
-      `현재 단계: ${companyStage || "-"}`,
-      `가장 큰 병목: ${bottleneck || "-"}`,
-      `원하는 결과물: ${desiredOutput || "-"}`,
-      `희망 시점: ${timeline || "-"}`,
+      ...optionalLines,
       "",
       message,
     ].join("\n");
@@ -500,26 +494,13 @@ export async function POST(request: NextRequest) {
             <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">전화번호</td>
             <td style="padding: 8px; border: 1px solid #ddd;">${escapeHtml(phone || "-")}</td>
           </tr>
-          <tr>
-            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">문의 유형</td>
-            <td style="padding: 8px; border: 1px solid #ddd;">${escapeHtml(type)}</td>
-          </tr>
-          <tr>
-            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">현재 단계</td>
-            <td style="padding: 8px; border: 1px solid #ddd;">${escapeHtml(companyStage || "-")}</td>
-          </tr>
-          <tr>
-            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">가장 큰 병목</td>
-            <td style="padding: 8px; border: 1px solid #ddd;">${escapeHtml(bottleneck || "-")}</td>
-          </tr>
-          <tr>
-            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">원하는 결과물</td>
-            <td style="padding: 8px; border: 1px solid #ddd;">${escapeHtml(desiredOutput || "-")}</td>
-          </tr>
-          <tr>
-            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">희망 시점</td>
-            <td style="padding: 8px; border: 1px solid #ddd;">${escapeHtml(timeline || "-")}</td>
-          </tr>
+          ${[
+            type ? `<tr><td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">문의 유형</td><td style="padding: 8px; border: 1px solid #ddd;">${escapeHtml(type)}</td></tr>` : "",
+            companyStage ? `<tr><td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">현재 단계</td><td style="padding: 8px; border: 1px solid #ddd;">${escapeHtml(companyStage)}</td></tr>` : "",
+            bottleneck ? `<tr><td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">가장 큰 병목</td><td style="padding: 8px; border: 1px solid #ddd;">${escapeHtml(bottleneck)}</td></tr>` : "",
+            desiredOutput ? `<tr><td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">원하는 결과물</td><td style="padding: 8px; border: 1px solid #ddd;">${escapeHtml(desiredOutput)}</td></tr>` : "",
+            timeline ? `<tr><td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">희망 시점</td><td style="padding: 8px; border: 1px solid #ddd;">${escapeHtml(timeline)}</td></tr>` : "",
+          ].filter(Boolean).join("")}
           <tr>
             <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">내용</td>
             <td style="padding: 8px; border: 1px solid #ddd; white-space: pre-wrap;">${escapeHtml(message)}</td>

@@ -1,23 +1,11 @@
 "use client";
 
 import { useId, useState } from "react";
-import {
-  BOTTLENECK_OPTIONS,
-  COMPANY_STAGE_OPTIONS,
-  CONTACT_TYPE_OPTIONS,
-  DESIRED_OUTPUT_OPTIONS,
-  TIMELINE_OPTIONS,
-} from "@/lib/contact-options";
 
 interface FormData {
   name: string;
   email: string;
   phone: string;
-  type: string;
-  companyStage: string;
-  bottleneck: string;
-  desiredOutput: string;
-  timeline: string;
   message: string;
   startedAt: number;
   website: string;
@@ -27,18 +15,13 @@ const defaultForm: FormData = {
   name: "",
   email: "",
   phone: "",
-  type: "전체 진단",
-  companyStage: "매출 성장기",
-  bottleneck: "현재 병목 진단 필요",
-  desiredOutput: "운영 진단 및 우선순위 메모",
-  timeline: "이번 달 안",
   message: "",
   startedAt: 0,
   website: "",
 };
 
 interface ContactFormProps {
-  initialValues?: Partial<Pick<FormData, "type" | "bottleneck" | "desiredOutput" | "message">>;
+  initialValues?: Partial<Pick<FormData, "message">>;
 }
 
 export default function ContactForm({ initialValues }: ContactFormProps) {
@@ -51,6 +34,7 @@ export default function ContactForm({ initialValues }: ContactFormProps) {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
     "idle"
   );
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const updateField = <K extends keyof FormData>(key: K, value: FormData[K]) => {
     setForm((current) => ({ ...current, [key]: value }));
@@ -61,6 +45,7 @@ export default function ContactForm({ initialValues }: ContactFormProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("sending");
+    setErrorMessage("");
 
     try {
       const res = await fetch("/api/contact", {
@@ -73,9 +58,20 @@ export default function ContactForm({ initialValues }: ContactFormProps) {
         setStatus("sent");
         setForm({ ...defaultForm, startedAt: Date.now(), ...initialValues });
       } else {
+        let serverMessage = "";
+        try {
+          const data = await res.json();
+          if (data && typeof data.error === "string") {
+            serverMessage = data.error;
+          }
+        } catch {
+          // ignore
+        }
+        setErrorMessage(serverMessage || `전송에 실패했습니다 (${res.status}).`);
         setStatus("error");
       }
     } catch {
+      setErrorMessage("네트워크 오류로 전송하지 못했습니다.");
       setStatus("error");
     }
   };
@@ -98,12 +94,10 @@ export default function ContactForm({ initialValues }: ContactFormProps) {
           </svg>
         </div>
         <h3 className="text-2xl font-bold tracking-tight mb-3">
-          진단 요청이 접수되었습니다
+          문의가 접수되었습니다
         </h3>
         <p className="text-muted leading-relaxed mb-8">
-          전달해 주신 병목과 결과물을 기준으로
-          <br />
-          적용 범위와 다음 단계를 정리해 회신드리겠습니다.
+          전달해 주신 내용을 확인 후 회신드리겠습니다.
         </p>
         <button
           onClick={() => setStatus("idle")}
@@ -167,152 +161,21 @@ export default function ContactForm({ initialValues }: ContactFormProps) {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="relative">
-          <label htmlFor={fieldId("phone")} className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
-            전화번호
-          </label>
-          <input
-            id={fieldId("phone")}
-            name="phone"
-            type="tel"
-            autoComplete="tel"
-            maxLength={40}
-            value={form.phone}
-            onChange={(e) => updateField("phone", e.target.value)}
-            className="w-full px-0 py-3 bg-transparent text-base border-0 border-b border-border focus:outline-none focus:border-foreground transition-colors duration-300 placeholder:text-neutral-300"
-            placeholder="010-0000-0000"
-          />
-        </div>
-
-        <div className="relative">
-          <label htmlFor={fieldId("companyStage")} className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
-            현재 단계 *
-          </label>
-          <select
-            id={fieldId("companyStage")}
-            name="companyStage"
-            required
-            value={form.companyStage}
-            onChange={(e) => updateField("companyStage", e.target.value)}
-            className="w-full px-0 py-3 bg-transparent text-base border-0 border-b border-border focus:outline-none focus:border-foreground transition-colors duration-300 appearance-none cursor-pointer"
-          >
-            {COMPANY_STAGE_OPTIONS.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-          <div className="absolute right-0 bottom-4 pointer-events-none">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M3 5l3 3 3-3" />
-            </svg>
-          </div>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="relative">
-          <label htmlFor={fieldId("type")} className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
-            문의 유형 *
-          </label>
-          <select
-            id={fieldId("type")}
-            name="type"
-            required
-            value={form.type}
-            onChange={(e) => updateField("type", e.target.value)}
-            className="w-full px-0 py-3 bg-transparent text-base border-0 border-b border-border focus:outline-none focus:border-foreground transition-colors duration-300 appearance-none cursor-pointer"
-          >
-            {CONTACT_TYPE_OPTIONS.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-          <div className="absolute right-0 bottom-4 pointer-events-none">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M3 5l3 3 3-3" />
-            </svg>
-          </div>
-        </div>
-
-        <div className="relative">
-          <label htmlFor={fieldId("bottleneck")} className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
-            가장 큰 병목 *
-          </label>
-          <select
-            id={fieldId("bottleneck")}
-            name="bottleneck"
-            required
-            value={form.bottleneck}
-            onChange={(e) => updateField("bottleneck", e.target.value)}
-            className="w-full px-0 py-3 bg-transparent text-base border-0 border-b border-border focus:outline-none focus:border-foreground transition-colors duration-300 appearance-none cursor-pointer"
-          >
-            {BOTTLENECK_OPTIONS.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-          <div className="absolute right-0 bottom-4 pointer-events-none">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M3 5l3 3 3-3" />
-            </svg>
-          </div>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="relative">
-          <label htmlFor={fieldId("desiredOutput")} className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
-            필요한 결과물 *
-          </label>
-          <select
-            id={fieldId("desiredOutput")}
-            name="desiredOutput"
-            required
-            value={form.desiredOutput}
-            onChange={(e) => updateField("desiredOutput", e.target.value)}
-            className="w-full px-0 py-3 bg-transparent text-base border-0 border-b border-border focus:outline-none focus:border-foreground transition-colors duration-300 appearance-none cursor-pointer"
-          >
-            {DESIRED_OUTPUT_OPTIONS.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-          <div className="absolute right-0 bottom-4 pointer-events-none">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M3 5l3 3 3-3" />
-            </svg>
-          </div>
-        </div>
-
-        <div className="relative">
-          <label htmlFor={fieldId("timeline")} className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
-            희망 시점 *
-          </label>
-          <select
-            id={fieldId("timeline")}
-            name="timeline"
-            required
-            value={form.timeline}
-            onChange={(e) => updateField("timeline", e.target.value)}
-            className="w-full px-0 py-3 bg-transparent text-base border-0 border-b border-border focus:outline-none focus:border-foreground transition-colors duration-300 appearance-none cursor-pointer"
-          >
-            {TIMELINE_OPTIONS.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-          <div className="absolute right-0 bottom-4 pointer-events-none">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M3 5l3 3 3-3" />
-            </svg>
-          </div>
-        </div>
+      <div className="relative">
+        <label htmlFor={fieldId("phone")} className="block text-[10px] tracking-[0.2em] uppercase text-subtle font-medium mb-3">
+          전화번호
+        </label>
+        <input
+          id={fieldId("phone")}
+          name="phone"
+          type="tel"
+          autoComplete="tel"
+          maxLength={40}
+          value={form.phone}
+          onChange={(e) => updateField("phone", e.target.value)}
+          className="w-full px-0 py-3 bg-transparent text-base border-0 border-b border-border focus:outline-none focus:border-foreground transition-colors duration-300 placeholder:text-neutral-300"
+          placeholder="010-0000-0000"
+        />
       </div>
 
       <div className="relative">
@@ -328,7 +191,7 @@ export default function ContactForm({ initialValues }: ContactFormProps) {
           value={form.message}
           onChange={(e) => updateField("message", e.target.value)}
           className="w-full px-0 py-3 bg-transparent text-base border-0 border-b border-border focus:outline-none focus:border-foreground transition-colors duration-300 resize-none placeholder:text-neutral-300"
-          placeholder="매출 규모, 기존 기장 여부, 가장 급한 이슈, 이미 정리된 자료가 있으면 함께 적어 주세요."
+          placeholder="매출 규모, 기존 기장 여부, 가장 급한 이슈를 세 줄 정도로 적어 주세요."
         />
       </div>
 
@@ -338,7 +201,7 @@ export default function ContactForm({ initialValues }: ContactFormProps) {
             <span className="text-red-500 text-xs font-bold">!</span>
           </span>
           <p className="text-sm text-red-600">
-            전송에 실패했습니다. 잠시 후 다시 시도해 주세요.
+            {errorMessage || "전송에 실패했습니다. 잠시 후 다시 시도해 주세요."}
           </p>
         </div>
       )}
@@ -356,7 +219,7 @@ export default function ContactForm({ initialValues }: ContactFormProps) {
             </span>
           ) : (
             <>
-              진단 요청 보내기
+              문의 보내기
               <span className="ml-3 transition-transform duration-300 group-hover:translate-x-1">
                 &rarr;
               </span>
