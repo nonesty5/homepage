@@ -144,17 +144,21 @@ export default function AboutPage() {
               메리디안의 약속<span className="green-dot">.</span>
             </h2>
             <div className="mt-8 h-px w-12 bg-accent" />
-            <p
-              className="mt-10 text-base md:text-lg text-strong leading-[1.85] max-w-2xl"
+            <div
+              className="mt-10 max-w-2xl text-base md:text-lg text-strong leading-[1.85] space-y-6"
               style={{ wordBreak: "keep-all" }}
             >
-              &ldquo;세무사·회계사와 연락이 닿지 않고 직원과만 소통한다.&rdquo;
-              &ldquo;서류 요청이나 질의 사항에 회신이 지나치게 늦거나, 자주 내용이 틀려 내용을 믿기 어렵다.&rdquo;
-              &ldquo;직원의 응대가 불친절하다.&rdquo;
-              사업주분들이 세무대리인과 관련해 흔히하시는 이야기입니다.
-              기준이 되어주어야할 세무대리인이 오히려 사업주의 고민거리가 되는 현실.
-              메리디안은 그 구조 자체를 다르게 두기로 했습니다.
-            </p>
+              <ul className="space-y-2 pl-4 border-l-2 border-border text-muted italic">
+                <li>&ldquo;세무사·회계사와 연락이 닿지 않고 직원과만 소통한다.&rdquo;</li>
+                <li>&ldquo;서류 요청이나 질의 사항에 회신이 지나치게 늦거나, 자주 내용이 틀려 내용을 믿기 어렵다.&rdquo;</li>
+                <li>&ldquo;직원의 응대가 불친절하다.&rdquo;</li>
+              </ul>
+              <p>사업주분들이 세무대리인과 관련해 흔히하시는 이야기입니다.</p>
+              <p>기준이 되어주어야할 세무대리인이 오히려 사업주의 고민거리가 되는 현실.</p>
+              <p className="text-foreground font-medium">
+                메리디안은 그 구조 자체를 다르게 두기로 했습니다.
+              </p>
+            </div>
           </AnimateOnScroll>
 
           {/* 메리디안이 제안드리는 기준점(메리디안의 약속) */}
