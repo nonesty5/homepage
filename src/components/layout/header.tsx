@@ -54,8 +54,9 @@ export default function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="transition-opacity duration-300 hover:opacity-60 flex-shrink-0"
+            className="transition-opacity duration-300 hover:opacity-60 flex-shrink-0 flex items-center gap-2"
           >
+            <img src="/meridian-logo.png" alt="" className="h-7 w-7 md:h-8 md:w-8" />
             <span className="text-[1.35rem] md:text-[1.6rem] font-bold tracking-tight leading-none text-foreground">
               Meridian<span className="green-dot">.</span>
             </span>
