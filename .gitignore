@@ -55,3 +55,6 @@ screenshot.mjs
 .last-deploy.txt
 public/color-preview.html
 public/test-founder.html
+
+# 격리 작업 공간 (superpowers worktree)
+.worktrees/
