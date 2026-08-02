@@ -58,15 +58,21 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
+        // **이 규칙이 반드시 먼저 와야 한다.** 아래 와일드카드 규칙도 /contract
+        // 하나를 매칭하는데, Vercel은 :path*가 빈 값일 때 목적지를
+        // ".../contract/"로 만든다(끝에 슬래시가 남는다). 그러면 계약 앱이
+        // 슬래시를 떼려고 /contract로 되돌리고, 그 응답이 다시 여기로 들어와
+        // 무한히 돈다. 로컬 next start는 같은 설정에서도 슬래시를 안 남기므로
+        // 이 문제는 배포한 뒤에만 드러난다 — 순서를 바꾸지 말 것.
+        source: "/contract",
+        destination: "https://taxchat-one.vercel.app/contract",
+      },
+      {
         // 계약 시스템은 별도 Vercel 프로젝트(taxchat)에 있고, 이 주소로만
         // 드러낸다. 앱 자체가 basePath로 /contract 아래에 살기 때문에
         // 경로를 그대로 넘긴다 — 잘라 보내면 앱이 자기 링크를 잘못 만든다.
         source: "/contract/:path*",
         destination: "https://taxchat-one.vercel.app/contract/:path*",
-      },
-      {
-        source: "/contract",
-        destination: "https://taxchat-one.vercel.app/contract",
       },
     ];
   },
