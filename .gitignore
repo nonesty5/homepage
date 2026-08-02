@@ -58,3 +58,6 @@ public/test-founder.html
 
 # 격리 작업 공간 (superpowers worktree)
 .worktrees/
+
+# 조사용 임시 파일 (측정 스크립트·덤프) — 결론만 MEMORY.md에 남긴다
+/temp/
