@@ -1,5 +1,14 @@
 import type { NextConfig } from "next";
 
+const isDev = process.env.NODE_ENV === "development";
+const scriptSrc = [
+  "script-src 'self' 'unsafe-inline'",
+  "https://va.vercel-scripts.com",
+  isDev ? "'unsafe-eval'" : "",
+]
+  .filter(Boolean)
+  .join(" ");
+
 const csp = [
   "default-src 'self'",
   "base-uri 'self'",
@@ -10,15 +19,18 @@ const csp = [
   "font-src 'self'",
   "media-src 'self'",
   "frame-src 'none'",
+  "child-src 'none'",
+  "worker-src 'self' blob:",
   "manifest-src 'self'",
   "style-src 'self' 'unsafe-inline'",
-  "script-src 'self' 'unsafe-inline'",
+  scriptSrc,
   "script-src-attr 'none'",
   "connect-src 'self' https://vitals.vercel-insights.com https://*.vercel-insights.com",
   "upgrade-insecure-requests",
 ].join("; ");
 
 const nextConfig: NextConfig = {
+  allowedDevOrigins: ["127.0.0.1"],
   poweredByHeader: false,
   turbopack: {
     root: process.cwd(),
@@ -43,10 +55,30 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      {
+        // 계약 시스템은 별도 Vercel 프로젝트(taxchat)에 있고, 이 주소로만
+        // 드러낸다. 앱 자체가 basePath로 /contract 아래에 살기 때문에
+        // 경로를 그대로 넘긴다 — 잘라 보내면 앱이 자기 링크를 잘못 만든다.
+        source: "/contract/:path*",
+        destination: "https://taxchat-one.vercel.app/contract/:path*",
+      },
+      {
+        source: "/contract",
+        destination: "https://taxchat-one.vercel.app/contract",
+      },
+    ];
+  },
   async headers() {
     return [
       {
-        source: "/:path*",
+        // **/contract 아래는 제외한다.** 여기 헤더는 이 홈페이지를 위한
+        // 것이고, 넘겨준 계약 앱은 자기 헤더를 따로 갖고 있다. 둘이 겹치면
+        // 브라우저가 더 빡빡한 쪽으로 합쳐서 앱이 조용히 깨진다 — 특히
+        // 아래 Permissions-Policy의 camera=()는 프리랜서가 신분증을
+        // 촬영하는 기능을 통째로 막는다(계약 앱은 camera=(self)를 쓴다).
+        source: "/((?!contract(?:/|$)).*)",
         headers: [
           { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "X-Frame-Options", value: "DENY" },
@@ -57,7 +89,6 @@ const nextConfig: NextConfig = {
           { key: "X-DNS-Prefetch-Control", value: "off" },
           { key: "X-Download-Options", value: "noopen" },
           { key: "X-Permitted-Cross-Domain-Policies", value: "none" },
-          { key: "Access-Control-Allow-Origin", value: "https://www.meridianco.kr" },
           {
             key: "Permissions-Policy",
             value: "camera=(), microphone=(), geolocation=(), browsing-topics=()",
